@@ -1,0 +1,6 @@
+<ul class="list-group mt-3">
+  <li (click)="action.emit(option)" class="list-group-item list-group-item-action pointer"
+    *ngFor="let option of options">
+    {{ option.name }}
+  </li>
+</ul>

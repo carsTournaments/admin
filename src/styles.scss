@@ -1,1 +1,113 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import './scss/colors.scss';
+@import 'node_modules/font-awesome/scss/font-awesome.scss';
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+
+// NEW
+body {background:#F6F8FA;}
+
+.navbar {
+  background-color: $primary;
+  border-color: $primary;
+  color: $dark;
+  height: 50px;
+}
+
+.logo-header {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.nav.navbar-nav.notika-top-nav{
+	float: right;
+}
+
+
+a {
+    transition: all .3s ease 0s;
+    text-decoration: none;
+}
+
+.box-white {
+  background: #fff; 
+  padding: 1rem;
+}
+
+.normal-table-list .table{
+	margin-bottom:0px;
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0px 0px;
+
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+
+body {
+  font-size: 0.875rem;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.breadcrumb {
+  border-radius: 8px;
+  padding-top: 1rem;
+  padding-bottom: 0;
+  padding-left: 0;
+}
+
+.breadcrumb-item a {
+  text-decoration: none !important;
+  font-weight: 600;
+  color: $primary;
+}
+
+.nav-tabs .nav-link {
+  color: $medium !important;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: $dark !important;
+}
+
+thead {
+  color: $dark;
+  text-align: center;
+}
+
+tbody {
+  text-align: center;
+}
+
+.select-inline {
+  width: auto;
+  display: inline-block;
+}
+
+.icon-primary {
+  color: $primary;
+}
+
+.notika-icon {
+ margin-right: .5rem;
+ color: #777777;
+}

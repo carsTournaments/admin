@@ -1,0 +1,57 @@
+<loading [isLoading]="options.loading"></loading>
+
+<div class="table-responsive py-1" *ngIf="!options.loading">
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th *ngFor="let item of vm.tableHeadItems[options.type]" [ngClass]="{'pointer': item.order !== null}"
+          (click)="onChangeOrder(item.order)">
+          {{ item.name }}
+        </th>
+      </tr>
+    </thead>
+    <tbody *ngIf="options.items.length > 0">
+      <ng-container>
+        <!-- User -->
+        <ng-container *ngIf="options.type === 'user'">
+          <tr class="pointer" *ngFor="let item of options.items">
+            <td [routerLink]="['/users/one', item._id]">
+              {{ item.name }}
+            </td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.role }}</td>
+            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
+            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+          </tr>
+        </ng-container>
+
+        <!-- Voting -->
+        <ng-container *ngIf="options.type === 'vote'">
+          <tr class="pointer" *ngFor="let item of options.items">
+            <td [routerLink]="['/votings/one', item._id]">
+              {{ item.type === 'site' ? 'Sitio' : 'Evento' }}
+            </td>
+            <td [routerLink]="['/votings/one', item._id]">
+              <div [innerHTML]="item.value | starsForList"></div>
+            </td>
+            <td
+              [routerLink]="[item.site?._id ? '/sites/one' : '/events/one', item.site?._id ? item.site?._id : item.event?._id]">
+              {{ item.site?.name ? item.site?.name : item.event?.name }}
+            </td>
+            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
+            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+          </tr>
+        </ng-container>
+      </ng-container>
+
+    </tbody>
+
+  </table>
+  <div *ngIf="options.items.length === 0" class="alert alert-warning">No hay elementos disponibles</div>
+  <div class="text-center mb-3">
+    <button class="btn btn-primary w-100" *ngIf="options.showLoadMore && options.items.length > 9"
+      (click)="changePage.emit()">
+      Cargar mas
+    </button>
+  </div>
+</div>

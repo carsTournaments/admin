@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h4>{{ options.title }}</h4>
+  <ng-container *ngIf="options.buttons.length === 1">
+    <button [routerLink]="options.buttons[0].link" class="btn btn-sm btn-outline-secondary">
+      {{ options.buttons[0].name }}
+    </button>
+  </ng-container>
+
+  <ng-container *ngIf="options.buttons.length > 1">
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group me-2">
+        <ng-container *ngFor="let option of options.buttons">
+          <button *ngIf="!option.separated" [routerLink]="option.link" routerLinkActive="active"
+            class="btn btn-sm btn-outline-secondary">
+            {{ option.name }}
+          </button>
+        </ng-container>
+      </div>
+
+      <ng-container *ngFor="let option of options.buttons">
+        <button *ngIf="option.separated" [routerLink]="option.link" class="btn btn-sm btn-outline-primary">
+          {{ option.name }}
+        </button>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

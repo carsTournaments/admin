@@ -1,0 +1,18 @@
+<nav aria-label="breadcrumb">
+  <ol
+    class="breadcrumb animate__animated animate__fadeIn"
+
+  >
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Home</a></li>
+    <li
+      class="breadcrumb-item"
+      [ngClass]="{ active: i === breadcrumbs.length - 1 }"
+      *ngFor="let breadcrumb of breadcrumbs; let i = index"
+    >
+      <a *ngIf="i !== breadcrumbs.length - 1" [routerLink]="breadcrumb.url">
+        {{ breadcrumb.label }}
+      </a>
+      <span *ngIf="i === breadcrumbs.length - 1">{{ breadcrumb.label }}</span>
+    </li>
+  </ol>
+</nav>
