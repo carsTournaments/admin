@@ -1,36 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
-import { CarService } from 'src/app/services/car/car.service';
-import { CarOnePageViewModel } from './model/car-one.view-model';
+import { TournamentService } from 'src/app/services/tournament/tournament.service';
+import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
 
 @Component({
-  selector: 'page-car-one',
-  templateUrl: 'car-one.page.html',
+  selector: 'page-tournament-one',
+  templateUrl: 'tournament-one.page.html',
 })
-export class CarOnePage implements OnInit {
-  vm = new CarOnePageViewModel();
+export class TournamentOnePage implements OnInit {
+  vm = new TournamentOnePageViewModel();
   constructor(
     private route: ActivatedRoute,
-    private carService: CarService,
+    private tournamentService: TournamentService,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.vm.id = this.route.snapshot.paramMap.get('id') as string;
     if (this.vm.id) {
-      this.vm.optionsTitle.title = 'Editar Coche';
+      this.vm.optionsTitle.title = 'Editar Torneo';
       this.vm.edit = true;
       this.getOne();
     } else {
-      this.vm.optionsTitle.title = 'Nuevo Coche';
+      this.vm.optionsTitle.title = 'Nuevo Torneo';
       this.vm.edit = false;
     }
   }
 
   async getOne() {
     try {
-      this.carService.getOne(this.vm.id).subscribe((item) => {
+      this.tournamentService.getOne(this.vm.id).subscribe((item) => {
         this.vm.item = item;
       });
     } catch (error) {
@@ -41,13 +41,13 @@ export class CarOnePage implements OnInit {
   async onSubmit() {
     try {
       this.vm.edit
-        ? this.carService.update(this.vm.item).subscribe(() => { 
-          alert('Coche actualizado');
-          this.router.navigate(['/cars']);
+        ? this.tournamentService.update(this.vm.item).subscribe(() => { 
+          alert('Torneo actualizado');
+          this.router.navigate(['/tournaments']);
         })
-        : this.carService.create(this.vm.item).subscribe(() => { 
-          alert('Coche creado');
-          this.router.navigate(['/cars']);
+        : this.tournamentService.create(this.vm.item).subscribe(() => { 
+          alert('Torneo creado');
+          this.router.navigate(['/tournaments']);
         });
     }
     catch (error) {

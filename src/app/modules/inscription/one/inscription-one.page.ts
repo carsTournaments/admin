@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
-import { CarService } from 'src/app/services/car/car.service';
-import { CarOnePageViewModel } from './model/car-one.view-model';
+import { InscriptionService } from 'src/app/services/inscription/inscription.service';
+import { InscriptionOnePageViewModel } from './model/inscription-one.view-model';
 
 @Component({
-  selector: 'page-car-one',
-  templateUrl: 'car-one.page.html',
+  selector: 'page-inscription-one',
+  templateUrl: 'inscription-one.page.html',
 })
-export class CarOnePage implements OnInit {
-  vm = new CarOnePageViewModel();
+export class InscriptionOnePage implements OnInit {
+  vm = new InscriptionOnePageViewModel();
   constructor(
     private route: ActivatedRoute,
-    private carService: CarService,
+    private inscriptionService: InscriptionService,
     private router: Router
   ) { }
 
@@ -30,7 +30,7 @@ export class CarOnePage implements OnInit {
 
   async getOne() {
     try {
-      this.carService.getOne(this.vm.id).subscribe((item) => {
+      this.inscriptionService.getOne(this.vm.id).subscribe((item) => {
         this.vm.item = item;
       });
     } catch (error) {
@@ -40,15 +40,10 @@ export class CarOnePage implements OnInit {
 
   async onSubmit() {
     try {
-      this.vm.edit
-        ? this.carService.update(this.vm.item).subscribe(() => { 
-          alert('Coche actualizado');
-          this.router.navigate(['/cars']);
-        })
-        : this.carService.create(this.vm.item).subscribe(() => { 
-          alert('Coche creado');
-          this.router.navigate(['/cars']);
-        });
+      this.inscriptionService.create(this.vm.item).subscribe(() => {
+        alert('Coche creado');
+        this.router.navigate(['/inscriptions']);
+      });
     }
     catch (error) {
       console.error(error);

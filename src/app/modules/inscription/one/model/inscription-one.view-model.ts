@@ -1,10 +1,10 @@
 import { CustomTitleWithButtonsViewModel } from 'src/app/components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { SegmentsViewModel } from 'src/app/components/segments/model/segments.view-model';
-import { Car } from 'src/app/models/car.model';
+import { Inscription } from 'src/app/models/inscription.model';
 
-export class CarOnePageViewModel {
+export class InscriptionOnePageViewModel {
   id!: string;
-  item: Car = new Car();
+  item: Inscription = new Inscription();
   optionsTitle = new CustomTitleWithButtonsViewModel({
     title: '',
     buttons: [],

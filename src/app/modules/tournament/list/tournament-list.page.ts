@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
-import { CarService } from 'src/app/services/car/car.service';
-import { CarListViewModel } from './model/car-list.view-model';
+import { TournamentService } from 'src/app/services/tournament/tournament.service';
+import { TournamentListViewModel } from './model/tournament-list.view-model';
 
 @Component({
-  selector: 'page-car-list',
-  templateUrl: 'car-list.page.html',
+  selector: 'page-tournament-list',
+  templateUrl: 'tournament-list.page.html',
 })
-export class CarListPage implements OnInit {
-  vm = new CarListViewModel();
-  constructor(private carService: CarService) { }
+export class TournamentListPage implements OnInit {
+  vm = new TournamentListViewModel();
+  constructor(private tournamentService: TournamentService) { }
 
   ngOnInit() {
     this.getUsers();
@@ -18,7 +18,7 @@ export class CarListPage implements OnInit {
   async getUsers() {
     try {
       this.vm.optionsTable.loading = true;
-      this.carService.getAll(
+      this.tournamentService.getAll(
         this.vm.userBody
       ).subscribe((items) => {
         this.vm.optionsTable.items = items;

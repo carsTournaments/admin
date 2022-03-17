@@ -1,12 +1,11 @@
 
-export interface CarGetAllDto {
+export interface TournamentGetAllDto {
     page: number;
     pageSize: number;
     site: string;
 }
 
-
-export interface CarCreateDto {
+export interface TournamentCreateDto {
     name: string;
     driver: any; // UserI
     brand: any; // BrandI
@@ -17,7 +16,7 @@ export interface CarCreateDto {
     stock: boolean;
 }
 
-export interface CarUpdateDto {
+export interface TournamentUpdateDto {
     _id: string;
     name?: string;
     driver?: any; // UserI

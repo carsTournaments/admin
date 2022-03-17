@@ -1,36 +1,30 @@
 export class CustomTableViewModel {
   page = 1;
   tableHeadItems: any = {
-    category: [
+    car: [
       { name: '#', order: null, col: null },
       { name: 'Nombre', order: 'name', col: null },
-      { name: 'Tipo', order: 'category', col: null },
+      { name: 'Conductor', order: '', col: null },
+      { name: 'Marca', order: '', col: null },
+      { name: 'Traccion', order: 'traction', col: null },
+      { name: 'CC', order: 'cc', col: null },
+      { name: 'CV', order: 'cv', col: null },
       { name: 'Actualizado', order: 'updated', col: null },
       { name: 'Creado', order: 'created', col: null },
     ],
-    event: [
-      { name: '#', order: null, col: null },
-      { name: 'Nombre', order: 'name', col: null },
-      { name: 'Categoria', order: null, col: null },
-      { name: 'Fecha', order: 'dateTime', col: null },
-      { name: 'Sitio', order: 'site', col: null },
-      { name: 'Ciudad', order: 'city', col: null },
-      { name: 'Pais', order: 'country', col: null },
-      { name: 'Actualizado', order: 'updated', col: null },
-      { name: 'Creado', order: 'created', col: null },
-    ],
-    scraper: [
+    tournament: [
       { name: '#', order: '', col: null },
       { name: 'Nombre', order: '', col: null },
-      { name: 'Fecha', order: '', col: null },
-      { name: 'Sitio', order: '', col: null },
+      { name: 'Fecha Inicio', order: 'startDate', col: null },
+      { name: 'Inscritos', order: '', col: null },
+      { name: 'Requisitos', order: '', col: null },
+      { name: 'Actualizado', order: 'updated', col: null },
+      { name: 'Creado', order: 'created', col: null },
     ],
-    site: [
+    inscription: [
       { name: '#', order: null, col: null },
-      { name: 'Nombre', order: 'name', col: null },
-      { name: 'Categoria', order: null, col: null },
-      { name: 'Ciudad', order: 'city', col: null },
-      { name: 'Pais', order: 'country', col: null },
+      { name: 'Coche', order: null, col: null },
+      { name: 'Torneo', order: null, col: null },
       { name: 'Actualizado', order: 'updated', col: null },
       { name: 'Creado', order: 'created', col: null },
     ],

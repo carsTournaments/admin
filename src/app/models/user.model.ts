@@ -1,14 +1,5 @@
-interface UserI {
-  _id?: string;
-  email: string;
-  name: string;
-  role: string;
-  password?: string;
-  created?: string;
-  updated?: string;
-}
 
-export class User implements UserI {
+export class User {
   _id?: string;
   email: string;
   name: string;
@@ -17,7 +8,7 @@ export class User implements UserI {
   created?: string;
   updated?: string;
 
-  constructor(data?: UserI) {
+  constructor(data?: User) {
     this._id = data?._id;
     this.email = data?.email || '';
     this.name = data?.name || '';

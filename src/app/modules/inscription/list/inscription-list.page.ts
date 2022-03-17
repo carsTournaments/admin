@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
-import { CarService } from 'src/app/services/car/car.service';
-import { CarListViewModel } from './model/car-list.view-model';
+import { InscriptionService } from 'src/app/services/inscription/inscription.service';
+import { InscriptionListViewModel } from './model/inscription-list.view-model';
 
 @Component({
-  selector: 'page-car-list',
-  templateUrl: 'car-list.page.html',
+  selector: 'page-inscription-list',
+  templateUrl: 'inscription-list.page.html',
 })
-export class CarListPage implements OnInit {
-  vm = new CarListViewModel();
-  constructor(private carService: CarService) { }
+export class InscriptionListPage implements OnInit {
+  vm = new InscriptionListViewModel();
+  constructor(private inscriptionService: InscriptionService) { }
 
   ngOnInit() {
     this.getUsers();
@@ -18,7 +18,7 @@ export class CarListPage implements OnInit {
   async getUsers() {
     try {
       this.vm.optionsTable.loading = true;
-      this.carService.getAll(
+      this.inscriptionService.getAll(
         this.vm.userBody
       ).subscribe((items) => {
         this.vm.optionsTable.items = items;

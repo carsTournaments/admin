@@ -2,18 +2,18 @@ import { CustomTableOptionsModel } from 'src/app/components/custom-table/model/c
 import { CustomTitleWithButtonsViewModel } from 'src/app/components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { SegmentsViewModel } from 'src/app/components/segments/model/segments.view-model';
 import { User } from 'src/app/models/user.model';
-import { CarGetAllDto } from 'src/app/services/car/car.dto';
+import { InscriptionGetAllDto } from 'src/app/services/inscription/inscription.dto';
 
-export class CarListViewModel {
+export class InscriptionListViewModel {
   items: User[] = [];
   optionsTitle = new CustomTitleWithButtonsViewModel({
-    title: 'Coches',
-    buttons: [{ name: 'Nuevo', link: '/cars/one', separated: false }],
+    title: 'Inscripciones',
+    buttons: [{ name: 'Nuevo', link: '/inscriptions/one', separated: false }],
   });
   optionsTable = new CustomTableOptionsModel({
     loading: false,
     items: [],
-    type: 'car',
+    type: 'inscription',
     showLoadMore: true,
     error: false,
   });
@@ -21,7 +21,7 @@ export class CarListViewModel {
     segments: ['Listado', 'Opciones'],
     currentSegment: 0,
   });
-  userBody: CarGetAllDto = {
+  userBody: InscriptionGetAllDto = {
     page: 1,
     pageSize: 10,
     site: 'app'

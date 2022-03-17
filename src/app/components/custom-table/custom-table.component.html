@@ -12,6 +12,49 @@
     </thead>
     <tbody *ngIf="options.items.length > 0">
       <ng-container>
+        <!-- Car -->
+        <ng-container *ngIf="options.type === 'car'">
+          <tr class="pointer" *ngFor="let item of options.items">
+            <td></td>
+            <td [routerLink]="['/cars/one', item._id]">
+              {{ item.name }}
+            </td>
+            <td>{{ item.driver.name }}</td>
+            <td>{{ item.brand?.name }}</td>
+            <td>{{ item.traction }}</td>
+            <td>{{ item.cc }}</td>
+            <td>{{ item.cv }}</td>
+            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
+            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+          </tr>
+        </ng-container>
+
+        <!-- Inscription -->
+        <ng-container *ngIf="options.type === 'inscription'">
+          <tr class="pointer" *ngFor="let item of options.items">
+            <td></td>
+            <td>{{ item.car.name }}</td>
+            <td>{{ item.tournament.name }}</td>
+            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
+            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+          </tr>
+        </ng-container>
+
+        <!-- Tournament -->
+        <ng-container *ngIf="options.type === 'tournament'">
+          <tr class="pointer" *ngFor="let item of options.items">
+            <td></td>
+            <td [routerLink]="['/tournaments/one', item._id]">
+              {{ item.name }}
+            </td>
+            <td>{{ item.startDate }}</td>
+            <td>{{ item.inscriptions?.length }} / {{ item.maxParticipants}}</td>
+            <td>{{ item.requisites.length }}</td>
+            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
+            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+          </tr>
+        </ng-container>
+
         <!-- User -->
         <ng-container *ngIf="options.type === 'user'">
           <tr class="pointer" *ngFor="let item of options.items">

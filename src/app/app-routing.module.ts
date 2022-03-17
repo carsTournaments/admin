@@ -25,6 +25,20 @@ const routes: Routes = [
     canActivate: [LoginGuard],
   },
   {
+    path: 'inscriptions',
+    data: { breadcrumb: 'Inscripciones' },
+    loadChildren: () =>
+      import('./modules/inscription/inscription.module').then((m) => m.InscriptionModule),
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'tournaments',
+    data: { breadcrumb: 'Torneos' },
+    loadChildren: () =>
+      import('./modules/tournament/tournament.module').then((m) => m.TournamentModule),
+    canActivate: [LoginGuard],
+  },
+  {
     path: 'users',
     data: { breadcrumb: 'Usuarios' },
     loadChildren: () =>

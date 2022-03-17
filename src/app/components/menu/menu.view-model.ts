@@ -35,11 +35,11 @@ export class MenuViewModel {
             subitems: [
                 {
                     name: 'Listado',
-                    link: '/categories/list/all',
+                    link: '/tournaments',
                 },
                 {
                     name: 'Inscripciones',
-                    link: '/categories/add/site',
+                    link: '/inscriptions',
                 },
                 {
                     name: 'Rondas',

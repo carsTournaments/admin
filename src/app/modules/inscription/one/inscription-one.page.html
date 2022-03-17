@@ -1,5 +1,5 @@
 <navbar></navbar>
-<custom-menu [itemSelected]="1"></custom-menu>
+<custom-menu [itemSelected]="2"></custom-menu>
 <div class="container">
   <div class="box-white">
     <custom-title-with-buttons [options]="vm.optionsTitle"></custom-title-with-buttons>
@@ -8,10 +8,10 @@
     <div class="mb-3" *ngIf="vm.optionsSegments.currentSegment === 0">
       <div class="row mt-1 g-3" *ngIf="vm.item">
         <div class="col-sm-6">
-          <div class="form-floating">
+          <!-- <div class="form-floating">
             <input class="form-control" name="name" [(ngModel)]="vm.item.name" placeholder="Nombre" required />
             <label for="floatingInput" class="form-label">Nombre</label>
-          </div>
+          </div> -->
         </div>
 
         <!-- <div class="col-sm-6">
