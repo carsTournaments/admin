@@ -1,0 +1,67 @@
+<navbar></navbar>
+<custom-menu [itemSelected]="0"></custom-menu>
+<div class="container">
+
+    <div class="box-white">
+        <custom-title-with-buttons [options]="vm.optionsTitle"></custom-title-with-buttons>
+        <div class="row">
+            <div class="col-6">
+                <input class="form-control from-control-sm" name="month" [(ngModel)]="vm.logsBody.month"
+                    (change)="onChangeMonth()">
+            </div>
+            <div class="col-6">
+                <input class="form-control from-control-sm" name="year" [(ngModel)]="vm.logsBody.year"
+                    (change)="onChangeYear()">
+            </div>
+        </div>
+        <div class="row mt-3 mb-5">
+            <!-- METHODS -->
+            <div class="col col-lg-6">
+                <h3>Metodos</h3>
+                <hr>
+                <canvas *ngIf="!vm.loading" baseChart [data]="vm.optionsMethods.data" [type]="vm.optionsMethods.type">
+                </canvas>
+            </div>
+            <div class="col-12 col-lg-6">
+                <!-- ROLES -->
+                <h3>Roles</h3>
+                <hr>
+                <canvas *ngIf="!vm.loading" baseChart [data]="vm.optionsRoles.data" [type]="vm.optionsRoles.type">
+                </canvas>
+            </div>
+            <div class="col-12 col-lg-12 mt-5">
+                <h3>Peticiones por dia</h3>
+                <hr>
+                <!-- DAYS -->
+                <canvas *ngIf="!vm.loading" baseChart [data]="vm.optionsDays.data" [type]="vm.optionsDays.type"
+                    [options]="vm.optionsDays.options"></canvas>
+            </div>
+            <!-- URLS -->
+            <div class="col-12 col-lg-12 mt-5">
+                <h3>Top Urls</h3>
+                <hr>
+                <div class="table-responsive py-1">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>URL</th>
+                                <th>Metodo</th>
+                                <th>Rol</th>
+                                <th>Peticiones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let url of vm.urls">
+                                <td>{{url.name}}</td>
+                                <td>{{url.method}}</td>
+                                <td>{{url.role !== '' ? url.role : 'NO_ROLE'}}</td>
+                                <td>{{url.count}}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

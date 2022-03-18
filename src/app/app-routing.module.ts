@@ -39,6 +39,13 @@ const routes: Routes = [
     canActivate: [LoginGuard],
   },
   {
+    path: 'logs',
+    data: { breadcrumb: 'Logs' },
+    loadChildren: () =>
+      import('./modules/logs/logs.module').then((m) => m.LogsModule),
+    canActivate: [LoginGuard],
+  },
+  {
     path: 'tournaments',
     data: { breadcrumb: 'Torneos' },
     loadChildren: () =>

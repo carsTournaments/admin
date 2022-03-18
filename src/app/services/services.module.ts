@@ -9,6 +9,7 @@ import { GlobalHttpInterceptor } from '../core/interceptors/global-http.intercep
 import { TournamentService } from './tournament/tournament.service';
 import { BrandService } from './brand/brand.service';
 import { RoundService } from './round/round.service';
+import { LoggerService } from './logger/logger.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
@@ -18,6 +19,7 @@ import { RoundService } from './round/round.service';
     BrandService,
     CarService,
     InscriptionService,
+    LoggerService,
     RoundService,
     TournamentService,
     UserService,
