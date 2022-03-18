@@ -25,6 +25,13 @@ const routes: Routes = [
     canActivate: [LoginGuard],
   },
   {
+    path: 'brands',
+    data: { breadcrumb: 'Marcas' },
+    loadChildren: () =>
+      import('./modules/brand/brand.module').then((m) => m.BrandModule),
+    canActivate: [LoginGuard],
+  },
+  {
     path: 'inscriptions',
     data: { breadcrumb: 'Inscripciones' },
     loadChildren: () =>

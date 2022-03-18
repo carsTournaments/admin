@@ -7,14 +7,18 @@ import { NgModule } from '@angular/core';
 import { UserService } from './user/user.service';
 import { GlobalHttpInterceptor } from '../core/interceptors/global-http.interceptor';
 import { TournamentService } from './tournament/tournament.service';
+import { BrandService } from './brand/brand.service';
+import { RoundService } from './round/round.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
   declarations: [],
   providers: [
     AuthService,
+    BrandService,
     CarService,
     InscriptionService,
+    RoundService,
     TournamentService,
     UserService,
     {

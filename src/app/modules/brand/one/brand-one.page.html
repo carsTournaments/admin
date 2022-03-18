@@ -13,30 +13,38 @@
             <label for="floatingInput" class="form-label">Nombre</label>
           </div>
         </div>
-
+       
         <div class="col-sm-6">
           <div class="form-floating">
-            <input class="form-control" type="number" name="name" [(ngModel)]="vm.item.cc" placeholder="cc" required />
-            <label for="floatingInput" class="form-label">CC</label>
+            <input class="form-control" name="name" [(ngModel)]="vm.item.country" placeholder="Pais" required />
+            <label for="floatingInput" class="form-label">Pais</label>
           </div>
         </div>
         
         <div class="col-sm-6">
           <div class="form-floating">
-            <input class="form-control" type="number" name="name" [(ngModel)]="vm.item.cv" placeholder="cv" required />
-            <label for="floatingInput" class="form-label">CV</label>
+            <input class="form-control" name="name" [(ngModel)]="vm.item.image" placeholder="Imagen" required />
+            <label for="floatingInput" class="form-label">Imagen</label>
           </div>
         </div>
 
-        <div class="col-sm-6">
+        <!-- <div class="col-sm-6">
           <div class="form-floating">
-            <select class="form-select" [(ngModel)]="vm.item.stock">
-              <option [value]="true">Si</option>
-              <option [value]="false">No</option>
-            </select>
-            <label for="floatingInput" class="form-label">De serie</label>
+            <input type="email" class="form-control" name="email" [(ngModel)]="vm.item.email" placeholder="Email"
+              required />
+            <label for="floatingInput" class="form-label">Email</label>
           </div>
-        </div>
+        </div> -->
+
+        <!-- <div class="col-sm-6">
+          <div class="form-floating">
+            <select class="form-select" [(ngModel)]="vm.item.role">
+              <option value="ADMIN">Admin</option>
+              <option value="USER">Usuario</option>
+            </select>
+            <label for="floatingInput" class="form-label">Rol</label>
+          </div>
+        </div> -->
 
         <hr class="my-4" />
 

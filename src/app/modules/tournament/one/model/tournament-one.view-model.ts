@@ -29,6 +29,10 @@ export class TournamentOnePageViewModel {
       value: 'startTournament',
     },
     {
+      name: 'Eliminar inscripciones',
+      value: 'deleteInscriptions',
+    },
+    {
       name: 'Eliminar torneo',
       value: 'delete',
     },

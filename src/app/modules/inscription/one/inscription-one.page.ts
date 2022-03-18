@@ -1,6 +1,8 @@
+import { TournamentService } from './../../../services/tournament/tournament.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
+import { CarService } from 'src/app/services/car/car.service';
 import { InscriptionService } from 'src/app/services/inscription/inscription.service';
 import { InscriptionOnePageViewModel } from './model/inscription-one.view-model';
 
@@ -13,19 +15,16 @@ export class InscriptionOnePage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private inscriptionService: InscriptionService,
+    private carService: CarService,
+    private tournamentService: TournamentService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.vm.id = this.route.snapshot.paramMap.get('id') as string;
-    if (this.vm.id) {
-      this.vm.optionsTitle.title = 'Editar Coche';
-      this.vm.edit = true;
-      this.getOne();
-    } else {
-      this.vm.optionsTitle.title = 'Nuevo Coche';
-      this.vm.edit = false;
-    }
+    this.vm.optionsTitle.title = 'Nuevo Inscripcion';
+    this.vm.edit = false;
+    this.getCars()
+    this.getTournaments();
   }
 
   async getOne() {
@@ -38,10 +37,32 @@ export class InscriptionOnePage implements OnInit {
     }
   }
 
+  async getCars() {
+    try {
+      this.carService.getAll({ page: 1, pageSize: 1000, site: 'admin' })
+        .subscribe((items) => {
+          this.vm.cars = items;
+        })
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getTournaments() {
+    try {
+      this.tournamentService.getAll({ page: 1, pageSize: 1000, site: 'admin' })
+        .subscribe((items) => {
+          this.vm.tournaments = items;
+        })
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async onSubmit() {
     try {
       this.inscriptionService.create(this.vm.item).subscribe(() => {
-        alert('Coche creado');
+        alert('Inscripcion creada');
         this.router.navigate(['/inscriptions']);
       });
     }
@@ -50,10 +71,4 @@ export class InscriptionOnePage implements OnInit {
     }
   }
 
-  actionForOption(option: ActionForOptionI) {
-    switch (option.value) {
-      default:
-        break;
-    }
-  }
 }

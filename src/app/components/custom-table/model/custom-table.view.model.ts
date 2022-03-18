@@ -28,12 +28,11 @@ export class CustomTableViewModel {
       { name: 'Actualizado', order: 'updated', col: null },
       { name: 'Creado', order: 'created', col: null },
     ],
-    topSite: [
+    brand: [
       { name: '#', order: null, col: null },
       { name: 'Nombre', order: 'name', col: null },
-      { name: 'Categoria', order: null, col: null },
-      { name: 'Valoracion', order: null, col: null },
-      { name: 'Votos', order: null, col: null },
+      { name: 'Pais', order: null, col: null },
+      { name: 'Total Coches', order: null, col: null },
       { name: 'Actualizado', order: 'updated', col: null },
       { name: 'Creado', order: 'created', col: null },
     ],

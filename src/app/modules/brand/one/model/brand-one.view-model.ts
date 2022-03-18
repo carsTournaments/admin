@@ -1,14 +1,10 @@
 import { CustomTitleWithButtonsViewModel } from 'src/app/components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { SegmentsViewModel } from 'src/app/components/segments/model/segments.view-model';
-import { Car } from 'src/app/models/car.model';
-import { Inscription } from 'src/app/models/inscription.model';
-import { Tournament } from 'src/app/models/tournament.model';
+import { Brand } from 'src/app/models/brand.model';
 
-export class InscriptionOnePageViewModel {
+export class BrandOnePageViewModel {
   id!: string;
-  item: Inscription = new Inscription();
-  cars: Car[] = [];
-  tournaments: Tournament[] = []
+  item: Brand = new Brand();
   optionsTitle = new CustomTitleWithButtonsViewModel({
     title: '',
     buttons: [],

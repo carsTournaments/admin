@@ -12,6 +12,20 @@
     </thead>
     <tbody *ngIf="options.items.length > 0">
       <ng-container>
+        <!-- Brand -->
+        <ng-container *ngIf="options.type === 'brand'">
+          <tr class="pointer" *ngFor="let item of options.items">
+            <td></td>
+            <td [routerLink]="['/brands/one', item._id]">
+              {{ item.name }}
+            </td>
+            <td>{{ item.country }}</td>
+            <td>{{ item.cars.length }}</td>
+            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
+            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+          </tr>
+        </ng-container>
+
         <!-- Car -->
         <ng-container *ngIf="options.type === 'car'">
           <tr class="pointer" *ngFor="let item of options.items">

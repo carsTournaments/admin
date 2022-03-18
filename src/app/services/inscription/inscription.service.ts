@@ -36,6 +36,12 @@ export class InscriptionService {
             .post<Inscription>(`${this.url}/create`, data, this.headers);
     }
 
+
+    deleteAllOfTournament(id: string): Observable<Inscription> {
+        return this.httpClient
+            .delete<Inscription>(`${this.url}/allOfTournament/${id}`, this.headers);
+    }
+
     delete(id: string): Observable<Inscription> {
         return this.httpClient
             .delete<Inscription>(`${this.url}/one/${id}`, this.headers);

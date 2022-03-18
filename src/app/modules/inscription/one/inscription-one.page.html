@@ -7,30 +7,28 @@
 
     <div class="mb-3" *ngIf="vm.optionsSegments.currentSegment === 0">
       <div class="row mt-1 g-3" *ngIf="vm.item">
+
         <div class="col-sm-6">
-          <!-- <div class="form-floating">
-            <input class="form-control" name="name" [(ngModel)]="vm.item.name" placeholder="Nombre" required />
-            <label for="floatingInput" class="form-label">Nombre</label>
-          </div> -->
-        </div>
-
-        <!-- <div class="col-sm-6">
           <div class="form-floating">
-            <input type="email" class="form-control" name="email" [(ngModel)]="vm.item.email" placeholder="Email"
-              required />
-            <label for="floatingInput" class="form-label">Email</label>
-          </div>
-        </div> -->
-
-        <!-- <div class="col-sm-6">
-          <div class="form-floating">
-            <select class="form-select" [(ngModel)]="vm.item.role">
-              <option value="ADMIN">Admin</option>
-              <option value="USER">Usuario</option>
+            <select class="form-select" [(ngModel)]="vm.item.tournament">
+              <option *ngFor="let tournament of vm.tournaments" [value]="tournament._id">
+                {{ tournament.name }}
+              </option>
             </select>
-            <label for="floatingInput" class="form-label">Rol</label>
+            <label for="floatingInput" class="form-label">Torneo</label>
           </div>
-        </div> -->
+        </div>
+        
+        <div class="col-sm-6">
+          <div class="form-floating">
+            <select class="form-select" [(ngModel)]="vm.item.car">
+            <option *ngFor="let car of vm.cars" [value]="car._id">
+              {{ car.name }}
+            </option>
+            </select>
+            <label for="floatingInput" class="form-label">Coche</label>
+          </div>
+        </div>
 
         <hr class="my-4" />
 
@@ -39,33 +37,6 @@
         </button>
       </div>
     </div>
-
-    <ng-container *ngIf="vm.optionsSegments.currentSegment === 1">
-      <div class="row mt-3">
-        <div class="col-6">
-          <ul class="list-group">
-            <li (click)="actionForOption(option)" class="list-group-item list-group-item-action pointer"
-              *ngFor="let option of vm.options">
-              {{ option.name }}
-            </li>
-          </ul>
-        </div>
-        <div class="col-6">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-text">
-                <strong>Creado</strong>: {{ vm.item.created! | dateToTimeAgo |
-                titlecase }}
-              </p>
-              <hr />
-              <p class="card-text">
-                <strong>Actualizado</strong>: {{ vm.item.updated! |
-                dateToTimeAgo | titlecase }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ng-container>
+    
   </div>
 </div>

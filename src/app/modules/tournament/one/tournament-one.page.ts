@@ -46,7 +46,6 @@ export class TournamentOnePage implements OnInit {
     this.inscriptionService.getAllOfTournament({ id: this.vm.id }).subscribe({
       next: (items) => this.getInscriptionsByTournamentOk(items),
       error: (e) => this.getInscriptionsByTournamentKo(e)
-      
     });
   }
 
@@ -88,6 +87,9 @@ export class TournamentOnePage implements OnInit {
       case 'startTournament':
         this.startTournament();
         break;
+      case 'deleteInscriptions':
+        this.deleteInscriptions();
+        break;
       case 'delete':
         this.delete();
         break;
@@ -107,10 +109,23 @@ export class TournamentOnePage implements OnInit {
 
   }
 
+  deleteInscriptions() {
+    this.inscriptionService.deleteAllOfTournament(this.vm.id).subscribe({
+      next: () => {
+        alert('Inscripciones eliminadas');
+        this.getInscriptionsByTournament();
+      },
+      error: (e) => alert(e)
+    })
+  }
+
   delete() {
-    this.tournamentService.delete(this.vm.id).subscribe(() => {
-      alert('Torneo eliminado');
-      this.router.navigate(['/tournaments']);
+    this.tournamentService.delete(this.vm.id).subscribe({
+      next: () => {
+        alert('Torneo eliminado');
+        this.router.navigate(['/tournaments']);
+      },
+      error: (e) => alert(e)
     });
   }
 }

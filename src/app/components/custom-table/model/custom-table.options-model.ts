@@ -1,5 +1,6 @@
 export class CustomTableOptionsModel {
   type:
+    | 'brand'
     | 'car'
     | 'user'
     | 'inscription'

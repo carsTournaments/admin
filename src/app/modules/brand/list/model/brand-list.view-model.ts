@@ -2,18 +2,17 @@ import { CustomTableOptionsModel } from 'src/app/components/custom-table/model/c
 import { CustomTitleWithButtonsViewModel } from 'src/app/components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { SegmentsViewModel } from 'src/app/components/segments/model/segments.view-model';
 import { User } from 'src/app/models/user.model';
-import { TournamentGetAllDto } from 'src/app/services/tournament/tournament.dto';
 
-export class TournamentListViewModel {
+export class BrandListViewModel {
   items: User[] = [];
   optionsTitle = new CustomTitleWithButtonsViewModel({
-    title: 'Torneos',
-    buttons: [{ name: 'Nuevo', link: '/tournaments/one', separated: false }],
+    title: 'Coches',
+    buttons: [{ name: 'Nuevo', link: '/brands/one', separated: false }],
   });
   optionsTable = new CustomTableOptionsModel({
     loading: false,
     items: [],
-    type: 'tournament',
+    type: 'brand',
     showLoadMore: true,
     error: false,
   });
@@ -21,11 +20,6 @@ export class TournamentListViewModel {
     segments: ['Listado', 'Opciones'],
     currentSegment: 0,
   });
-  tournamentBody: TournamentGetAllDto = {
-    page: 1,
-    pageSize: 10,
-    site: 'app'
-  };
   options = [
     {
       name: 'Prueba',

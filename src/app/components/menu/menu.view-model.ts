@@ -25,7 +25,7 @@ export class MenuViewModel {
                 },
                 {
                     name: 'Marcas',
-                    link: '/categories/add/site',
+                    link: '/brands',
                 },
             ],
         },

@@ -19,7 +19,7 @@ export class TournamentListPage implements OnInit {
     try {
       this.vm.optionsTable.loading = true;
       this.tournamentService.getAll(
-        this.vm.userBody
+        this.vm.tournamentBody
       ).subscribe((items) => {
         this.vm.optionsTable.items = items;
       })
