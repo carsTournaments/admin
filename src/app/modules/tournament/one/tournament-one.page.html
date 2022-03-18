@@ -14,6 +14,21 @@
           </div>
         </div>
 
+        <div class="col-sm-6">
+          <div class="form-floating">
+            <input class="form-control" name="name" [(ngModel)]="vm.item.startDate" placeholder="Nombre" required />
+            <label for="floatingInput" class="form-label">Fecha de inicio</label>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-floating">
+            <input class="form-control" type="number" name="name" [(ngModel)]="vm.item.maxParticipants"
+              placeholder="Nombre" required />
+            <label for="floatingInput" class="form-label">Participantes Maximos</label>
+          </div>
+        </div>
+
         <!-- <div class="col-sm-6">
           <div class="form-floating">
             <input type="email" class="form-control" name="email" [(ngModel)]="vm.item.email" placeholder="Email"
@@ -66,6 +81,10 @@
           </div>
         </div>
       </div>
+    </ng-container>
+
+    <ng-container *ngIf="vm.optionsSegments.currentSegment === 2">
+      <custom-table [options]="vm.inscriptionsOptionsTable"></custom-table>
     </ng-container>
   </div>
 </div>

@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { InscriptionCreateDto, InscriptionGetAllDto } from './inscription.dto';
 import { Inscription } from 'src/app/models/inscription.model';
+import { IdDto } from 'src/app/core/dtos/id.dto';
 
 @Injectable({ providedIn: 'root' })
 export class InscriptionService {
@@ -18,6 +19,11 @@ export class InscriptionService {
     getAll(data: InscriptionGetAllDto): Observable<Inscription[]> {
         return this.httpClient
             .post<Inscription[]>(`${this.url}/all`, data, this.headers);
+    }
+    
+    getAllOfTournament(data: IdDto): Observable<Inscription[]> {
+        return this.httpClient
+            .post<Inscription[]>(`${this.url}/allOfTournament`, data, this.headers);
     }
 
     getOne(id: string): Observable<Inscription> {

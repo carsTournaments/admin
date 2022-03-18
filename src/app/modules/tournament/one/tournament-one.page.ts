@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
+import { Inscription } from 'src/app/models/inscription.model';
+import { InscriptionService } from 'src/app/services/inscription/inscription.service';
 import { TournamentService } from 'src/app/services/tournament/tournament.service';
 import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
 
@@ -13,6 +15,7 @@ export class TournamentOnePage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tournamentService: TournamentService,
+    private inscriptionService: InscriptionService,
     private router: Router
   ) { }
 
@@ -21,6 +24,7 @@ export class TournamentOnePage implements OnInit {
     if (this.vm.id) {
       this.vm.optionsTitle.title = 'Editar Torneo';
       this.vm.edit = true;
+      this.getInscriptionsByTournament();
       this.getOne();
     } else {
       this.vm.optionsTitle.title = 'Nuevo Torneo';
@@ -38,14 +42,38 @@ export class TournamentOnePage implements OnInit {
     }
   }
 
+  async getInscriptionsByTournament() {
+    this.inscriptionService.getAllOfTournament({ id: this.vm.id }).subscribe({
+      next: (items) => this.getInscriptionsByTournamentOk(items),
+      error: (e) => this.getInscriptionsByTournamentKo(e)
+      
+    });
+  }
+
+  getInscriptionsByTournamentOk(items: Inscription[]) {
+    this.vm.inscriptionsOptionsTable.loading = true;
+    this.vm.inscriptionsOptionsTable.items = items;
+    if (items.length > 0) {
+      this.vm.optionsSegments.segments[2] = `Inscripciones (${items.length})`;
+    } else {
+      delete this.vm.optionsSegments.segments[2];
+    }
+    this.vm.inscriptionsOptionsTable.loading = false;
+  }
+
+  getInscriptionsByTournamentKo(e: any) {
+    this.vm.inscriptionsOptionsTable.error = true;
+    alert(e)
+  }
+
   async onSubmit() {
     try {
       this.vm.edit
-        ? this.tournamentService.update(this.vm.item).subscribe(() => { 
+        ? this.tournamentService.update(this.vm.item).subscribe(() => {
           alert('Torneo actualizado');
           this.router.navigate(['/tournaments']);
         })
-        : this.tournamentService.create(this.vm.item).subscribe(() => { 
+        : this.tournamentService.create(this.vm.item).subscribe(() => {
           alert('Torneo creado');
           this.router.navigate(['/tournaments']);
         });
@@ -57,8 +85,32 @@ export class TournamentOnePage implements OnInit {
 
   actionForOption(option: ActionForOptionI) {
     switch (option.value) {
+      case 'startTournament':
+        this.startTournament();
+        break;
+      case 'delete':
+        this.delete();
+        break;
       default:
         break;
     }
+  }
+
+  startTournament() {
+    this.tournamentService.startTournament({ id: this.vm.id }).subscribe({
+      next: (v) => {
+        alert('Torneo iniciado');
+        this.router.navigate(['/tournaments']);
+      },
+      error: (e) => alert(e)
+    })
+
+  }
+
+  delete() {
+    this.tournamentService.delete(this.vm.id).subscribe(() => {
+      alert('Torneo eliminado');
+      this.router.navigate(['/tournaments']);
+    });
   }
 }

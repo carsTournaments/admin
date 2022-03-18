@@ -31,7 +31,7 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
           if (error.status === 999) {
             this.clearStorageData();
           } else {
-            errorMessage = `Server-side error: ${error.status} ${error.message}`;
+            errorMessage = error.error.message;
           }
         }
         return throwError(errorMessage);

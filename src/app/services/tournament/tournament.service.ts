@@ -1,3 +1,4 @@
+import { IdDto } from 'src/app/core/dtos/id.dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../http/http.service';
@@ -28,6 +29,11 @@ export class TournamentService {
     create(data: Tournament): Observable<Tournament> {
         return this.httpClient
             .post<Tournament>(`${this.url}/create`, data, this.headers);
+    }
+
+    startTournament(data: IdDto): Observable<Tournament> {
+        return this.httpClient
+            .post<Tournament>(`${this.url}/startTournament`, data, this.headers);
     }
 
     update(data: Tournament): Observable<Tournament> {
