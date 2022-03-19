@@ -14,7 +14,7 @@ export class UserOnePage implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.vm.id = this.route.snapshot.paramMap.get('id') as string;
@@ -41,16 +41,14 @@ export class UserOnePage implements OnInit {
   async onSubmit() {
     try {
       this.vm.edit
-        ? this.userService.update(this.vm.item).subscribe(() => { 
-          alert('Usuario actualizado');
-          this.router.navigate(['/users']);
-        })
-        : this.userService.create(this.vm.item).subscribe(() => { 
-          alert('Usuario creado');
-          this.router.navigate(['/users']);
-        });
-    }
-    catch (error) {
+        ? this.userService.update(this.vm.item).subscribe(() => {
+            this.router.navigate(['/users']);
+          })
+        : this.userService.create(this.vm.item).subscribe(() => {
+            alert('Usuario creado');
+            this.router.navigate(['/users']);
+          });
+    } catch (error) {
       console.error(error);
     }
   }

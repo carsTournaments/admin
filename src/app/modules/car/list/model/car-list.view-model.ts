@@ -24,7 +24,7 @@ export class CarListViewModel {
   userBody: CarGetAllDto = {
     page: 1,
     pageSize: 10,
-    site: 'app'
+    site: 'app',
   };
   options = [
     {

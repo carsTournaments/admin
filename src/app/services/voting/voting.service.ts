@@ -18,41 +18,48 @@ export class VotingService {
   ) {}
 
   getAll(data: VotingGetAllDto): Observable<GenericGetAllI<Voting>> {
-    return this.httpClient
-      .post<GenericGetAllI<Voting>>(`${this.url}/getAll`, data, this.headers)
-      ;
+    return this.httpClient.post<GenericGetAllI<Voting>>(
+      `${this.url}/getAll`,
+      data,
+      this.headers
+    );
   }
 
   getOne(id: string): Observable<Voting> {
-    return this.httpClient
-      .post<Voting>(`${this.url}/one`, { id, site: 'admin' }, this.headers)
-      ;
+    return this.httpClient.post<Voting>(
+      `${this.url}/one`,
+      { id, site: 'admin' },
+      this.headers
+    );
   }
 
   create(data: Voting): Observable<Voting> {
-    return this.httpClient
-      .post<Voting>(`${this.url}/create`, data, this.headers)
-      ;
+    return this.httpClient.post<Voting>(
+      `${this.url}/create`,
+      data,
+      this.headers
+    );
   }
 
   update(data: Voting): Observable<Voting> {
-    return this.httpClient
-      .put<Voting>(`${this.url}/update`, data, this.headers)
-      ;
+    return this.httpClient.put<Voting>(
+      `${this.url}/update`,
+      data,
+      this.headers
+    );
   }
 
   delete(id: string): Observable<Voting> {
-    return this.httpClient
-      .delete<Voting>(`${this.url}/one/${id}`, this.headers)
-      ;
+    return this.httpClient.delete<Voting>(
+      `${this.url}/one/${id}`,
+      this.headers
+    );
   }
 
   deleteAll(data: VotingDeleteAllDto): Observable<{ message: string }> {
     const url = data.id
       ? `${this.url}/all/${data.type}/${data.id}`
       : `${this.url}/all/${data.type}`;
-    return this.httpClient
-      .delete<{ message: string }>(url, this.headers)
-      ;
+    return this.httpClient.delete<{ message: string }>(url, this.headers);
   }
 }

@@ -16,7 +16,10 @@ export class StatsService {
   ) {}
 
   getResume(data: StatsGetResumeDto): Observable<StatsResumeI[]> {
-    return this.httpClient
-      .post<StatsResumeI[]>(`${this.url}/getResume`, data, this.headers);
+    return this.httpClient.post<StatsResumeI[]>(
+      `${this.url}/getResume`,
+      data,
+      this.headers
+    );
   }
 }

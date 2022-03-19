@@ -24,7 +24,7 @@ export class TournamentListViewModel {
   tournamentBody: TournamentGetAllDto = {
     page: 1,
     pageSize: 10,
-    site: 'app'
+    site: 'app',
   };
   options = [
     {

@@ -12,12 +12,9 @@ export class CustomTableComponent {
   vm = new CustomTableViewModel();
   @Output() changeOrder = new EventEmitter<string>();
   @Output() changePage = new EventEmitter();
-  constructor() { }
 
-  openImage(image: string, pipe = true) {
-    let url;
-    url = image;
-    window.open(url, '_blank');
+  openImage(image: string) {
+    window.open(image, '_blank');
   }
 
   onChangeOrder(order: string | null): void {

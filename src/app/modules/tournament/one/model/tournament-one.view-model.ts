@@ -11,7 +11,7 @@ export class TournamentOnePageViewModel {
     buttons: [],
   });
   optionsSegments = new SegmentsViewModel({
-    segments: ['Info', 'Opciones', 'Inscripciones'],
+    segments: ['Info', 'Opciones'],
     currentSegment: 0,
   });
   inscriptionsOptionsTable = new CustomTableOptionsModel({
@@ -22,8 +22,11 @@ export class TournamentOnePageViewModel {
     error: false,
   });
   edit = false;
-  
   options = [
+    {
+      name: 'Forzar inscripciones',
+      value: 'forceInscriptions',
+    },
     {
       name: 'Forzar inicio de torneo',
       value: 'startTournament',

@@ -9,7 +9,7 @@ import { TournamentListViewModel } from './model/tournament-list.view-model';
 })
 export class TournamentListPage implements OnInit {
   vm = new TournamentListViewModel();
-  constructor(private tournamentService: TournamentService) { }
+  constructor(private tournamentService: TournamentService) {}
 
   ngOnInit() {
     this.getUsers();
@@ -18,11 +18,11 @@ export class TournamentListPage implements OnInit {
   async getUsers() {
     try {
       this.vm.optionsTable.loading = true;
-      this.tournamentService.getAll(
-        this.vm.tournamentBody
-      ).subscribe((items) => {
-        this.vm.optionsTable.items = items;
-      })
+      this.tournamentService
+        .getAll(this.vm.tournamentBody)
+        .subscribe((items) => {
+          this.vm.optionsTable.items = items;
+        });
       this.vm.optionsTable.loading = false;
     } catch (error) {
       this.vm.optionsTable.error = true;

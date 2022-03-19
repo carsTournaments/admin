@@ -9,7 +9,7 @@ import { InscriptionListViewModel } from './model/inscription-list.view-model';
 })
 export class InscriptionListPage implements OnInit {
   vm = new InscriptionListViewModel();
-  constructor(private inscriptionService: InscriptionService) { }
+  constructor(private inscriptionService: InscriptionService) {}
 
   ngOnInit() {
     this.getUsers();
@@ -18,11 +18,9 @@ export class InscriptionListPage implements OnInit {
   async getUsers() {
     try {
       this.vm.optionsTable.loading = true;
-      this.inscriptionService.getAll(
-        this.vm.userBody
-      ).subscribe((items) => {
+      this.inscriptionService.getAll(this.vm.userBody).subscribe((items) => {
         this.vm.optionsTable.items = items;
-      })
+      });
       this.vm.optionsTable.loading = false;
     } catch (error) {
       this.vm.optionsTable.error = true;

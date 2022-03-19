@@ -20,11 +20,13 @@ export class LoginPage implements OnInit {
 
   async onSubmit() {
     try {
-      this.authService.login(this.email, this.password).subscribe(async (response: LoginResponseI) => {;
-      localStorage.setItem('token', response.token);
-      localStorage.setItem('user', JSON.stringify(response.item));
-        this.router.navigate(['/dashboard']);
-      });
+      this.authService
+        .login(this.email, this.password)
+        .subscribe(async (response: LoginResponseI) => {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('user', JSON.stringify(response.item));
+          this.router.navigate(['/dashboard']);
+        });
     } catch (error) {
       console.error(error);
     }

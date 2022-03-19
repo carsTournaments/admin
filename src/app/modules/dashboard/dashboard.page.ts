@@ -7,8 +7,7 @@ import { DashboardViewModel } from './model/dashboard.view-model';
 })
 export class DashboardPage implements OnInit {
   vm = new DashboardViewModel();
-  constructor(
-  ) {}
+  // constructor() {}
 
   ngOnInit() {
     // this.getSites();

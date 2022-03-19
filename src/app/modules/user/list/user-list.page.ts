@@ -9,7 +9,7 @@ import { UserListViewModel } from './model/user-list.view-model';
 })
 export class UserListPage implements OnInit {
   vm = new UserListViewModel();
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.getUsers();
@@ -18,11 +18,9 @@ export class UserListPage implements OnInit {
   async getUsers() {
     try {
       this.vm.optionsTable.loading = true;
-      this.userService.getAll(
-        this.vm.userBody
-      ).subscribe((items) => {
+      this.userService.getAll(this.vm.userBody).subscribe((items) => {
         this.vm.optionsTable.items = items;
-      })
+      });
       this.vm.optionsTable.loading = false;
     } catch (error) {
       this.vm.optionsTable.error = true;
@@ -31,7 +29,41 @@ export class UserListPage implements OnInit {
   }
 
   actionForOption(option: ActionForOptionI) {
-    // TODO: Implementar
+    switch (option.value) {
+      case 'createFakes':
+        this.createFakes();
+        break;
+      case 'deleteFakes':
+        this.deleteFakes();
+        break;
+      default:
+        break;
+    }
+
     console.log(option);
+  }
+
+  async createFakes() {
+    const total = prompt('Ingrese la cantidad de usuarios a crear', '5');
+    this.userService.createFake({ total: Number(total) }).subscribe({
+      next: (response) => {
+        this.getUsers();
+        alert(response.message);
+      },
+      error: (error) => console.error(error),
+    });
+  }
+
+  async deleteFakes() {
+    const state = confirm('Esta seguro de eliminar todos los usuarios falsos?');
+    if (state) {
+      this.userService.deleteAllFake().subscribe({
+        next: (response) => {
+          this.getUsers();
+          alert(response.message);
+        },
+        error: (error) => console.error(error),
+      });
+    }
   }
 }

@@ -24,7 +24,7 @@ export class InscriptionListViewModel {
   userBody: InscriptionGetAllDto = {
     page: 1,
     pageSize: 10,
-    site: 'app'
+    site: 'app',
   };
   options = [
     {

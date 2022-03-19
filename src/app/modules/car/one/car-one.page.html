@@ -16,6 +16,13 @@
 
         <div class="col-sm-6">
           <div class="form-floating">
+            <input class="form-control" name="name" [(ngModel)]="vm.item.model" placeholder="Nombre" required />
+            <label for="floatingInput" class="form-label">Modelo</label>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-floating">
             <input class="form-control" type="number" name="name" [(ngModel)]="vm.item.cc" placeholder="cc" required />
             <label for="floatingInput" class="form-label">CC</label>
           </div>
@@ -72,6 +79,10 @@
           </div>
         </div>
       </div>
+    </ng-container>
+
+    <ng-container *ngIf="vm.optionsSegments.currentSegment === 2">
+      <custom-table [options]="vm.inscriptionsOptionsTable"></custom-table>
     </ng-container>
   </div>
 </div>

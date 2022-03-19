@@ -5,7 +5,7 @@ export class CustomTableOptionsModel {
     | 'user'
     | 'inscription'
     | 'pairing'
-    | 'rounds'
+    | 'round'
     | 'tournament'
     | 'vote' = 'user';
   items: any[] = [];

@@ -6,7 +6,7 @@ import { User } from 'src/app/models/user.model';
 export class BrandListViewModel {
   items: User[] = [];
   optionsTitle = new CustomTitleWithButtonsViewModel({
-    title: 'Coches',
+    title: 'Marcas',
     buttons: [{ name: 'Nuevo', link: '/brands/one', separated: false }],
   });
   optionsTable = new CustomTableOptionsModel({

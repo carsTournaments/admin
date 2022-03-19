@@ -11,7 +11,7 @@ export class AddVoteComponent {
   @Input() type = 'site';
   data = new Voting();
   @Output() onVoted = new EventEmitter();
-  constructor(private votingService: VotingService) { }
+  constructor(private votingService: VotingService) {}
 
   async submit() {
     try {

@@ -8,7 +8,7 @@ export class InscriptionOnePageViewModel {
   id!: string;
   item: Inscription = new Inscription();
   cars: Car[] = [];
-  tournaments: Tournament[] = []
+  tournaments: Tournament[] = [];
   optionsTitle = new CustomTitleWithButtonsViewModel({
     title: '',
     buttons: [],

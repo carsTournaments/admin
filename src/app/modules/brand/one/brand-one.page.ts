@@ -14,7 +14,7 @@ export class BrandOnePage implements OnInit {
     private route: ActivatedRoute,
     private brandService: BrandService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.vm.id = this.route.snapshot.paramMap.get('id') as string;
@@ -41,16 +41,14 @@ export class BrandOnePage implements OnInit {
   async onSubmit() {
     try {
       this.vm.edit
-        ? this.brandService.update(this.vm.item).subscribe(() => { 
-          alert('Marca actualizada');
-          this.router.navigate(['/brands']);
-        })
-        : this.brandService.create(this.vm.item).subscribe(() => { 
-          alert('Marca creada');
-          this.router.navigate(['/brands']);
-        });
-    }
-    catch (error) {
+        ? this.brandService.update(this.vm.item).subscribe(() => {
+            this.router.navigate(['/brands']);
+          })
+        : this.brandService.create(this.vm.item).subscribe(() => {
+            alert('Marca creada');
+            this.router.navigate(['/brands']);
+          });
+    } catch (error) {
       console.error(error);
     }
   }

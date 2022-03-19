@@ -8,35 +8,50 @@ import { Car } from 'src/app/models/car.model';
 
 @Injectable({ providedIn: 'root' })
 export class CarService {
-    url = `${environment.urlApi}/cars`;
-    headers = { headers: this.httpService.getHeaderWithToken() };
-    constructor(
-        private httpClient: HttpClient,
-        private httpService: HttpService
-    ) { }
+  url = `${environment.urlApi}/cars`;
+  headers = { headers: this.httpService.getHeaderWithToken() };
+  constructor(
+    private httpClient: HttpClient,
+    private httpService: HttpService
+  ) {}
 
-    getAll(data: CarGetAllDto): Observable<Car[]> {
-        return this.httpClient
-            .post<Car[]>(`${this.url}/all`, data, this.headers);
-    }
+  getAll(data: CarGetAllDto): Observable<Car[]> {
+    return this.httpClient.post<Car[]>(`${this.url}/all`, data, this.headers);
+  }
 
-    getOne(id: string): Observable<Car> {
-        return this.httpClient
-            .post<Car>(`${this.url}/one`, { id, site: 'admin' }, this.headers);
-    }
+  getAllOffBrand(): Observable<Car[]> {
+    return this.httpClient.post<Car[]>(
+      `${this.url}/allOfBrand`,
+      null,
+      this.headers
+    );
+  }
 
-    create(data: Car): Observable<Car> {
-        return this.httpClient
-            .post<Car>(`${this.url}/create`, data, this.headers);
-    }
+  getAllOfDriver(): Observable<Car[]> {
+    return this.httpClient.post<Car[]>(
+      `${this.url}/allOfBrand`,
+      null,
+      this.headers
+    );
+  }
 
-    update(data: Car): Observable<Car> {
-        return this.httpClient
-            .put<Car>(`${this.url}/update`, data, this.headers);
-    }
+  getOne(id: string): Observable<Car> {
+    return this.httpClient.post<Car>(
+      `${this.url}/one`,
+      { id, site: 'admin' },
+      this.headers
+    );
+  }
 
-    delete(id: string): Observable<Car> {
-        return this.httpClient
-            .delete<Car>(`${this.url}/one/${id}`, this.headers);
-    }
+  create(data: Car): Observable<Car> {
+    return this.httpClient.post<Car>(`${this.url}/create`, data, this.headers);
+  }
+
+  update(data: Car): Observable<Car> {
+    return this.httpClient.put<Car>(`${this.url}/update`, data, this.headers);
+  }
+
+  delete(id: string): Observable<Car> {
+    return this.httpClient.delete<Car>(`${this.url}/one/${id}`, this.headers);
+  }
 }

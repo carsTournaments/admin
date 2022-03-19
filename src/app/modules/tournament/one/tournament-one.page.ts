@@ -1,8 +1,10 @@
+import { Round } from 'src/app/models/round.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
 import { Inscription } from 'src/app/models/inscription.model';
 import { InscriptionService } from 'src/app/services/inscription/inscription.service';
+import { RoundService } from 'src/app/services/round/round.service';
 import { TournamentService } from 'src/app/services/tournament/tournament.service';
 import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
 
@@ -16,8 +18,9 @@ export class TournamentOnePage implements OnInit {
     private route: ActivatedRoute,
     private tournamentService: TournamentService,
     private inscriptionService: InscriptionService,
+    private roundService: RoundService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.vm.id = this.route.snapshot.paramMap.get('id') as string;
@@ -25,6 +28,7 @@ export class TournamentOnePage implements OnInit {
       this.vm.optionsTitle.title = 'Editar Torneo';
       this.vm.edit = true;
       this.getInscriptionsByTournament();
+      this.getRoundsByTournament();
       this.getOne();
     } else {
       this.vm.optionsTitle.title = 'Nuevo Torneo';
@@ -33,57 +37,65 @@ export class TournamentOnePage implements OnInit {
   }
 
   async getOne() {
-    try {
-      this.tournamentService.getOne(this.vm.id).subscribe((item) => {
-        this.vm.item = item;
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    this.tournamentService.getOne(this.vm.id).subscribe({
+      next: (item) => (this.vm.item = item),
+      error: (e) => console.error(e),
+    });
   }
 
   async getInscriptionsByTournament() {
     this.inscriptionService.getAllOfTournament({ id: this.vm.id }).subscribe({
       next: (items) => this.getInscriptionsByTournamentOk(items),
-      error: (e) => this.getInscriptionsByTournamentKo(e)
+      error: (e) => console.error(e),
     });
   }
 
   getInscriptionsByTournamentOk(items: Inscription[]) {
-    this.vm.inscriptionsOptionsTable.loading = true;
     this.vm.inscriptionsOptionsTable.items = items;
     if (items.length > 0) {
-      this.vm.optionsSegments.segments[2] = `Inscripciones (${items.length})`;
-    } else {
-      delete this.vm.optionsSegments.segments[2];
+      // check segment is created
+      if (this.vm.optionsSegments.segments.length === 2) {
+        this.vm.optionsSegments.segments.push(
+          `Inscripciones (${items.length})`
+        );
+      }
     }
-    this.vm.inscriptionsOptionsTable.loading = false;
   }
 
-  getInscriptionsByTournamentKo(e: any) {
-    this.vm.inscriptionsOptionsTable.error = true;
-    alert(e)
+  async getRoundsByTournament() {
+    this.roundService.getAllOfTournament({ id: this.vm.id }).subscribe({
+      next: (items) => this.getRoundsByTournamentOk(items),
+      error: (e) => console.error(e),
+    });
+  }
+
+  getRoundsByTournamentOk(items: Round[]) {
+    this.vm.inscriptionsOptionsTable.items = items;
+    if (items.length > 0) {
+      this.vm.optionsSegments.segments.push(`Rondas (${items.length})`);
+    }
   }
 
   async onSubmit() {
     try {
       this.vm.edit
         ? this.tournamentService.update(this.vm.item).subscribe(() => {
-          alert('Torneo actualizado');
-          this.router.navigate(['/tournaments']);
-        })
+            this.router.navigate(['/tournaments']);
+          })
         : this.tournamentService.create(this.vm.item).subscribe(() => {
-          alert('Torneo creado');
-          this.router.navigate(['/tournaments']);
-        });
-    }
-    catch (error) {
+            alert('Torneo creado');
+            this.router.navigate(['/tournaments']);
+          });
+    } catch (error) {
       console.error(error);
     }
   }
 
   actionForOption(option: ActionForOptionI) {
     switch (option.value) {
+      case 'forceInscriptions':
+        this.forceInscriptions();
+        break;
       case 'startTournament':
         this.startTournament();
         break;
@@ -98,15 +110,24 @@ export class TournamentOnePage implements OnInit {
     }
   }
 
+  forceInscriptions() {
+    this.inscriptionService.forceInscriptions({ id: this.vm.id }).subscribe({
+      next: (response) => {
+        alert(response.message);
+        this.getInscriptionsByTournament();
+      },
+      error: (e) => console.error(e),
+    });
+  }
+
   startTournament() {
     this.tournamentService.startTournament({ id: this.vm.id }).subscribe({
-      next: (v) => {
+      next: () => {
         alert('Torneo iniciado');
         this.router.navigate(['/tournaments']);
       },
-      error: (e) => alert(e)
-    })
-
+      error: (e) => alert(e),
+    });
   }
 
   deleteInscriptions() {
@@ -115,8 +136,8 @@ export class TournamentOnePage implements OnInit {
         alert('Inscripciones eliminadas');
         this.getInscriptionsByTournament();
       },
-      error: (e) => alert(e)
-    })
+      error: (e) => alert(e),
+    });
   }
 
   delete() {
@@ -125,7 +146,7 @@ export class TournamentOnePage implements OnInit {
         alert('Torneo eliminado');
         this.router.navigate(['/tournaments']);
       },
-      error: (e) => alert(e)
+      error: (e) => alert(e),
     });
   }
 }

@@ -9,7 +9,7 @@ import { CarListViewModel } from './model/car-list.view-model';
 })
 export class CarListPage implements OnInit {
   vm = new CarListViewModel();
-  constructor(private carService: CarService) { }
+  constructor(private carService: CarService) {}
 
   ngOnInit() {
     this.getUsers();
@@ -18,11 +18,9 @@ export class CarListPage implements OnInit {
   async getUsers() {
     try {
       this.vm.optionsTable.loading = true;
-      this.carService.getAll(
-        this.vm.userBody
-      ).subscribe((items) => {
+      this.carService.getAll(this.vm.userBody).subscribe((items) => {
         this.vm.optionsTable.items = items;
-      })
+      });
       this.vm.optionsTable.loading = false;
     } catch (error) {
       this.vm.optionsTable.error = true;

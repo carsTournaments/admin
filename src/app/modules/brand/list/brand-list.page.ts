@@ -9,7 +9,7 @@ import { BrandListViewModel } from './model/brand-list.view-model';
 })
 export class BrandListPage implements OnInit {
   vm = new BrandListViewModel();
-  constructor(private brandService: BrandService) { }
+  constructor(private brandService: BrandService) {}
 
   ngOnInit() {
     this.getItems();
@@ -20,7 +20,7 @@ export class BrandListPage implements OnInit {
       this.vm.optionsTable.loading = true;
       this.brandService.getAll().subscribe((items) => {
         this.vm.optionsTable.items = items;
-      })
+      });
       this.vm.optionsTable.loading = false;
     } catch (error) {
       this.vm.optionsTable.error = true;

@@ -35,7 +35,9 @@ const routes: Routes = [
     path: 'inscriptions',
     data: { breadcrumb: 'Inscripciones' },
     loadChildren: () =>
-      import('./modules/inscription/inscription.module').then((m) => m.InscriptionModule),
+      import('./modules/inscription/inscription.module').then(
+        (m) => m.InscriptionModule
+      ),
     canActivate: [LoginGuard],
   },
   {
@@ -46,10 +48,19 @@ const routes: Routes = [
     canActivate: [LoginGuard],
   },
   {
+    path: 'rounds',
+    data: { breadcrumb: 'Rondas' },
+    loadChildren: () =>
+      import('./modules/round/round.module').then((m) => m.RoundModule),
+    canActivate: [LoginGuard],
+  },
+  {
     path: 'tournaments',
     data: { breadcrumb: 'Torneos' },
     loadChildren: () =>
-      import('./modules/tournament/tournament.module').then((m) => m.TournamentModule),
+      import('./modules/tournament/tournament.module').then(
+        (m) => m.TournamentModule
+      ),
     canActivate: [LoginGuard],
   },
   {
@@ -68,6 +79,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

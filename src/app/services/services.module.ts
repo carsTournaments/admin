@@ -30,4 +30,4 @@ import { LoggerService } from './logger/logger.service';
     },
   ],
 })
-export class ServicesModule { }
+export class ServicesModule {}

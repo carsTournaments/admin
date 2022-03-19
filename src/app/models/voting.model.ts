@@ -1,10 +1,9 @@
-
 export class Voting {
   _id?: string;
   type: string;
   value: string;
-  site?: string 
-  event?: string
+  site?: string;
+  event?: string;
   created?: string;
   updated?: string;
 

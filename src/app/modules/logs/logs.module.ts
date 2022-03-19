@@ -25,4 +25,4 @@ import { NgChartsModule } from 'ng2-charts';
   declarations: [LogsPage],
   providers: [],
 })
-export class LogsModule { }
+export class LogsModule {}

@@ -45,4 +45,4 @@ import { MenuComponent } from './menu/menu.component';
   ],
   providers: [],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

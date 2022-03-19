@@ -2,7 +2,7 @@ import { CustomTableOptionsModel } from 'src/app/components/custom-table/model/c
 import { CustomTitleWithButtonsViewModel } from 'src/app/components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { SegmentsViewModel } from 'src/app/components/segments/model/segments.view-model';
 import { User } from 'src/app/models/user.model';
-import { UserGetAllDto } from 'src/app/services/user/dtos/user-get-all.dto';
+import { UserGetAllDto } from 'src/app/services/user/dtos/user.dto';
 
 export class UserListViewModel {
   items: User[] = [];
@@ -24,8 +24,12 @@ export class UserListViewModel {
   userBody: UserGetAllDto = {};
   options = [
     {
-      name: 'Prueba',
-      value: '',
+      name: 'Crear usuarios falsos',
+      value: 'createFakes',
+    },
+    {
+      name: 'Eliminar usuarios falsos',
+      value: 'deleteFakes',
     },
   ];
 }
