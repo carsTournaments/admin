@@ -13,7 +13,7 @@ export class RoundService {
   constructor(
     private httpClient: HttpClient,
     private httpService: HttpService
-  ) {}
+  ) { }
 
   getAll(): Observable<Round[]> {
     return this.httpClient.post<Round[]>(`${this.url}/all`, null, this.headers);
@@ -58,4 +58,10 @@ export class RoundService {
   delete(id: string): Observable<Round> {
     return this.httpClient.delete<Round>(`${this.url}/one/${id}`, this.headers);
   }
+
+  deleteAllOfTournament(id: string): Observable<Round> {
+    return this.httpClient.delete<Round>(`${this.url}/allOfTournament/${id}`, this.headers);
+  }
+
+
 }

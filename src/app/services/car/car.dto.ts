@@ -15,6 +15,10 @@ export interface CarCreateDto {
   stock: boolean;
 }
 
+export interface CarCreateFakeDto {
+  total: number;
+}
+
 export interface CarUpdateDto {
   _id: string;
   name?: string;

@@ -23,6 +23,14 @@
 
         <div class="col-sm-6">
           <div class="form-floating">
+            <input class="form-control" type="number" name="name" [(ngModel)]="vm.item.durationDays" placeholder="Duracion"
+              required />
+            <label for="floatingInput" class="form-label">Duracion (dias)</label>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-floating">
             <input class="form-control" type="number" name="name" [(ngModel)]="vm.item.maxParticipants"
               placeholder="Nombre" required />
             <label for="floatingInput" class="form-label">Participantes Maximos</label>
@@ -43,6 +51,7 @@
               <option value="Todo">Sin empezar</option>
               <option value="InProgress">En progreso</option>
               <option value="Completed">Completado</option>
+              <option value="Canceled">Cancelado</option>
             </select>
             <label for="floatingInput" class="form-label">Status</label>
           </div>

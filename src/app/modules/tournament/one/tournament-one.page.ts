@@ -20,7 +20,7 @@ export class TournamentOnePage implements OnInit {
     private inscriptionService: InscriptionService,
     private roundService: RoundService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.vm.id = this.route.snapshot.paramMap.get('id') as string;
@@ -80,12 +80,12 @@ export class TournamentOnePage implements OnInit {
     try {
       this.vm.edit
         ? this.tournamentService.update(this.vm.item).subscribe(() => {
-            this.router.navigate(['/tournaments']);
-          })
+          this.router.navigate(['/tournaments']);
+        })
         : this.tournamentService.create(this.vm.item).subscribe(() => {
-            alert('Torneo creado');
-            this.router.navigate(['/tournaments']);
-          });
+          alert('Torneo creado');
+          this.router.navigate(['/tournaments']);
+        });
     } catch (error) {
       console.error(error);
     }
@@ -102,6 +102,9 @@ export class TournamentOnePage implements OnInit {
       case 'deleteInscriptions':
         this.deleteInscriptions();
         break;
+      case 'deleteRounds':
+        this.deleteRounds();
+        break;
       case 'delete':
         this.delete();
         break;
@@ -111,42 +114,67 @@ export class TournamentOnePage implements OnInit {
   }
 
   forceInscriptions() {
-    this.inscriptionService.forceInscriptions({ id: this.vm.id }).subscribe({
-      next: (response) => {
-        alert(response.message);
-        this.getInscriptionsByTournament();
-      },
-      error: (e) => console.error(e),
-    });
+    const state = confirm('Esta seguro de rellenar las incripciones restantes?');
+    if (state) {
+      this.inscriptionService.forceInscriptions({ id: this.vm.id }).subscribe({
+        next: (response) => {
+          alert(response.message);
+          this.getInscriptionsByTournament();
+        },
+        error: (e) => console.error(e),
+      });
+    }
   }
 
   startTournament() {
-    this.tournamentService.startTournament({ id: this.vm.id }).subscribe({
-      next: () => {
-        alert('Torneo iniciado');
-        this.router.navigate(['/tournaments']);
-      },
-      error: (e) => alert(e),
-    });
+    const state = confirm('Esta seguro de forzar el inicio del torneo?');
+    if (state) {
+      this.tournamentService.startTournament({ id: this.vm.id }).subscribe({
+        next: () => {
+          alert('Torneo iniciado');
+          this.router.navigate(['/tournaments']);
+        },
+        error: (e) => alert(e),
+      });
+    }
   }
 
   deleteInscriptions() {
-    this.inscriptionService.deleteAllOfTournament(this.vm.id).subscribe({
-      next: () => {
-        alert('Inscripciones eliminadas');
-        this.getInscriptionsByTournament();
-      },
-      error: (e) => alert(e),
-    });
+    const state = confirm('Esta seguro de eliminar todas las inscripciones?');
+    if (state) {
+      this.inscriptionService.deleteAllOfTournament(this.vm.id).subscribe({
+        next: () => {
+          alert('Inscripciones eliminadas');
+          this.getInscriptionsByTournament();
+        },
+        error: (e) => alert(e),
+      });
+    }
+  }
+
+  deleteRounds() {
+    const state = confirm('Esta seguro de eliminar todas las rondas?');
+    if (state) {
+      this.roundService.deleteAllOfTournament(this.vm.id).subscribe({
+        next: () => {
+          alert('Rondas eliminadas');
+          this.getRoundsByTournament();
+        },
+        error: (e) => alert(e),
+      });
+    }
   }
 
   delete() {
-    this.tournamentService.delete(this.vm.id).subscribe({
-      next: () => {
-        alert('Torneo eliminado');
-        this.router.navigate(['/tournaments']);
-      },
-      error: (e) => alert(e),
-    });
+    const state = confirm('Esta seguro de eliminar el torneo?');
+    if (state) {
+      this.tournamentService.delete(this.vm.id).subscribe({
+        next: () => {
+          alert('Torneo eliminado');
+          this.router.navigate(['/tournaments']);
+        },
+        error: (e) => alert(e),
+      });
+    }
   }
 }

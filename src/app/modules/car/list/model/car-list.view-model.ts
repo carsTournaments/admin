@@ -28,8 +28,12 @@ export class CarListViewModel {
   };
   options = [
     {
-      name: 'Prueba',
-      value: '',
+      name: 'Crear coches falsos',
+      value: 'createFakes',
+    },
+    {
+      name: 'Eliminar coches falsos',
+      value: 'deleteFakes',
     },
   ];
 }

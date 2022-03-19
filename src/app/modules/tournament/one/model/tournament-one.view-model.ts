@@ -36,6 +36,10 @@ export class TournamentOnePageViewModel {
       value: 'deleteInscriptions',
     },
     {
+      name: 'Eliminar rondas',
+      value: 'deleteRounds',
+    },
+    {
       name: 'Eliminar torneo',
       value: 'delete',
     },

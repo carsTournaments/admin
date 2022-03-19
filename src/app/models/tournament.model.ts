@@ -1,3 +1,5 @@
+import { Round } from 'src/app/models/round.model';
+import { Inscription } from 'src/app/models/inscription.model';
 export class Tournament {
   _id?: string;
   name: string;
@@ -6,8 +8,9 @@ export class Tournament {
   startDate: string;
   endDate: string;
   status?: string;
-  rounds?: any[]; // Virtual
-  inscriptions?: any; // CarI[]
+  durationDays?: number;
+  rounds?: Round[]; // Virtual
+  inscriptions?: Inscription[]; // CarI[]
   created?: string;
   updated?: string;
   constructor(data?: Tournament) {
@@ -18,6 +21,7 @@ export class Tournament {
     this.startDate = data?.startDate || '';
     this.endDate = data?.endDate || '';
     this.status = data?.status || '';
+    this.durationDays = data?.durationDays || 0;
     this.rounds = data?.rounds || [];
     this.inscriptions = data?.inscriptions || [];
     this.created = data?.created;

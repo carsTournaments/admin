@@ -49,7 +49,7 @@ export class UserService {
 
   deleteAllFake(): Observable<{ message: string }> {
     return this.httpClient.delete<{ message: string }>(
-      `${this.url}/deleteAllFake`,
+      `${this.url}/allFake`,
       this.headers
     );
   }

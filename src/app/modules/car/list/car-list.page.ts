@@ -29,7 +29,41 @@ export class CarListPage implements OnInit {
   }
 
   actionForOption(option: ActionForOptionI) {
-    // TODO: Implementar
+    switch (option.value) {
+      case 'createFakes':
+        this.createFakes();
+        break;
+      case 'deleteFakes':
+        this.deleteFakes();
+        break;
+      default:
+        break;
+    }
+
     console.log(option);
+  }
+
+  async createFakes() {
+    const total = prompt('Ingrese la cantidad de coches a crear', '5');
+    this.carService.createFake({ total: Number(total) }).subscribe({
+      next: (response) => {
+        this.getUsers();
+        alert(response.message);
+      },
+      error: (error) => console.error(error),
+    });
+  }
+
+  async deleteFakes() {
+    const state = confirm('Esta seguro de eliminar todos los coches falsos?');
+    if (state) {
+      this.carService.deleteAllFake().subscribe({
+        next: (response) => {
+          this.getUsers();
+          alert(response.message);
+        },
+        error: (error) => console.error(error),
+      });
+    }
   }
 }
