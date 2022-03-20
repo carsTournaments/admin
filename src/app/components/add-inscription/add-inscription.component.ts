@@ -7,9 +7,10 @@ import { AddInscriptionViewModel } from './add-inscription.view-model';
 })
 export class AddInscriptionComponent {
   vm = new AddInscriptionViewModel();
-  constructor() {}
 
-  createInscription() {}
+    createInscription() {
+      // todo: create inscription
+  }
 
   searchTournament(event: any) {
     if (event.keyCode === 13) {
