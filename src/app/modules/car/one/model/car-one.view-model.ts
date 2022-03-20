@@ -24,8 +24,8 @@ export class CarOnePageViewModel {
   edit = false;
   options = [
     {
-      name: 'Prueba',
-      value: 'changePassword',
+      name: 'Eliminar coche',
+      value: 'delete',
     },
   ];
 }

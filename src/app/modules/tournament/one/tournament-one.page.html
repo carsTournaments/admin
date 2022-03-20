@@ -16,12 +16,12 @@
 
         <div class="col-sm-6">
           <div class="form-floating">
-            <input class="form-control" name="name" [(ngModel)]="vm.item.startDate" placeholder="Nombre" required />
+            <input class="form-control" type="date" name="name" [(ngModel)]="vm.item.startDate" placeholder="Nombre" required />
             <label for="floatingInput" class="form-label">Fecha de inicio</label>
           </div>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-6"> 
           <div class="form-floating">
             <input class="form-control" type="number" name="name" [(ngModel)]="vm.item.durationDays" placeholder="Duracion"
               required />
@@ -36,14 +36,6 @@
             <label for="floatingInput" class="form-label">Participantes Maximos</label>
           </div>
         </div>
-
-        <!-- <div class="col-sm-6">
-          <div class="form-floating">
-            <input type="email" class="form-control" name="email" [(ngModel)]="vm.item.email" placeholder="Email"
-              required />
-            <label for="floatingInput" class="form-label">Email</label>
-          </div>
-        </div> -->
 
         <div class="col-sm-6">
           <div class="form-floating">

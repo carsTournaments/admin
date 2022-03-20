@@ -12,10 +12,10 @@ export class CarListPage implements OnInit {
   constructor(private carService: CarService) {}
 
   ngOnInit() {
-    this.getUsers();
+    this.getAll();
   }
 
-  async getUsers() {
+  async getAll() {
     try {
       this.vm.optionsTable.loading = true;
       this.carService.getAll(this.vm.userBody).subscribe((items) => {
@@ -39,15 +39,13 @@ export class CarListPage implements OnInit {
       default:
         break;
     }
-
-    console.log(option);
   }
 
   async createFakes() {
     const total = prompt('Ingrese la cantidad de coches a crear', '5');
     this.carService.createFake({ total: Number(total) }).subscribe({
       next: (response) => {
-        this.getUsers();
+        this.getAll();
         alert(response.message);
       },
       error: (error) => console.error(error),
@@ -59,7 +57,7 @@ export class CarListPage implements OnInit {
     if (state) {
       this.carService.deleteAllFake().subscribe({
         next: (response) => {
-          this.getUsers();
+          this.getAll();
           alert(response.message);
         },
         error: (error) => console.error(error),

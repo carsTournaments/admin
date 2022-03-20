@@ -20,6 +20,7 @@
               {{ item.name }}
             </td>
             <td>{{ item.country }}</td>
+            <td>{{ item.continent }}</td>
             <td>{{ item.cars.length }}</td>
             <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
             <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
@@ -57,20 +58,29 @@
           </tr>
         </ng-container>
 
-          <!-- Round -->
-          <ng-container *ngIf="options.type === 'round'">
-            <tr class="pointer" *ngFor="let item of options.items">
-              <td [routerLink]="['/round/one', item._id]">
-                {{ item.name }}
-              </td>
-              <td>{{ item.participants }}</td>
-              <td>{{ item.tournament.name }}</td>
-              <td>{{ item.startDate | dateToTimeAgo | titlecase }}</td>
-              <td>{{ item.endDate | dateToTimeAgo | titlecase}}</td>
-              <td>{{ item.finished ? 'Si' : 'No'}}</td>
-              <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
-            </tr>
-          </ng-container>
+        <!-- Round -->
+        <ng-container *ngIf="options.type === 'round'">
+          <tr class="pointer" *ngFor="let item of options.items">
+            <td [routerLink]="['/round/one', item._id]">
+              {{ item.name }}
+            </td>
+            <td>{{ item.participants }}</td>
+            <td>{{ item.tournament.name }}</td>
+            <td>{{ item.startDate | dateToTimeAgo | titlecase }}</td>
+            <td>{{ item.endDate | dateToTimeAgo | titlecase}}</td>
+            <td>
+              <span class="badge" [ngClass]="{
+                'bg-danger': item.status === 'Canceled',
+                'bg-success': item.status === 'Completed',
+                'bg-primary': item.status === 'InProgress',
+                'bg-warning': item.status === 'Todo'
+              }">
+                {{ item.status }}
+              </span>
+            </td>
+            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+          </tr>
+        </ng-container>
 
         <!-- Tournament -->
         <ng-container *ngIf="options.type === 'tournament'">
@@ -90,9 +100,9 @@
                 'bg-warning': item.status === 'Todo'
               }">
                 {{ item.status }}
-                </span>
-                </td>
-              
+              </span>
+            </td>
+
             <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
             <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
           </tr>

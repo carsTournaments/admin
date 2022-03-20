@@ -7,7 +7,7 @@ export class Round {
   tournament: any; // TournamentI
   startDate: string;
   endDate: string;
-  finished: boolean;
+  status: string;
   pairings?: Pairing[]; // Virtual
   created?: string;
   updated?: string;
@@ -18,7 +18,7 @@ export class Round {
     this.tournament = data?.tournament || null;
     this.startDate = data?.startDate || '';
     this.endDate = data?.endDate || '';
-    this.finished = data?.finished || false;
+    this.status = data?.status || 'Todo';
     this.pairings = data?.pairings || [];
     this.created = data?.created;
     this.updated = data?.updated;

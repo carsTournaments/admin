@@ -1,6 +1,15 @@
 export class CustomTableViewModel {
   page = 1;
   tableHeadItems: any = {
+    brand: [
+      { name: '#', order: null, col: null },
+      { name: 'Nombre', order: 'name', col: null },
+      { name: 'Pais', order: 'country', col: null },
+      { name: 'Continente', order: 'continent', col: null },
+      { name: 'Total Coches', order: null, col: null },
+      { name: 'Actualizado', order: 'updated', col: null },
+      { name: 'Creado', order: 'created', col: null },
+    ],
     car: [
       { name: '#', order: null, col: null },
       { name: 'Nombre', order: 'name', col: null },
@@ -15,6 +24,13 @@ export class CustomTableViewModel {
       { name: 'Actualizado', order: 'updated', col: null },
       { name: 'Creado', order: 'created', col: null },
     ],
+    inscription: [
+      { name: '#', order: null, col: null },
+      { name: 'Coche', order: null, col: null },
+      { name: 'Torneo', order: null, col: null },
+      { name: 'Actualizado', order: 'updated', col: null },
+      { name: 'Creado', order: 'created', col: null },
+    ],
     tournament: [
       { name: '#', order: '', col: null },
       { name: 'Nombre', order: '', col: null },
@@ -25,28 +41,13 @@ export class CustomTableViewModel {
       { name: 'Actualizado', order: 'updated', col: null },
       { name: 'Creado', order: 'created', col: null },
     ],
-    inscription: [
-      { name: '#', order: null, col: null },
-      { name: 'Coche', order: null, col: null },
-      { name: 'Torneo', order: null, col: null },
-      { name: 'Actualizado', order: 'updated', col: null },
-      { name: 'Creado', order: 'created', col: null },
-    ],
-    brand: [
-      { name: '#', order: null, col: null },
-      { name: 'Nombre', order: 'name', col: null },
-      { name: 'Pais', order: null, col: null },
-      { name: 'Total Coches', order: null, col: null },
-      { name: 'Actualizado', order: 'updated', col: null },
-      { name: 'Creado', order: 'created', col: null },
-    ],
     round: [
       { name: 'Nombre', order: 'name', col: null },
       { name: 'Participantes', order: null, col: null },
       { name: 'Torneo', order: 'date', col: null },
       { name: 'Fecha Inicio', order: null, col: null },
       { name: 'Fecha Fin', order: null, col: null },
-      { name: 'Completado', order: 'updated', col: null },
+      { name: 'Estado', order: 'updated', col: null },
       { name: 'Creado', order: 'created', col: null },
     ],
     user: [

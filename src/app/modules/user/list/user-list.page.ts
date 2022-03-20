@@ -39,8 +39,6 @@ export class UserListPage implements OnInit {
       default:
         break;
     }
-
-    console.log(option);
   }
 
   async createFakes() {

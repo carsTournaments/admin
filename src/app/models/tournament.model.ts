@@ -1,5 +1,6 @@
 import { Round } from 'src/app/models/round.model';
 import { Inscription } from 'src/app/models/inscription.model';
+import * as moment from 'moment';
 export class Tournament {
   _id?: string;
   name: string;
@@ -16,20 +17,57 @@ export class Tournament {
   constructor(data?: Tournament) {
     this._id = data?._id;
     this.name = data?.name || '';
-    this.maxParticipants = data?.maxParticipants || 0;
+    this.maxParticipants = data?.maxParticipants || 32;
     this.requisites = data?.requisites || [];
-    this.startDate = data?.startDate || '';
+    this.startDate = data?.startDate || moment().format('YYYY-MM-DD HH:mm');
     this.endDate = data?.endDate || '';
-    this.status = data?.status || '';
-    this.durationDays = data?.durationDays || 0;
+    this.status = data?.status || 'Todo';
+    this.durationDays = data?.durationDays || 10;
     this.rounds = data?.rounds || [];
     this.inscriptions = data?.inscriptions || [];
     this.created = data?.created;
     this.updated = data?.updated;
   }
+
+  getRequisitesDefault(): TournamentRequisiteI[] {
+    return [
+      {
+        name: 'Coches Europeos',
+        field: 'country',
+        operator: '=',
+        value: 'Europa',
+      },
+      {
+        name: 'Coches Americanos',
+        field: 'country',
+        operator: '=',
+        value: 'America',
+      },
+      {
+        name: 'Coches Asiáticos',
+        field: 'country',
+        operator: '=',
+        value: 'Asia',
+      },
+      {
+        name: 'Menos de 100CV',
+        field: 'cv',
+        operator: '<',
+        value: 100,
+      },
+      {
+        name: 'Más de 200CV',
+        field: 'cv',
+        operator: '>',
+        value: 200,
+      },
+    ];
+  }
 }
 
 export interface TournamentRequisiteI {
   name: string;
-  value: string;
+  field: string;
+  operator: string;
+  value: any;
 }

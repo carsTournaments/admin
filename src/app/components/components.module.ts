@@ -14,10 +14,12 @@ import { SegmentsComponent } from './segments/segments.component';
 import { SelectNumberEntriesComponent } from './select-number-entries/select-number-entries.component';
 import { StatsComponent } from './stats/stats.component';
 import { MenuComponent } from './menu/menu.component';
+import { AddInscriptionComponent } from './add-inscription/add-inscription.component';
 
 @NgModule({
   imports: [RouterModule, FormsModule, CommonModule, PipesModule],
   declarations: [
+    AddInscriptionComponent,
     BreadcrumbComponent,
     CustomTableComponent,
     CustomTitleWithButtonsComponent,
@@ -31,6 +33,7 @@ import { MenuComponent } from './menu/menu.component';
     StatsComponent,
   ],
   exports: [
+    AddInscriptionComponent,
     BreadcrumbComponent,
     CustomTableComponent,
     CustomTitleWithButtonsComponent,

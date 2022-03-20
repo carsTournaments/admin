@@ -4,6 +4,7 @@ export class Brand {
   _id?: string;
   name: string;
   country: string;
+  continent: string;
   image: string;
   cars?: Car[]; // Virtual
   created?: string;
@@ -12,6 +13,7 @@ export class Brand {
     this._id = data?._id;
     this.name = data?.name || '';
     this.country = data?.country || '';
+    this.continent = data?.continent || '';
     this.image = data?.image || '';
     this.cars = data?.cars || [];
     this.created = data?.created || '';

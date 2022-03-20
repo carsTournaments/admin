@@ -25,7 +25,7 @@ export class LogsPage implements OnInit {
       },
       error: (error: any) => {
         this.vm.loading = false;
-        console.log(error);
+        console.error(error);
       },
     });
   }

@@ -7,7 +7,7 @@
 
     <div class="mb-3" *ngIf="vm.optionsSegments.currentSegment === 0">
       <div class="row mt-1 g-3" *ngIf="vm.item">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
           <div class="form-floating">
             <input class="form-control" name="name" [(ngModel)]="vm.item.name" placeholder="Nombre" required />
             <label for="floatingInput" class="form-label">Nombre</label>
@@ -20,8 +20,15 @@
             <label for="floatingInput" class="form-label">Pais</label>
           </div>
         </div>
-        
+
         <div class="col-sm-6">
+          <div class="form-floating">
+            <input class="form-control" name="name" [(ngModel)]="vm.item.continent" placeholder="Pais" required />
+            <label for="floatingInput" class="form-label">Continente</label>
+          </div>
+        </div>
+        
+        <div class="col-sm-12">
           <div class="form-floating">
             <input class="form-control" name="name" [(ngModel)]="vm.item.image" placeholder="Imagen" required />
             <label for="floatingInput" class="form-label">Imagen</label>

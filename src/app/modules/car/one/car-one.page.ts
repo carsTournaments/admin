@@ -17,7 +17,7 @@ export class CarOnePage implements OnInit {
     private carService: CarService,
     private inscriptionService: InscriptionService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.vm.id = this.route.snapshot.paramMap.get('id') as string;
@@ -33,19 +33,16 @@ export class CarOnePage implements OnInit {
   }
 
   async getOne() {
-    try {
-      this.carService.getOne(this.vm.id).subscribe((item) => {
-        this.vm.item = item;
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    this.carService.getOne(this.vm.id).subscribe({
+      next: (item) => this.vm.item = item,
+      error: (error) => console.error(error)
+    });
   }
 
   async getInscriptionsByCar() {
     this.inscriptionService.getAllOfCar({ id: this.vm.id }).subscribe({
       next: (items) => this.getInscriptionsByTournamentOk(items),
-      error: (e) => this.getInscriptionsByTournamentKo(e),
+      error: (e) => console.error(e),
     });
   }
 
@@ -60,21 +57,16 @@ export class CarOnePage implements OnInit {
     this.vm.inscriptionsOptionsTable.loading = false;
   }
 
-  getInscriptionsByTournamentKo(e: any) {
-    this.vm.inscriptionsOptionsTable.error = true;
-    alert(e);
-  }
-
   async onSubmit() {
     try {
       this.vm.edit
         ? this.carService.update(this.vm.item).subscribe(() => {
-            this.router.navigate(['/cars']);
-          })
+          this.router.navigate(['/cars']);
+        })
         : this.carService.create(this.vm.item).subscribe(() => {
-            alert('Coche creado');
-            this.router.navigate(['/cars']);
-          });
+          alert('Coche creado');
+          this.router.navigate(['/cars']);
+        });
     } catch (error) {
       console.error(error);
     }
@@ -82,8 +74,23 @@ export class CarOnePage implements OnInit {
 
   actionForOption(option: ActionForOptionI) {
     switch (option.value) {
+      case 'delete':
+        this.delete();
+        break;
       default:
         break;
+    }
+  }
+
+  async delete() {
+    if (confirm('¿Está seguro de eliminar el coche?')) {
+      this.carService.delete(this.vm.id).subscribe({
+        next: () => {
+          alert('Coche eliminado');
+          this.router.navigate(['/cars']);
+        },
+        error: (e) => console.error(e)
+      });
     }
   }
 }
