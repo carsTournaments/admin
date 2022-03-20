@@ -9,7 +9,7 @@ import { AddInscriptionViewModel } from './add-inscription.view-model';
 export class AddInscriptionComponent {
   vm = new AddInscriptionViewModel();
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService) {}
 
   createInscription() {
     // todo: create inscription
@@ -18,13 +18,15 @@ export class AddInscriptionComponent {
   searchTournament(event: any) {
     if (event.keyCode === 13) {
       console.log(event);
-      this.searchService.getAll({
-        type: 'tournament',
-        value: event.target.value,
-      }).subscribe({
-        next: (data) => this.vm.results = data,
-        error: (err) => console.error(err)
-      })
+      this.searchService
+        .getAll({
+          type: 'tournament',
+          value: event.target.value,
+        })
+        .subscribe({
+          next: (data) => (this.vm.results = data),
+          error: (err) => console.error(err),
+        });
     }
   }
 

@@ -19,7 +19,13 @@ import { SelectNumberEntriesComponent } from './select-number-entries/select-num
 import { StatsComponent } from './stats/stats.component';
 
 @NgModule({
-  imports: [RouterModule, FormsModule, CommonModule, PipesModule, ServicesModule],
+  imports: [
+    RouterModule,
+    FormsModule,
+    CommonModule,
+    PipesModule,
+    ServicesModule,
+  ],
   declarations: [
     AddInscriptionComponent,
     BreadcrumbComponent,
@@ -50,4 +56,4 @@ import { StatsComponent } from './stats/stats.component';
   ],
   providers: [],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

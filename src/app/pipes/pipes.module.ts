@@ -5,7 +5,12 @@ import { DateToTimeAgoPipe } from './timeago.pipe';
 import { TruncateTextPipe } from './truncate-text.pipe';
 
 @NgModule({
-  declarations: [DateToTimeAgoPipe, StatusPipe, StarsForListPipe, TruncateTextPipe],
+  declarations: [
+    DateToTimeAgoPipe,
+    StatusPipe,
+    StarsForListPipe,
+    TruncateTextPipe,
+  ],
   exports: [DateToTimeAgoPipe, StatusPipe, StarsForListPipe, TruncateTextPipe],
 })
-export class PipesModule { }
+export class PipesModule {}
