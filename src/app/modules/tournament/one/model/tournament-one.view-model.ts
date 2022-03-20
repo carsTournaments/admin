@@ -11,13 +11,20 @@ export class TournamentOnePageViewModel {
     buttons: [],
   });
   optionsSegments = new SegmentsViewModel({
-    segments: ['Info', 'Opciones'],
+    segments: ['Info', 'Opciones', 'Inscripciones', 'Rondas'],
     currentSegment: 0,
   });
   inscriptionsOptionsTable = new CustomTableOptionsModel({
     loading: false,
     items: [],
     type: 'inscription',
+    showLoadMore: true,
+    error: false,
+  });
+  roundsOptionsTable = new CustomTableOptionsModel({
+    loading: false,
+    items: [],
+    type: 'round',
     showLoadMore: true,
     error: false,
   });

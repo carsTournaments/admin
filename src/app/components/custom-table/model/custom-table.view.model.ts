@@ -10,6 +10,7 @@ export class CustomTableViewModel {
       { name: 'Traccion', order: 'traction', col: null },
       { name: 'CC', order: 'cc', col: null },
       { name: 'CV', order: 'cv', col: null },
+      { name: 'Año', order: 'year', col: null },
       { name: 'Inscripciones', order: null, col: null },
       { name: 'Actualizado', order: 'updated', col: null },
       { name: 'Creado', order: 'created', col: null },

@@ -12,6 +12,7 @@ export class Car {
   image: string;
   stock: boolean;
   info: string;
+  year: number;
   tournaments?: Tournament[];
   created?: string;
   updated?: string;
@@ -28,6 +29,7 @@ export class Car {
     this.image = data?.image || '';
     this.stock = data?.stock || false;
     this.info = data?.info || '';
+    this.year = data?.year || 0;
     this.tournaments = data?.tournaments || [];
     this.created = data?.created || '';
     this.updated = data?.updated || '';

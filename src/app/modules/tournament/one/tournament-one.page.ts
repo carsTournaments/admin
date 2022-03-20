@@ -52,129 +52,118 @@ export class TournamentOnePage implements OnInit {
 
   getInscriptionsByTournamentOk(items: Inscription[]) {
     this.vm.inscriptionsOptionsTable.items = items;
-    if (items.length > 0) {
-      // check segment is created
-      if (this.vm.optionsSegments.segments.length === 2) {
-        this.vm.optionsSegments.segments.push(
-          `Inscripciones (${items.length})`
-        );
-      }
-    }
   }
 
   async getRoundsByTournament() {
-    this.roundService.getAllOfTournament({ id: this.vm.id }).subscribe({
-      next: (items) => this.getRoundsByTournamentOk(items),
-      error: (e) => console.error(e),
-    });
-  }
-
-  getRoundsByTournamentOk(items: Round[]) {
-    this.vm.inscriptionsOptionsTable.items = items;
-    if (items.length > 0) {
-      this.vm.optionsSegments.segments.push(`Rondas (${items.length})`);
-    }
-  }
-
-  async onSubmit() {
-    try {
-      this.vm.edit
-        ? this.tournamentService.update(this.vm.item).subscribe(() => {
-          this.router.navigate(['/tournaments']);
-        })
-        : this.tournamentService.create(this.vm.item).subscribe(() => {
-          alert('Torneo creado');
-          this.router.navigate(['/tournaments']);
-        });
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  actionForOption(option: ActionForOptionI) {
-    switch (option.value) {
-      case 'forceInscriptions':
-        this.forceInscriptions();
-        break;
-      case 'startTournament':
-        this.startTournament();
-        break;
-      case 'deleteInscriptions':
-        this.deleteInscriptions();
-        break;
-      case 'deleteRounds':
-        this.deleteRounds();
-        break;
-      case 'delete':
-        this.delete();
-        break;
-      default:
-        break;
-    }
-  }
-
-  forceInscriptions() {
-    const state = confirm('Esta seguro de rellenar las incripciones restantes?');
-    if (state) {
-      this.inscriptionService.forceInscriptions({ id: this.vm.id }).subscribe({
-        next: (response) => {
-          alert(response.message);
-          this.getInscriptionsByTournament();
-        },
+      this.roundService.getAllOfTournament({ id: this.vm.id }).subscribe({
+        next: (items) => this.getRoundsByTournamentOk(items),
         error: (e) => console.error(e),
       });
     }
-  }
 
-  startTournament() {
-    const state = confirm('Esta seguro de forzar el inicio del torneo?');
-    if (state) {
-      this.tournamentService.startTournament({ id: this.vm.id }).subscribe({
-        next: () => {
-          alert('Torneo iniciado');
-          this.router.navigate(['/tournaments']);
-        },
-        error: (e) => alert(e),
-      });
+    getRoundsByTournamentOk(items: Round[]) {
+      this.vm.roundsOptionsTable.items = items;
+    }
+
+  async onSubmit() {
+      try {
+        this.vm.edit
+          ? this.tournamentService.update(this.vm.item).subscribe(() => {
+            this.router.navigate(['/tournaments']);
+          })
+          : this.tournamentService.create(this.vm.item).subscribe(() => {
+            alert('Torneo creado');
+            this.router.navigate(['/tournaments']);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    actionForOption(option: ActionForOptionI) {
+      switch (option.value) {
+        case 'forceInscriptions':
+          this.forceInscriptions();
+          break;
+        case 'startTournament':
+          this.startTournament();
+          break;
+        case 'deleteInscriptions':
+          this.deleteInscriptions();
+          break;
+        case 'deleteRounds':
+          this.deleteRounds();
+          break;
+        case 'delete':
+          this.delete();
+          break;
+        default:
+          break;
+      }
+    }
+
+    forceInscriptions() {
+      const state = confirm('Esta seguro de rellenar las incripciones restantes?');
+      if (state) {
+        this.inscriptionService.forceInscriptions({ id: this.vm.id }).subscribe({
+          next: (response) => {
+            alert(response.message);
+            this.getInscriptionsByTournament();
+          },
+          error: (e) => console.error(e),
+        });
+      }
+    }
+
+    startTournament() {
+      const state = confirm('Esta seguro de forzar el inicio del torneo?');
+      if (state) {
+        this.tournamentService.startTournament({ id: this.vm.id }).subscribe({
+          next: () => {
+            alert('Torneo iniciado');
+            this.router.navigate(['/tournaments']);
+          },
+          error: (e) => alert(e),
+        });
+      }
+    }
+
+    deleteInscriptions() {
+      const state = confirm('Esta seguro de eliminar todas las inscripciones?');
+      if (state) {
+        this.inscriptionService.deleteAllOfTournament(this.vm.id).subscribe({
+          next: () => {
+            alert('Inscripciones eliminadas');
+            this.getInscriptionsByTournament();
+          },
+          error: (e) => alert(e),
+        });
+      }
+    }
+
+    deleteRounds() {
+      const state = confirm('Esta seguro de eliminar todas las rondas?');
+      if (state) {
+        this.roundService.deleteAllOfTournament(this.vm.id).subscribe({
+          next: () => {
+            alert('Rondas eliminadas');
+            this.getRoundsByTournament();
+          },
+          error: (e) => alert(e),
+        });
+      }
+    }
+
+    delete () {
+      const state = confirm('Esta seguro de eliminar el torneo?');
+      if (state) {
+        this.tournamentService.delete(this.vm.id).subscribe({
+          next: () => {
+            alert('Torneo eliminado');
+            this.router.navigate(['/tournaments']);
+          },
+          error: (e) => alert(e),
+        });
+      }
     }
   }
-
-  deleteInscriptions() {
-    const state = confirm('Esta seguro de eliminar todas las inscripciones?');
-    if (state) {
-      this.inscriptionService.deleteAllOfTournament(this.vm.id).subscribe({
-        next: () => {
-          alert('Inscripciones eliminadas');
-          this.getInscriptionsByTournament();
-        },
-        error: (e) => alert(e),
-      });
-    }
-  }
-
-  deleteRounds() {
-    const state = confirm('Esta seguro de eliminar todas las rondas?');
-    if (state) {
-      this.roundService.deleteAllOfTournament(this.vm.id).subscribe({
-        next: () => {
-          alert('Rondas eliminadas');
-          this.getRoundsByTournament();
-        },
-        error: (e) => alert(e),
-      });
-    }
-  }
-
-  delete() {
-    const state = confirm('Esta seguro de eliminar el torneo?');
-    if (state) {
-      this.tournamentService.delete(this.vm.id).subscribe({
-        next: () => {
-          alert('Torneo eliminado');
-          this.router.navigate(['/tournaments']);
-        },
-        error: (e) => alert(e),
-      });
-    }
-  }
-}
