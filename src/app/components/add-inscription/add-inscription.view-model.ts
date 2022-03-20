@@ -7,5 +7,5 @@ export class AddInscriptionViewModel {
   body: InscriptionCreateDto = {
     tournament: '',
     car: '',
-  }
+  };
 }

@@ -17,7 +17,7 @@ export class CarOnePage implements OnInit {
     private carService: CarService,
     private inscriptionService: InscriptionService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.vm.id = this.route.snapshot.paramMap.get('id') as string;
@@ -56,12 +56,12 @@ export class CarOnePage implements OnInit {
     try {
       this.vm.edit
         ? this.carService.update(this.vm.item).subscribe(() => {
-          this.router.navigate(['/cars']);
-        })
+            this.router.navigate(['/cars']);
+          })
         : this.carService.create(this.vm.item).subscribe(() => {
-          alert('Coche creado');
-          this.router.navigate(['/cars']);
-        });
+            alert('Coche creado');
+            this.router.navigate(['/cars']);
+          });
     } catch (error) {
       console.error(error);
     }
@@ -71,7 +71,7 @@ export class CarOnePage implements OnInit {
     switch (option.value) {
       case 'deleteInscriptions':
         this.deleteInscriptions();
-        break
+        break;
       case 'delete':
         this.deleteOne();
         break;
@@ -83,18 +83,16 @@ export class CarOnePage implements OnInit {
   async deleteInscriptions() {
     if (confirm('¿Estás seguro de eliminar todas las inscripciones?')) {
       this.vm.inscriptionsOptionsTable.loading = true;
-      this.inscriptionService
-        .deleteAllOfCar(this.vm.id)
-        .subscribe({
-          next: () => {
-            this.vm.inscriptionsOptionsTable.loading = false;
-            this.vm.inscriptionsOptionsTable.items = [];
-          },
-          error: (e) => {
-            this.vm.inscriptionsOptionsTable.loading = false;
-            console.error(e);
-          },
-        });
+      this.inscriptionService.deleteAllOfCar(this.vm.id).subscribe({
+        next: () => {
+          this.vm.inscriptionsOptionsTable.loading = false;
+          this.vm.inscriptionsOptionsTable.items = [];
+        },
+        error: (e) => {
+          this.vm.inscriptionsOptionsTable.loading = false;
+          console.error(e);
+        },
+      });
     }
   }
 

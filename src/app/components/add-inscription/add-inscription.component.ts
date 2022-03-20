@@ -13,15 +13,18 @@ export class AddInscriptionComponent {
   @Output() onInscription: EventEmitter<void> = new EventEmitter();
   vm = new AddInscriptionViewModel();
 
-  constructor(private searchService: SearchService, private inscriptionService: InscriptionService) { }
+  constructor(
+    private searchService: SearchService,
+    private inscriptionService: InscriptionService
+  ) {}
 
   createInscription() {
     this.inscriptionService.create(this.vm.body).subscribe({
       next: () => {
         alert('Inscripción creada');
-        this.onInscription.emit()
+        this.onInscription.emit();
       },
-      error: (error) => alert(error)
+      error: (error) => alert(error),
     });
   }
 
@@ -44,7 +47,7 @@ export class AddInscriptionComponent {
     this.vm.body = {
       tournament: id,
       car: this.carId,
-    }
+    };
     this.vm.disabledButton = false;
   }
 }

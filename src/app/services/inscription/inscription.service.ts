@@ -14,7 +14,7 @@ export class InscriptionService {
   constructor(
     private httpClient: HttpClient,
     private httpService: HttpService
-  ) { }
+  ) {}
 
   getAll(data: InscriptionGetAllDto): Observable<Inscription[]> {
     return this.httpClient.post<Inscription[]>(
@@ -82,5 +82,4 @@ export class InscriptionService {
       this.headers
     );
   }
-
 }
