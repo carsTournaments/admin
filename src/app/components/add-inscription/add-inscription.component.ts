@@ -8,8 +8,8 @@ import { AddInscriptionViewModel } from './add-inscription.view-model';
 export class AddInscriptionComponent {
   vm = new AddInscriptionViewModel();
 
-    createInscription() {
-      // todo: create inscription
+  createInscription() {
+    // todo: create inscription
   }
 
   searchTournament(event: any) {
