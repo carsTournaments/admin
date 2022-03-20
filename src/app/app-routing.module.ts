@@ -48,6 +48,13 @@ const routes: Routes = [
     canActivate: [LoginGuard],
   },
   {
+    path: 'pairings',
+    data: { breadcrumb: 'Emparejamientos' },
+    loadChildren: () =>
+      import('./modules/pairing/pairing.module').then((m) => m.PairingModule),
+    canActivate: [LoginGuard],
+  },
+  {
     path: 'rounds',
     data: { breadcrumb: 'Rondas' },
     loadChildren: () =>

@@ -44,6 +44,10 @@ export class MenuViewModel {
           name: 'Rondas',
           link: '/rounds',
         },
+        {
+          name: 'Emparejamientos',
+          link: '/pairings',
+        },
       ],
     },
     {

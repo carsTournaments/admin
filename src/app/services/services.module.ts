@@ -8,10 +8,12 @@ import { BrandService } from './brand/brand.service';
 import { CarService } from './car/car.service';
 import { InscriptionService } from './inscription/inscription.service';
 import { LoggerService } from './logger/logger.service';
+import { PairingService } from './pairing/pairing.service';
 import { RoundService } from './round/round.service';
 import { SearchService } from './search/search.service';
 import { TournamentService } from './tournament/tournament.service';
 import { UserService } from './user/user.service';
+import { VoteService } from './vote/vote.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
@@ -22,10 +24,12 @@ import { UserService } from './user/user.service';
     CarService,
     InscriptionService,
     LoggerService,
+    PairingService,
     RoundService,
     SearchService,
     TournamentService,
     UserService,
+    VoteService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: GlobalHttpInterceptor,

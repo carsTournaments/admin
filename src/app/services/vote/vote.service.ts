@@ -2,58 +2,46 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../http/http.service';
 import { environment } from 'src/environments/environment';
-import { VotingGetAllDto } from './dtos/voting-get-all.dto';
-import { Voting } from 'src/app/models/voting.model';
+import { Vote } from 'src/app/models/vote.model';
 import { GenericGetAllI } from 'src/app/interfaces/generic-getall.interface';
-import { VotingDeleteAllDto } from './dtos/voting-delete-all.dto';
+import { VotingDeleteAllDto } from './dtos/vote.dto';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class VotingService {
-  url = `${environment.urlApi}/votings`;
+export class VoteService {
+  url = `${environment.urlApi}/votes`;
   headers = { headers: this.httpService.getHeaderWithToken() };
   constructor(
     private httpClient: HttpClient,
     private httpService: HttpService
   ) {}
 
-  getAll(data: VotingGetAllDto): Observable<GenericGetAllI<Voting>> {
-    return this.httpClient.post<GenericGetAllI<Voting>>(
+  getAll(): Observable<GenericGetAllI<Vote>> {
+    return this.httpClient.post<GenericGetAllI<Vote>>(
       `${this.url}/getAll`,
-      data,
+      null,
       this.headers
     );
   }
 
-  getOne(id: string): Observable<Voting> {
-    return this.httpClient.post<Voting>(
+  getOne(id: string): Observable<Vote> {
+    return this.httpClient.post<Vote>(
       `${this.url}/one`,
       { id, site: 'admin' },
       this.headers
     );
   }
 
-  create(data: Voting): Observable<Voting> {
-    return this.httpClient.post<Voting>(
-      `${this.url}/create`,
-      data,
-      this.headers
-    );
+  create(data: Vote): Observable<Vote> {
+    return this.httpClient.post<Vote>(`${this.url}/create`, data, this.headers);
   }
 
-  update(data: Voting): Observable<Voting> {
-    return this.httpClient.put<Voting>(
-      `${this.url}/update`,
-      data,
-      this.headers
-    );
+  update(data: Vote): Observable<Vote> {
+    return this.httpClient.put<Vote>(`${this.url}/update`, data, this.headers);
   }
 
-  delete(id: string): Observable<Voting> {
-    return this.httpClient.delete<Voting>(
-      `${this.url}/one/${id}`,
-      this.headers
-    );
+  delete(id: string): Observable<Vote> {
+    return this.httpClient.delete<Vote>(`${this.url}/one/${id}`, this.headers);
   }
 
   deleteAll(data: VotingDeleteAllDto): Observable<{ message: string }> {

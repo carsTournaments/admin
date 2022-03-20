@@ -52,4 +52,8 @@ export class PairingService {
       this.headers
     );
   }
+
+  deleteAll(): Observable<Pairing> {
+    return this.httpClient.delete<Pairing>(`${this.url}/all`, this.headers);
+  }
 }

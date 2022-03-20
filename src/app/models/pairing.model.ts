@@ -1,21 +1,23 @@
 export class Pairing {
   _id?: string;
   round: string; //RoundI;
-  pairings: PairingItemI[];
   winner: string;
+  car1: any;
+  votes1: number;
+  car2: any;
+  votes2: number;
   created?: string;
   updated?: string;
+
   constructor(data?: Pairing) {
     this._id = data?._id;
     this.round = data?.round || '';
-    this.pairings = data?.pairings || [];
     this.winner = data?.winner || '';
-    this.created = data?.created || '';
-    this.updated = data?.updated || '';
+    this.votes1 = data?.votes1 || 0;
+    this.car1 = data?.car1 || null;
+    this.votes2 = data?.votes2 || 0;
+    this.car2 = data?.car2 || null;
+    this.created = data?.created;
+    this.updated = data?.updated;
   }
-}
-
-export interface PairingItemI {
-  car1: { votes: number; car: any };
-  car2: { votes: number; car: any };
 }

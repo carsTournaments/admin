@@ -4,8 +4,11 @@
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
-        <th *ngFor="let item of vm.tableHeadItems[options.type]" [ngClass]="{'pointer': item.order !== null}"
-          (click)="onChangeOrder(item.order)">
+        <th
+          *ngFor="let item of vm.tableHeadItems[options.type]"
+          [ngClass]="{ pointer: item.order !== null }"
+          (click)="onChangeOrder(item.order)"
+        >
           {{ item.name }}
         </th>
       </tr>
@@ -51,9 +54,35 @@
         <ng-container *ngIf="options.type === 'inscription'">
           <tr class="pointer" *ngFor="let item of options.items">
             <td></td>
-            <td>{{ item.car.name }}</td>
-            <td>{{ item.tournament.name }}</td>
+            <td [routerLink]="['/cars/one', item.car._id]">
+              {{ item.car.name }}
+            </td>
+            <td [routerLink]="['/tournament/one', item.tournament._id]">
+              {{ item.tournament.name }}
+            </td>
             <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
+            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+          </tr>
+        </ng-container>
+
+        <!-- Pairing -->
+        <ng-container *ngIf="options.type === 'pairing'">
+          <tr class="pointer" *ngFor="let item of options.items">
+            <td [routerLink]="['/cars/one', item.car1?._id]">
+              {{ item.car1?.name }}
+            </td>
+            <td [routerLink]="['/cars/one', item.car1?._id]">
+              {{ item.car2?.name }}
+            </td>
+            <td [routerLink]="['/pairings/one', item._id]">
+              {{ item.votes?.length }}
+            </td>
+            <td [routerLink]="['/tournaments/one', item.round.tournament._id]">
+              {{ item.round?.tournament.name }}
+            </td>
+            <td [routerLink]="['/rounds/one', item.round._id]">
+              {{ item.round?.name }}
+            </td>
             <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
           </tr>
         </ng-container>
@@ -65,16 +94,21 @@
               {{ item.name }}
             </td>
             <td>{{ item.participants }}</td>
-            <td>{{ item.tournament.name }}</td>
+            <td [routerLink]="['/tournament/one', item.tournament._id]">
+              {{ item.tournament.name }}
+            </td>
             <td>{{ item.startDate | dateToTimeAgo | titlecase }}</td>
             <td>{{ item.endDate | dateToTimeAgo | titlecase }}</td>
             <td>
-              <span class="badge" [ngClass]="{
-                'bg-danger': item.status === 'Canceled',
-                'bg-success': item.status === 'Completed',
-                'bg-primary': item.status === 'InProgress',
-                'bg-warning': item.status === 'Todo'
-              }">
+              <span
+                class="badge"
+                [ngClass]="{
+                  'bg-danger': item.status === 'Canceled',
+                  'bg-success': item.status === 'Completed',
+                  'bg-primary': item.status === 'InProgress',
+                  'bg-warning': item.status === 'Todo'
+                }"
+              >
                 {{ item.status | status }}
               </span>
             </td>
@@ -90,16 +124,21 @@
               {{ item.name }}
             </td>
             <td>{{ item.startDate | dateToTimeAgo | titlecase }}</td>
-            <td>{{ item.inscriptions?.length }} / {{ item.maxParticipants}}</td>
+            <td>
+              {{ item.inscriptions?.length }} / {{ item.maxParticipants }}
+            </td>
             <td>{{ item.rounds?.length }}</td>
             <td>{{ item.requisites.length }}</td>
             <td>
-              <span class="badge" [ngClass]="{
-                'bg-danger': item.status === 'Canceled',
-                'bg-success': item.status === 'Completed',
-                'bg-primary': item.status === 'InProgress',
-                'bg-warning': item.status === 'Todo'
-              }">
+              <span
+                class="badge"
+                [ngClass]="{
+                  'bg-danger': item.status === 'Canceled',
+                  'bg-success': item.status === 'Completed',
+                  'bg-primary': item.status === 'InProgress',
+                  'bg-warning': item.status === 'Todo'
+                }"
+              >
                 {{ item.status | status }}
               </span>
             </td>
@@ -127,13 +166,17 @@
         <ng-container *ngIf="options.type === 'vote'">
           <tr class="pointer" *ngFor="let item of options.items">
             <td [routerLink]="['/votings/one', item._id]">
-              {{ item.type === 'site' ? 'Sitio' : 'Evento' }}
+              {{ item.type === "site" ? "Sitio" : "Evento" }}
             </td>
             <td [routerLink]="['/votings/one', item._id]">
               <div [innerHTML]="item.value | starsForList"></div>
             </td>
             <td
-              [routerLink]="[item.site?._id ? '/sites/one' : '/events/one', item.site?._id ? item.site?._id : item.event?._id]">
+              [routerLink]="[
+                item.site?._id ? '/sites/one' : '/events/one',
+                item.site?._id ? item.site?._id : item.event?._id
+              ]"
+            >
               {{ item.site?.name ? item.site?.name : item.event?.name }}
             </td>
             <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
@@ -141,14 +184,17 @@
           </tr>
         </ng-container>
       </ng-container>
-
     </tbody>
-
   </table>
-  <div *ngIf="options.items.length === 0" class="alert alert-warning">No hay elementos disponibles</div>
+  <div *ngIf="options.items.length === 0" class="alert alert-warning">
+    No hay elementos disponibles
+  </div>
   <div class="text-center mb-3">
-    <button class="btn btn-primary w-100" *ngIf="options.showLoadMore && options.items.length > 9"
-      (click)="changePage.emit()">
+    <button
+      class="btn btn-primary w-100"
+      *ngIf="options.showLoadMore && options.items.length > 9"
+      (click)="changePage.emit()"
+    >
       Cargar mas
     </button>
   </div>
