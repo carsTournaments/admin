@@ -16,12 +16,8 @@ export class VoteService {
     private httpService: HttpService
   ) {}
 
-  getAll(): Observable<GenericGetAllI<Vote>> {
-    return this.httpClient.post<GenericGetAllI<Vote>>(
-      `${this.url}/getAll`,
-      null,
-      this.headers
-    );
+  getAll(): Observable<Vote[]> {
+    return this.httpClient.post<Vote[]>(`${this.url}/all`, null, this.headers);
   }
 
   getOne(id: string): Observable<Vote> {

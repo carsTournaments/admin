@@ -165,22 +165,24 @@
         <!-- Vote -->
         <ng-container *ngIf="options.type === 'vote'">
           <tr class="pointer" *ngFor="let item of options.items">
-            <td [routerLink]="['/votings/one', item._id]">
-              {{ item.type === "site" ? "Sitio" : "Evento" }}
-            </td>
-            <td [routerLink]="['/votings/one', item._id]">
-              <div [innerHTML]="item.value | starsForList"></div>
-            </td>
             <td
               [routerLink]="[
-                item.site?._id ? '/sites/one' : '/events/one',
-                item.site?._id ? item.site?._id : item.event?._id
+                '/tournaments/one',
+                item.pairing.round.tournament._id
               ]"
             >
-              {{ item.site?.name ? item.site?.name : item.event?.name }}
+              {{ item.pairing.round.tournament.name }}
             </td>
-            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
-            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+            <td [routerLink]="['/pairings/one', item.pairing.round._id]">
+              {{ item.pairing.round.name }}
+            </td>
+            <td [routerLink]="['/cars/one', item.car._id]">
+              {{ item.car.name }}
+            </td>
+
+            <td [routerLink]="['/votes/one', item._id]">
+              {{ item.created | dateToTimeAgo | titlecase }}
+            </td>
           </tr>
         </ng-container>
       </ng-container>

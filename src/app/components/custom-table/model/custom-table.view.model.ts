@@ -67,11 +67,10 @@ export class CustomTableViewModel {
       { name: 'Actualizado', order: 'updated', col: null },
       { name: 'Creado', order: 'created', col: null },
     ],
-    voting: [
-      { name: 'Tipo', order: 'type', col: 'col-2' },
-      { name: 'Valor', order: 'value', col: 'col-4' },
-      { name: 'Item', order: null, col: 'col-4' },
-      { name: 'Actualizado', order: 'updated', col: 'col-1' },
+    vote: [
+      { name: 'Torneo', order: null, col: null },
+      { name: 'Ronda', order: null, col: null },
+      { name: 'Coche', order: 'value', col: null },
       { name: 'Creado', order: 'created', col: null },
     ],
   };

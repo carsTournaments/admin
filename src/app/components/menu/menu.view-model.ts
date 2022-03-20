@@ -48,6 +48,10 @@ export class MenuViewModel {
           name: 'Emparejamientos',
           link: '/pairings',
         },
+        {
+          name: 'Votos',
+          link: '/votes',
+        },
       ],
     },
     {
@@ -61,20 +65,6 @@ export class MenuViewModel {
         {
           name: 'Nuevo',
           link: '/users/one',
-        },
-      ],
-    },
-    {
-      name: 'Votos',
-      icon: 'fa-star',
-      subitems: [
-        {
-          name: 'Listado',
-          link: '/votings',
-        },
-        {
-          name: 'Nuevo',
-          link: '/votings/one',
         },
       ],
     },

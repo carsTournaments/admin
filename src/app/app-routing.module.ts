@@ -78,6 +78,13 @@ const routes: Routes = [
     canActivate: [LoginGuard],
   },
   {
+    path: 'votes',
+    data: { breadcrumb: 'Votos' },
+    loadChildren: () =>
+      import('./modules/vote/vote.module').then((m) => m.VoteModule),
+    canActivate: [LoginGuard],
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
