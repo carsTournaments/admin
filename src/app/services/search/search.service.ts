@@ -1,3 +1,4 @@
+import { SearchDto } from './search.dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../http/http.service';
@@ -13,7 +14,7 @@ export class SearchService {
     private httpService: HttpService
   ) {}
 
-  getAll(): Observable<any> {
-    return this.httpClient.post(`${this.url}/all`, null, this.headers);
+  getAll(data: SearchDto): Observable<any> {
+    return this.httpClient.post(`${this.url}/all`, data, this.headers);
   }
 }

@@ -1,19 +1,33 @@
-<div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm-9">
-                <div class="form-floating">
-                    <input class="form-control" name="name" [(ngModel)]="vm.tournamentName" (keypress)="searchTournament($event)" placeholder="Nombre" required />
-                    <label for="floatingInput" class="form-label">Introduce torneo</label>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-floating">
-                    <button [disabled]="vm.disabledButton" class="btn btn-lg btn-primary w-100" (click)="createInscription()">
-                        Inscribirse
-                    </button>
-                </div>
+<div class="row mt-3">
+    <div class="col-sm-9">
+        <div class="form-floating">
+            <input class="form-control" name="name" [(ngModel)]="vm.tournamentName"
+                (keypress)="searchTournament($event)" placeholder="Nombre" required />
+            <label for="floatingInput" class="form-label">Introduce torneo</label>
         </div>
-        
+    </div>
+    <div class="col-sm-3">
+        <div class="form-floating">
+            <button [disabled]="vm.disabledButton" class="btn btn-lg btn-primary w-100" (click)="createInscription()">
+                Inscribirse
+            </button>
+        </div>
     </div>
 </div>
+
+<ul class="list-group mt-3" *ngIf="vm.results.length > 0">
+    <li class="list-group-item" *ngFor="let item of vm.results">
+        <div class="row mt-3">
+            <div class="col-sm-9">
+                {{ item.name }}<br>
+                <small>{{ item.status! | status }}</small>
+                
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-sm btn-primary w-100" (click)="selectTournament(item._id!)">
+                    Seleccionar
+                </button>
+            </div>
+        </div>
+    </li>
+</ul>

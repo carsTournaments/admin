@@ -1,15 +1,17 @@
-import { InscriptionService } from './inscription/inscription.service';
-import { CarService } from './car/car.service';
-import { AuthService } from './auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { UserService } from './user/user.service';
 import { GlobalHttpInterceptor } from '../core/interceptors/global-http.interceptor';
-import { TournamentService } from './tournament/tournament.service';
+
+import { AuthService } from './auth/auth.service';
 import { BrandService } from './brand/brand.service';
-import { RoundService } from './round/round.service';
+import { CarService } from './car/car.service';
+import { InscriptionService } from './inscription/inscription.service';
 import { LoggerService } from './logger/logger.service';
+import { RoundService } from './round/round.service';
+import { SearchService } from './search/search.service';
+import { TournamentService } from './tournament/tournament.service';
+import { UserService } from './user/user.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
@@ -21,6 +23,7 @@ import { LoggerService } from './logger/logger.service';
     InscriptionService,
     LoggerService,
     RoundService,
+    SearchService,
     TournamentService,
     UserService,
     {

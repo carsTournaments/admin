@@ -75,7 +75,7 @@
                 'bg-primary': item.status === 'InProgress',
                 'bg-warning': item.status === 'Todo'
               }">
-                {{ item.status }}
+                {{ item.status | status }}
               </span>
             </td>
             <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
@@ -91,6 +91,7 @@
             </td>
             <td>{{ item.startDate | dateToTimeAgo | titlecase }}</td>
             <td>{{ item.inscriptions?.length }} / {{ item.maxParticipants}}</td>
+            <td>{{ item.rounds?.length }}</td>
             <td>{{ item.requisites.length }}</td>
             <td>
               <span class="badge" [ngClass]="{
@@ -99,7 +100,7 @@
                 'bg-primary': item.status === 'InProgress',
                 'bg-warning': item.status === 'Todo'
               }">
-                {{ item.status }}
+                {{ item.status | status }}
               </span>
             </td>
 
