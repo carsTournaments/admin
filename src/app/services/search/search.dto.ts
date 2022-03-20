@@ -1,4 +1,4 @@
 export interface SearchDto {
-    value: string;
-    type: string;
+  value: string;
+  type: string;
 }

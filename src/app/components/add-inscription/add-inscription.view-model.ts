@@ -1,4 +1,4 @@
 export class AddInscriptionViewModel {
-    tournamentName = '';
-    disabledButton = true;
+  tournamentName = '';
+  disabledButton = true;
 }

@@ -17,7 +17,7 @@ export class CarOnePage implements OnInit {
     private carService: CarService,
     private inscriptionService: InscriptionService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.vm.id = this.route.snapshot.paramMap.get('id') as string;
@@ -34,8 +34,8 @@ export class CarOnePage implements OnInit {
 
   async getOne() {
     this.carService.getOne(this.vm.id).subscribe({
-      next: (item) => this.vm.item = item,
-      error: (error) => console.error(error)
+      next: (item) => (this.vm.item = item),
+      error: (error) => console.error(error),
     });
   }
 
@@ -61,12 +61,12 @@ export class CarOnePage implements OnInit {
     try {
       this.vm.edit
         ? this.carService.update(this.vm.item).subscribe(() => {
-          this.router.navigate(['/cars']);
-        })
+            this.router.navigate(['/cars']);
+          })
         : this.carService.create(this.vm.item).subscribe(() => {
-          alert('Coche creado');
-          this.router.navigate(['/cars']);
-        });
+            alert('Coche creado');
+            this.router.navigate(['/cars']);
+          });
     } catch (error) {
       console.error(error);
     }
@@ -89,7 +89,7 @@ export class CarOnePage implements OnInit {
           alert('Coche eliminado');
           this.router.navigate(['/cars']);
         },
-        error: (e) => console.error(e)
+        error: (e) => console.error(e),
       });
     }
   }
