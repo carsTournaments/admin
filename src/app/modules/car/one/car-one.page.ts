@@ -17,7 +17,7 @@ export class CarOnePage implements OnInit {
     private carService: CarService,
     private inscriptionService: InscriptionService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.vm.id = this.route.snapshot.paramMap.get('id') as string;
@@ -49,11 +49,6 @@ export class CarOnePage implements OnInit {
   getInscriptionsByTournamentOk(items: Inscription[]) {
     this.vm.inscriptionsOptionsTable.loading = true;
     this.vm.inscriptionsOptionsTable.items = items;
-    if (items.length > 0) {
-      this.vm.optionsSegments.segments[2] = `Inscripciones (${items.length})`;
-    } else {
-      delete this.vm.optionsSegments.segments[2];
-    }
     this.vm.inscriptionsOptionsTable.loading = false;
   }
 
@@ -61,12 +56,12 @@ export class CarOnePage implements OnInit {
     try {
       this.vm.edit
         ? this.carService.update(this.vm.item).subscribe(() => {
-            this.router.navigate(['/cars']);
-          })
+          this.router.navigate(['/cars']);
+        })
         : this.carService.create(this.vm.item).subscribe(() => {
-            alert('Coche creado');
-            this.router.navigate(['/cars']);
-          });
+          alert('Coche creado');
+          this.router.navigate(['/cars']);
+        });
     } catch (error) {
       console.error(error);
     }
@@ -74,23 +69,48 @@ export class CarOnePage implements OnInit {
 
   actionForOption(option: ActionForOptionI) {
     switch (option.value) {
+      case 'deleteInscriptions':
+        this.deleteInscriptions();
+        break
       case 'delete':
-        this.delete();
+        this.deleteOne();
         break;
       default:
         break;
     }
   }
 
-  async delete() {
+  async deleteInscriptions() {
+    if (confirm('¿Estás seguro de eliminar todas las inscripciones?')) {
+      this.vm.inscriptionsOptionsTable.loading = true;
+      this.inscriptionService
+        .deleteAllOfCar(this.vm.id)
+        .subscribe({
+          next: () => {
+            this.vm.inscriptionsOptionsTable.loading = false;
+            this.vm.inscriptionsOptionsTable.items = [];
+          },
+          error: (e) => {
+            this.vm.inscriptionsOptionsTable.loading = false;
+            console.error(e);
+          },
+        });
+    }
+  }
+
+  async deleteOne() {
     if (confirm('¿Está seguro de eliminar el coche?')) {
       this.carService.delete(this.vm.id).subscribe({
         next: () => {
           alert('Coche eliminado');
           this.router.navigate(['/cars']);
         },
-        error: (e) => console.error(e),
+        error: (e) => alert(e),
       });
     }
+  }
+
+  onInscription() {
+    this.getInscriptionsByCar();
   }
 }

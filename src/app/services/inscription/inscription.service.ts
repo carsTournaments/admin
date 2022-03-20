@@ -14,7 +14,7 @@ export class InscriptionService {
   constructor(
     private httpClient: HttpClient,
     private httpService: HttpService
-  ) {}
+  ) { }
 
   getAll(data: InscriptionGetAllDto): Observable<Inscription[]> {
     return this.httpClient.post<Inscription[]>(
@@ -62,17 +62,25 @@ export class InscriptionService {
     }>(`${this.url}/forceInscriptions`, data, this.headers);
   }
 
-  deleteAllOfTournament(id: string): Observable<Inscription> {
-    return this.httpClient.delete<Inscription>(
-      `${this.url}/allOfTournament/${id}`,
-      this.headers
-    );
-  }
-
   delete(id: string): Observable<Inscription> {
     return this.httpClient.delete<Inscription>(
       `${this.url}/one/${id}`,
       this.headers
     );
   }
+
+  deleteAllOfCar(id: string): Observable<{ message: string }> {
+    return this.httpClient.delete<{ message: string }>(
+      `${this.url}/allOfCar/${id}`,
+      this.headers
+    );
+  }
+
+  deleteAllOfTournament(id: string): Observable<{ message: string }> {
+    return this.httpClient.delete<{ message: string }>(
+      `${this.url}/allOfTournament/${id}`,
+      this.headers
+    );
+  }
+
 }

@@ -11,7 +11,7 @@ export class CarOnePageViewModel {
     buttons: [],
   });
   optionsSegments = new SegmentsViewModel({
-    segments: ['Info', 'Opciones', 'Inscripciones'],
+    segments: ['Info', 'Opciones', 'Inscripciones', 'Nueva Inscripcion'],
     currentSegment: 0,
   });
   inscriptionsOptionsTable = new CustomTableOptionsModel({
@@ -23,6 +23,10 @@ export class CarOnePageViewModel {
   });
   edit = false;
   options = [
+    {
+      name: 'Eliminar todas las inscripciones',
+      value: 'deleteInscriptions',
+    },
     {
       name: 'Eliminar coche',
       value: 'delete',

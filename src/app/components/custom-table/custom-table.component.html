@@ -67,7 +67,7 @@
             <td>{{ item.participants }}</td>
             <td>{{ item.tournament.name }}</td>
             <td>{{ item.startDate | dateToTimeAgo | titlecase }}</td>
-            <td>{{ item.endDate | dateToTimeAgo | titlecase}}</td>
+            <td>{{ item.endDate | dateToTimeAgo | titlecase }}</td>
             <td>
               <span class="badge" [ngClass]="{
                 'bg-danger': item.status === 'Canceled',

@@ -89,8 +89,11 @@
     </ng-container>
 
     <ng-container *ngIf="vm.optionsSegments.currentSegment === 2">
-      <add-inscription></add-inscription>
       <custom-table [options]="vm.inscriptionsOptionsTable"></custom-table>
+    </ng-container>
+    
+    <ng-container *ngIf="vm.optionsSegments.currentSegment === 3">
+      <add-inscription [carId]="vm.id" (onInscription)="onInscription()"></add-inscription>
     </ng-container>
   </div>
 </div>

@@ -19,12 +19,22 @@
     <li class="list-group-item" *ngFor="let item of vm.results">
         <div class="row mt-3">
             <div class="col-sm-9">
-                {{ item.name }}<br>
-                <small>{{ item.status! | status }}</small>
-                
+                <p>{{ item.name }}<br>
+                    <span class="badge" [ngClass]="{
+                        'bg-danger': item.status === 'Canceled',
+                        'bg-success': item.status === 'Completed',
+                        'bg-primary': item.status === 'InProgress',
+                        'bg-warning': item.status === 'Todo'
+                    }">
+                        {{ item.status! | status }}
+                    </span>&nbsp;
+                    <span class="badge bg-dark"><i class="fa fa-calendar"></i>&nbsp; {{ item.startDate | dateToTimeAgo | titlecase }}</span>&nbsp;
+                    <span class="badge bg-secondary"><i class="fa fa-user"></i>&nbsp; {{ item.inscriptions?.length }} / {{ item.maxParticipants}}</span>
+                </p>
             </div>
             <div class="col-sm-3">
-                <button class="btn btn-sm btn-primary w-100" (click)="selectTournament(item._id!)">
+                <button [disabled]="item.status !== 'Todo'" class="btn btn-sm btn-primary w-100"
+                    (click)="selectTournament(item._id!)">
                     Seleccionar
                 </button>
             </div>
