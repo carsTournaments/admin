@@ -2,42 +2,70 @@
 <custom-menu [itemSelected]="1"></custom-menu>
 <div class="container">
   <div class="box-white">
-    <custom-title-with-buttons [options]="vm.optionsTitle"></custom-title-with-buttons>
+    <custom-title-with-buttons
+      [options]="vm.optionsTitle"
+    ></custom-title-with-buttons>
     <segments [options]="vm.optionsSegments"></segments>
 
     <div class="mb-3" *ngIf="vm.optionsSegments.currentSegment === 0">
       <div class="row mt-1 g-3" *ngIf="vm.item">
         <div class="col-sm-6">
           <div class="form-floating">
-            <input class="form-control" name="name" [(ngModel)]="vm.item.name" placeholder="Nombre" required />
+            <input
+              class="form-control"
+              name="name"
+              [(ngModel)]="vm.item.name"
+              placeholder="Nombre"
+              required
+            />
             <label for="floatingInput" class="form-label">Nombre</label>
           </div>
         </div>
 
         <div class="col-sm-6">
           <div class="form-floating">
-            <input class="form-control" name="name" [(ngModel)]="vm.item.model" placeholder="Nombre" required />
+            <input
+              class="form-control"
+              name="name"
+              [(ngModel)]="vm.item.model"
+              placeholder="Nombre"
+              required
+            />
             <label for="floatingInput" class="form-label">Modelo</label>
           </div>
         </div>
 
         <div class="col-sm-6">
           <div class="form-floating">
-            <input class="form-control" type="number" name="name" [(ngModel)]="vm.item.cc" placeholder="cc" required />
+            <input
+              class="form-control"
+              type="number"
+              name="name"
+              [(ngModel)]="vm.item.cc"
+              placeholder="cc"
+              required
+            />
             <label for="floatingInput" class="form-label">CC</label>
           </div>
         </div>
-        
+
         <div class="col-sm-6">
           <div class="form-floating">
-            <input class="form-control" type="number" name="name" [(ngModel)]="vm.item.cv" placeholder="cv" required />
+            <input
+              class="form-control"
+              type="number"
+              name="name"
+              [(ngModel)]="vm.item.cv"
+              placeholder="cv"
+              required
+            />
             <label for="floatingInput" class="form-label">CV</label>
           </div>
         </div>
 
         <div class="col-sm-6">
           <div class="form-floating">
-            <select class="form-select" [(ngModel)]="vm.item.stock">
+            <select class="form-select" [(ngModel)]="vm.stock">
               <option [value]="true">Si</option>
               <option [value]="false">No</option>
             </select>
@@ -47,7 +75,14 @@
 
         <div class="col-sm-6">
           <div class="form-floating">
-            <input class="form-control" type="number" name="name" [(ngModel)]="vm.item.year" placeholder="year" required />
+            <input
+              class="form-control"
+              type="number"
+              name="name"
+              [(ngModel)]="vm.item.year"
+              placeholder="year"
+              required
+            />
             <label for="floatingInput" class="form-label">Año</label>
           </div>
         </div>
@@ -64,8 +99,11 @@
       <div class="row mt-3">
         <div class="col-6">
           <ul class="list-group">
-            <li (click)="actionForOption(option)" class="list-group-item list-group-item-action pointer"
-              *ngFor="let option of vm.options">
+            <li
+              (click)="actionForOption(option)"
+              class="list-group-item list-group-item-action pointer"
+              *ngFor="let option of vm.options"
+            >
               {{ option.name }}
             </li>
           </ul>
@@ -91,9 +129,12 @@
     <ng-container *ngIf="vm.optionsSegments.currentSegment === 2">
       <custom-table [options]="vm.inscriptionsOptionsTable"></custom-table>
     </ng-container>
-    
+
     <ng-container *ngIf="vm.optionsSegments.currentSegment === 3">
-      <add-inscription [carId]="vm.id" (onInscription)="onInscription()"></add-inscription>
+      <add-inscription
+        [carId]="vm.id"
+        (onInscription)="onInscription()"
+      ></add-inscription>
     </ng-container>
   </div>
 </div>

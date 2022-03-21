@@ -4,10 +4,19 @@
 <!-- <stats-resume></stats-resume> -->
 
 <div class="container">
-  <div style="margin: 0.25rem;
-    background: #FFF;
-    padding: 1rem;">
-    <custom-title-with-buttons [options]="vm.sitesOptionsTitle"></custom-title-with-buttons>
-    <custom-table [options]="vm.sitesOptionsTable"></custom-table>
+  <div style="margin: 0.25rem; background: #fff; padding: 1rem">
+    <custom-title-with-buttons
+      [options]="vm.tournamentsOptionsTitle"
+    ></custom-title-with-buttons>
+    <custom-table [options]="vm.tournamentsOptionsTable"></custom-table>
+  </div>
+</div>
+
+<div class="container">
+  <div style="margin: 0.25rem; background: #fff; padding: 1rem">
+    <custom-title-with-buttons
+      [options]="vm.carsOptionsTitle"
+    ></custom-title-with-buttons>
+    <custom-table [options]="vm.carsOptionsTable"></custom-table>
   </div>
 </div>

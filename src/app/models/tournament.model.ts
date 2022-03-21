@@ -56,6 +56,18 @@ export class Tournament {
         value: 100,
       },
       {
+        name: 'Menos de 200CV',
+        field: 'cv',
+        operator: '<',
+        value: 100,
+      },
+      {
+        name: 'Más de 100CV',
+        field: 'cv',
+        operator: '>',
+        value: 100,
+      },
+      {
         name: 'Más de 200CV',
         field: 'cv',
         operator: '>',

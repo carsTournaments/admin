@@ -22,6 +22,7 @@ export class CarOnePageViewModel {
     error: false,
   });
   edit = false;
+  stock = true;
   options = [
     {
       name: 'Eliminar todas las inscripciones',

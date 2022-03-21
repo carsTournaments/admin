@@ -1,5 +1,7 @@
+import { TournamentService } from './../../services/tournament/tournament.service';
 import { Component, OnInit } from '@angular/core';
 import { DashboardViewModel } from './model/dashboard.view-model';
+import { CarService } from 'src/app/services/car/car.service';
 
 @Component({
   selector: 'page-dashboard',
@@ -7,26 +9,46 @@ import { DashboardViewModel } from './model/dashboard.view-model';
 })
 export class DashboardPage implements OnInit {
   vm = new DashboardViewModel();
-  // constructor() {}
+  constructor(
+    private tournamentService: TournamentService,
+    private carService: CarService
+  ) {}
 
   ngOnInit() {
-    // this.getSites();
-    // this.getEvents();
+    this.getTournaments();
+    this.getCars();
     // this.getStats();
   }
 
-  // async getSites() {
-  //   try {
-  //     this.vm.sitesOptionsTable.loading = true;
-  //     const response = await this.siteService.getAll(this.vm.siteBody);
-  //     this.vm.sitesOptionsTable.items = response.items;
-  //     this.vm.sitesOptionsTable.loading = false;
-  //     this.vm.sitesOptionsTable.error = false;
-  //   } catch (error) {
-  //     this.vm.sitesOptionsTable.error = true;
-  //     console.error(error);
-  //   }
-  // }
+  async getTournaments() {
+    this.vm.tournamentsOptionsTable.loading = true;
+    this.tournamentService.getAll(this.vm.tournamentBody).subscribe({
+      next: (items) => {
+        this.vm.tournamentsOptionsTable.items = items;
+        this.vm.tournamentsOptionsTable.loading = false;
+        this.vm.tournamentsOptionsTable.error = false;
+      },
+      error: () => {
+        this.vm.tournamentsOptionsTable.loading = false;
+        this.vm.tournamentsOptionsTable.error = true;
+      },
+    });
+  }
+
+  async getCars() {
+    this.vm.carsOptionsTable.loading = true;
+    this.carService.getAll(this.vm.carBody).subscribe({
+      next: (items) => {
+        this.vm.carsOptionsTable.items = items;
+        this.vm.carsOptionsTable.loading = false;
+        this.vm.carsOptionsTable.error = false;
+      },
+      error: () => {
+        this.vm.carsOptionsTable.loading = false;
+        this.vm.carsOptionsTable.error = true;
+      },
+    });
+  }
 
   // async getEvents() {
   //   try {

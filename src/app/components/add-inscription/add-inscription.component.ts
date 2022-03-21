@@ -1,4 +1,3 @@
-import { InscriptionCreateDto } from './../../services/inscription/inscription.dto';
 import { SearchService } from './../../services/search/search.service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AddInscriptionViewModel } from './add-inscription.view-model';

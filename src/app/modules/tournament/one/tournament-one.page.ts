@@ -178,11 +178,9 @@ export class TournamentOnePage implements OnInit {
   }
 
   addRequisite() {
-    console.log(this.vm.requisiteSelected);
     const item = this.vm.requisitesDefault.find(
       (i) => i.name === this.vm.requisiteSelected
     );
-    // check requisite is not in list
     const checkItem = this.vm.item.requisites.find(
       (i) => i.name === item!.name
     );
@@ -191,7 +189,6 @@ export class TournamentOnePage implements OnInit {
     } else {
       alert('Requisito ya existente');
     }
-    console.log(this.vm.item.requisites);
   }
 
   deleteRequisite(item: TournamentRequisiteI): void {

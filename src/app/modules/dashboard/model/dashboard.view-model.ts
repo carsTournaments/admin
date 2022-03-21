@@ -1,17 +1,19 @@
 import { CustomTableOptionsModel } from 'src/app/components/custom-table/model/custom-table.options-model';
 import { CustomTitleWithButtonsViewModel } from 'src/app/components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { StatsOptionsModel } from 'src/app/components/stats/models/stats.options-model';
+import { CarGetAllDto } from 'src/app/services/car/car.dto';
+import { TournamentGetAllDto } from 'src/app/services/tournament/tournament.dto';
 
 export class DashboardViewModel {
-  sitesOptionsTitle = new CustomTitleWithButtonsViewModel({
-    title: 'Ultimos Sitios',
+  tournamentsOptionsTitle = new CustomTitleWithButtonsViewModel({
+    title: 'Ultimos Torneos',
     buttons: [
       { name: 'Todos', link: '/sites/', separated: false },
       { name: 'Nuevo', link: '/sites/one/', separated: true },
     ],
   });
-  eventsOptionsTitle = new CustomTitleWithButtonsViewModel({
-    title: 'Ultimos Eventos',
+  carsOptionsTitle = new CustomTitleWithButtonsViewModel({
+    title: 'Ultimos Coches',
     buttons: [
       { name: 'Todos', link: '/events/', separated: false },
       { name: 'Nuevo', link: '/events/one/', separated: true },
@@ -22,14 +24,14 @@ export class DashboardViewModel {
     buttons: [{ name: 'Actualizar', link: '', separated: false }],
   });
 
-  sitesOptionsTable = new CustomTableOptionsModel({
+  tournamentsOptionsTable = new CustomTableOptionsModel({
     loading: false,
     type: 'tournament',
     items: [],
     showLoadMore: false,
     error: false,
   });
-  eventsOptionsTable = new CustomTableOptionsModel({
+  carsOptionsTable = new CustomTableOptionsModel({
     type: 'car',
     loading: true,
     items: [],
@@ -42,4 +44,14 @@ export class DashboardViewModel {
     items: [],
     type: '',
   });
+  tournamentBody: TournamentGetAllDto = {
+    page: 1,
+    pageSize: 5,
+    site: 'admin',
+  };
+  carBody: CarGetAllDto = {
+    page: 1,
+    pageSize: 5,
+    site: 'admin',
+  };
 }

@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../http/http.service';
 import { environment } from 'src/environments/environment';
 import { Vote } from 'src/app/models/vote.model';
-import { GenericGetAllI } from 'src/app/interfaces/generic-getall.interface';
 import { VotingDeleteAllDto } from './dtos/vote.dto';
 import { Observable } from 'rxjs';
 

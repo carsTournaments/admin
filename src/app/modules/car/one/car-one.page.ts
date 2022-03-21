@@ -34,7 +34,10 @@ export class CarOnePage implements OnInit {
 
   async getOne() {
     this.carService.getOne(this.vm.id).subscribe({
-      next: (item) => (this.vm.item = item),
+      next: (item) => {
+        this.vm.item = item;
+        this.vm.stock = this.vm.item.stock;
+      },
       error: (error) => console.error(error),
     });
   }
@@ -54,6 +57,7 @@ export class CarOnePage implements OnInit {
 
   async onSubmit() {
     try {
+      this.vm.item.stock = Boolean(this.vm.stock);
       this.vm.edit
         ? this.carService.update(this.vm.item).subscribe(() => {
             this.router.navigate(['/cars']);
