@@ -1,3 +1,5 @@
+import { TournamentRequisiteI } from './../../../models/tournament.model';
+import { Tournament } from 'src/app/models/tournament.model';
 import { Round } from 'src/app/models/round.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -34,6 +36,7 @@ export class TournamentOnePage implements OnInit {
       this.vm.optionsTitle.title = 'Nuevo Torneo';
       this.vm.edit = false;
     }
+    this.getRequisitesDefault();
   }
 
   async getOne() {
@@ -63,6 +66,11 @@ export class TournamentOnePage implements OnInit {
 
   getRoundsByTournamentOk(items: Round[]) {
     this.vm.roundsOptionsTable.items = items;
+  }
+
+  getRequisitesDefault(): void {
+    this.vm.requisitesDefault = new Tournament().getRequisitesDefault();
+    this.vm.requisiteSelected = this.vm.requisitesDefault[0].name;
   }
 
   async onSubmit() {
@@ -167,5 +175,27 @@ export class TournamentOnePage implements OnInit {
         error: (e) => alert(e),
       });
     }
+  }
+
+  addRequisite() {
+    console.log(this.vm.requisiteSelected);
+    const item = this.vm.requisitesDefault.find(
+      (i) => i.name === this.vm.requisiteSelected
+    );
+    // check requisite is not in list
+    const checkItem = this.vm.item.requisites.find(
+      (i) => i.name === item!.name
+    );
+    if (!checkItem) {
+      this.vm.item.requisites.push(item!);
+    } else {
+      alert('Requisito ya existente');
+    }
+    console.log(this.vm.item.requisites);
+  }
+
+  deleteRequisite(item: TournamentRequisiteI): void {
+    const index = this.vm.item.requisites.indexOf(item);
+    this.vm.item.requisites.splice(index, 1);
   }
 }

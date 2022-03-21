@@ -57,7 +57,7 @@
             <td [routerLink]="['/cars/one', item.car._id]">
               {{ item.car.name }}
             </td>
-            <td [routerLink]="['/tournament/one', item.tournament._id]">
+            <td [routerLink]="['/tournaments/one', item.tournament._id]">
               {{ item.tournament.name }}
             </td>
             <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
@@ -90,11 +90,11 @@
         <!-- Round -->
         <ng-container *ngIf="options.type === 'round'">
           <tr class="pointer" *ngFor="let item of options.items">
-            <td [routerLink]="['/round/one', item._id]">
+            <td [routerLink]="['/rounds/one', item._id]">
               {{ item.name }}
             </td>
             <td>{{ item.participants }}</td>
-            <td [routerLink]="['/tournament/one', item.tournament._id]">
+            <td [routerLink]="['/tournaments/one', item.tournament._id]">
               {{ item.tournament.name }}
             </td>
             <td>{{ item.startDate | dateToTimeAgo | titlecase }}</td>

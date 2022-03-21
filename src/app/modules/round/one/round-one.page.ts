@@ -1,3 +1,4 @@
+import { PairingService } from 'src/app/services/pairing/pairing.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
@@ -13,17 +14,19 @@ export class RoundOnePage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private roundService: RoundService,
+    private pairingService: PairingService,
     private router: Router
   ) {}
 
   ngOnInit() {
     this.vm.id = this.route.snapshot.paramMap.get('id') as string;
     if (this.vm.id) {
-      this.vm.optionsTitle.title = 'Editar Marca';
+      this.vm.optionsTitle.title = 'Editar Ronda';
       this.vm.edit = true;
+      this.getPairings();
       this.getOne();
     } else {
-      this.vm.optionsTitle.title = 'Nuevo Marca';
+      this.vm.optionsTitle.title = 'Nuevo Ronda';
       this.vm.edit = false;
     }
   }
@@ -36,6 +39,13 @@ export class RoundOnePage implements OnInit {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  async getPairings() {
+    this.pairingService.getAllOfRound({ id: this.vm.id }).subscribe({
+      next: (items) => (this.vm.pairingsOptionsTable.items = items),
+      error: (err) => alert(err),
+    });
   }
 
   async onSubmit() {

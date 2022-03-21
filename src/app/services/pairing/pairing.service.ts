@@ -4,6 +4,7 @@ import { HttpService } from '../http/http.service';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { Pairing } from 'src/app/models/pairing.model';
+import { IdDto } from 'src/app/core/dtos/id.dto';
 
 @Injectable({ providedIn: 'root' })
 export class PairingService {
@@ -18,6 +19,14 @@ export class PairingService {
     return this.httpClient.post<Pairing[]>(
       `${this.url}/all`,
       null,
+      this.headers
+    );
+  }
+
+  getAllOfRound(data: IdDto): Observable<Pairing[]> {
+    return this.httpClient.post<Pairing[]>(
+      `${this.url}/allOfRound`,
+      data,
       this.headers
     );
   }
