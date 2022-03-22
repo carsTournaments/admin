@@ -39,10 +39,10 @@ export class VoteService {
     return this.httpClient.delete<Vote>(`${this.url}/one/${id}`, this.headers);
   }
 
-  deleteAll(data: VotingDeleteAllDto): Observable<{ message: string }> {
-    const url = data.id
-      ? `${this.url}/all/${data.type}/${data.id}`
-      : `${this.url}/all/${data.type}`;
-    return this.httpClient.delete<{ message: string }>(url, this.headers);
+  deleteAll(): Observable<{ message: string }> {
+    return this.httpClient.delete<{ message: string }>(
+      `${this.url}/all`,
+      this.headers
+    );
   }
 }

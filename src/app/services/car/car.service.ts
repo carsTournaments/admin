@@ -1,3 +1,4 @@
+import { PaginatorI } from './../../interfaces/paginator.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../http/http.service';
@@ -15,8 +16,14 @@ export class CarService {
     private httpService: HttpService
   ) {}
 
-  getAll(data: CarGetAllDto): Observable<Car[]> {
-    return this.httpClient.post<Car[]>(`${this.url}/all`, data, this.headers);
+  getAll(
+    data: CarGetAllDto
+  ): Observable<{ items: Car[]; paginator: PaginatorI }> {
+    return this.httpClient.post<{ items: Car[]; paginator: PaginatorI }>(
+      `${this.url}/all`,
+      data,
+      this.headers
+    );
   }
 
   getAllOffBrand(): Observable<Car[]> {

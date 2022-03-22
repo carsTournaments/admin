@@ -22,8 +22,8 @@ export class VoteListViewModel {
   });
   options = [
     {
-      name: 'Prueba',
-      value: '',
+      name: 'Eliminar todos los votos',
+      value: 'deleteAll',
     },
   ];
 }

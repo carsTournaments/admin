@@ -40,7 +40,19 @@
             <td>{{ item.driver.name }}</td>
             <td>{{ item.brand?.name }}</td>
             <td>{{ item.model }}</td>
-            <td>{{ item.traction }}</td>
+
+            <td>
+              <span
+                class="badge"
+                [ngClass]="{
+                  'bg-dark': item.traction === 'Delantera',
+                  'bg-warning': item.traction === 'Trasera',
+                  'bg-info': item.traction === '4x4'
+                }"
+              >
+                {{ item.traction }}</span
+              >
+            </td>
             <td>{{ item.cc }}</td>
             <td>{{ item.cv }}</td>
             <td>{{ item.year }}</td>

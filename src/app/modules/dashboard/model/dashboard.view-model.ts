@@ -47,11 +47,13 @@ export class DashboardViewModel {
   tournamentBody: TournamentGetAllDto = {
     page: 1,
     pageSize: 5,
+    order: ['created', 'desc'],
     site: 'admin',
   };
   carBody: CarGetAllDto = {
     page: 1,
     pageSize: 5,
+    order: ['created', 'desc'],
     site: 'admin',
   };
 }

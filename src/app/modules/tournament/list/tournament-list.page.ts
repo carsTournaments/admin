@@ -20,8 +20,8 @@ export class TournamentListPage implements OnInit {
       this.vm.optionsTable.loading = true;
       this.tournamentService
         .getAll(this.vm.tournamentBody)
-        .subscribe((items) => {
-          this.vm.optionsTable.items = items;
+        .subscribe((response) => {
+          this.vm.optionsTable.items = response.items;
         });
       this.vm.optionsTable.loading = false;
     } catch (error) {

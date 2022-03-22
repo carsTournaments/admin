@@ -8,7 +8,10 @@
     <custom-title-with-buttons
       [options]="vm.tournamentsOptionsTitle"
     ></custom-title-with-buttons>
-    <custom-table [options]="vm.tournamentsOptionsTable"></custom-table>
+    <custom-table
+      [options]="vm.tournamentsOptionsTable"
+      (changeOrder)="onChangeOrder('tournament', $event)"
+    ></custom-table>
   </div>
 </div>
 
@@ -17,6 +20,9 @@
     <custom-title-with-buttons
       [options]="vm.carsOptionsTitle"
     ></custom-title-with-buttons>
-    <custom-table [options]="vm.carsOptionsTable"></custom-table>
+    <custom-table
+      [options]="vm.carsOptionsTable"
+      (changeOrder)="onChangeOrder('car', $event)"
+    ></custom-table>
   </div>
 </div>

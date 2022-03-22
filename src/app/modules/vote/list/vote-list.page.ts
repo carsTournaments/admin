@@ -29,7 +29,23 @@ export class VoteListPage implements OnInit {
   }
 
   actionForOption(option: ActionForOptionI) {
-    // TODO: Implementar
-    console.log(option);
+    switch (option.value) {
+      case 'deleteAll':
+        this.deleteAll();
+        break;
+      default:
+        break;
+    }
+  }
+
+  async deleteAll() {
+    if (confirm('¿Estás seguro de eliminar todos los votos?')) {
+      this.voteService.deleteAll().subscribe({
+        next: () => {
+          this.getItems();
+        },
+        error: (error) => console.error(error),
+      });
+    }
   }
 }

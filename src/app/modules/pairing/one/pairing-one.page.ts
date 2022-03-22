@@ -72,7 +72,6 @@ export class PairingOnePage implements OnInit {
   createVote(carNumber: string) {
     const car: string =
       carNumber === 'car1' ? this.vm.item.car1 : this.vm.item.car2;
-    console.log(car);
     const body: Vote = {
       car,
       pairing: this.vm.id,

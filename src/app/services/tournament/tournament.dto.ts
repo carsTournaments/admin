@@ -2,6 +2,7 @@ export interface TournamentGetAllDto {
   page: number;
   pageSize: number;
   site: string;
+  order: string[];
 }
 
 export interface TournamentCreateDto {

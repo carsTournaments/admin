@@ -37,23 +37,18 @@ export class InscriptionOnePage implements OnInit {
   }
 
   async getCars() {
-    try {
-      this.carService
-        .getAll({ page: 1, pageSize: 1000, site: 'admin' })
-        .subscribe((items) => {
-          this.vm.cars = items;
-        });
-    } catch (error) {
-      console.error(error);
-    }
+    this.carService.getAll(this.vm.carBody).subscribe({
+      next: (response) => (this.vm.cars = response.items),
+      error: (error) => console.error(error),
+    });
   }
 
   async getTournaments() {
     try {
       this.tournamentService
-        .getAll({ page: 1, pageSize: 1000, site: 'admin' })
-        .subscribe((items) => {
-          this.vm.tournaments = items;
+        .getAll(this.vm.tournamentBody)
+        .subscribe((response) => {
+          this.vm.tournaments = response.items;
         });
     } catch (error) {
       console.error(error);

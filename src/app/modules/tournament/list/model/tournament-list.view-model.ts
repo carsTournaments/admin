@@ -23,8 +23,9 @@ export class TournamentListViewModel {
   });
   tournamentBody: TournamentGetAllDto = {
     page: 1,
-    pageSize: 10,
-    site: 'app',
+    pageSize: 20,
+    order: ['created', 'desc'],
+    site: 'admin',
   };
   options = [
     {

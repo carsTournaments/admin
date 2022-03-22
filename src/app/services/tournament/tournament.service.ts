@@ -1,3 +1,4 @@
+import { PaginatorI } from './../../interfaces/paginator.interface';
 import { IdDto } from 'src/app/core/dtos/id.dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -16,8 +17,10 @@ export class TournamentService {
     private httpService: HttpService
   ) {}
 
-  getAll(data: TournamentGetAllDto): Observable<Tournament[]> {
-    return this.httpClient.post<Tournament[]>(
+  getAll(
+    data: TournamentGetAllDto
+  ): Observable<{ items: Tournament[]; paginator: PaginatorI }> {
+    return this.httpClient.post<{ items: Tournament[]; paginator: PaginatorI }>(
       `${this.url}/all`,
       data,
       this.headers

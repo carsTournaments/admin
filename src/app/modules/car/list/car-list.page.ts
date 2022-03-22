@@ -16,16 +16,17 @@ export class CarListPage implements OnInit {
   }
 
   async getAll() {
-    try {
-      this.vm.optionsTable.loading = true;
-      this.carService.getAll(this.vm.userBody).subscribe((items) => {
-        this.vm.optionsTable.items = items;
-      });
-      this.vm.optionsTable.loading = false;
-    } catch (error) {
-      this.vm.optionsTable.error = true;
-      console.error(error);
-    }
+    this.vm.optionsTable.loading = true;
+    this.carService.getAll(this.vm.userBody).subscribe({
+      next: (response) => {
+        this.vm.optionsTable.items = response.items;
+        this.vm.optionsTable.loading = false;
+      },
+      error: (error) => {
+        this.vm.optionsTable.error = true;
+        console.error(error);
+      },
+    });
   }
 
   actionForOption(option: ActionForOptionI) {

@@ -33,19 +33,19 @@ export class Tournament {
     return [
       {
         name: 'Coches Europeos',
-        field: 'country',
+        field: 'continent',
         operator: '=',
         value: 'Europa',
       },
       {
         name: 'Coches Americanos',
-        field: 'country',
+        field: 'continent',
         operator: '=',
         value: 'America',
       },
       {
         name: 'Coches Asiáticos',
-        field: 'country',
+        field: 'continent',
         operator: '=',
         value: 'Asia',
       },

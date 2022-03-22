@@ -2,6 +2,7 @@ export interface CarGetAllDto {
   page: number;
   pageSize: number;
   site: string;
+  order: string[];
 }
 
 export interface CarCreateDto {

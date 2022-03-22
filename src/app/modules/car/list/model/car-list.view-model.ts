@@ -23,8 +23,9 @@ export class CarListViewModel {
   });
   userBody: CarGetAllDto = {
     page: 1,
-    pageSize: 10,
-    site: 'app',
+    pageSize: 20,
+    site: 'admin',
+    order: ['created', 'desc'],
   };
   options = [
     {
