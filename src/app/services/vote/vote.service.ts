@@ -1,9 +1,10 @@
+import { PaginatorI } from './../../interfaces/paginator.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../http/http.service';
 import { environment } from 'src/environments/environment';
 import { Vote } from 'src/app/models/vote.model';
-import { VotingDeleteAllDto } from './dtos/vote.dto';
+import { VotingDeleteAllDto, VoteGetAllDto } from './dtos/vote.dto';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -15,8 +16,14 @@ export class VoteService {
     private httpService: HttpService
   ) {}
 
-  getAll(): Observable<Vote[]> {
-    return this.httpClient.post<Vote[]>(`${this.url}/all`, null, this.headers);
+  getAll(
+    data: VoteGetAllDto
+  ): Observable<{ items: Vote[]; paginator: PaginatorI }> {
+    return this.httpClient.post<{ items: Vote[]; paginator: PaginatorI }>(
+      `${this.url}/all`,
+      data,
+      this.headers
+    );
   }
 
   getOne(id: string): Observable<Vote> {

@@ -1,3 +1,4 @@
+import { PaginatorI } from './../../interfaces/paginator.interface';
 import { IdDto } from 'src/app/core/dtos/id.dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -5,6 +6,7 @@ import { HttpService } from '../http/http.service';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { Round } from 'src/app/models/round.model';
+import { RoundGetAllDto } from './round.dto';
 
 @Injectable({ providedIn: 'root' })
 export class RoundService {
@@ -15,8 +17,14 @@ export class RoundService {
     private httpService: HttpService
   ) {}
 
-  getAll(): Observable<Round[]> {
-    return this.httpClient.post<Round[]>(`${this.url}/all`, null, this.headers);
+  getAll(
+    body: RoundGetAllDto
+  ): Observable<{ items: Round[]; paginator: PaginatorI }> {
+    return this.httpClient.post<{ items: Round[]; paginator: PaginatorI }>(
+      `${this.url}/all`,
+      body,
+      this.headers
+    );
   }
 
   getAllOfTournament(data: IdDto): Observable<Round[]> {

@@ -33,4 +33,10 @@ export class InscriptionListViewModel {
       value: '',
     },
   ];
+  inscriptionBody: InscriptionGetAllDto = {
+    page: 1,
+    pageSize: 20,
+    site: 'admin',
+    order: ['created', 'desc'],
+  };
 }

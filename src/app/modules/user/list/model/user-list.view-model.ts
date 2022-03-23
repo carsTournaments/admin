@@ -21,7 +21,6 @@ export class UserListViewModel {
     segments: ['Listado', 'Opciones'],
     currentSegment: 0,
   });
-  userBody: UserGetAllDto = {};
   options = [
     {
       name: 'Crear usuarios falsos',
@@ -32,4 +31,10 @@ export class UserListViewModel {
       value: 'deleteFakes',
     },
   ];
+  userBody: UserGetAllDto = {
+    page: 1,
+    pageSize: 20,
+    site: 'admin',
+    order: ['created', 'desc'],
+  };
 }

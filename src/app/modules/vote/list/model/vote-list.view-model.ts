@@ -2,6 +2,7 @@ import { CustomTableOptionsModel } from 'src/app/components/custom-table/model/c
 import { CustomTitleWithButtonsViewModel } from 'src/app/components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { SegmentsViewModel } from 'src/app/components/segments/model/segments.view-model';
 import { User } from 'src/app/models/user.model';
+import { VoteGetAllDto } from 'src/app/services/vote/dtos/vote.dto';
 
 export class VoteListViewModel {
   items: User[] = [];
@@ -26,4 +27,10 @@ export class VoteListViewModel {
       value: 'deleteAll',
     },
   ];
+  voteBody: VoteGetAllDto = {
+    page: 1,
+    pageSize: 20,
+    site: 'admin',
+    order: ['created', 'desc'],
+  };
 }

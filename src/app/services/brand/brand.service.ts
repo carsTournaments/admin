@@ -1,3 +1,5 @@
+import { PaginatorI } from './../../interfaces/paginator.interface';
+import { BrandGetAllDto } from './brand.dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../http/http.service';
@@ -14,8 +16,14 @@ export class BrandService {
     private httpService: HttpService
   ) {}
 
-  getAll(): Observable<Brand[]> {
-    return this.httpClient.post<Brand[]>(`${this.url}/all`, null, this.headers);
+  getAll(
+    data: BrandGetAllDto
+  ): Observable<{ items: Brand[]; paginator: PaginatorI }> {
+    return this.httpClient.post<{ items: Brand[]; paginator: PaginatorI }>(
+      `${this.url}/all`,
+      data,
+      this.headers
+    );
   }
 
   getOne(id: string): Observable<Brand> {

@@ -22,6 +22,7 @@ export class PairingListPage implements OnInit {
         if (!showMore) {
           this.vm.optionsTable.items = response.items;
           this.vm.optionsTable.loading = false;
+          this.vm.optionsTitle.title = `Emparejamientos (${response.paginator.total})`;
         } else {
           this.vm.optionsTable.items = [
             ...this.vm.optionsTable.items,

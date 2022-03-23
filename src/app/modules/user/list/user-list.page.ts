@@ -12,20 +12,30 @@ export class UserListPage implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.getUsers();
+    this.getAll();
   }
 
-  async getUsers() {
-    try {
-      this.vm.optionsTable.loading = true;
-      this.userService.getAll(this.vm.userBody).subscribe((items) => {
-        this.vm.optionsTable.items = items;
-      });
-      this.vm.optionsTable.loading = false;
-    } catch (error) {
-      this.vm.optionsTable.error = true;
-      console.error(error);
-    }
+  async getAll(showMore = false) {
+    this.vm.optionsTable.loading = true;
+    this.userService.getAll(this.vm.userBody).subscribe({
+      next: (response) => {
+        if (!showMore) {
+          this.vm.optionsTable.items = response.items;
+          this.vm.optionsTable.loading = false;
+          this.vm.optionsTitle.title = `Usuarios (${response.paginator.total})`;
+        } else {
+          this.vm.optionsTable.items = [
+            ...this.vm.optionsTable.items,
+            ...response.items,
+          ];
+        }
+      },
+      error: (error) => {
+        this.vm.optionsTable.error = true;
+        console.error(error);
+      },
+    });
+    this.vm.optionsTable.loading = false;
   }
 
   actionForOption(option: ActionForOptionI) {
@@ -45,7 +55,7 @@ export class UserListPage implements OnInit {
     const total = prompt('Ingrese la cantidad de usuarios a crear', '5');
     this.userService.createFake({ total: Number(total) }).subscribe({
       next: (response) => {
-        this.getUsers();
+        this.getAll();
         alert(response.message);
       },
       error: (error) => console.error(error),
@@ -57,11 +67,30 @@ export class UserListPage implements OnInit {
     if (state) {
       this.userService.deleteAllFake().subscribe({
         next: (response) => {
-          this.getUsers();
+          this.getAll();
           alert(response.message);
         },
         error: (error) => console.error(error),
       });
     }
+  }
+
+  onChangeOrder(order: string) {
+    if (
+      !this.vm.userBody.order ||
+      this.vm.userBody.order.filter((item: string) => item === 'desc').length >
+        0
+    ) {
+      this.vm.userBody.order = [order, 'asc'];
+      this.getAll();
+    } else {
+      this.vm.userBody.order = [order, 'desc'];
+      this.getAll();
+    }
+  }
+
+  onChangePage() {
+    this.vm.userBody.page += 1;
+    this.getAll(true);
   }
 }

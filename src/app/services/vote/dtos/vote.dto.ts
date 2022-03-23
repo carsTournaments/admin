@@ -1,3 +1,10 @@
+export interface VoteGetAllDto {
+  page: number;
+  pageSize: number;
+  site: string;
+  order: string[];
+}
+
 export interface VoteCreateDto {
   name: string;
   country: string;

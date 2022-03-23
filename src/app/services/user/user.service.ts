@@ -5,6 +5,7 @@ import { HttpService } from '../http/http.service';
 import { environment } from 'src/environments/environment';
 import { UserCreateFakeDto, UserGetAllDto } from './dtos/user.dto';
 import { Observable } from 'rxjs/internal/Observable';
+import { PaginatorI } from 'src/app/interfaces/paginator.interface';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -15,8 +16,13 @@ export class UserService {
     private httpService: HttpService
   ) {}
 
-  getAll(data: UserGetAllDto): Observable<User[]> {
-    return this.httpClient.post<User[]>(`${this.url}/all`, data, this.headers);
+  getAll(
+    data: UserGetAllDto
+  ): Observable<{ items: UserGetAllDto[]; paginator: PaginatorI }> {
+    return this.httpClient.post<{
+      items: UserGetAllDto[];
+      paginator: PaginatorI;
+    }>(`${this.url}/all`, data, this.headers);
   }
 
   getOne(id: string): Observable<User> {
