@@ -17,6 +17,7 @@ import { SearchComponent } from './search/search.component';
 import { SegmentsComponent } from './segments/segments.component';
 import { SelectNumberEntriesComponent } from './select-number-entries/select-number-entries.component';
 import { StatsComponent } from './stats/stats.component';
+import { StatsResumeComponent } from './stats-resume/stats-resume.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { StatsComponent } from './stats/stats.component';
     SegmentsComponent,
     SelectNumberEntriesComponent,
     StatsComponent,
+    StatsResumeComponent,
   ],
   exports: [
     AddInscriptionComponent,
@@ -53,6 +55,7 @@ import { StatsComponent } from './stats/stats.component';
     SegmentsComponent,
     SelectNumberEntriesComponent,
     StatsComponent,
+    StatsResumeComponent,
   ],
   providers: [],
 })

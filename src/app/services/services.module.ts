@@ -1,3 +1,4 @@
+import { StatsService } from 'src/app/services/stats/stats.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -28,6 +29,7 @@ import { VoteService } from './vote/vote.service';
     RoundService,
     SearchService,
     TournamentService,
+    StatsService,
     UserService,
     VoteService,
     {
