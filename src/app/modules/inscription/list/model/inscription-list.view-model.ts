@@ -25,6 +25,7 @@ export class InscriptionListViewModel {
     page: 1,
     pageSize: 10,
     site: 'admin',
+    order: ['created', 'desc'],
   };
   options = [
     {

@@ -64,13 +64,14 @@ export class DashboardPage implements OnInit {
   // }
 
   onChangeOrder(type: string, order: string) {
-    const typeOk = type === 'site' ? 'tournamentBody' : 'carBody';
+    const typeOk = type === 'tournament' ? 'tournamentBody' : 'carBody';
     if (
       !this.vm[typeOk].order ||
       this.vm[typeOk].order!.filter((item: string) => item === 'desc').length >
         0
     ) {
       this.vm[typeOk].order = [order, 'asc'];
+      console.log(this.vm[typeOk].order);
       if (type === 'tournament') {
         this.getTournaments();
       } else {
@@ -78,6 +79,8 @@ export class DashboardPage implements OnInit {
       }
     } else {
       this.vm[typeOk].order = [order, 'desc'];
+      console.log(this.vm[typeOk].order);
+
       if (type === 'tournament') {
         this.getTournaments();
       } else {

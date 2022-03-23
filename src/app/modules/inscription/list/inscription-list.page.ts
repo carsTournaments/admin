@@ -18,8 +18,8 @@ export class InscriptionListPage implements OnInit {
   async getUsers() {
     try {
       this.vm.optionsTable.loading = true;
-      this.inscriptionService.getAll(this.vm.userBody).subscribe((items) => {
-        this.vm.optionsTable.items = items;
+      this.inscriptionService.getAll(this.vm.userBody).subscribe((response) => {
+        this.vm.optionsTable.items = response.items;
       });
       this.vm.optionsTable.loading = false;
     } catch (error) {

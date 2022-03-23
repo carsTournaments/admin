@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { Pairing } from 'src/app/models/pairing.model';
 import { IdDto } from 'src/app/core/dtos/id.dto';
+import { PairingGetAllDto } from './pairing.dto';
+import { PaginatorI } from 'src/app/interfaces/paginator.interface';
 
 @Injectable({ providedIn: 'root' })
 export class PairingService {
@@ -15,10 +17,12 @@ export class PairingService {
     private httpService: HttpService
   ) {}
 
-  getAll(): Observable<Pairing[]> {
-    return this.httpClient.post<Pairing[]>(
+  getAll(
+    data: PairingGetAllDto
+  ): Observable<{ items: Pairing[]; paginator: PaginatorI }> {
+    return this.httpClient.post<{ items: Pairing[]; paginator: PaginatorI }>(
       `${this.url}/all`,
-      null,
+      data,
       this.headers
     );
   }

@@ -12,26 +12,52 @@ export class TournamentListPage implements OnInit {
   constructor(private tournamentService: TournamentService) {}
 
   ngOnInit() {
-    this.getUsers();
+    this.getAll();
   }
 
-  async getUsers() {
-    try {
-      this.vm.optionsTable.loading = true;
-      this.tournamentService
-        .getAll(this.vm.tournamentBody)
-        .subscribe((response) => {
+  async getAll(showMore = false) {
+    this.vm.optionsTable.loading = true;
+    this.tournamentService.getAll(this.vm.tournamentBody).subscribe({
+      next: (response) => {
+        if (!showMore) {
           this.vm.optionsTable.items = response.items;
-        });
-      this.vm.optionsTable.loading = false;
-    } catch (error) {
-      this.vm.optionsTable.error = true;
-      console.error(error);
-    }
+          this.vm.optionsTable.loading = false;
+        } else {
+          this.vm.optionsTable.items = [
+            ...this.vm.optionsTable.items,
+            ...response.items,
+          ];
+        }
+      },
+      error: (error) => {
+        this.vm.optionsTable.error = true;
+        console.error(error);
+      },
+    });
+    this.vm.optionsTable.loading = false;
   }
 
   actionForOption(option: ActionForOptionI) {
     // TODO: Implementar
     console.log(option);
+  }
+
+  onChangeOrder(order: string) {
+    if (
+      !this.vm.tournamentBody.order ||
+      this.vm.tournamentBody.order.filter((item: string) => item === 'desc')
+        .length > 0
+    ) {
+      this.vm.tournamentBody.order = [order, 'asc'];
+      this.getAll();
+    } else {
+      this.vm.tournamentBody.order = [order, 'desc'];
+      this.getAll();
+    }
+  }
+
+  onChangePage() {
+    this.vm.tournamentBody.page += 1;
+    this.getAll(true);
   }
 }

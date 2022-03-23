@@ -2,6 +2,7 @@ export interface BrandCreateDto {
   name: string;
   country: string;
   image: string;
+  order: string[];
 }
 
 export interface BrandUpdateDto {

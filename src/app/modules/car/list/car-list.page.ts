@@ -15,18 +15,26 @@ export class CarListPage implements OnInit {
     this.getAll();
   }
 
-  async getAll() {
+  async getAll(showMore = false) {
     this.vm.optionsTable.loading = true;
-    this.carService.getAll(this.vm.userBody).subscribe({
+    this.carService.getAll(this.vm.carBody).subscribe({
       next: (response) => {
-        this.vm.optionsTable.items = response.items;
-        this.vm.optionsTable.loading = false;
+        if (!showMore) {
+          this.vm.optionsTable.items = response.items;
+          this.vm.optionsTable.loading = false;
+        } else {
+          this.vm.optionsTable.items = [
+            ...this.vm.optionsTable.items,
+            ...response.items,
+          ];
+        }
       },
       error: (error) => {
         this.vm.optionsTable.error = true;
         console.error(error);
       },
     });
+    this.vm.optionsTable.loading = false;
   }
 
   actionForOption(option: ActionForOptionI) {
@@ -64,5 +72,23 @@ export class CarListPage implements OnInit {
         error: (error) => console.error(error),
       });
     }
+  }
+
+  onChangeOrder(order: string) {
+    if (
+      !this.vm.carBody.order ||
+      this.vm.carBody.order.filter((item: string) => item === 'desc').length > 0
+    ) {
+      this.vm.carBody.order = [order, 'asc'];
+      this.getAll();
+    } else {
+      this.vm.carBody.order = [order, 'desc'];
+      this.getAll();
+    }
+  }
+
+  onChangePage() {
+    this.vm.carBody.page += 1;
+    this.getAll(true);
   }
 }

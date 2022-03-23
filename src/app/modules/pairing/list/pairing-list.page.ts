@@ -12,20 +12,29 @@ export class PairingListPage implements OnInit {
   constructor(private pairingService: PairingService) {}
 
   ngOnInit() {
-    this.getItems();
+    this.getAll();
   }
 
-  async getItems() {
-    try {
-      this.vm.optionsTable.loading = true;
-      this.pairingService.getAll().subscribe((items) => {
-        this.vm.optionsTable.items = items;
-      });
-      this.vm.optionsTable.loading = false;
-    } catch (error) {
-      this.vm.optionsTable.error = true;
-      console.error(error);
-    }
+  async getAll(showMore = false) {
+    this.vm.optionsTable.loading = true;
+    this.pairingService.getAll(this.vm.pairingBody).subscribe({
+      next: (response) => {
+        if (!showMore) {
+          this.vm.optionsTable.items = response.items;
+          this.vm.optionsTable.loading = false;
+        } else {
+          this.vm.optionsTable.items = [
+            ...this.vm.optionsTable.items,
+            ...response.items,
+          ];
+        }
+      },
+      error: (error) => {
+        this.vm.optionsTable.loading = false;
+        this.vm.optionsTable.error = true;
+        console.error(error);
+      },
+    });
   }
 
   actionForOption(option: ActionForOptionI) {
@@ -45,7 +54,7 @@ export class PairingListPage implements OnInit {
         this.pairingService.deleteAll().subscribe({
           next: () => {
             alert('Todos los emparejamientos eliminados');
-            this.getItems();
+            this.getAll();
           },
           error: (error) => alert(error),
         });
@@ -55,5 +64,24 @@ export class PairingListPage implements OnInit {
       this.vm.optionsTable.error = true;
       console.error(error);
     }
+  }
+
+  onChangeOrder(order: string) {
+    if (
+      !this.vm.pairingBody.order ||
+      this.vm.pairingBody.order.filter((item: string) => item === 'desc')
+        .length > 0
+    ) {
+      this.vm.pairingBody.order = [order, 'asc'];
+      this.getAll();
+    } else {
+      this.vm.pairingBody.order = [order, 'desc'];
+      this.getAll();
+    }
+  }
+
+  onChangePage() {
+    this.vm.pairingBody.page += 1;
+    this.getAll(true);
   }
 }

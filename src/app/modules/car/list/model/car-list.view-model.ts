@@ -21,7 +21,7 @@ export class CarListViewModel {
     segments: ['Listado', 'Opciones'],
     currentSegment: 0,
   });
-  userBody: CarGetAllDto = {
+  carBody: CarGetAllDto = {
     page: 1,
     pageSize: 20,
     site: 'admin',
