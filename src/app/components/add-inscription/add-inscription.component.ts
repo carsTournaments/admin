@@ -29,7 +29,6 @@ export class AddInscriptionComponent {
 
   searchTournament(event: any) {
     if (event.keyCode === 13) {
-      console.log(event);
       this.searchService
         .getAll({
           type: 'tournament',

@@ -71,7 +71,6 @@ export class DashboardPage implements OnInit {
         0
     ) {
       this.vm[typeOk].order = [order, 'asc'];
-      console.log(this.vm[typeOk].order);
       if (type === 'tournament') {
         this.getTournaments();
       } else {
@@ -79,8 +78,6 @@ export class DashboardPage implements OnInit {
       }
     } else {
       this.vm[typeOk].order = [order, 'desc'];
-      console.log(this.vm[typeOk].order);
-
       if (type === 'tournament') {
         this.getTournaments();
       } else {
