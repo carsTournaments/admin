@@ -66,8 +66,8 @@
         <ng-container *ngIf="options.type === 'image'">
           <tr class="pointer" *ngFor="let item of options.items">
             <td></td>
-            <td [routerLink]="['/image/one', item._id]">
-              {{ item.name }}
+            <td [routerLink]="['/images/one', item._id]">
+              {{ item.type === "car" ? "Coche" : "Torneo" }}
             </td>
             <td [routerLink]="['/tournaments/one', item.tournament._id]">
               {{ item[item.type].name }}

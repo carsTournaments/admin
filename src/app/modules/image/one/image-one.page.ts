@@ -1,7 +1,5 @@
-import { TournamentService } from '../../../services/tournament/tournament.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CarService } from 'src/app/services/car/car.service';
+import { Router } from '@angular/router';
 import { ImageService } from 'src/app/services/image/image.service';
 import { ImageOnePageViewModel } from './model/image-one.view-model';
 
@@ -11,48 +9,18 @@ import { ImageOnePageViewModel } from './model/image-one.view-model';
 })
 export class ImageOnePage implements OnInit {
   vm = new ImageOnePageViewModel();
-  constructor(
-    private route: ActivatedRoute,
-    private imageService: ImageService,
-    private carService: CarService,
-    private tournamentService: TournamentService,
-    private router: Router
-  ) {}
+  constructor(private imageService: ImageService, private router: Router) {}
 
   ngOnInit() {
     this.vm.optionsTitle.title = 'Nuevo Inscripcion';
     this.vm.edit = false;
-    this.getCars();
-    this.getTournaments();
   }
 
   async getOne() {
-    try {
-      this.imageService.getOne(this.vm.id).subscribe((item) => {
-        this.vm.item = item;
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async getCars() {
-    this.carService.getAll(this.vm.carBody).subscribe({
-      next: (response) => (this.vm.cars = response.items),
+    this.imageService.getOne(this.vm.id).subscribe({
+      next: (item) => (this.vm.item = item),
       error: (error) => console.error(error),
     });
-  }
-
-  async getTournaments() {
-    try {
-      this.tournamentService
-        .getAll(this.vm.tournamentBody)
-        .subscribe((response) => {
-          this.vm.tournaments = response.items;
-        });
-    } catch (error) {
-      console.error(error);
-    }
   }
 
   async onSubmit() {

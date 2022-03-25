@@ -7,7 +7,7 @@ import { ImageGetAllDto } from 'src/app/services/image/image.dto';
 export class ImageListViewModel {
   items: User[] = [];
   optionsTitle = new CustomTitleWithButtonsViewModel({
-    title: 'Inscripciones',
+    title: 'Imagenes',
     buttons: [{ name: 'Nuevo', link: '/images/one', separated: false }],
   });
   optionsTable = new CustomTableOptionsModel({

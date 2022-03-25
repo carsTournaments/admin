@@ -22,7 +22,7 @@ export class ImageListPage implements OnInit {
         if (!showMore) {
           this.vm.optionsTable.items = response.items;
           this.vm.optionsTable.loading = false;
-          this.vm.optionsTitle.title = `Inscripciones (${response.paginator.total})`;
+          this.vm.optionsTitle.title = `Imagenes (${response.paginator.total})`;
         } else {
           this.vm.optionsTable.items = [
             ...this.vm.optionsTable.items,
