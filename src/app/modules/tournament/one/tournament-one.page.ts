@@ -5,7 +5,6 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
-import { Inscription } from 'src/app/models/inscription.model';
 import { InscriptionService } from 'src/app/services/inscription/inscription.service';
 import { RoundService } from 'src/app/services/round/round.service';
 import { TournamentService } from 'src/app/services/tournament/tournament.service';
@@ -56,14 +55,10 @@ export class TournamentOnePage implements OnInit {
 
   async getInscriptionsByTournament() {
     this.inscriptionService.getAllOfTournament({ id: this.vm.id }).subscribe({
-      next: (items) => {
-        this.vm.inscriptionsOptionsTable.items = items;
-      },
+      next: (items) => (this.vm.inscriptionsOptionsTable.items = items),
       error: (e) => console.error(e),
     });
   }
-
-  getInscriptionsByTournamentOk(items: Inscription[]) {}
 
   async getRoundsByTournament() {
     this.roundService.getAllOfTournament({ id: this.vm.id }).subscribe({
@@ -235,8 +230,8 @@ export class TournamentOnePage implements OnInit {
       this.imageService
         .upload({ type: 'tournament', id: this.vm.id }, this.selectedFile.file)
         .subscribe({
-          next: (res) => {},
-          error: (err) => {},
+          next: () => alert('Imagen subida'),
+          error: (err) => console.error(err),
         });
     });
 
@@ -245,7 +240,7 @@ export class TournamentOnePage implements OnInit {
 }
 
 class ImageSnippet {
-  pending: boolean = false;
-  status: string = 'init';
+  pending = false;
+  status = 'init';
   constructor(public src: string, public file: File) {}
 }

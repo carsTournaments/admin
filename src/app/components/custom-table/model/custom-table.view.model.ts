@@ -24,6 +24,13 @@ export class CustomTableViewModel {
       { name: 'Actualizado', order: 'updated', col: null },
       { name: 'Creado', order: 'created', col: null },
     ],
+    image: [
+      { name: '#', order: null, col: null },
+      { name: 'Nombre', order: 'name', col: null },
+      { name: 'Tipo', order: 'type', col: null },
+      { name: 'Actualizado', order: 'updated', col: null },
+      { name: 'Creado', order: 'created', col: null },
+    ],
     inscription: [
       { name: '#', order: null, col: null },
       { name: 'Coche', order: 'car', col: null },

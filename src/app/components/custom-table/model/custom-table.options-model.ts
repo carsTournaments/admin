@@ -3,6 +3,7 @@ export class CustomTableOptionsModel {
     | 'brand'
     | 'car'
     | 'user'
+    | 'image'
     | 'inscription'
     | 'pairing'
     | 'round'

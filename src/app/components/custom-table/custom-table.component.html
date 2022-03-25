@@ -62,6 +62,21 @@
           </tr>
         </ng-container>
 
+        <!-- Image -->
+        <ng-container *ngIf="options.type === 'image'">
+          <tr class="pointer" *ngFor="let item of options.items">
+            <td></td>
+            <td [routerLink]="['/image/one', item._id]">
+              {{ item.name }}
+            </td>
+            <td [routerLink]="['/tournaments/one', item.tournament._id]">
+              {{ item[item.type].name }}
+            </td>
+            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
+            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+          </tr>
+        </ng-container>
+
         <!-- Inscription -->
         <ng-container *ngIf="options.type === 'inscription'">
           <tr class="pointer" *ngFor="let item of options.items">

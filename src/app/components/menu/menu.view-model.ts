@@ -55,6 +55,20 @@ export class MenuViewModel {
       ],
     },
     {
+      name: 'Imagenes',
+      icon: 'fa-photo',
+      subitems: [
+        {
+          name: 'Listado',
+          link: '/images',
+        },
+        {
+          name: 'Nuevo',
+          link: '/images/one',
+        },
+      ],
+    },
+    {
       name: 'Usuarios',
       icon: 'fa-users',
       subitems: [

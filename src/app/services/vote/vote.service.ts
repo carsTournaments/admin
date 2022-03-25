@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../http/http.service';
 import { environment } from 'src/environments/environment';
 import { Vote } from 'src/app/models/vote.model';
-import { VotingDeleteAllDto, VoteGetAllDto } from './dtos/vote.dto';
+import { VoteGetAllDto } from './dtos/vote.dto';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })

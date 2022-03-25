@@ -32,6 +32,13 @@ const routes: Routes = [
     canActivate: [LoginGuard],
   },
   {
+    path: 'images',
+    data: { breadcrumb: 'Imagenes' },
+    loadChildren: () =>
+      import('./modules/image/image.module').then((m) => m.ImageModule),
+    canActivate: [LoginGuard],
+  },
+  {
     path: 'inscriptions',
     data: { breadcrumb: 'Inscripciones' },
     loadChildren: () =>
