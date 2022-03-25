@@ -2,7 +2,6 @@ import { CustomTableOptionsModel } from 'src/app/components/custom-table/model/c
 import { CustomTitleWithButtonsViewModel } from 'src/app/components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { SegmentsViewModel } from 'src/app/components/segments/model/segments.view-model';
 import { Round } from 'src/app/models/round.model';
-
 export class RoundOnePageViewModel {
   id!: string;
   item: Round = new Round();

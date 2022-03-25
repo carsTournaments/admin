@@ -1,8 +1,12 @@
-import { TournamentRequisiteI } from './../../../../models/tournament.model';
 import { CustomTableOptionsModel } from 'src/app/components/custom-table/model/custom-table.options-model';
 import { CustomTitleWithButtonsViewModel } from 'src/app/components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { SegmentsViewModel } from 'src/app/components/segments/model/segments.view-model';
-import { Tournament } from 'src/app/models/tournament.model';
+import { OptionItemI } from 'src/app/interfaces/option-item.interface';
+import {
+  Tournament,
+  TournamentRequisiteI,
+} from 'src/app/models/tournament.model';
+import { RoundForceNextRoundDto } from 'src/app/services/round/round.dto';
 
 export class TournamentOnePageViewModel {
   id!: string;
@@ -12,7 +16,14 @@ export class TournamentOnePageViewModel {
     buttons: [],
   });
   optionsSegments = new SegmentsViewModel({
-    segments: ['Info', 'Opciones', 'Inscripciones', 'Rondas'],
+    segments: [
+      'Info',
+      'Opciones',
+      'Imagen',
+      'Inscripciones',
+      'Rondas',
+      'Emparejamientos',
+    ],
     currentSegment: 0,
   });
   inscriptionsOptionsTable = new CustomTableOptionsModel({
@@ -29,8 +40,19 @@ export class TournamentOnePageViewModel {
     showLoadMore: true,
     error: false,
   });
+  pairingsOptionsTable = new CustomTableOptionsModel({
+    loading: false,
+    items: [],
+    type: 'pairing',
+    showLoadMore: true,
+    error: false,
+  });
   edit = false;
-  options = [
+  options: OptionItemI[] = [
+    {
+      name: 'Avanzar ronda',
+      value: 'nextRound',
+    },
     {
       name: 'Forzar inscripciones',
       value: 'forceInscriptions',
@@ -54,4 +76,7 @@ export class TournamentOnePageViewModel {
   ];
   requisitesDefault: TournamentRequisiteI[] = [];
   requisiteSelected!: string;
+  forceNextRoundBody: RoundForceNextRoundDto = {
+    tournamentId: '',
+  };
 }

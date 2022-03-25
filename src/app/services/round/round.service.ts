@@ -6,7 +6,7 @@ import { HttpService } from '../http/http.service';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { Round } from 'src/app/models/round.model';
-import { RoundGetAllDto } from './round.dto';
+import { RoundForceNextRoundDto, RoundGetAllDto } from './round.dto';
 
 @Injectable({ providedIn: 'root' })
 export class RoundService {
@@ -46,6 +46,14 @@ export class RoundService {
   create(data: Round): Observable<Round> {
     return this.httpClient.post<Round>(
       `${this.url}/create`,
+      data,
+      this.headers
+    );
+  }
+
+  forceNextRound(data: RoundForceNextRoundDto): Observable<Round> {
+    return this.httpClient.put<Round>(
+      `${this.url}/forceNextRound`,
       data,
       this.headers
     );

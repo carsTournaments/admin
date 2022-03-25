@@ -35,6 +35,14 @@ export class PairingService {
     );
   }
 
+  getAllOfTournament(data: IdDto): Observable<Pairing[]> {
+    return this.httpClient.post<Pairing[]>(
+      `${this.url}/allOfTournament`,
+      data,
+      this.headers
+    );
+  }
+
   getOne(id: string): Observable<Pairing> {
     return this.httpClient.post<Pairing>(
       `${this.url}/one`,

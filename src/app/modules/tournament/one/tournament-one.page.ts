@@ -1,6 +1,7 @@
-import { TournamentRequisiteI } from './../../../models/tournament.model';
-import { Tournament } from 'src/app/models/tournament.model';
-import { Round } from 'src/app/models/round.model';
+import {
+  Tournament,
+  TournamentRequisiteI,
+} from 'src/app/models/tournament.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
@@ -9,6 +10,8 @@ import { InscriptionService } from 'src/app/services/inscription/inscription.ser
 import { RoundService } from 'src/app/services/round/round.service';
 import { TournamentService } from 'src/app/services/tournament/tournament.service';
 import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
+import { PairingService } from 'src/app/services/pairing/pairing.service';
+import { ImageService } from 'src/app/services/image/image.service';
 
 @Component({
   selector: 'page-tournament-one',
@@ -16,11 +19,15 @@ import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
 })
 export class TournamentOnePage implements OnInit {
   vm = new TournamentOnePageViewModel();
+  selectedFile?: ImageSnippet;
+
   constructor(
     private route: ActivatedRoute,
     private tournamentService: TournamentService,
     private inscriptionService: InscriptionService,
+    private pairingService: PairingService,
     private roundService: RoundService,
+    private imageService: ImageService,
     private router: Router
   ) {}
 
@@ -31,6 +38,7 @@ export class TournamentOnePage implements OnInit {
       this.vm.edit = true;
       this.getInscriptionsByTournament();
       this.getRoundsByTournament();
+      this.getPairingsByTournament();
       this.getOne();
     } else {
       this.vm.optionsTitle.title = 'Nuevo Torneo';
@@ -48,24 +56,27 @@ export class TournamentOnePage implements OnInit {
 
   async getInscriptionsByTournament() {
     this.inscriptionService.getAllOfTournament({ id: this.vm.id }).subscribe({
-      next: (items) => this.getInscriptionsByTournamentOk(items),
+      next: (items) => {
+        this.vm.inscriptionsOptionsTable.items = items;
+      },
       error: (e) => console.error(e),
     });
   }
 
-  getInscriptionsByTournamentOk(items: Inscription[]) {
-    this.vm.inscriptionsOptionsTable.items = items;
-  }
+  getInscriptionsByTournamentOk(items: Inscription[]) {}
 
   async getRoundsByTournament() {
     this.roundService.getAllOfTournament({ id: this.vm.id }).subscribe({
-      next: (items) => this.getRoundsByTournamentOk(items),
+      next: (items) => (this.vm.roundsOptionsTable.items = items),
       error: (e) => console.error(e),
     });
   }
 
-  getRoundsByTournamentOk(items: Round[]) {
-    this.vm.roundsOptionsTable.items = items;
+  async getPairingsByTournament() {
+    this.pairingService.getAllOfTournament({ id: this.vm.id }).subscribe({
+      next: (items) => (this.vm.pairingsOptionsTable.items = items),
+      error: (e) => console.error(e),
+    });
   }
 
   getRequisitesDefault(): void {
@@ -90,6 +101,9 @@ export class TournamentOnePage implements OnInit {
 
   actionForOption(option: ActionForOptionI) {
     switch (option.value) {
+      case 'nextRound':
+        this.forceNextRound();
+        break;
       case 'forceInscriptions':
         this.forceInscriptions();
         break;
@@ -107,6 +121,22 @@ export class TournamentOnePage implements OnInit {
         break;
       default:
         break;
+    }
+  }
+
+  forceNextRound() {
+    const state = confirm('Esta seguro de forzar el inicio del torneo?');
+    if (state) {
+      this.vm.forceNextRoundBody.tournamentId = this.vm.id;
+      this.roundService.forceNextRound(this.vm.forceNextRoundBody).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.getRoundsByTournament();
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
     }
   }
 
@@ -195,4 +225,27 @@ export class TournamentOnePage implements OnInit {
     const index = this.vm.item.requisites.indexOf(item);
     this.vm.item.requisites.splice(index, 1);
   }
+
+  processFile(event: any) {
+    const file: File = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+      this.imageService
+        .upload({ type: 'tournament', id: this.vm.id }, this.selectedFile.file)
+        .subscribe({
+          next: (res) => {},
+          error: (err) => {},
+        });
+    });
+
+    reader.readAsDataURL(file);
+  }
+}
+
+class ImageSnippet {
+  pending: boolean = false;
+  status: string = 'init';
+  constructor(public src: string, public file: File) {}
 }

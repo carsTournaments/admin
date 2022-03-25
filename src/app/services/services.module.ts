@@ -15,6 +15,7 @@ import { SearchService } from './search/search.service';
 import { TournamentService } from './tournament/tournament.service';
 import { UserService } from './user/user.service';
 import { VoteService } from './vote/vote.service';
+import { ImageService } from './image/image.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
@@ -23,6 +24,7 @@ import { VoteService } from './vote/vote.service';
     AuthService,
     BrandService,
     CarService,
+    ImageService,
     InscriptionService,
     LoggerService,
     PairingService,
