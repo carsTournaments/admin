@@ -23,7 +23,18 @@
               {{ item.name }}
             </td>
             <td>{{ item.country }}</td>
-            <td>{{ item.continent }}</td>
+            <td>
+              <span
+                class="badge"
+                [ngClass]="{
+                  'bg-danger': item.continent === 'America',
+                  'bg-success': item.continent === 'Asia',
+                  'bg-primary': item.continent === 'Europa'
+                }"
+              >
+                {{ item.continent }}
+              </span>
+            </td>
             <td>{{ item.cars.length }}</td>
             <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
             <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
