@@ -45,4 +45,14 @@ export class ImageService {
     const url = `${this.url}/update`;
     return this.httpClient.post<any>(url, data, this.headers);
   }
+
+  deleteOne(id: string): Observable<{ message: string }> {
+    const url = `${this.url}/one/${id}`;
+    return this.httpClient.delete<any>(url, this.headers);
+  }
+
+  deleteAll(): Observable<{ message: string }> {
+    const url = `${this.url}/all`;
+    return this.httpClient.delete<any>(url, this.headers);
+  }
 }

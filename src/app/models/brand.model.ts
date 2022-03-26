@@ -1,12 +1,13 @@
 import { Car } from './car.model';
+import { Image } from './image.model';
 
 export class Brand {
   _id?: string;
   name: string;
   country: string;
   continent: string;
-  image: string;
   cars?: Car[]; // Virtual
+  image?: Image;
   created?: string;
   updated?: string;
   constructor(data?: Brand) {
@@ -14,7 +15,7 @@ export class Brand {
     this.name = data?.name || '';
     this.country = data?.country || '';
     this.continent = data?.continent || '';
-    this.image = data?.image || '';
+    this.image = data?.image || new Image();
     this.cars = data?.cars || [];
     this.created = data?.created || '';
     this.updated = data?.updated || '';

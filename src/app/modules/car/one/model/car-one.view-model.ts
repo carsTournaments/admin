@@ -11,7 +11,13 @@ export class CarOnePageViewModel {
     buttons: [],
   });
   optionsSegments = new SegmentsViewModel({
-    segments: ['Info', 'Opciones', 'Inscripciones', 'Nueva Inscripcion'],
+    segments: [
+      'Info',
+      'Opciones',
+      'Imagen',
+      'Inscripciones',
+      'Nueva Inscripcion',
+    ],
     currentSegment: 0,
   });
   inscriptionsOptionsTable = new CustomTableOptionsModel({

@@ -5,7 +5,7 @@
     <custom-title-with-buttons
       [options]="vm.optionsTitle"
     ></custom-title-with-buttons>
-    <segments [options]="vm.optionsSegments"></segments>
+    <segments *ngIf="vm.edit" [options]="vm.optionsSegments"></segments>
 
     <div class="mb-3" *ngIf="vm.optionsSegments.currentSegment === 0">
       <div class="row mt-1 g-3" *ngIf="vm.item">
@@ -153,18 +153,11 @@
     </ng-container>
 
     <ng-container *ngIf="vm.optionsSegments.currentSegment === 2">
-      <form method="post" action="upload/post" enctype="multipart/form-data">
-        <input
-          class="form-control"
-          #imageInput
-          type="file"
-          accept="image/*"
-          (change)="processFile($event)"
-        />
-        <button class="btn btn-primary w-100" type="submit" name="upload">
-          Upload
-        </button>
-      </form>
+      <add-image
+        [id]="vm.id"
+        [image]="vm.item.image"
+        [type]="'tournament'"
+      ></add-image>
     </ng-container>
 
     <ng-container *ngIf="vm.optionsSegments.currentSegment === 3">

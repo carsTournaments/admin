@@ -1,3 +1,4 @@
+import { Image } from './image.model';
 import { Tournament } from './tournament.model';
 
 export class Car {
@@ -9,11 +10,11 @@ export class Car {
   traction: string;
   cv: number;
   cc: number;
-  image: string;
   stock: boolean;
   info: string;
   year: number;
   tournaments?: Tournament[];
+  image?: Image;
   created?: string;
   updated?: string;
 
@@ -26,11 +27,11 @@ export class Car {
     this.traction = data?.traction || '';
     this.cv = data?.cv || 0;
     this.cc = data?.cc || 0;
-    this.image = data?.image || '';
     this.stock = data?.stock || false;
     this.info = data?.info || '';
     this.year = data?.year || 0;
     this.tournaments = data?.tournaments || [];
+    this.image = data?.image || new Image();
     this.created = data?.created || '';
     this.updated = data?.updated || '';
   }

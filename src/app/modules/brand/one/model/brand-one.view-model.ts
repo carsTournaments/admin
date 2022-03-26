@@ -10,14 +10,14 @@ export class BrandOnePageViewModel {
     buttons: [],
   });
   optionsSegments = new SegmentsViewModel({
-    segments: ['Info', 'Opciones'],
+    segments: ['Info', 'Opciones', 'Imagen'],
     currentSegment: 0,
   });
   edit = false;
   options = [
     {
-      name: 'Prueba',
-      value: 'changePassword',
+      name: 'Eliminar',
+      value: 'delete',
     },
   ];
 }

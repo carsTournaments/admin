@@ -45,7 +45,6 @@ export class BrandOnePage implements OnInit {
             this.router.navigate(['/brands']);
           })
         : this.brandService.create(this.vm.item).subscribe(() => {
-            alert('Marca creada');
             this.router.navigate(['/brands']);
           });
     } catch (error) {
@@ -55,8 +54,23 @@ export class BrandOnePage implements OnInit {
 
   actionForOption(option: ActionForOptionI) {
     switch (option.value) {
+      case 'delete':
+        this.delete();
+        break;
       default:
         break;
+    }
+  }
+
+  async delete() {
+    if (confirm('¿Está seguro de eliminar la marca?')) {
+      this.brandService.delete(this.vm.id).subscribe({
+        next: () => {
+          alert('Marca eliminada');
+          this.router.navigate(['/brands']);
+        },
+        error: (e) => console.error(e),
+      });
     }
   }
 }

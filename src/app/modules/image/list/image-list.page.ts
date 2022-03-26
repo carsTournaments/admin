@@ -39,8 +39,21 @@ export class ImageListPage implements OnInit {
   }
 
   actionForOption(option: ActionForOptionI) {
-    // TODO: Implementar
-    console.log(option);
+    if (option.value === 'deleteAll') {
+      this.deleteAll();
+    }
+  }
+
+  async deleteAll() {
+    if (confirm('¿Está seguro de eliminar todas las imagenes?')) {
+      this.imageService.deleteAll().subscribe({
+        next: () => {
+          alert('Imagenes eliminadas');
+          this.getAll();
+        },
+        error: (error) => console.error(error),
+      });
+    }
   }
 
   onChangeOrder(order: string) {
@@ -60,5 +73,14 @@ export class ImageListPage implements OnInit {
   onChangePage() {
     this.vm.imageBody.page += 1;
     this.getAll(true);
+  }
+
+  onDeleteItem(id: string) {
+    if (confirm('¿Está seguro de eliminar la imagen?')) {
+      this.imageService.deleteOne(id).subscribe({
+        next: () => this.getAll(),
+        error: (error) => console.error(error),
+      });
+    }
   }
 }

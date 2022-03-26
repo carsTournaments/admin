@@ -29,8 +29,8 @@ export class ImageListViewModel {
   };
   options = [
     {
-      name: 'Prueba',
-      value: '',
+      name: 'Eliminar todas las imagenes',
+      value: 'deleteAll',
     },
   ];
   imageBody: ImageGetAllDto = {

@@ -32,7 +32,6 @@ export class CustomTableViewModel {
       { name: 'Creado', order: 'created', col: null },
     ],
     inscription: [
-      { name: '#', order: null, col: null },
       { name: 'Coche', order: 'car', col: null },
       { name: 'Torneo', order: 'tournament', col: null },
       { name: 'Actualizado', order: 'updated', col: null },
@@ -67,6 +66,7 @@ export class CustomTableViewModel {
       { name: 'Creado', order: 'created', col: null },
     ],
     user: [
+      { name: '#', order: '', col: null },
       { name: 'Nombre', order: 'name', col: null },
       { name: 'Email', order: 'email', col: null },
       { name: 'Rol', order: 'role', col: null },

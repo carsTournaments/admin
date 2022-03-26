@@ -18,7 +18,7 @@
         <!-- Brand -->
         <ng-container *ngIf="options.type === 'brand'">
           <tr class="pointer" *ngFor="let item of options.items">
-            <td></td>
+            <td><img class="image-table" [src]="item.image?.url | image" /></td>
             <td [routerLink]="['/brands/one', item._id]">
               {{ item.name }}
             </td>
@@ -33,14 +33,29 @@
         <!-- Car -->
         <ng-container *ngIf="options.type === 'car'">
           <tr class="pointer" *ngFor="let item of options.items">
-            <td></td>
+            <td><img class="image-table" [src]="item.image?.url | image" /></td>
             <td [routerLink]="['/cars/one', item._id]">
               {{ item.name }}
             </td>
-            <td>{{ item.driver.name }}</td>
-            <td>{{ item.brand?.name }}</td>
+            <td>
+              <div class="chip chip-dark">
+                <img
+                  class="image-table"
+                  [src]="item.driver.image?.url | image"
+                />
+                {{ item.driver.name }}
+              </div>
+            </td>
+            <td [routerLink]="['/brands/one/', item.brand._id]">
+              <div class="chip chip-primary">
+                <img
+                  class="image-table"
+                  [src]="item.brand.image?.url | image"
+                />
+                {{ item.brand.name }}
+              </div>
+            </td>
             <td>{{ item.model }}</td>
-
             <td>
               <span
                 class="badge"
@@ -65,12 +80,37 @@
         <!-- Image -->
         <ng-container *ngIf="options.type === 'image'">
           <tr class="pointer" *ngFor="let item of options.items">
-            <td></td>
-            <td [routerLink]="['/images/one', item._id]">
-              {{ item.type === "car" ? "Coche" : "Torneo" }}
-            </td>
-            <td [routerLink]="['/tournaments/one', item.tournament._id]">
+            <td><img class="image-table" [src]="item?.url | image" /></td>
+            <td
+              *ngIf="item.type === 'tournament'"
+              [routerLink]="['/tournaments/one', item[item.type]._id]"
+            >
               {{ item[item.type].name }}
+            </td>
+            <td
+              *ngIf="item.type === 'car'"
+              [routerLink]="['/cars/one', item[item.type]._id]"
+            >
+              {{ item[item.type].name }}
+            </td>
+            <td
+              *ngIf="item.type === 'brand'"
+              [routerLink]="['/brands/one', item[item.type]._id]"
+            >
+              {{ item[item.type].name }}
+            </td>
+            <td (click)="deleteItem.emit(item._id)">
+              <span
+                class="badge"
+                [ngClass]="{
+                  'bg-danger': item.type === 'brand',
+                  'bg-success': item.type === 'car',
+                  'bg-primary': item.type === 'tournament',
+                  'bg-warning': item.type === 'car'
+                }"
+              >
+                {{ item.type | type }}
+              </span>
             </td>
             <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
             <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
@@ -80,12 +120,20 @@
         <!-- Inscription -->
         <ng-container *ngIf="options.type === 'inscription'">
           <tr class="pointer" *ngFor="let item of options.items">
-            <td></td>
             <td [routerLink]="['/cars/one', item.car._id]">
-              {{ item.car.name }}
+              <div class="chip chip-primary">
+                <img class="image-table" [src]="item.car.image?.url | image" />
+                {{ item.car.name }}
+              </div>
             </td>
             <td [routerLink]="['/tournaments/one', item.tournament._id]">
-              {{ item.tournament.name }}
+              <div class="chip chip-dark">
+                <img
+                  class="image-table"
+                  [src]="item.tournament.image?.url | image"
+                />
+                {{ item.tournament.name }}
+              </div>
             </td>
             <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
             <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
@@ -96,16 +144,34 @@
         <ng-container *ngIf="options.type === 'pairing'">
           <tr class="pointer" *ngFor="let item of options.items">
             <td [routerLink]="['/cars/one', item.car1?._id]">
-              {{ item.car1?.name }}
+              <div class="chip chip-primary">
+                <img
+                  class="image-table"
+                  [src]="item?.car1.image?.url | image"
+                />
+                {{ item.car1?.name }}
+              </div>
             </td>
-            <td [routerLink]="['/cars/one', item.car1?._id]">
-              {{ item.car2?.name }}
+            <td [routerLink]="['/cars/one', item.car2?._id]">
+              <div class="chip chip-dark">
+                <img
+                  class="image-table"
+                  [src]="item?.car2.image?.url | image"
+                />
+                {{ item.car2?.name }}
+              </div>
             </td>
             <td [routerLink]="['/pairings/one', item._id]">
               {{ item.votes?.length }}
             </td>
             <td [routerLink]="['/tournaments/one', item.round.tournament._id]">
-              {{ item.round?.tournament.name }}
+              <div class="chip chip-primary">
+                <img
+                  class="image-table"
+                  [src]="item?.round.tournament.image?.url | image"
+                />
+                {{ item.round?.tournament.name }}
+              </div>
             </td>
             <td [routerLink]="['/rounds/one', item.round._id]">
               {{ item.round?.name }}
@@ -122,7 +188,13 @@
             </td>
             <td>{{ item.participants }}</td>
             <td [routerLink]="['/tournaments/one', item.tournament._id]">
-              {{ item.tournament.name }}
+              <div class="chip chip-primary">
+                <img
+                  class="image-table"
+                  [src]="item.tournament.image?.url | image"
+                />
+                {{ item.tournament.name }}
+              </div>
             </td>
             <td>{{ item.startDate | dateToTimeAgo | titlecase }}</td>
             <td>{{ item.endDate | dateToTimeAgo | titlecase }}</td>
@@ -146,7 +218,7 @@
         <!-- Tournament -->
         <ng-container *ngIf="options.type === 'tournament'">
           <tr class="pointer" *ngFor="let item of options.items">
-            <td></td>
+            <td><img class="image-table" [src]="item.image?.url | image" /></td>
             <td [routerLink]="['/tournaments/one', item._id]">
               {{ item.name }}
             </td>
@@ -178,11 +250,23 @@
         <!-- User -->
         <ng-container *ngIf="options.type === 'user'">
           <tr class="pointer" *ngFor="let item of options.items">
+            <td><img class="image-table" [src]="item.image?.url | image" /></td>
             <td [routerLink]="['/users/one', item._id]">
               {{ item.name }}
             </td>
             <td>{{ item.email }}</td>
-            <td>{{ item.role }}</td>
+            <td>
+              <span
+                class="badge"
+                [ngClass]="{
+                  'bg-success': item.role === 'ADMIN',
+                  'bg-danger': item.role === 'USER',
+                  'bg-primary': item.role === 'FAKE'
+                }"
+              >
+                {{ item.role }}
+              </span>
+            </td>
             <td>{{ item.cars.length }}</td>
             <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
             <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
@@ -198,13 +282,22 @@
                 item.pairing.round.tournament._id
               ]"
             >
-              {{ item.pairing.round.tournament.name }}
+              <div class="chip chip-primary">
+                <img
+                  class="image-table"
+                  [src]="item.pairing.round.tournament.image?.url | image"
+                />
+                {{ item.pairing.round.tournament.name }}
+              </div>
             </td>
             <td [routerLink]="['/pairings/one', item.pairing.round._id]">
               {{ item.pairing.round.name }}
             </td>
             <td [routerLink]="['/cars/one', item.car._id]">
-              {{ item.car.name }}
+              <div class="chip chip-dark">
+                <img class="image-table" [src]="item.car.image?.url | image" />
+                {{ item.car.name }}
+              </div>
             </td>
 
             <td [routerLink]="['/votes/one', item._id]">

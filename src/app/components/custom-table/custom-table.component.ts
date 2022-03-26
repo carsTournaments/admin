@@ -12,6 +12,7 @@ export class CustomTableComponent {
   vm = new CustomTableViewModel();
   @Output() changeOrder = new EventEmitter<string>();
   @Output() changePage = new EventEmitter();
+  @Output() deleteItem = new EventEmitter();
 
   openImage(image: string) {
     window.open(image, '_blank');

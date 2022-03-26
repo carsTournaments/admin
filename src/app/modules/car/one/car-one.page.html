@@ -5,7 +5,7 @@
     <custom-title-with-buttons
       [options]="vm.optionsTitle"
     ></custom-title-with-buttons>
-    <segments [options]="vm.optionsSegments"></segments>
+    <segments *ngIf="vm.edit" [options]="vm.optionsSegments"></segments>
 
     <div class="mb-3" *ngIf="vm.optionsSegments.currentSegment === 0">
       <div class="row mt-1 g-3" *ngIf="vm.item">
@@ -127,10 +127,18 @@
     </ng-container>
 
     <ng-container *ngIf="vm.optionsSegments.currentSegment === 2">
-      <custom-table [options]="vm.inscriptionsOptionsTable"></custom-table>
+      <add-image
+        [id]="vm.id"
+        [image]="vm.item.image!"
+        [type]="'car'"
+      ></add-image>
     </ng-container>
 
     <ng-container *ngIf="vm.optionsSegments.currentSegment === 3">
+      <custom-table [options]="vm.inscriptionsOptionsTable"></custom-table>
+    </ng-container>
+
+    <ng-container *ngIf="vm.optionsSegments.currentSegment === 4">
       <add-inscription
         [carId]="vm.id"
         (onInscription)="onInscription()"

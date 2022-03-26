@@ -111,3 +111,43 @@ tbody {
   margin-right: 0.5rem;
   color: #777777;
 }
+
+.image-table {
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+}
+
+.chip {
+  display: inline-block;
+  padding: 0px 12px;
+  height: 20px;
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.chip img {
+  float: left;
+  margin: -5px 5px 0 -28px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.chip-primary {
+  background-color: $primary;
+  color: $light;
+  img {
+    border: 2px solid $primary;
+  }
+}
+
+.chip-dark {
+  background-color: $dark !important;
+  color: $light;
+  img {
+    border: 2px solid $dark;
+  }
+}

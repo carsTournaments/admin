@@ -1,6 +1,7 @@
 import { Round } from 'src/app/models/round.model';
 import { Inscription } from 'src/app/models/inscription.model';
 import * as moment from 'moment';
+import { Image } from './image.model';
 export class Tournament {
   _id?: string;
   name: string;
@@ -12,6 +13,7 @@ export class Tournament {
   durationDays?: number;
   rounds?: Round[]; // Virtual
   inscriptions?: Inscription[]; // CarI[]
+  image: Image;
   created?: string;
   updated?: string;
   constructor(data?: Tournament) {
@@ -25,6 +27,7 @@ export class Tournament {
     this.durationDays = data?.durationDays || 10;
     this.rounds = data?.rounds || [];
     this.inscriptions = data?.inscriptions || [];
+    this.image = data?.image || new Image();
     this.created = data?.created;
     this.updated = data?.updated;
   }

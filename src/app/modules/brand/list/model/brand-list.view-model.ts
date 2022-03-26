@@ -30,7 +30,7 @@ export class BrandListViewModel {
   brandBody: BrandGetAllDto = {
     page: 1,
     pageSize: 20,
-    order: ['created', 'desc'],
+    order: ['name', 'asc'],
     site: 'admin',
   };
 }

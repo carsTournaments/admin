@@ -18,7 +18,6 @@ import { ImageService } from 'src/app/services/image/image.service';
 })
 export class TournamentOnePage implements OnInit {
   vm = new TournamentOnePageViewModel();
-  selectedFile?: ImageSnippet;
 
   constructor(
     private route: ActivatedRoute,
@@ -220,27 +219,4 @@ export class TournamentOnePage implements OnInit {
     const index = this.vm.item.requisites.indexOf(item);
     this.vm.item.requisites.splice(index, 1);
   }
-
-  processFile(event: any) {
-    const file: File = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.addEventListener('load', (event: any) => {
-      this.selectedFile = new ImageSnippet(event.target.result, file);
-      this.imageService
-        .upload({ type: 'tournament', id: this.vm.id }, this.selectedFile.file)
-        .subscribe({
-          next: () => alert('Imagen subida'),
-          error: (err) => console.error(err),
-        });
-    });
-
-    reader.readAsDataURL(file);
-  }
-}
-
-class ImageSnippet {
-  pending = false;
-  status = 'init';
-  constructor(public src: string, public file: File) {}
 }

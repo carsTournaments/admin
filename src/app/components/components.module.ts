@@ -18,6 +18,7 @@ import { SegmentsComponent } from './segments/segments.component';
 import { SelectNumberEntriesComponent } from './select-number-entries/select-number-entries.component';
 import { StatsComponent } from './stats/stats.component';
 import { StatsResumeComponent } from './stats-resume/stats-resume.component';
+import { AddComponentComponent } from './add-image/add-image.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { StatsResumeComponent } from './stats-resume/stats-resume.component';
     ServicesModule,
   ],
   declarations: [
+    AddComponentComponent,
     AddInscriptionComponent,
     BreadcrumbComponent,
     CustomTableComponent,
@@ -43,6 +45,7 @@ import { StatsResumeComponent } from './stats-resume/stats-resume.component';
     StatsResumeComponent,
   ],
   exports: [
+    AddComponentComponent,
     AddInscriptionComponent,
     BreadcrumbComponent,
     CustomTableComponent,
