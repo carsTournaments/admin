@@ -11,6 +11,7 @@ import { TournamentService } from 'src/app/services/tournament/tournament.servic
 import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
 import { PairingService } from 'src/app/services/pairing/pairing.service';
 import { VoteService } from 'src/app/services/vote/vote.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'page-tournament-one',
@@ -48,7 +49,11 @@ export class TournamentOnePage implements OnInit {
 
   async getOne() {
     this.tournamentService.getOne(this.vm.id).subscribe({
-      next: (item) => (this.vm.item = item),
+      next: (item) => {
+        this.vm.item = item;
+        this.vm.startDate = moment(item.startDate).format('YYYY-MM-DD');
+        this.vm.startTime = moment(item.startDate).format('HH:mm');
+      },
       error: (e) => console.error(e),
     });
   }
@@ -88,6 +93,7 @@ export class TournamentOnePage implements OnInit {
 
   async onSubmit() {
     try {
+      this.vm.item.startDate = `${this.vm.startDate} ${this.vm.startTime}`;
       this.vm.edit
         ? this.tournamentService.update(this.vm.item).subscribe(() => {
             this.router.navigate(['/tournaments']);
@@ -127,7 +133,7 @@ export class TournamentOnePage implements OnInit {
   }
 
   forceNextRound() {
-    const state = confirm('Esta seguro de forzar el inicio del torneo?');
+    const state = confirm('¿Esta seguro de forzar el inicio del torneo?');
     if (state) {
       this.vm.forceNextRoundBody.tournamentId = this.vm.id;
       this.roundService.forceNextRound(this.vm.forceNextRoundBody).subscribe({

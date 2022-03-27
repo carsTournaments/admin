@@ -22,18 +22,34 @@
           </div>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-3">
           <div class="form-floating">
             <input
               class="form-control"
               type="date"
               name="name"
-              [(ngModel)]="vm.item.startDate"
+              [(ngModel)]="vm.startDate"
               placeholder="Nombre"
               required
             />
             <label for="floatingInput" class="form-label">
               Fecha de inicio
+            </label>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-floating">
+            <input
+              class="form-control"
+              type="time"
+              name="name"
+              [(ngModel)]="vm.startTime"
+              placeholder="Nombre"
+              required
+            />
+            <label for="floatingInput" class="form-label">
+              Hora de inicio
             </label>
           </div>
         </div>
@@ -48,9 +64,9 @@
               placeholder="Duracion"
               required
             />
-            <label for="floatingInput" class="form-label"
-              >Duracion (dias)</label
-            >
+            <label for="floatingInput" class="form-label">
+              Duracion (dias)
+            </label>
           </div>
         </div>
 

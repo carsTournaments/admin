@@ -87,4 +87,6 @@ export class TournamentOnePageViewModel {
   forceNextRoundBody: RoundForceNextRoundDto = {
     tournamentId: '',
   };
+  startDate = '';
+  startTime = '';
 }
