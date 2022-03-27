@@ -11,14 +11,33 @@
       <div class="row mt-1 g-3" *ngIf="vm.item">
         <div class="col-sm-6">
           <div class="form-floating">
-            <input
+            <select
               class="form-control"
-              name="name"
-              [(ngModel)]="vm.item.name"
-              placeholder="Nombre"
+              name="user"
+              [(ngModel)]="vm.userIdSelected"
               required
-            />
-            <label for="floatingInput" class="form-label">Nombre</label>
+            >
+              <option *ngFor="let user of vm.users" [value]="user._id">
+                {{user.name}}
+              </option>
+            </select>
+            <label for="floatingInput" class="form-label">Usuario</label>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-floating">
+            <select
+              class="form-control"
+              name="brand"
+              [(ngModel)]="vm.brandIdSelected"
+              required
+            >
+              <option *ngFor="let brand of vm.brands" [value]="brand._id">
+                {{brand.name}}
+              </option>
+            </select>
+            <label for="floatingInput" class="form-label">Marca</label>
           </div>
         </div>
 
@@ -143,6 +162,10 @@
         [carId]="vm.id"
         (onInscription)="onInscription()"
       ></add-inscription>
+    </ng-container>
+
+    <ng-container *ngIf="vm.optionsSegments.currentSegment === 5">
+      <custom-table [options]="vm.votesOptionsTable"></custom-table>
     </ng-container>
   </div>
 </div>

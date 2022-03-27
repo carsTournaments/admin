@@ -41,6 +41,7 @@
             <select class="form-select" [(ngModel)]="vm.item.role">
               <option value="ADMIN">Admin</option>
               <option value="USER">Usuario</option>
+              <option value="FAKE">Fake</option>
             </select>
             <label for="floatingInput" class="form-label">Rol</label>
           </div>
@@ -83,6 +84,10 @@
           </div>
         </div>
       </div>
+    </ng-container>
+
+    <ng-container *ngIf="vm.optionsSegments.currentSegment === 2">
+      <custom-table [options]="vm.carsOptionsTable"></custom-table>
     </ng-container>
   </div>
 </div>

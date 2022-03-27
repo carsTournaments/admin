@@ -134,6 +134,7 @@ tbody {
   height: 30px;
   width: 30px;
   border-radius: 50%;
+  background: #fff;
 }
 
 .chip-primary {
@@ -150,4 +151,8 @@ tbody {
   img {
     border: 2px solid $dark;
   }
+}
+
+.bg-medium {
+  background-color: $medium;
 }

@@ -94,5 +94,9 @@
         [type]="'brand'"
       ></add-image>
     </ng-container>
+
+    <ng-container *ngIf="vm.optionsSegments.currentSegment === 3">
+      <custom-table [options]="vm.carsOptionsTable"></custom-table>
+    </ng-container>
   </div>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
 import { BrandService } from 'src/app/services/brand/brand.service';
+import { CarService } from 'src/app/services/car/car.service';
 import { BrandOnePageViewModel } from './model/brand-one.view-model';
 
 @Component({
@@ -13,6 +14,7 @@ export class BrandOnePage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private brandService: BrandService,
+    private carService: CarService,
     private router: Router
   ) {}
 
@@ -21,6 +23,7 @@ export class BrandOnePage implements OnInit {
     if (this.vm.id) {
       this.vm.optionsTitle.title = 'Editar Marca';
       this.vm.edit = true;
+      this.getCarsOffBrand();
       this.getOne();
     } else {
       this.vm.optionsTitle.title = 'Nuevo Marca';
@@ -29,13 +32,17 @@ export class BrandOnePage implements OnInit {
   }
 
   async getOne() {
-    try {
-      this.brandService.getOne(this.vm.id).subscribe((item) => {
-        this.vm.item = item;
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    this.brandService.getOne(this.vm.id).subscribe({
+      next: (item) => (this.vm.item = item),
+      error: (e) => console.error(e),
+    });
+  }
+
+  getCarsOffBrand() {
+    this.carService.getAllOffBrand({ id: this.vm.id }).subscribe({
+      next: (items) => (this.vm.carsOptionsTable.items = items),
+      error: (e) => console.error(e),
+    });
   }
 
   async onSubmit() {

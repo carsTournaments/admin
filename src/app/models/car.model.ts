@@ -3,7 +3,6 @@ import { Tournament } from './tournament.model';
 
 export class Car {
   _id?: string;
-  name: string;
   driver: any; // UserI
   brand: any; // BrandI
   model: string;
@@ -20,7 +19,6 @@ export class Car {
 
   constructor(data?: Car) {
     this._id = data?._id;
-    this.name = data?.name || '';
     this.driver = data?.driver || '';
     this.brand = data?.brand || '';
     this.model = data?.model || '';

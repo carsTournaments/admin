@@ -64,7 +64,7 @@ export class InscriptionService {
     }>(`${this.url}/forceInscriptions`, data, this.headers);
   }
 
-  delete(id: string): Observable<Inscription> {
+  deleteOne(id: string): Observable<Inscription> {
     return this.httpClient.delete<Inscription>(
       `${this.url}/one/${id}`,
       this.headers

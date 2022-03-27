@@ -1,3 +1,4 @@
+import { IdDto } from 'src/app/core/dtos/id.dto';
 import { PaginatorI } from './../../interfaces/paginator.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -26,18 +27,18 @@ export class CarService {
     );
   }
 
-  getAllOffBrand(): Observable<Car[]> {
+  getAllOffBrand(data: IdDto): Observable<Car[]> {
     return this.httpClient.post<Car[]>(
       `${this.url}/allOfBrand`,
-      null,
+      data,
       this.headers
     );
   }
 
-  getAllOfDriver(): Observable<Car[]> {
+  getAllOfDriver(data: IdDto): Observable<Car[]> {
     return this.httpClient.post<Car[]>(
-      `${this.url}/allOfBrand`,
-      null,
+      `${this.url}/allOfDriver`,
+      data,
       this.headers
     );
   }

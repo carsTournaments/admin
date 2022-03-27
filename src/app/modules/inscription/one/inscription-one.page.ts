@@ -1,8 +1,8 @@
-import { TournamentService } from './../../../services/tournament/tournament.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CarService } from 'src/app/services/car/car.service';
 import { InscriptionService } from 'src/app/services/inscription/inscription.service';
+import { TournamentService } from 'src/app/services/tournament/tournament.service';
 import { InscriptionOnePageViewModel } from './model/inscription-one.view-model';
 
 @Component({

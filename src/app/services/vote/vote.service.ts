@@ -1,3 +1,4 @@
+import { IdDto } from 'src/app/core/dtos/id.dto';
 import { PaginatorI } from './../../interfaces/paginator.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -21,6 +22,22 @@ export class VoteService {
   ): Observable<{ items: Vote[]; paginator: PaginatorI }> {
     return this.httpClient.post<{ items: Vote[]; paginator: PaginatorI }>(
       `${this.url}/all`,
+      data,
+      this.headers
+    );
+  }
+
+  getAllOfCar(data: IdDto): Observable<Vote[]> {
+    return this.httpClient.post<Vote[]>(
+      `${this.url}/allOfCar`,
+      data,
+      this.headers
+    );
+  }
+
+  getAllOfTournament(data: IdDto): Observable<Vote[]> {
+    return this.httpClient.post<Vote[]>(
+      `${this.url}/allOfTournament`,
       data,
       this.headers
     );

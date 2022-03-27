@@ -61,4 +61,13 @@ export class InscriptionListPage implements OnInit {
     this.vm.inscriptionBody.page += 1;
     this.getAll(true);
   }
+
+  onDeleteItem(id: string) {
+    if (confirm('¿Está seguro de eliminar la inscripcion?')) {
+      this.inscriptionService.deleteOne(id).subscribe({
+        next: () => this.getAll(),
+        error: (error) => console.error(error),
+      });
+    }
+  }
 }

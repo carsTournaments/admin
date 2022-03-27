@@ -12,7 +12,6 @@ export class CustomTableViewModel {
     ],
     car: [
       { name: '#', order: null, col: null },
-      { name: 'Nombre', order: 'name', col: null },
       { name: 'Conductor', order: 'driver', col: null },
       { name: 'Marca', order: 'brand', col: null },
       { name: 'Modelo', order: 'model', col: null },

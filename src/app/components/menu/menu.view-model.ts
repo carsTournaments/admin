@@ -19,7 +19,7 @@ export class MenuViewModel {
       icon: 'fa-th-list',
       subitems: [
         {
-          name: 'Listado',
+          name: 'Coches',
           link: '/cars',
         },
         {
@@ -33,7 +33,7 @@ export class MenuViewModel {
       icon: 'fa-th-list',
       subitems: [
         {
-          name: 'Listado',
+          name: 'Torneos',
           link: '/tournaments',
         },
         {
@@ -59,12 +59,8 @@ export class MenuViewModel {
       icon: 'fa-photo',
       subitems: [
         {
-          name: 'Listado',
+          name: 'Imagenes',
           link: '/images',
-        },
-        {
-          name: 'Nuevo',
-          link: '/images/one',
         },
       ],
     },
@@ -73,7 +69,7 @@ export class MenuViewModel {
       icon: 'fa-users',
       subitems: [
         {
-          name: 'Listado',
+          name: 'Usuarios',
           link: '/users',
         },
         {

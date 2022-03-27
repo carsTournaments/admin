@@ -32,9 +32,9 @@
               placeholder="Nombre"
               required
             />
-            <label for="floatingInput" class="form-label"
-              >Fecha de inicio</label
-            >
+            <label for="floatingInput" class="form-label">
+              Fecha de inicio
+            </label>
           </div>
         </div>
 
@@ -161,7 +161,10 @@
     </ng-container>
 
     <ng-container *ngIf="vm.optionsSegments.currentSegment === 3">
-      <custom-table [options]="vm.inscriptionsOptionsTable"></custom-table>
+      <custom-table
+        (deleteItem)="onDeleteInscription($event)"
+        [options]="vm.inscriptionsOptionsTable"
+      ></custom-table>
     </ng-container>
 
     <ng-container *ngIf="vm.optionsSegments.currentSegment === 4">
@@ -170,6 +173,9 @@
 
     <ng-container *ngIf="vm.optionsSegments.currentSegment === 5">
       <custom-table [options]="vm.pairingsOptionsTable"></custom-table>
+    </ng-container>
+    <ng-container *ngIf="vm.optionsSegments.currentSegment === 6">
+      <custom-table [options]="vm.votesOptionsTable"></custom-table>
     </ng-container>
   </div>
 </div>

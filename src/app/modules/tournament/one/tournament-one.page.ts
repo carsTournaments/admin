@@ -10,7 +10,7 @@ import { RoundService } from 'src/app/services/round/round.service';
 import { TournamentService } from 'src/app/services/tournament/tournament.service';
 import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
 import { PairingService } from 'src/app/services/pairing/pairing.service';
-import { ImageService } from 'src/app/services/image/image.service';
+import { VoteService } from 'src/app/services/vote/vote.service';
 
 @Component({
   selector: 'page-tournament-one',
@@ -25,7 +25,7 @@ export class TournamentOnePage implements OnInit {
     private inscriptionService: InscriptionService,
     private pairingService: PairingService,
     private roundService: RoundService,
-    private imageService: ImageService,
+    private voteService: VoteService,
     private router: Router
   ) {}
 
@@ -37,6 +37,7 @@ export class TournamentOnePage implements OnInit {
       this.getInscriptionsByTournament();
       this.getRoundsByTournament();
       this.getPairingsByTournament();
+      this.getVotesByTournament();
       this.getOne();
     } else {
       this.vm.optionsTitle.title = 'Nuevo Torneo';
@@ -69,6 +70,13 @@ export class TournamentOnePage implements OnInit {
   async getPairingsByTournament() {
     this.pairingService.getAllOfTournament({ id: this.vm.id }).subscribe({
       next: (items) => (this.vm.pairingsOptionsTable.items = items),
+      error: (e) => console.error(e),
+    });
+  }
+
+  async getVotesByTournament() {
+    this.voteService.getAllOfTournament({ id: this.vm.id }).subscribe({
+      next: (items) => (this.vm.votesOptionsTable.items = items),
       error: (e) => console.error(e),
     });
   }
@@ -218,5 +226,14 @@ export class TournamentOnePage implements OnInit {
   deleteRequisite(item: TournamentRequisiteI): void {
     const index = this.vm.item.requisites.indexOf(item);
     this.vm.item.requisites.splice(index, 1);
+  }
+
+  onDeleteInscription(id: string) {
+    if (confirm('¿Está seguro de eliminar la inscripcion?')) {
+      this.inscriptionService.deleteOne(id).subscribe({
+        next: () => this.getInscriptionsByTournament(),
+        error: (error) => console.error(error),
+      });
+    }
   }
 }

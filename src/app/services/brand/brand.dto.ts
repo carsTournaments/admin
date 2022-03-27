@@ -3,6 +3,7 @@ export interface BrandGetAllDto {
   pageSize: number;
   site: string;
   order: string[];
+  select?: string[];
 }
 
 export interface BrandCreateDto {

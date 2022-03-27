@@ -18,9 +18,9 @@ export class UserService {
 
   getAll(
     data: UserGetAllDto
-  ): Observable<{ items: UserGetAllDto[]; paginator: PaginatorI }> {
+  ): Observable<{ items: User[]; paginator: PaginatorI }> {
     return this.httpClient.post<{
-      items: UserGetAllDto[];
+      items: User[];
       paginator: PaginatorI;
     }>(`${this.url}/all`, data, this.headers);
   }

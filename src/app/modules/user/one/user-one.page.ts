@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
+import { CarService } from 'src/app/services/car/car.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { UserOnePageViewModel } from './model/user-one.view-model';
 
@@ -13,6 +14,7 @@ export class UserOnePage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
+    private carService: CarService,
     private router: Router
   ) {}
 
@@ -21,6 +23,7 @@ export class UserOnePage implements OnInit {
     if (this.vm.id) {
       this.vm.optionsTitle.title = 'Editar Usuario';
       this.vm.edit = true;
+      this.getCarsForUser();
       this.getOne();
     } else {
       this.vm.optionsTitle.title = 'Nuevo Usuario';
@@ -36,6 +39,13 @@ export class UserOnePage implements OnInit {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  getCarsForUser() {
+    this.carService.getAllOfDriver({ id: this.vm.id }).subscribe({
+      next: (items) => (this.vm.carsOptionsTable.items = items),
+      error: (e) => console.error(e),
+    });
   }
 
   async onSubmit() {

@@ -1,7 +1,10 @@
+import { VoteService } from 'src/app/services/vote/vote.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
 import { Inscription } from 'src/app/models/inscription.model';
+import { BrandService } from 'src/app/services/brand/brand.service';
 import { CarService } from 'src/app/services/car/car.service';
 import { InscriptionService } from 'src/app/services/inscription/inscription.service';
 import { CarOnePageViewModel } from './model/car-one.view-model';
@@ -15,16 +18,22 @@ export class CarOnePage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private carService: CarService,
+    private brandService: BrandService,
+    private userService: UserService,
+    private voteService: VoteService,
     private inscriptionService: InscriptionService,
     private router: Router
   ) {}
 
   ngOnInit() {
     this.vm.id = this.route.snapshot.paramMap.get('id') as string;
+    this.getAllBrands();
+    this.getAllDrivers();
     if (this.vm.id) {
       this.vm.optionsTitle.title = 'Editar Coche';
       this.vm.edit = true;
       this.getInscriptionsByCar();
+      this.getVotesByCar();
       this.getOne();
     } else {
       this.vm.optionsTitle.title = 'Nuevo Coche';
@@ -37,26 +46,49 @@ export class CarOnePage implements OnInit {
       next: (item) => {
         this.vm.item = item;
         this.vm.stock = this.vm.item.stock;
+        this.vm.brandIdSelected = item.brand._id;
+        this.vm.userIdSelected = item.driver._id;
       },
       error: (error) => console.error(error),
     });
   }
 
-  async getInscriptionsByCar() {
-    this.inscriptionService.getAllOfCar({ id: this.vm.id }).subscribe({
-      next: (items) => this.getInscriptionsByTournamentOk(items),
+  getAllDrivers() {
+    this.userService.getAll(this.vm.bodyUsers).subscribe({
+      next: (result) => (this.vm.users = result.items),
       error: (e) => console.error(e),
     });
   }
 
-  getInscriptionsByTournamentOk(items: Inscription[]) {
-    this.vm.inscriptionsOptionsTable.loading = true;
-    this.vm.inscriptionsOptionsTable.items = items;
-    this.vm.inscriptionsOptionsTable.loading = false;
+  getAllBrands() {
+    this.brandService.getAll(this.vm.bodyBrands).subscribe({
+      next: (result) => (this.vm.brands = result.items),
+      error: (e) => console.error(e),
+    });
+  }
+
+  getInscriptionsByCar() {
+    this.inscriptionService.getAllOfCar({ id: this.vm.id }).subscribe({
+      next: (items) => {
+        this.vm.inscriptionsOptionsTable.loading = true;
+        this.vm.inscriptionsOptionsTable.items = items;
+        this.vm.inscriptionsOptionsTable.loading = false;
+      },
+      error: (e) => console.error(e),
+    });
+  }
+
+  getVotesByCar() {
+    this.voteService.getAllOfCar({ id: this.vm.id }).subscribe({
+      next: (items) => (this.vm.votesOptionsTable.items = items),
+      error: (e) => console.error(e),
+    });
   }
 
   async onSubmit() {
     try {
+      this.vm.item.brand = this.vm.brandIdSelected;
+      this.vm.item.driver = this.vm.userIdSelected;
       this.vm.item.stock = Boolean(this.vm.stock);
       this.vm.edit
         ? this.carService.update(this.vm.item).subscribe(() => {
@@ -114,5 +146,14 @@ export class CarOnePage implements OnInit {
 
   onInscription() {
     this.getInscriptionsByCar();
+  }
+
+  onDeleteInscription(id: string) {
+    if (confirm('¿Está seguro de eliminar la inscripcion?')) {
+      this.inscriptionService.deleteOne(id).subscribe({
+        next: () => this.getInscriptionsByCar(),
+        error: (error) => console.error(error),
+      });
+    }
   }
 }

@@ -22,8 +22,8 @@
             <td [routerLink]="['/brands/one', item._id]">
               {{ item.name }}
             </td>
-            <td>{{ item.country }}</td>
-            <td>
+            <td [routerLink]="['/brands/one', item._id]">{{ item.country }}</td>
+            <td [routerLink]="['/brands/one', item._id]">
               <span
                 class="badge"
                 [ngClass]="{
@@ -35,9 +35,19 @@
                 {{ item.continent }}
               </span>
             </td>
-            <td>{{ item.cars.length }}</td>
-            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
-            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+            <td [routerLink]="['/brands/one', item._id]">
+              {{ item.cars.length }}
+            </td>
+            <td [routerLink]="['/brands/one', item._id]">
+              <span class="badge bg-medium">
+                {{ item.updated | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
+            <td [routerLink]="['/brands/one', item._id]">
+              <span class="badge bg-medium">
+                {{ item.created | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
           </tr>
         </ng-container>
 
@@ -45,10 +55,7 @@
         <ng-container *ngIf="options.type === 'car'">
           <tr class="pointer" *ngFor="let item of options.items">
             <td><img class="image-table" [src]="item.image?.url | image" /></td>
-            <td [routerLink]="['/cars/one', item._id]">
-              {{ item.name }}
-            </td>
-            <td>
+            <td [routerLink]="['/users/one/', item.driver?._id]">
               <div class="chip chip-dark">
                 <img
                   class="image-table"
@@ -57,17 +64,17 @@
                 {{ item.driver.name }}
               </div>
             </td>
-            <td [routerLink]="['/brands/one/', item.brand._id]">
+            <td [routerLink]="['/brands/one/', item.brand?._id]">
               <div class="chip chip-primary">
                 <img
                   class="image-table"
-                  [src]="item.brand.image?.url | image"
+                  [src]="item.brand?.image?.url | image"
                 />
-                {{ item.brand.name }}
+                {{ item.brand?.name }}
               </div>
             </td>
-            <td>{{ item.model }}</td>
-            <td>
+            <td [routerLink]="['/cars/one', item._id]">{{ item.model }}</td>
+            <td [routerLink]="['/cars/one', item._id]">
               <span
                 class="badge"
                 [ngClass]="{
@@ -79,12 +86,22 @@
                 {{ item.traction }}</span
               >
             </td>
-            <td>{{ item.cc }}</td>
-            <td>{{ item.cv }}</td>
-            <td>{{ item.year }}</td>
-            <td>{{ item.inscriptions.length }}</td>
-            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
-            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+            <td [routerLink]="['/cars/one', item._id]">{{ item.cc }}</td>
+            <td [routerLink]="['/cars/one', item._id]">{{ item.cv }}</td>
+            <td [routerLink]="['/cars/one', item._id]">{{ item.year }}</td>
+            <td [routerLink]="['/cars/one', item._id]">
+              {{ item.inscriptions.length }}
+            </td>
+            <td [routerLink]="['/cars/one', item._id]">
+              <span class="badge bg-medium">
+                {{ item.updated | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
+            <td [routerLink]="['/cars/one', item._id]">
+              <span class="badge bg-medium">
+                {{ item.created | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
           </tr>
         </ng-container>
 
@@ -102,7 +119,7 @@
               *ngIf="item.type === 'car'"
               [routerLink]="['/cars/one', item[item.type]._id]"
             >
-              {{ item[item.type].name }}
+              {{ item[item.type].brand?.name }}
             </td>
             <td
               *ngIf="item.type === 'brand'"
@@ -123,8 +140,16 @@
                 {{ item.type | type }}
               </span>
             </td>
-            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
-            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+            <td>
+              <span class="badge bg-medium">
+                {{ item.updated | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
+            <td>
+              <span class="badge bg-medium">
+                {{ item.created | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
           </tr>
         </ng-container>
 
@@ -134,7 +159,7 @@
             <td [routerLink]="['/cars/one', item.car._id]">
               <div class="chip chip-primary">
                 <img class="image-table" [src]="item.car.image?.url | image" />
-                {{ item.car.name }}
+                {{ item.car.brand?.name }}
               </div>
             </td>
             <td [routerLink]="['/tournaments/one', item.tournament._id]">
@@ -146,8 +171,16 @@
                 {{ item.tournament.name }}
               </div>
             </td>
-            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
-            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+            <td (click)="deleteItem.emit(item._id)">
+              <span class="badge bg-medium">
+                {{ item.updated | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
+            <td (click)="deleteItem.emit(item._id)">
+              <span class="badge bg-medium">
+                {{ item.created | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
           </tr>
         </ng-container>
 
@@ -187,7 +220,11 @@
             <td [routerLink]="['/rounds/one', item.round._id]">
               {{ item.round?.name }}
             </td>
-            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+            <td>
+              <span class="badge bg-medium">
+                {{ item.created | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
           </tr>
         </ng-container>
 
@@ -222,7 +259,11 @@
                 {{ item.status | status }}
               </span>
             </td>
-            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+            <td>
+              <span class="badge bg-medium">
+                {{ item.created | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
           </tr>
         </ng-container>
 
@@ -233,7 +274,11 @@
             <td [routerLink]="['/tournaments/one', item._id]">
               {{ item.name }}
             </td>
-            <td>{{ item.startDate | dateToTimeAgo | titlecase }}</td>
+            <td>
+              <span class="badge bg-dark">
+                {{ item.startDate | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
             <td>
               {{ item.inscriptions?.length }} / {{ item.maxParticipants }}
             </td>
@@ -253,8 +298,16 @@
               </span>
             </td>
 
-            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
-            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+            <td>
+              <span class="badge bg-medium">
+                {{ item.updated | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
+            <td>
+              <span class="badge bg-medium">
+                {{ item.created | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
           </tr>
         </ng-container>
 
@@ -279,8 +332,16 @@
               </span>
             </td>
             <td>{{ item.cars.length }}</td>
-            <td>{{ item.updated | dateToTimeAgo | titlecase }}</td>
-            <td>{{ item.created | dateToTimeAgo | titlecase }}</td>
+            <td>
+              <span class="badge bg-medium">
+                {{ item.updated | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
+            <td>
+              <span class="badge bg-medium">
+                {{ item.created | dateToTimeAgo | titlecase }}
+              </span>
+            </td>
           </tr>
         </ng-container>
 
@@ -307,12 +368,13 @@
             <td [routerLink]="['/cars/one', item.car._id]">
               <div class="chip chip-dark">
                 <img class="image-table" [src]="item.car.image?.url | image" />
-                {{ item.car.name }}
+                {{ item.car.brand.name }}
               </div>
             </td>
-
             <td [routerLink]="['/votes/one', item._id]">
-              {{ item.created | dateToTimeAgo | titlecase }}
+              <span class="badge bg-medium">
+                {{ item.created | dateToTimeAgo | titlecase }}
+              </span>
             </td>
           </tr>
         </ng-container>
