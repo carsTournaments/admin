@@ -51,8 +51,10 @@ export class RoundService {
     );
   }
 
-  forceNextRound(data: RoundForceNextRoundDto): Observable<Round> {
-    return this.httpClient.put<Round>(
+  forceNextRound(
+    data: RoundForceNextRoundDto
+  ): Observable<{ message: string }> {
+    return this.httpClient.put<{ message: string }>(
       `${this.url}/forceNextRound`,
       data,
       this.headers

@@ -193,7 +193,7 @@
                   class="image-table"
                   [src]="item?.car1.image?.url | image"
                 />
-                {{ item.car1?.name }}
+                {{ item.car1?.brand.name }}
               </div>
             </td>
             <td [routerLink]="['/cars/one', item.car2?._id]">
@@ -202,11 +202,24 @@
                   class="image-table"
                   [src]="item?.car2.image?.url | image"
                 />
-                {{ item.car2?.name }}
+                {{ item.car2?.brand.name }}
               </div>
             </td>
             <td [routerLink]="['/pairings/one', item._id]">
               {{ item.votes?.length }}
+            </td>
+            <td [routerLink]="['/pairings/one', item._id]">
+              <div *ngIf="item.winner !== null" class="chip chip-success">
+                <img
+                  class="image-table"
+                  [src]="item.winner?.image?.url | image"
+                />
+                {{ item.winner?.brand?.name }}
+              </div>
+              <ng-container *ngIf="item.winner === null"> N/D </ng-container>
+            </td>
+            <td [routerLink]="['/rounds/one', item.round._id]">
+              {{ item.round?.name }}
             </td>
             <td [routerLink]="['/tournaments/one', item.round.tournament._id]">
               <div class="chip chip-primary">
@@ -216,9 +229,6 @@
                 />
                 {{ item.round?.tournament.name }}
               </div>
-            </td>
-            <td [routerLink]="['/rounds/one', item.round._id]">
-              {{ item.round?.name }}
             </td>
             <td>
               <span class="badge bg-medium">

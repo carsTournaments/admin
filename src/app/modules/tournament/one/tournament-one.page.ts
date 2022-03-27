@@ -138,7 +138,7 @@ export class TournamentOnePage implements OnInit {
       this.vm.forceNextRoundBody.tournamentId = this.vm.id;
       this.roundService.forceNextRound(this.vm.forceNextRoundBody).subscribe({
         next: (response) => {
-          console.log(response);
+          alert(response.message);
           this.getRoundsByTournament();
         },
         error: (error) => {

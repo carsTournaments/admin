@@ -39,9 +39,10 @@ export class CustomTableViewModel {
     pairing: [
       { name: 'Coche 1', order: 'car1', col: null },
       { name: 'Coche 2', order: 'car2', col: null },
-      { name: 'Votos', order: 'votes1', col: null },
-      { name: 'Torneo', order: null, col: null },
+      { name: 'Votos', order: 'votes', col: null },
+      { name: 'Ganador', order: 'winner', col: null },
       { name: 'Ronda', order: 'round', col: null },
+      { name: 'Torneo', order: null, col: null },
       { name: 'Creado', order: 'created', col: null },
     ],
     tournament: [
