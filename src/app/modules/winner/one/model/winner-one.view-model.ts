@@ -20,12 +20,8 @@ export class WinnerOnePageViewModel {
   edit = false;
   options = [
     {
-      name: 'Votar Coche 1',
-      value: 'voteCar1',
-    },
-    {
-      name: 'Votar Coche 2',
-      value: 'voteCar2',
+      name: 'Eliminar ganadores',
+      value: 'deleteOne',
     },
   ];
   gold = '';

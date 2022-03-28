@@ -75,7 +75,7 @@ export class WinnerService {
     );
   }
 
-  delete(id: string): Observable<Winner> {
+  deleteOne(id: string): Observable<Winner> {
     return this.httpClient.delete<Winner>(
       `${this.url}/one/${id}`,
       this.headers

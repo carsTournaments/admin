@@ -27,12 +27,9 @@ export class WinnerOnePage implements OnInit {
     this.getTournaments();
     this.getCars();
     if (this.vm.id) {
-      this.vm.optionsTitle.title = 'Editar Emparejamiento';
+      this.vm.optionsTitle.title = 'Editar Ganadores';
       this.vm.edit = true;
       this.getOne();
-    } else {
-      this.vm.optionsTitle.title = 'Nuevo Emparejamiento';
-      this.vm.edit = false;
     }
   }
 
@@ -75,9 +72,17 @@ export class WinnerOnePage implements OnInit {
   }
 
   actionForOption(option: ActionForOptionI) {
-    switch (option.value) {
-      default:
-        break;
+    if (option.value === 'deleteOne') {
+      this.deleteOne();
+    }
+  }
+
+  async deleteOne() {
+    if (confirm('¿Está seguro de eliminar este registro?')) {
+      this.winnerService.deleteOne(this.vm.id).subscribe({
+        next: () => this.router.navigate(['/winners']),
+        error: (error) => console.error(error),
+      });
     }
   }
 }
