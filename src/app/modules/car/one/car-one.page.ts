@@ -8,6 +8,7 @@ import { BrandService } from 'src/app/services/brand/brand.service';
 import { CarService } from 'src/app/services/car/car.service';
 import { InscriptionService } from 'src/app/services/inscription/inscription.service';
 import { CarOnePageViewModel } from './model/car-one.view-model';
+import { WinnerService } from 'src/app/services/winner/winner.service';
 
 @Component({
   selector: 'page-car-one',
@@ -21,6 +22,7 @@ export class CarOnePage implements OnInit {
     private brandService: BrandService,
     private userService: UserService,
     private voteService: VoteService,
+    private winnerService: WinnerService,
     private inscriptionService: InscriptionService,
     private router: Router
   ) {}
@@ -29,6 +31,7 @@ export class CarOnePage implements OnInit {
     this.vm.id = this.route.snapshot.paramMap.get('id') as string;
     this.getAllBrands();
     this.getAllDrivers();
+    this.getAllWinners();
     if (this.vm.id) {
       this.vm.optionsTitle.title = 'Editar Coche';
       this.vm.edit = true;
@@ -56,6 +59,13 @@ export class CarOnePage implements OnInit {
   getAllDrivers() {
     this.userService.getAll(this.vm.bodyUsers).subscribe({
       next: (result) => (this.vm.users = result.items),
+      error: (e) => console.error(e),
+    });
+  }
+
+  getAllWinners() {
+    this.winnerService.getAll(this.vm.bodyWinners).subscribe({
+      next: (result) => (this.vm.winners = result.items),
       error: (e) => console.error(e),
     });
   }

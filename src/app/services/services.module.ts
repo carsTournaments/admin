@@ -16,6 +16,7 @@ import { TournamentService } from './tournament/tournament.service';
 import { UserService } from './user/user.service';
 import { VoteService } from './vote/vote.service';
 import { ImageService } from './image/image.service';
+import { WinnerService } from './winner/winner.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
@@ -34,6 +35,7 @@ import { ImageService } from './image/image.service';
     StatsService,
     UserService,
     VoteService,
+    WinnerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: GlobalHttpInterceptor,

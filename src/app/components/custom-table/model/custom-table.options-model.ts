@@ -8,7 +8,8 @@ export class CustomTableOptionsModel {
     | 'pairing'
     | 'round'
     | 'tournament'
-    | 'vote' = 'user';
+    | 'vote'
+    | 'winner' = 'user';
   items: any[] = [];
   showLoadMore = false;
   loading = true;

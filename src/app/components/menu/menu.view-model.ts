@@ -52,6 +52,10 @@ export class MenuViewModel {
           name: 'Votos',
           link: '/votes',
         },
+        {
+          name: 'Ganadores',
+          link: '/winners',
+        },
       ],
     },
     {

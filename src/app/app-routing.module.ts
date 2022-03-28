@@ -92,6 +92,13 @@ const routes: Routes = [
     canActivate: [LoginGuard],
   },
   {
+    path: 'winners',
+    data: { breadcrumb: 'Ganadores' },
+    loadChildren: () =>
+      import('./modules/winner/winner.module').then((m) => m.WinnerModule),
+    canActivate: [LoginGuard],
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',

@@ -1,3 +1,4 @@
+import { Winner } from 'src/app/models/winner.model';
 import { UserGetAllDto } from 'src/app/services/user/dtos/user.dto';
 import { BrandGetAllDto } from 'src/app/services/brand/brand.dto';
 import { CustomTableOptionsModel } from 'src/app/components/custom-table/model/custom-table.options-model';
@@ -6,6 +7,7 @@ import { SegmentsViewModel } from 'src/app/components/segments/model/segments.vi
 import { Car } from 'src/app/models/car.model';
 import { Brand } from 'src/app/models/brand.model';
 import { User } from 'src/app/models/user.model';
+import { WinnerGetAllDto } from 'src/app/services/winner/winner.dto';
 
 export class CarOnePageViewModel {
   id!: string;
@@ -22,6 +24,7 @@ export class CarOnePageViewModel {
       'Inscripciones',
       'Nueva Inscripcion',
       'Votos',
+      'Torneos Ganados',
     ],
     currentSegment: 0,
   });
@@ -68,4 +71,18 @@ export class CarOnePageViewModel {
     showLoadMore: true,
     error: false,
   });
+  winnersOptionsTable = new CustomTableOptionsModel({
+    loading: false,
+    items: [],
+    type: 'winner',
+    showLoadMore: true,
+    error: false,
+  });
+  bodyWinners: WinnerGetAllDto = {
+    page: 1,
+    pageSize: 1000,
+    site: 'admin',
+    order: ['created', 'desc'],
+  };
+  winners: Winner[] = [];
 }
