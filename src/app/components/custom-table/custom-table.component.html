@@ -1,456 +1,548 @@
 <loading [isLoading]="options.loading"></loading>
 
 <div class="table-responsive py-1" *ngIf="!options.loading">
-  <table class="table table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th
-          *ngFor="let item of vm.tableHeadItems[options.type]"
-          [ngClass]="{ pointer: item.order !== null }"
-          (click)="onChangeOrder(item.order)"
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th
+                    *ngFor="let item of vm.tableHeadItems[options.type]"
+                    [ngClass]="{ pointer: item.order !== null }"
+                    (click)="onChangeOrder(item.order)"
+                >
+                    {{ item.name }}
+                </th>
+            </tr>
+        </thead>
+        <tbody *ngIf="options.items.length > 0">
+            <ng-container>
+                <!-- Brand -->
+                <ng-container *ngIf="options.type === 'brand'">
+                    <tr class="pointer" *ngFor="let item of options.items">
+                        <td>
+                            <img
+                                class="image-table"
+                                [src]="item.image?.url | image"
+                            />
+                        </td>
+                        <td [routerLink]="['/brands/one', item._id]">
+                            {{ item.name }}
+                        </td>
+                        <td [routerLink]="['/brands/one', item._id]">
+                            {{ item.country }}
+                        </td>
+                        <td [routerLink]="['/brands/one', item._id]">
+                            <span
+                                class="badge"
+                                [ngClass]="{
+                                    'bg-danger': item.continent === 'America',
+                                    'bg-success': item.continent === 'Asia',
+                                    'bg-primary': item.continent === 'Europa'
+                                }"
+                            >
+                                {{ item.continent }}
+                            </span>
+                        </td>
+                        <td [routerLink]="['/brands/one', item._id]">
+                            {{ item.cars.length }}
+                        </td>
+                        <td [routerLink]="['/brands/one', item._id]">
+                            <span class="badge bg-medium">
+                                {{ item.updated | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                        <td [routerLink]="['/brands/one', item._id]">
+                            <span class="badge bg-medium">
+                                {{ item.created | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <!-- Car -->
+                <ng-container *ngIf="options.type === 'car'">
+                    <tr class="pointer" *ngFor="let item of options.items">
+                        <td>
+                            <img
+                                class="image-table"
+                                [src]="item.image?.url | image"
+                            />
+                        </td>
+                        <td [routerLink]="['/users/one/', item.driver?._id]">
+                            <div class="chip chip-dark">
+                                <img
+                                    class="image-table"
+                                    [src]="item.driver.image?.url | image"
+                                />
+                                {{ item.driver.name }}
+                            </div>
+                        </td>
+                        <td [routerLink]="['/brands/one/', item.brand?._id]">
+                            <div class="chip chip-primary">
+                                <img
+                                    class="image-table"
+                                    [src]="item.brand?.image?.url | image"
+                                />
+                                {{ item.brand?.name }}
+                            </div>
+                        </td>
+                        <td [routerLink]="['/cars/one', item._id]">
+                            {{ item.model }}
+                        </td>
+                        <td [routerLink]="['/cars/one', item._id]">
+                            {{ item.fuel }}
+                        </td>
+                        <td [routerLink]="['/cars/one', item._id]">
+                            <span
+                                class="badge"
+                                [ngClass]="{
+                                    'bg-dark': item.traction === 'Delantera',
+                                    'bg-warning': item.traction === 'Trasera',
+                                    'bg-info': item.traction === '4x4'
+                                }"
+                            >
+                                {{ item.traction }}</span
+                            >
+                        </td>
+                        <td [routerLink]="['/cars/one', item._id]">
+                            {{ item.cc }}
+                        </td>
+                        <td [routerLink]="['/cars/one', item._id]">
+                            {{ item.cv }}
+                        </td>
+                        <td [routerLink]="['/cars/one', item._id]">
+                            {{ item.year }}
+                        </td>
+                        <td [routerLink]="['/cars/one', item._id]">
+                            {{ item.inscriptions.length }}
+                        </td>
+                        <td [routerLink]="['/cars/one', item._id]">
+                            <span class="badge bg-medium">
+                                {{ item.updated | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                        <td [routerLink]="['/cars/one', item._id]">
+                            <span class="badge bg-medium">
+                                {{ item.created | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <!-- Image -->
+                <ng-container *ngIf="options.type === 'image'">
+                    <tr class="pointer" *ngFor="let item of options.items">
+                        <td>
+                            <img
+                                class="image-table"
+                                [src]="item?.url | image"
+                            />
+                        </td>
+                        <td
+                            *ngIf="item.type === 'tournament'"
+                            [routerLink]="[
+                                '/tournaments/one',
+                                item[item.type]._id
+                            ]"
+                        >
+                            {{ item[item.type].name }}
+                        </td>
+                        <td
+                            *ngIf="item.type === 'car'"
+                            [routerLink]="['/cars/one', item[item.type]._id]"
+                        >
+                            {{ item[item.type].brand?.name }}
+                        </td>
+                        <td
+                            *ngIf="item.type === 'brand'"
+                            [routerLink]="['/brands/one', item[item.type]._id]"
+                        >
+                            {{ item[item.type].name }}
+                        </td>
+                        <td (click)="deleteItem.emit(item._id)">
+                            <span
+                                class="badge"
+                                [ngClass]="{
+                                    'bg-danger': item.type === 'brand',
+                                    'bg-success': item.type === 'car',
+                                    'bg-primary': item.type === 'tournament',
+                                    'bg-warning': item.type === 'car'
+                                }"
+                            >
+                                {{ item.type | type }}
+                            </span>
+                        </td>
+                        <td (click)="deleteItem.emit(item._id)">
+                            <span class="badge bg-medium">
+                                {{ item.updated | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                        <td (click)="deleteItem.emit(item._id)">
+                            <span class="badge bg-medium">
+                                {{ item.created | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <!-- Inscription -->
+                <ng-container *ngIf="options.type === 'inscription'">
+                    <tr class="pointer" *ngFor="let item of options.items">
+                        <td [routerLink]="['/cars/one', item.car._id]">
+                            <div class="chip chip-primary">
+                                <img
+                                    class="image-table"
+                                    [src]="item.car.image?.url | image"
+                                />
+                                {{ item.car.brand?.name }}
+                            </div>
+                        </td>
+                        <td
+                            [routerLink]="[
+                                '/tournaments/one',
+                                item.tournament._id
+                            ]"
+                        >
+                            <div class="chip chip-dark">
+                                <img
+                                    class="image-table"
+                                    [src]="item.tournament.image?.url | image"
+                                />
+                                {{ item.tournament.name }}
+                            </div>
+                        </td>
+                        <td (click)="deleteItem.emit(item._id)">
+                            <span class="badge bg-medium">
+                                {{ item.updated | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                        <td (click)="deleteItem.emit(item._id)">
+                            <span class="badge bg-medium">
+                                {{ item.created | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <!-- Pairing -->
+                <ng-container *ngIf="options.type === 'pairing'">
+                    <tr class="pointer" *ngFor="let item of options.items">
+                        <td [routerLink]="['/cars/one', item.car1?._id]">
+                            <div class="chip chip-primary">
+                                <img
+                                    class="image-table"
+                                    [src]="item?.car1.image?.url | image"
+                                />
+                                {{ item.car1?.brand.name }}
+                            </div>
+                        </td>
+                        <td [routerLink]="['/cars/one', item.car2?._id]">
+                            <div class="chip chip-dark">
+                                <img
+                                    class="image-table"
+                                    [src]="item?.car2.image?.url | image"
+                                />
+                                {{ item.car2?.brand.name }}
+                            </div>
+                        </td>
+                        <td [routerLink]="['/pairings/one', item._id]">
+                            {{ item.votes?.length }}
+                        </td>
+                        <td [routerLink]="['/pairings/one', item._id]">
+                            <div
+                                *ngIf="item.winner !== null"
+                                class="chip chip-success"
+                            >
+                                <img
+                                    class="image-table"
+                                    [src]="item.winner?.image?.url | image"
+                                />
+                                {{ item.winner?.brand?.name }}
+                            </div>
+                            <ng-container *ngIf="item.winner === null">
+                                N/D
+                            </ng-container>
+                        </td>
+                        <td [routerLink]="['/rounds/one', item.round._id]">
+                            {{ item.round?.name }}
+                        </td>
+                        <td
+                            [routerLink]="[
+                                '/tournaments/one',
+                                item.round.tournament._id
+                            ]"
+                        >
+                            <div class="chip chip-primary">
+                                <img
+                                    class="image-table"
+                                    [src]="
+                                        item?.round.tournament.image?.url
+                                            | image
+                                    "
+                                />
+                                {{ item.round?.tournament.name }}
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge bg-medium">
+                                {{ item.created | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <!-- Round -->
+                <ng-container *ngIf="options.type === 'round'">
+                    <tr class="pointer" *ngFor="let item of options.items">
+                        <td [routerLink]="['/rounds/one', item._id]">
+                            {{ item.name }}
+                        </td>
+                        <td>{{ item.participants }}</td>
+                        <td
+                            [routerLink]="[
+                                '/tournaments/one',
+                                item.tournament._id
+                            ]"
+                        >
+                            <div class="chip chip-primary">
+                                <img
+                                    class="image-table"
+                                    [src]="item.tournament.image?.url | image"
+                                />
+                                {{ item.tournament.name }}
+                            </div>
+                        </td>
+                        <td>
+                            {{ item.startDate | dateToTimeAgo | titlecase }}
+                        </td>
+                        <td>{{ item.endDate | dateToTimeAgo | titlecase }}</td>
+                        <td>
+                            <span
+                                class="badge"
+                                [ngClass]="{
+                                    'bg-danger': item.status === 'Canceled',
+                                    'bg-success': item.status === 'Completed',
+                                    'bg-primary': item.status === 'InProgress',
+                                    'bg-warning': item.status === 'Todo'
+                                }"
+                            >
+                                {{ item.status | status }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge bg-medium">
+                                {{ item.created | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <!-- Tournament -->
+                <ng-container *ngIf="options.type === 'tournament'">
+                    <tr class="pointer" *ngFor="let item of options.items">
+                        <td>
+                            <img
+                                class="image-table"
+                                [src]="item.image?.url | image"
+                            />
+                        </td>
+                        <td [routerLink]="['/tournaments/one', item._id]">
+                            {{ item.name }}
+                        </td>
+                        <td>
+                            <span class="badge bg-dark">
+                                {{ item.startDate | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                        <td>
+                            {{ item.inscriptions?.length }} /
+                            {{ item.maxParticipants }}
+                        </td>
+                        <td>{{ item.rounds?.length }}</td>
+                        <td>{{ item.requisites.length }}</td>
+                        <td>
+                            <span
+                                class="badge"
+                                [ngClass]="{
+                                    'bg-danger': item.status === 'Canceled',
+                                    'bg-success': item.status === 'Completed',
+                                    'bg-primary': item.status === 'InProgress',
+                                    'bg-warning': item.status === 'Todo'
+                                }"
+                            >
+                                {{ item.status | status }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-medium">
+                                {{ item.updated | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge bg-medium">
+                                {{ item.created | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <!-- User -->
+                <ng-container *ngIf="options.type === 'user'">
+                    <tr class="pointer" *ngFor="let item of options.items">
+                        <td>
+                            <img
+                                class="image-table"
+                                [src]="item.image?.url | image"
+                            />
+                        </td>
+                        <td [routerLink]="['/users/one', item._id]">
+                            {{ item.name }}
+                        </td>
+                        <td>{{ item.email }}</td>
+                        <td>
+                            <span
+                                class="badge"
+                                [ngClass]="{
+                                    'bg-success': item.role === 'ADMIN',
+                                    'bg-danger': item.role === 'USER',
+                                    'bg-primary': item.role === 'FAKE'
+                                }"
+                            >
+                                {{ item.role }}
+                            </span>
+                        </td>
+                        <td>{{ item.cars.length }}</td>
+                        <td>
+                            <span class="badge bg-medium">
+                                {{ item.updated | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge bg-medium">
+                                {{ item.created | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <!-- Vote -->
+                <ng-container *ngIf="options.type === 'vote'">
+                    <tr class="pointer" *ngFor="let item of options.items">
+                        <td
+                            [routerLink]="[
+                                '/tournaments/one',
+                                item.pairing.round.tournament._id
+                            ]"
+                        >
+                            <div class="chip chip-primary">
+                                <img
+                                    class="image-table"
+                                    [src]="
+                                        item.pairing.round.tournament.image?.url
+                                            | image
+                                    "
+                                />
+                                {{ item.pairing.round.tournament.name }}
+                            </div>
+                        </td>
+                        <td
+                            [routerLink]="[
+                                '/pairings/one',
+                                item.pairing.round._id
+                            ]"
+                        >
+                            {{ item.pairing.round.name }}
+                        </td>
+                        <td [routerLink]="['/cars/one', item.car._id]">
+                            <div class="chip chip-dark">
+                                <img
+                                    class="image-table"
+                                    [src]="item.car.image?.url | image"
+                                />
+                                {{ item.car.brand.name }}
+                            </div>
+                        </td>
+                        <td [routerLink]="['/votes/one', item._id]">
+                            <span class="badge bg-medium">
+                                {{ item.created | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <!-- Winners -->
+                <ng-container *ngIf="options.type === 'winner'">
+                    <tr class="pointer" *ngFor="let item of options.items">
+                        <td
+                            [routerLink]="[
+                                '/tournaments/one',
+                                item.tournament._id
+                            ]"
+                        >
+                            <div class="chip chip-primary">
+                                <img
+                                    class="image-table"
+                                    [src]="item.tournament.image?.url | image"
+                                />
+                                {{ item.tournament.name }}
+                            </div>
+                        </td>
+                        <td [routerLink]="['/cars/one', item.gold._id]">
+                            <div class="chip chip-gold">
+                                <img
+                                    class="image-table"
+                                    [src]="item.gold.image?.url | image"
+                                />
+                                {{ item.gold.brand.name }}
+                                {{ item.gold.model }} ({{
+                                    item.gold.driver?.name
+                                }})
+                            </div>
+                        </td>
+                        <td [routerLink]="['/cars/one', item.silver._id]">
+                            <div class="chip chip-silver">
+                                <img
+                                    class="image-table"
+                                    [src]="item.silver.image?.url | image"
+                                />
+                                {{ item.silver.brand.name }}
+                                {{ item.silver.model }} ({{
+                                    item.silver.driver?.name
+                                }})
+                            </div>
+                        </td>
+                        <td [routerLink]="['/cars/one', item.bronze._id]">
+                            <div class="chip chip-bronze">
+                                <img
+                                    class="image-table"
+                                    [src]="item.bronze.image?.url | image"
+                                />
+                                {{ item.bronze.brand.name }}
+                                {{ item.bronze.model }} ({{
+                                    item.bronze.driver?.name
+                                }})
+                            </div>
+                        </td>
+                        <td [routerLink]="['/winners/one', item._id]">
+                            <span class="badge bg-medium">
+                                {{ item.created | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+        </tbody>
+    </table>
+    <div *ngIf="options.items.length === 0" class="alert alert-warning">
+        No hay elementos disponibles
+    </div>
+    <div class="text-center mb-3">
+        <button
+            class="btn btn-primary w-100"
+            *ngIf="options.showLoadMore && options.items.length > 9"
+            (click)="changePage.emit()"
         >
-          {{ item.name }}
-        </th>
-      </tr>
-    </thead>
-    <tbody *ngIf="options.items.length > 0">
-      <ng-container>
-        <!-- Brand -->
-        <ng-container *ngIf="options.type === 'brand'">
-          <tr class="pointer" *ngFor="let item of options.items">
-            <td><img class="image-table" [src]="item.image?.url | image" /></td>
-            <td [routerLink]="['/brands/one', item._id]">
-              {{ item.name }}
-            </td>
-            <td [routerLink]="['/brands/one', item._id]">{{ item.country }}</td>
-            <td [routerLink]="['/brands/one', item._id]">
-              <span
-                class="badge"
-                [ngClass]="{
-                  'bg-danger': item.continent === 'America',
-                  'bg-success': item.continent === 'Asia',
-                  'bg-primary': item.continent === 'Europa'
-                }"
-              >
-                {{ item.continent }}
-              </span>
-            </td>
-            <td [routerLink]="['/brands/one', item._id]">
-              {{ item.cars.length }}
-            </td>
-            <td [routerLink]="['/brands/one', item._id]">
-              <span class="badge bg-medium">
-                {{ item.updated | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-            <td [routerLink]="['/brands/one', item._id]">
-              <span class="badge bg-medium">
-                {{ item.created | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-          </tr>
-        </ng-container>
-
-        <!-- Car -->
-        <ng-container *ngIf="options.type === 'car'">
-          <tr class="pointer" *ngFor="let item of options.items">
-            <td><img class="image-table" [src]="item.image?.url | image" /></td>
-            <td [routerLink]="['/users/one/', item.driver?._id]">
-              <div class="chip chip-dark">
-                <img
-                  class="image-table"
-                  [src]="item.driver.image?.url | image"
-                />
-                {{ item.driver.name }}
-              </div>
-            </td>
-            <td [routerLink]="['/brands/one/', item.brand?._id]">
-              <div class="chip chip-primary">
-                <img
-                  class="image-table"
-                  [src]="item.brand?.image?.url | image"
-                />
-                {{ item.brand?.name }}
-              </div>
-            </td>
-            <td [routerLink]="['/cars/one', item._id]">{{ item.model }}</td>
-            <td [routerLink]="['/cars/one', item._id]">
-              <span
-                class="badge"
-                [ngClass]="{
-                  'bg-dark': item.traction === 'Delantera',
-                  'bg-warning': item.traction === 'Trasera',
-                  'bg-info': item.traction === '4x4'
-                }"
-              >
-                {{ item.traction }}</span
-              >
-            </td>
-            <td [routerLink]="['/cars/one', item._id]">{{ item.cc }}</td>
-            <td [routerLink]="['/cars/one', item._id]">{{ item.cv }}</td>
-            <td [routerLink]="['/cars/one', item._id]">{{ item.year }}</td>
-            <td [routerLink]="['/cars/one', item._id]">
-              {{ item.inscriptions.length }}
-            </td>
-            <td [routerLink]="['/cars/one', item._id]">
-              <span class="badge bg-medium">
-                {{ item.updated | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-            <td [routerLink]="['/cars/one', item._id]">
-              <span class="badge bg-medium">
-                {{ item.created | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-          </tr>
-        </ng-container>
-
-        <!-- Image -->
-        <ng-container *ngIf="options.type === 'image'">
-          <tr class="pointer" *ngFor="let item of options.items">
-            <td><img class="image-table" [src]="item?.url | image" /></td>
-            <td
-              *ngIf="item.type === 'tournament'"
-              [routerLink]="['/tournaments/one', item[item.type]._id]"
-            >
-              {{ item[item.type].name }}
-            </td>
-            <td
-              *ngIf="item.type === 'car'"
-              [routerLink]="['/cars/one', item[item.type]._id]"
-            >
-              {{ item[item.type].brand?.name }}
-            </td>
-            <td
-              *ngIf="item.type === 'brand'"
-              [routerLink]="['/brands/one', item[item.type]._id]"
-            >
-              {{ item[item.type].name }}
-            </td>
-            <td (click)="deleteItem.emit(item._id)">
-              <span
-                class="badge"
-                [ngClass]="{
-                  'bg-danger': item.type === 'brand',
-                  'bg-success': item.type === 'car',
-                  'bg-primary': item.type === 'tournament',
-                  'bg-warning': item.type === 'car'
-                }"
-              >
-                {{ item.type | type }}
-              </span>
-            </td>
-            <td>
-              <span class="badge bg-medium">
-                {{ item.updated | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-            <td>
-              <span class="badge bg-medium">
-                {{ item.created | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-          </tr>
-        </ng-container>
-
-        <!-- Inscription -->
-        <ng-container *ngIf="options.type === 'inscription'">
-          <tr class="pointer" *ngFor="let item of options.items">
-            <td [routerLink]="['/cars/one', item.car._id]">
-              <div class="chip chip-primary">
-                <img class="image-table" [src]="item.car.image?.url | image" />
-                {{ item.car.brand?.name }}
-              </div>
-            </td>
-            <td [routerLink]="['/tournaments/one', item.tournament._id]">
-              <div class="chip chip-dark">
-                <img
-                  class="image-table"
-                  [src]="item.tournament.image?.url | image"
-                />
-                {{ item.tournament.name }}
-              </div>
-            </td>
-            <td (click)="deleteItem.emit(item._id)">
-              <span class="badge bg-medium">
-                {{ item.updated | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-            <td (click)="deleteItem.emit(item._id)">
-              <span class="badge bg-medium">
-                {{ item.created | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-          </tr>
-        </ng-container>
-
-        <!-- Pairing -->
-        <ng-container *ngIf="options.type === 'pairing'">
-          <tr class="pointer" *ngFor="let item of options.items">
-            <td [routerLink]="['/cars/one', item.car1?._id]">
-              <div class="chip chip-primary">
-                <img
-                  class="image-table"
-                  [src]="item?.car1.image?.url | image"
-                />
-                {{ item.car1?.brand.name }}
-              </div>
-            </td>
-            <td [routerLink]="['/cars/one', item.car2?._id]">
-              <div class="chip chip-dark">
-                <img
-                  class="image-table"
-                  [src]="item?.car2.image?.url | image"
-                />
-                {{ item.car2?.brand.name }}
-              </div>
-            </td>
-            <td [routerLink]="['/pairings/one', item._id]">
-              {{ item.votes?.length }}
-            </td>
-            <td [routerLink]="['/pairings/one', item._id]">
-              <div *ngIf="item.winner !== null" class="chip chip-success">
-                <img
-                  class="image-table"
-                  [src]="item.winner?.image?.url | image"
-                />
-                {{ item.winner?.brand?.name }}
-              </div>
-              <ng-container *ngIf="item.winner === null"> N/D </ng-container>
-            </td>
-            <td [routerLink]="['/rounds/one', item.round._id]">
-              {{ item.round?.name }}
-            </td>
-            <td [routerLink]="['/tournaments/one', item.round.tournament._id]">
-              <div class="chip chip-primary">
-                <img
-                  class="image-table"
-                  [src]="item?.round.tournament.image?.url | image"
-                />
-                {{ item.round?.tournament.name }}
-              </div>
-            </td>
-            <td>
-              <span class="badge bg-medium">
-                {{ item.created | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-          </tr>
-        </ng-container>
-
-        <!-- Round -->
-        <ng-container *ngIf="options.type === 'round'">
-          <tr class="pointer" *ngFor="let item of options.items">
-            <td [routerLink]="['/rounds/one', item._id]">
-              {{ item.name }}
-            </td>
-            <td>{{ item.participants }}</td>
-            <td [routerLink]="['/tournaments/one', item.tournament._id]">
-              <div class="chip chip-primary">
-                <img
-                  class="image-table"
-                  [src]="item.tournament.image?.url | image"
-                />
-                {{ item.tournament.name }}
-              </div>
-            </td>
-            <td>{{ item.startDate | dateToTimeAgo | titlecase }}</td>
-            <td>{{ item.endDate | dateToTimeAgo | titlecase }}</td>
-            <td>
-              <span
-                class="badge"
-                [ngClass]="{
-                  'bg-danger': item.status === 'Canceled',
-                  'bg-success': item.status === 'Completed',
-                  'bg-primary': item.status === 'InProgress',
-                  'bg-warning': item.status === 'Todo'
-                }"
-              >
-                {{ item.status | status }}
-              </span>
-            </td>
-            <td>
-              <span class="badge bg-medium">
-                {{ item.created | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-          </tr>
-        </ng-container>
-
-        <!-- Tournament -->
-        <ng-container *ngIf="options.type === 'tournament'">
-          <tr class="pointer" *ngFor="let item of options.items">
-            <td><img class="image-table" [src]="item.image?.url | image" /></td>
-            <td [routerLink]="['/tournaments/one', item._id]">
-              {{ item.name }}
-            </td>
-            <td>
-              <span class="badge bg-dark">
-                {{ item.startDate | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-            <td>
-              {{ item.inscriptions?.length }} / {{ item.maxParticipants }}
-            </td>
-            <td>{{ item.rounds?.length }}</td>
-            <td>{{ item.requisites.length }}</td>
-            <td>
-              <span
-                class="badge"
-                [ngClass]="{
-                  'bg-danger': item.status === 'Canceled',
-                  'bg-success': item.status === 'Completed',
-                  'bg-primary': item.status === 'InProgress',
-                  'bg-warning': item.status === 'Todo'
-                }"
-              >
-                {{ item.status | status }}
-              </span>
-            </td>
-
-            <td>
-              <span class="badge bg-medium">
-                {{ item.updated | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-            <td>
-              <span class="badge bg-medium">
-                {{ item.created | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-          </tr>
-        </ng-container>
-
-        <!-- User -->
-        <ng-container *ngIf="options.type === 'user'">
-          <tr class="pointer" *ngFor="let item of options.items">
-            <td><img class="image-table" [src]="item.image?.url | image" /></td>
-            <td [routerLink]="['/users/one', item._id]">
-              {{ item.name }}
-            </td>
-            <td>{{ item.email }}</td>
-            <td>
-              <span
-                class="badge"
-                [ngClass]="{
-                  'bg-success': item.role === 'ADMIN',
-                  'bg-danger': item.role === 'USER',
-                  'bg-primary': item.role === 'FAKE'
-                }"
-              >
-                {{ item.role }}
-              </span>
-            </td>
-            <td>{{ item.cars.length }}</td>
-            <td>
-              <span class="badge bg-medium">
-                {{ item.updated | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-            <td>
-              <span class="badge bg-medium">
-                {{ item.created | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-          </tr>
-        </ng-container>
-
-        <!-- Vote -->
-        <ng-container *ngIf="options.type === 'vote'">
-          <tr class="pointer" *ngFor="let item of options.items">
-            <td
-              [routerLink]="[
-                '/tournaments/one',
-                item.pairing.round.tournament._id
-              ]"
-            >
-              <div class="chip chip-primary">
-                <img
-                  class="image-table"
-                  [src]="item.pairing.round.tournament.image?.url | image"
-                />
-                {{ item.pairing.round.tournament.name }}
-              </div>
-            </td>
-            <td [routerLink]="['/pairings/one', item.pairing.round._id]">
-              {{ item.pairing.round.name }}
-            </td>
-            <td [routerLink]="['/cars/one', item.car._id]">
-              <div class="chip chip-dark">
-                <img class="image-table" [src]="item.car.image?.url | image" />
-                {{ item.car.brand.name }}
-              </div>
-            </td>
-            <td [routerLink]="['/votes/one', item._id]">
-              <span class="badge bg-medium">
-                {{ item.created | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-          </tr>
-        </ng-container>
-
-        <!-- Winners -->
-        <ng-container *ngIf="options.type === 'winner'">
-          <tr class="pointer" *ngFor="let item of options.items">
-            <td [routerLink]="['/tournaments/one', item.tournament._id]">
-              <div class="chip chip-primary">
-                <img
-                  class="image-table"
-                  [src]="item.tournament.image?.url | image"
-                />
-                {{ item.tournament.name }}
-              </div>
-            </td>
-            <td [routerLink]="['/cars/one', item.gold._id]">
-              <div class="chip chip-gold">
-                <img class="image-table" [src]="item.gold.image?.url | image" />
-                {{ item.gold.brand.name }} {{ item.gold.model }} ({{
-                  item.gold.driver?.name
-                }})
-              </div>
-            </td>
-            <td [routerLink]="['/cars/one', item.silver._id]">
-              <div class="chip chip-silver">
-                <img
-                  class="image-table"
-                  [src]="item.silver.image?.url | image"
-                />
-                {{ item.silver.brand.name }} {{ item.silver.model }} ({{
-                  item.silver.driver?.name
-                }})
-              </div>
-            </td>
-            <td [routerLink]="['/cars/one', item.bronze._id]">
-              <div class="chip chip-bronze">
-                <img
-                  class="image-table"
-                  [src]="item.bronze.image?.url | image"
-                />
-                {{ item.bronze.brand.name }} {{ item.bronze.model }} ({{
-                  item.bronze.driver?.name
-                }})
-              </div>
-            </td>
-            <td [routerLink]="['/winners/one', item._id]">
-              <span class="badge bg-medium">
-                {{ item.created | dateToTimeAgo | titlecase }}
-              </span>
-            </td>
-          </tr>
-        </ng-container>
-      </ng-container>
-    </tbody>
-  </table>
-  <div *ngIf="options.items.length === 0" class="alert alert-warning">
-    No hay elementos disponibles
-  </div>
-  <div class="text-center mb-3">
-    <button
-      class="btn btn-primary w-100"
-      *ngIf="options.showLoadMore && options.items.length > 9"
-      (click)="changePage.emit()"
-    >
-      Cargar mas
-    </button>
-  </div>
+            Cargar mas
+        </button>
+    </div>
 </div>
