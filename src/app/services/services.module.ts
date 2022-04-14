@@ -1,8 +1,8 @@
+import { TokenInterceptorService } from './../core/interceptors/token.interceptor';
 import { StatsService } from 'src/app/services/stats/stats.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { GlobalHttpInterceptor } from '../core/interceptors/global-http.interceptor';
 
 import { AuthService } from './auth/auth.service';
 import { BrandService } from './brand/brand.service';
@@ -19,28 +19,28 @@ import { ImageService } from './image/image.service';
 import { WinnerService } from './winner/winner.service';
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule],
-  declarations: [],
-  providers: [
-    AuthService,
-    BrandService,
-    CarService,
-    ImageService,
-    InscriptionService,
-    LoggerService,
-    PairingService,
-    RoundService,
-    SearchService,
-    TournamentService,
-    StatsService,
-    UserService,
-    VoteService,
-    WinnerService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: GlobalHttpInterceptor,
-      multi: true,
-    },
-  ],
+    imports: [CommonModule, HttpClientModule],
+    declarations: [],
+    providers: [
+        AuthService,
+        BrandService,
+        CarService,
+        ImageService,
+        InscriptionService,
+        LoggerService,
+        PairingService,
+        RoundService,
+        SearchService,
+        TournamentService,
+        StatsService,
+        UserService,
+        VoteService,
+        WinnerService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptorService,
+            multi: true,
+        },
+    ],
 })
 export class ServicesModule {}
