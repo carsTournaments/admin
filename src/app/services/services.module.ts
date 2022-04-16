@@ -1,4 +1,4 @@
-import { TokenInterceptorService } from './../core/interceptors/token.interceptor';
+import { HttpInterceptorService } from '../core/interceptors/http.interceptor';
 import { StatsService } from 'src/app/services/stats/stats.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -38,7 +38,7 @@ import { WinnerService } from './winner/winner.service';
         WinnerService,
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: TokenInterceptorService,
+            useClass: HttpInterceptorService,
             multi: true,
         },
     ],

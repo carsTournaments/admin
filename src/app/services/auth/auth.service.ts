@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { LoginResponseI } from 'src/app/interfaces/login-response.interface';
 import { AuthLogInDto } from './auth.dto';
+import { User } from 'src/app/models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -24,5 +25,10 @@ export class AuthService {
 
     getToken(): string {
         return localStorage.getItem('token') as string;
+    }
+
+    getUser(): User {
+        const data: string = localStorage.getItem('user')!;
+        return JSON.parse(data) as User;
     }
 }

@@ -12,19 +12,22 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 @Injectable({
     providedIn: 'root',
 })
-export class TokenInterceptorService implements HttpInterceptor {
+export class HttpInterceptorService implements HttpInterceptor {
     constructor(private authService: AuthService) {}
     intercept(
         request: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
         const token = this.authService.getToken();
-        if (token) {
+        const user = this.authService.getUser();
+        if (token && user.role === 'ADMIN') {
             request = request.clone({
                 setHeaders: {
                     XSToken: `${token}`,
                 },
             });
+        } else {
+            this.authService.logout();
         }
         return next.handle(request).pipe(
             catchError((err) => {

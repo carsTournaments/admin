@@ -33,9 +33,11 @@ export class PairingOnePage implements OnInit {
 
     async getOne() {
         try {
-            this.pairingService.getOne(this.vm.id).subscribe((item) => {
-                this.vm.item = item;
-            });
+            this.pairingService
+                .getOne({ id: this.vm.id, site: 'admin' })
+                .subscribe((item) => {
+                    this.vm.item = item;
+                });
         } catch (error) {
             console.error(error);
         }

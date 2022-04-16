@@ -1,3 +1,8 @@
 export interface IdDto {
-  id: string;
+    id: string;
+}
+
+export interface IdSiteDto {
+    id: string;
+    site: string;
 }
