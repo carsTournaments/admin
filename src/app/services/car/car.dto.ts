@@ -5,6 +5,11 @@ export interface CarGetAllDto {
     order: string[];
 }
 
+export interface CarGetOneDto {
+    id: string;
+    site: string;
+}
+
 export interface CarCreateDto {
     name: string;
     driver: any; // UserI
