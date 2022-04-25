@@ -184,6 +184,45 @@
                     </tr>
                 </ng-container>
 
+                <!-- Likes -->
+                <ng-container *ngIf="options.type === 'like'">
+                    <tr class="pointer" *ngFor="let item of options.items">
+                        <td [routerLink]="['/cars/one', item.car._id]">
+                            <div class="chip chip-primary">
+                                <img
+                                    class="image-table"
+                                    [src]="item.car.image?.url | image"
+                                />
+                                {{ item.car.brand?.name }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="chip chip-dark">
+                                <img
+                                    *ngIf="item.user && item.user.name"
+                                    class="image-table"
+                                    [src]="item.user.image?.url | image"
+                                />
+                                {{
+                                    item.user && item.user.name
+                                        ? item.user.name
+                                        : 'Anonimo'
+                                }}
+                            </div>
+                        </td>
+                        <td (click)="deleteItem.emit(item._id)">
+                            <span class="badge bg-medium">
+                                {{ item.updated | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                        <td (click)="deleteItem.emit(item._id)">
+                            <span class="badge bg-medium">
+                                {{ item.created | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+
                 <!-- Inscription -->
                 <ng-container *ngIf="options.type === 'inscription'">
                     <tr class="pointer" *ngFor="let item of options.items">

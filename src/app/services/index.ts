@@ -1,0 +1,15 @@
+export { AuthService } from './auth/auth.service';
+export { BrandService } from './brand/brand.service';
+export { CarService } from './car/car.service';
+export { ImageService } from './image/image.service';
+export { InscriptionService } from './inscription/inscription.service';
+export { LikeService } from './like/like.service';
+export { LoggerService } from './logger/logger.service';
+export { PairingService } from './pairing/pairing.service';
+export { RoundService } from './round/round.service';
+export { SearchService } from './search/search.service';
+export { StatsService } from 'src/app/services/stats/stats.service';
+export { TournamentService } from './tournament/tournament.service';
+export { UserService } from './user/user.service';
+export { VoteService } from './vote/vote.service';
+export { WinnerService } from './winner/winner.service';

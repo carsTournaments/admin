@@ -31,6 +31,12 @@ export class CustomTableViewModel {
             { name: 'Actualizado', order: 'updated', col: null },
             { name: 'Creado', order: 'created', col: null },
         ],
+        like: [
+            { name: 'Coche', order: 'car', col: null },
+            { name: 'Usuario', order: 'user', col: null },
+            { name: 'Actualizado', order: 'updated', col: null },
+            { name: 'Creado', order: 'created', col: null },
+        ],
         inscription: [
             { name: 'Coche', order: 'car', col: null },
             { name: 'Torneo', order: 'tournament', col: null },

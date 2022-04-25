@@ -2,7 +2,7 @@ import { CustomTableOptionsModel } from 'src/app/components/custom-table/model/c
 import { CustomTitleWithButtonsViewModel } from 'src/app/components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { SegmentsViewModel } from 'src/app/components/segments/model/segments.view-model';
 import { User } from 'src/app/models/user.model';
-import { PairingGetAllDto } from 'src/app/services/pairing/pairing.dto';
+import { LikeGetAllDto } from 'src/app/services/like/like.dto';
 
 export class LikeListViewModel {
     items: User[] = [];
@@ -13,7 +13,7 @@ export class LikeListViewModel {
     optionsTable = new CustomTableOptionsModel({
         loading: false,
         items: [],
-        type: 'pairing',
+        type: 'like',
         showLoadMore: true,
         error: false,
     });
@@ -23,11 +23,15 @@ export class LikeListViewModel {
     });
     options = [
         {
-            name: 'Eliminar todos los emparejamientos',
+            name: 'Crear fake likes',
+            value: 'createFake',
+        },
+        {
+            name: 'Eliminar todos los likes',
             value: 'deleteAll',
         },
     ];
-    pairingBody: PairingGetAllDto = {
+    pairingBody: LikeGetAllDto = {
         page: 1,
         pageSize: 20,
         site: 'admin',

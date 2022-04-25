@@ -30,6 +30,10 @@ export class MenuViewModel {
                     name: 'Marcas',
                     link: '/brands',
                 },
+                {
+                    name: 'Likes',
+                    link: '/likes',
+                },
             ],
         },
         {

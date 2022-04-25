@@ -1,13 +1,17 @@
-import { VoteService } from 'src/app/services/vote/vote.service';
-import { UserService } from 'src/app/services/user/user.service';
+import { Like } from './../../../models/like.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
-import { BrandService } from 'src/app/services/brand/brand.service';
-import { CarService } from 'src/app/services/car/car.service';
-import { InscriptionService } from 'src/app/services/inscription/inscription.service';
+import {
+    BrandService,
+    CarService,
+    InscriptionService,
+    LikeService,
+    UserService,
+    VoteService,
+    WinnerService,
+} from 'src/app/services';
 import { CarOnePageViewModel } from './model/car-one.view-model';
-import { WinnerService } from 'src/app/services/winner/winner.service';
 
 @Component({
     selector: 'page-car-one',
@@ -23,6 +27,7 @@ export class CarOnePage implements OnInit {
         private voteService: VoteService,
         private winnerService: WinnerService,
         private inscriptionService: InscriptionService,
+        private likeService: LikeService,
         private router: Router
     ) {}
 
@@ -114,6 +119,9 @@ export class CarOnePage implements OnInit {
 
     actionForOption(option: ActionForOptionI) {
         switch (option.value) {
+            case 'like':
+                this.likeCar();
+                break;
             case 'deleteInscriptions':
                 this.deleteInscriptions();
                 break;
@@ -122,6 +130,22 @@ export class CarOnePage implements OnInit {
                 break;
             default:
                 break;
+        }
+    }
+
+    likeCar() {
+        try {
+            const like: Like = {
+                car: this.vm.id,
+            };
+            this.likeService.create(like).subscribe({
+                next: () => alert('Like añadido'),
+                error: (e) => {
+                    console.error(e);
+                },
+            });
+        } catch (error) {
+            console.error(error);
         }
     }
 

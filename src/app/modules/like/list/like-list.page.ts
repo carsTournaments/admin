@@ -22,7 +22,7 @@ export class LikeListPage implements OnInit {
                 if (!showMore) {
                     this.vm.optionsTable.items = response.items;
                     this.vm.optionsTable.loading = false;
-                    this.vm.optionsTitle.title = `Emparejamientos (${response.paginator.total})`;
+                    this.vm.optionsTitle.title = `Likes (${response.paginator.total})`;
                 } else {
                     this.vm.optionsTable.items = [
                         ...this.vm.optionsTable.items,
@@ -40,11 +40,38 @@ export class LikeListPage implements OnInit {
 
     actionForOption(option: ActionForOptionI) {
         switch (option.value) {
+            case 'createFake':
+                this.createFake();
+                break;
             case 'deleteAll':
                 this.deleteAll();
                 break;
             default:
                 break;
+        }
+    }
+
+    createFake() {
+        try {
+            const total = prompt(
+                'Ingrese la cantidad de emparejamientos a crear'
+            );
+            if (total) {
+                this.vm.optionsTable.loading = true;
+                this.likesService.createFake(Number(total)).subscribe({
+                    next: () => {
+                        alert('Likes creados');
+                        this.getAll(true);
+                        this.vm.optionsTable.loading = false;
+                    },
+                    error: (error) => {
+                        this.vm.optionsTable.loading = false;
+                        console.error(error);
+                    },
+                });
+            }
+        } catch (e) {
+            console.error(e);
         }
     }
 

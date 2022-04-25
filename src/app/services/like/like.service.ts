@@ -3,10 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../http/http.service';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
-import { Pairing } from 'src/app/models/pairing.model';
-import { IdDto, IdSiteDto } from 'src/app/core/dtos/id.dto';
-import { PairingGetAllDto } from './like.dto';
 import { PaginatorI } from 'src/app/interfaces/paginator.interface';
+import { LikeGetAllDto } from './like.dto';
+import { Like } from 'src/app/models/like.model';
 
 @Injectable({ providedIn: 'root' })
 export class LikeService {
@@ -18,62 +17,38 @@ export class LikeService {
     ) {}
 
     getAll(
-        data: PairingGetAllDto
-    ): Observable<{ items: Pairing[]; paginator: PaginatorI }> {
+        data: LikeGetAllDto
+    ): Observable<{ items: Like[]; paginator: PaginatorI }> {
         return this.httpClient.post<{
-            items: Pairing[];
+            items: Like[];
             paginator: PaginatorI;
-        }>(`${this.url}/all`, data, this.headers);
+        }>(`${this.url}/getAll`, data, this.headers);
     }
 
-    getAllOfRound(data: IdDto): Observable<Pairing[]> {
-        return this.httpClient.post<Pairing[]>(
-            `${this.url}/allOfRound`,
-            data,
-            this.headers
-        );
-    }
-
-    getAllOfTournament(data: IdDto): Observable<Pairing[]> {
-        return this.httpClient.post<Pairing[]>(
-            `${this.url}/allOfTournament`,
-            data,
-            this.headers
-        );
-    }
-
-    getOne(data: IdSiteDto): Observable<Pairing> {
-        return this.httpClient.post<Pairing>(
-            `${this.url}/one`,
-            data,
-            this.headers
-        );
-    }
-
-    create(data: Pairing): Observable<Pairing> {
-        return this.httpClient.post<Pairing>(
+    create(data: Like): Observable<Like> {
+        return this.httpClient.post<Like>(
             `${this.url}/create`,
             data,
             this.headers
         );
     }
 
-    update(data: Pairing): Observable<Pairing> {
-        return this.httpClient.put<Pairing>(
-            `${this.url}/update`,
-            data,
+    createFake(total: number): Observable<Like> {
+        return this.httpClient.post<Like>(
+            `${this.url}/createFake`,
+            { total },
             this.headers
         );
     }
 
-    delete(id: string): Observable<Pairing> {
-        return this.httpClient.delete<Pairing>(
+    delete(id: string): Observable<Like> {
+        return this.httpClient.delete<Like>(
             `${this.url}/one/${id}`,
             this.headers
         );
     }
 
-    deleteAll(): Observable<Pairing> {
-        return this.httpClient.delete<Pairing>(`${this.url}/all`, this.headers);
+    deleteAll(): Observable<Like> {
+        return this.httpClient.delete<Like>(`${this.url}/all`, this.headers);
     }
 }
