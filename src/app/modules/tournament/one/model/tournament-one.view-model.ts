@@ -6,7 +6,7 @@ import {
     Tournament,
     TournamentRequisiteI,
 } from 'src/app/models/tournament.model';
-import { RoundForceNextRoundDto } from 'src/app/services/round/round.dto';
+import { RoundForceNextRoundDto } from 'src/app/services/api/round/round.dto';
 
 export class TournamentOnePageViewModel {
     id!: string;

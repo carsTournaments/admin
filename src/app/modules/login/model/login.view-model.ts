@@ -1,4 +1,4 @@
-import { AuthLogInDto } from 'src/app/services/auth/auth.dto';
+import { AuthLogInDto } from 'src/app/services/api/auth/auth.dto';
 
 export class LoginViewModel {
     loginBody: AuthLogInDto = {

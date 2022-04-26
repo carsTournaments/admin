@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
 import { Vote } from 'src/app/models/vote.model';
-import { PairingService } from 'src/app/services/pairing/pairing.service';
-import { VoteService } from 'src/app/services/vote/vote.service';
+import { PairingService, VoteService } from 'src/app/services';
 import { PairingOnePageViewModel } from './model/pairing-one.view-model';
 
 @Component({

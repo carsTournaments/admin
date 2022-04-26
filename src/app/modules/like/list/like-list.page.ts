@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
-import { LikeService } from 'src/app/services/like/like.service';
+import { LikeService } from 'src/app/services';
 import { LikeListViewModel } from './model/like-list.view-model';
 
 @Component({
@@ -17,17 +17,23 @@ export class LikeListPage implements OnInit {
 
     async getAll(showMore = false) {
         this.vm.optionsTable.loading = true;
-        this.likesService.getAll(this.vm.pairingBody).subscribe({
+        this.likesService.getAll(this.vm.likeBody).subscribe({
             next: (response) => {
                 if (!showMore) {
                     this.vm.optionsTable.items = response.items;
                     this.vm.optionsTable.loading = false;
                     this.vm.optionsTitle.title = `Likes (${response.paginator.total})`;
                 } else {
-                    this.vm.optionsTable.items = [
-                        ...this.vm.optionsTable.items,
-                        ...response.items,
-                    ];
+                    if (response.items.length > 0) {
+                        this.vm.optionsTable.items = [
+                            ...this.vm.optionsTable.items,
+                            ...response.items,
+                        ];
+                        this.vm.optionsTable.loading = false;
+                    } else {
+                        this.vm.optionsTable.loading = false;
+                        this.vm.optionsTable.showLoadMore = false;
+                    }
                 }
             },
             error: (error) => {
@@ -40,6 +46,9 @@ export class LikeListPage implements OnInit {
 
     actionForOption(option: ActionForOptionI) {
         switch (option.value) {
+            case 'cleanLikes':
+                this.cleanLikes();
+                break;
             case 'createFake':
                 this.createFake();
                 break;
@@ -61,6 +70,27 @@ export class LikeListPage implements OnInit {
                 this.likesService.createFake(Number(total)).subscribe({
                     next: () => {
                         alert('Likes creados');
+                        this.getAll(true);
+                        this.vm.optionsTable.loading = false;
+                    },
+                    error: (error) => {
+                        this.vm.optionsTable.loading = false;
+                        console.error(error);
+                    },
+                });
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    cleanLikes() {
+        try {
+            if (confirm('¿Está seguro de hacer limpieza de likes?')) {
+                this.vm.optionsTable.loading = true;
+                this.likesService.cleanLikes().subscribe({
+                    next: () => {
+                        alert('Likes limpiados');
                         this.getAll(true);
                         this.vm.optionsTable.loading = false;
                     },
@@ -98,20 +128,20 @@ export class LikeListPage implements OnInit {
 
     onChangeOrder(order: string) {
         if (
-            !this.vm.pairingBody.order ||
-            this.vm.pairingBody.order.filter((item: string) => item === 'desc')
+            !this.vm.likeBody.order ||
+            this.vm.likeBody.order.filter((item: string) => item === 'desc')
                 .length > 0
         ) {
-            this.vm.pairingBody.order = [order, 'asc'];
+            this.vm.likeBody.order = [order, 'asc'];
             this.getAll();
         } else {
-            this.vm.pairingBody.order = [order, 'desc'];
+            this.vm.likeBody.order = [order, 'desc'];
             this.getAll();
         }
     }
 
     onChangePage() {
-        this.vm.pairingBody.page += 1;
+        this.vm.likeBody.page += 1;
         this.getAll(true);
     }
 }

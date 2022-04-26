@@ -144,15 +144,15 @@
                         </td>
                         <td
                             *ngIf="item.type === 'car'"
-                            [routerLink]="['/cars/one', item[item.type]._id]"
+                            [routerLink]="['/cars/one', item[item?.type]?._id]"
                         >
-                            {{ item[item.type].brand?.name }}
+                            {{ item[item.type]?.brand?.name }}
                         </td>
                         <td
                             *ngIf="item.type === 'brand'"
                             [routerLink]="['/brands/one', item[item.type]._id]"
                         >
-                            {{ item[item.type].name }}
+                            {{ item[item.type]?.name }}
                         </td>
                         <td (click)="deleteItem.emit(item._id)">
                             <span
@@ -223,7 +223,12 @@
                                     class="image-table"
                                     [src]="item.car.image?.url | image"
                                 />
-                                {{ item.car.brand?.name }}
+                                {{ item.car.brand?.name }} {{ item.car?.model }}
+                            </div>
+                        </td>
+                        <td [routerLink]="['/users/one', item.car?.driver._id]">
+                            <div class="chip chip-dark">
+                                {{ item.car?.driver.name }}
                             </div>
                         </td>
                         <td
@@ -263,6 +268,7 @@
                                     [src]="item?.car1?.image?.url | image"
                                 />
                                 {{ item.car1?.brand.name }}
+                                {{ item.car1?.model }}
                             </div>
                         </td>
                         <td [routerLink]="['/cars/one', item.car2?._id]">
@@ -272,6 +278,7 @@
                                     [src]="item?.car2?.image?.url | image"
                                 />
                                 {{ item.car2?.brand.name }}
+                                {{ item.car2?.model }}
                             </div>
                         </td>
                         <td [routerLink]="['/pairings/one', item._id]">

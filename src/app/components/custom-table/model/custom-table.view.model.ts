@@ -39,6 +39,7 @@ export class CustomTableViewModel {
         ],
         inscription: [
             { name: 'Coche', order: 'car', col: null },
+            { name: 'Usuario', order: null, col: null },
             { name: 'Torneo', order: 'tournament', col: null },
             { name: 'Actualizado', order: 'updated', col: null },
             { name: 'Creado', order: 'created', col: null },

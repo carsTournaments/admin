@@ -5,13 +5,15 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
-import { InscriptionService } from 'src/app/services/inscription/inscription.service';
-import { RoundService } from 'src/app/services/round/round.service';
-import { TournamentService } from 'src/app/services/tournament/tournament.service';
-import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
-import { PairingService } from 'src/app/services/pairing/pairing.service';
-import { VoteService } from 'src/app/services/vote/vote.service';
 import * as moment from 'moment';
+import {
+    TournamentService,
+    InscriptionService,
+    PairingService,
+    RoundService,
+    VoteService,
+} from 'src/app/services';
+import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
 
 @Component({
     selector: 'page-tournament-one',

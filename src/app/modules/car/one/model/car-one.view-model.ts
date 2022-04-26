@@ -1,13 +1,13 @@
 import { Winner } from 'src/app/models/winner.model';
-import { UserGetAllDto } from 'src/app/services/user/dtos/user.dto';
-import { BrandGetAllDto } from 'src/app/services/brand/brand.dto';
 import { CustomTableOptionsModel } from 'src/app/components/custom-table/model/custom-table.options-model';
 import { CustomTitleWithButtonsViewModel } from 'src/app/components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { SegmentsViewModel } from 'src/app/components/segments/model/segments.view-model';
 import { Car } from 'src/app/models/car.model';
 import { Brand } from 'src/app/models/brand.model';
 import { User } from 'src/app/models/user.model';
-import { WinnerGetAllDto } from 'src/app/services/winner/winner.dto';
+import { BrandGetAllDto } from 'src/app/services/api/brand/brand.dto';
+import { UserGetAllDto } from 'src/app/services/api/user/dtos/user.dto';
+import { WinnerGetAllDto } from 'src/app/services/api/winner/winner.dto';
 
 export class CarOnePageViewModel {
     id!: string;

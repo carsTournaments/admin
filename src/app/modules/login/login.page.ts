@@ -1,7 +1,7 @@
 import { LoginResponseI } from 'src/app/interfaces/login-response.interface';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { AuthService } from 'src/app/services/api/auth/auth.service';
 import { LoginViewModel } from './model/login.view-model';
 
 @Component({
