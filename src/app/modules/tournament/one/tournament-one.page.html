@@ -56,6 +56,38 @@
                     </div>
                 </div>
 
+                <div class="col-sm-3" *ngIf="vm.endDate">
+                    <div class="form-floating">
+                        <input
+                            class="form-control"
+                            type="date"
+                            name="name"
+                            [(ngModel)]="vm.endDate"
+                            placeholder="Nombre"
+                            required
+                        />
+                        <label for="floatingInput" class="form-label">
+                            Fecha de inicio
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-3" *ngIf="vm.endTime">
+                    <div class="form-floating">
+                        <input
+                            class="form-control"
+                            type="time"
+                            name="name"
+                            [(ngModel)]="vm.endTime"
+                            placeholder="Nombre"
+                            required
+                        />
+                        <label for="floatingInput" class="form-label">
+                            Hora de inicio
+                        </label>
+                    </div>
+                </div>
+
                 <div class="col-sm-6">
                     <div class="form-floating">
                         <input

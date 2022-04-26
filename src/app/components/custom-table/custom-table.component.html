@@ -69,10 +69,6 @@
                         </td>
                         <td [routerLink]="['/users/one/', item.driver?._id]">
                             <div class="chip chip-dark">
-                                <img
-                                    class="image-table"
-                                    [src]="item.driver.image?.url | image"
-                                />
                                 {{ item.driver.name }}
                             </div>
                         </td>
@@ -187,24 +183,19 @@
                 <!-- Likes -->
                 <ng-container *ngIf="options.type === 'like'">
                     <tr class="pointer" *ngFor="let item of options.items">
-                        <td [routerLink]="['/cars/one', item.car._id]">
+                        <td [routerLink]="['/cars/one', item.car?._id]">
                             <div class="chip chip-primary">
                                 <img
                                     class="image-table"
-                                    [src]="item.car.image?.url | image"
+                                    [src]="item.car?.image?.url | image"
                                 />
-                                {{ item.car.brand?.name }}
+                                {{ item.car?.brand?.name }}
                             </div>
                         </td>
                         <td>
                             <div class="chip chip-dark">
-                                <img
-                                    *ngIf="item.user && item.user.name"
-                                    class="image-table"
-                                    [src]="item.user.image?.url | image"
-                                />
                                 {{
-                                    item.user && item.user.name
+                                    item?.user && item?.user.name
                                         ? item.user.name
                                         : 'Anonimo'
                                 }}
@@ -269,7 +260,7 @@
                             <div class="chip chip-primary">
                                 <img
                                     class="image-table"
-                                    [src]="item?.car1.image?.url | image"
+                                    [src]="item?.car1?.image?.url | image"
                                 />
                                 {{ item.car1?.brand.name }}
                             </div>
@@ -278,7 +269,7 @@
                             <div class="chip chip-dark">
                                 <img
                                     class="image-table"
-                                    [src]="item?.car2.image?.url | image"
+                                    [src]="item?.car2?.image?.url | image"
                                 />
                                 {{ item.car2?.brand.name }}
                             </div>
@@ -538,27 +529,27 @@
                                 }})
                             </div>
                         </td>
-                        <td [routerLink]="['/cars/one', item.silver._id]">
+                        <td [routerLink]="['/cars/one', item.silver?._id]">
                             <div class="chip chip-silver">
                                 <img
                                     class="image-table"
-                                    [src]="item.silver.image?.url | image"
+                                    [src]="item.silver?.image?.url | image"
                                 />
-                                {{ item.silver.brand.name }}
-                                {{ item.silver.model }} ({{
-                                    item.silver.driver?.name
+                                {{ item.silver?.brand.name }}
+                                {{ item.silver?.model }} ({{
+                                    item.silver?.driver?.name
                                 }})
                             </div>
                         </td>
-                        <td [routerLink]="['/cars/one', item.bronze._id]">
+                        <td [routerLink]="['/cars/one', item.bronze?._id]">
                             <div class="chip chip-bronze">
                                 <img
                                     class="image-table"
                                     [src]="item.bronze.image?.url | image"
                                 />
-                                {{ item.bronze.brand.name }}
-                                {{ item.bronze.model }} ({{
-                                    item.bronze.driver?.name
+                                {{ item.bronze?.brand.name }}
+                                {{ item.bronze?.model }} ({{
+                                    item.bronze?.driver?.name
                                 }})
                             </div>
                         </td>
