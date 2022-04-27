@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
-import { UserService, CarService } from 'src/app/services';
+import { UserService, CarService, SnackBarService } from 'src/app/services';
 import { UserOnePageViewModel } from './model/user-one.view-model';
 
 @Component({
@@ -14,7 +14,8 @@ export class UserOnePage implements OnInit {
         private route: ActivatedRoute,
         private userService: UserService,
         private carService: CarService,
-        private router: Router
+        private router: Router,
+        private snackBarService: SnackBarService
     ) {}
 
     ngOnInit() {
@@ -51,14 +52,17 @@ export class UserOnePage implements OnInit {
         try {
             this.vm.edit
                 ? this.userService.update(this.vm.item).subscribe(() => {
+                      this.snackBarService.open('Usuario actualizado');
                       this.router.navigate(['/users']);
                   })
                 : this.userService.create(this.vm.item).subscribe(() => {
-                      alert('Usuario creado');
+                      this.snackBarService.open('Usuario creado');
                       this.router.navigate(['/users']);
                   });
-        } catch (error) {
-            console.error(error);
+        } catch (error: any) {
+            this.snackBarService.open(
+                error.message ? error.message : 'Ha ocurrido un error'
+            );
         }
     }
 

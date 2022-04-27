@@ -1,191 +1,201 @@
-@import "node_modules/bootstrap/scss/functions";
-@import "node_modules/bootstrap/scss/variables";
-@import "./scss/colors.scss";
-@import "node_modules/font-awesome/scss/font-awesome.scss";
-@import "node_modules/bootstrap/scss/bootstrap.scss";
-@import "~animate.css/animate.min.css";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import './scss/colors.scss';
+@import 'node_modules/font-awesome/scss/font-awesome.scss';
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import '~animate.css/animate.min.css';
 
 // NEW
 body {
-  background: #f6f8fa;
+    background: #f6f8fa;
 }
 
 .navbar {
-  background-color: $primary;
-  border-color: $primary;
-  color: $dark;
-  height: 50px;
+    background-color: $primary;
+    border-color: $primary;
+    color: $dark;
+    height: 50px;
 }
 
 .logo-header {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: $light;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: $light;
 }
 
 .nav.navbar-nav.notika-top-nav {
-  float: right;
+    float: right;
 }
 
 a {
-  transition: all 0.3s ease 0s;
-  text-decoration: none;
+    transition: all 0.3s ease 0s;
+    text-decoration: none;
 }
 
 .box-white {
-  background: #fff;
-  padding: 1rem;
+    background: #fff;
+    padding: 1rem;
 }
 
 .normal-table-list .table {
-  margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 
 .table {
-  border-collapse: separate;
-  border-spacing: 0px 0px;
+    border-collapse: separate;
+    border-spacing: 0px 0px;
 }
 
 .bd-placeholder-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 @media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
 }
 
 body {
-  font-size: 0.875rem;
+    font-size: 0.875rem;
 }
 
 .pointer {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .breadcrumb {
-  border-radius: 8px;
-  padding-top: 1rem;
-  padding-bottom: 0;
-  padding-left: 0;
+    border-radius: 8px;
+    padding-top: 1rem;
+    padding-bottom: 0;
+    padding-left: 0;
 }
 
 .breadcrumb-item a {
-  text-decoration: none !important;
-  font-weight: 600;
-  color: $primary;
+    text-decoration: none !important;
+    font-weight: 600;
+    color: $primary;
 }
 
 .nav-tabs .nav-link {
-  color: $medium !important;
+    color: $medium !important;
 }
 
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: $dark !important;
+    color: $dark !important;
 }
 
 thead {
-  color: $dark;
-  text-align: center;
+    color: $dark;
+    text-align: center;
 }
 
 tbody {
-  text-align: center;
+    text-align: center;
 }
 
 .select-inline {
-  width: auto;
-  display: inline-block;
+    width: auto;
+    display: inline-block;
 }
 
 .icon-primary {
-  color: $primary;
+    color: $primary;
 }
 
 .notika-icon {
-  margin-right: 0.5rem;
-  color: #777777;
+    margin-right: 0.5rem;
+    color: #777777;
 }
 
 .image-table {
-  width: 25px;
-  height: 25px;
-  border-radius: 25px;
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
 }
 
 .chip {
-  display: inline-block;
-  padding: 0px 12px;
-  height: 20px;
-  font-size: 12px;
-  line-height: 20px;
-  border-radius: 4px;
-  font-weight: 500;
+    display: inline-block;
+    padding: 0px 12px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 4px;
+    font-weight: 500;
 }
 
 .chip img {
-  float: left;
-  margin: -5px 5px 0 -28px;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  background: #fff;
+    float: left;
+    margin: -5px 5px 0 -28px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: #fff;
 }
 
 .chip-primary {
-  background-color: $primary;
-  color: $light;
-  img {
-    border: 2px solid $primary;
-  }
+    background-color: $primary;
+    color: $light;
+    img {
+        border: 2px solid $primary;
+    }
 }
 
 .chip-dark {
-  background-color: $dark !important;
-  color: $light;
-  img {
-    border: 2px solid $dark;
-  }
+    background-color: $dark !important;
+    color: $light;
+    img {
+        border: 2px solid $dark;
+    }
 }
 
 .chip-success {
-  background-color: $success !important;
-  color: $light;
-  img {
-    border: 2px solid $success;
-  }
+    background-color: $success !important;
+    color: $light;
+    img {
+        border: 2px solid $success;
+    }
 }
 
 .chip-gold {
-  background-color: #ffd700 !important;
-  color: $dark;
-  img {
-    border: 2px solid #ffd700;
-  }
+    background-color: #ffd700 !important;
+    color: $dark;
+    img {
+        border: 2px solid #ffd700;
+    }
 }
 
 .chip-silver {
-  background-color: #c0c0c0 !important;
-  color: $dark;
-  img {
-    border: 2px solid #c0c0c0;
-  }
+    background-color: #c0c0c0 !important;
+    color: $dark;
+    img {
+        border: 2px solid #c0c0c0;
+    }
 }
 
 .chip-bronze {
-  background-color: #cd7f32 !important;
-  color: $light;
-  img {
-    border: 2px solid #cd7f32;
-  }
+    background-color: #cd7f32 !important;
+    color: $light;
+    img {
+        border: 2px solid #cd7f32;
+    }
 }
 
 .bg-medium {
-  background-color: $medium;
+    background-color: $medium;
+}
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
 }

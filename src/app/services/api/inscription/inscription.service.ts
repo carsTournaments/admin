@@ -12,10 +12,7 @@ import { take } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class InscriptionService {
     url = `${environment.urlApi}/inscriptions`;
-    constructor(
-        private httpClient: HttpClient,
-        private httpService: HttpService
-    ) {}
+    constructor(private httpClient: HttpClient) {}
 
     getAll(
         data: InscriptionGetAllDto
@@ -24,25 +21,25 @@ export class InscriptionService {
             .post<{
                 items: Inscription[];
                 paginator: PaginatorI;
-            }>(`${this.url}/all`, data)
+            }>(`${this.url}/getAll`, data)
             .pipe(take(1));
     }
 
     getAllOfTournament(data: IdDto): Observable<Inscription[]> {
         return this.httpClient
-            .post<Inscription[]>(`${this.url}/allOfTournament`, data)
+            .post<Inscription[]>(`${this.url}/getAllOfTournament`, data)
             .pipe(take(1));
     }
 
     getAllOfCar(data: IdDto): Observable<Inscription[]> {
         return this.httpClient
-            .post<Inscription[]>(`${this.url}/allOfCar`, data)
+            .post<Inscription[]>(`${this.url}/getAllOfCar`, data)
             .pipe(take(1));
     }
 
     getOne(id: string): Observable<Inscription> {
         return this.httpClient
-            .post<Inscription>(`${this.url}/one`, { id, site: 'admin' })
+            .post<Inscription>(`${this.url}/getOne`, { id, site: 'admin' })
             .pipe(take(1));
     }
 

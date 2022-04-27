@@ -19,47 +19,58 @@ import { SelectNumberEntriesComponent } from './select-number-entries/select-num
 import { StatsComponent } from './stats/stats.component';
 import { StatsResumeComponent } from './stats-resume/stats-resume.component';
 import { AddComponentComponent } from './add-image/add-image.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
-  imports: [
-    RouterModule,
-    FormsModule,
-    CommonModule,
-    PipesModule,
-    ServicesModule,
-  ],
-  declarations: [
-    AddComponentComponent,
-    AddInscriptionComponent,
-    BreadcrumbComponent,
-    CustomTableComponent,
-    CustomTitleWithButtonsComponent,
-    LoadingComponent,
-    NavBarComponent,
-    OptionsListComponent,
-    SearchComponent,
-    MenuComponent,
-    SegmentsComponent,
-    SelectNumberEntriesComponent,
-    StatsComponent,
-    StatsResumeComponent,
-  ],
-  exports: [
-    AddComponentComponent,
-    AddInscriptionComponent,
-    BreadcrumbComponent,
-    CustomTableComponent,
-    CustomTitleWithButtonsComponent,
-    LoadingComponent,
-    NavBarComponent,
-    OptionsListComponent,
-    SearchComponent,
-    MenuComponent,
-    SegmentsComponent,
-    SelectNumberEntriesComponent,
-    StatsComponent,
-    StatsResumeComponent,
-  ],
-  providers: [],
+    imports: [
+        RouterModule,
+        FormsModule,
+        CommonModule,
+        PipesModule,
+        ServicesModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        MatButtonModule,
+    ],
+    declarations: [
+        AddComponentComponent,
+        AddInscriptionComponent,
+        BreadcrumbComponent,
+        CustomTableComponent,
+        CustomTitleWithButtonsComponent,
+        LoadingComponent,
+        NavBarComponent,
+        OptionsListComponent,
+        SearchComponent,
+        MenuComponent,
+        SegmentsComponent,
+        SelectNumberEntriesComponent,
+        StatsComponent,
+        StatsResumeComponent,
+        // Material
+        AlertComponent,
+    ],
+    exports: [
+        AddComponentComponent,
+        AddInscriptionComponent,
+        BreadcrumbComponent,
+        CustomTableComponent,
+        CustomTitleWithButtonsComponent,
+        LoadingComponent,
+        NavBarComponent,
+        OptionsListComponent,
+        SearchComponent,
+        MenuComponent,
+        SegmentsComponent,
+        SelectNumberEntriesComponent,
+        StatsComponent,
+        StatsResumeComponent,
+        // Material
+        AlertComponent,
+    ],
+    providers: [],
 })
 export class ComponentsModule {}

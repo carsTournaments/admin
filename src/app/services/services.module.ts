@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import {
+    AlertService,
     AuthService,
     BrandService,
     CarService,
@@ -12,6 +13,7 @@ import {
     PairingService,
     RoundService,
     SearchService,
+    SnackBarService,
     StatsService,
     TournamentService,
     UserService,
@@ -39,6 +41,9 @@ import { HttpInterceptorService } from '../core/interceptors/http.interceptor';
         UserService,
         VoteService,
         WinnerService,
+        // Material
+        AlertService,
+        SnackBarService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: HttpInterceptorService,
