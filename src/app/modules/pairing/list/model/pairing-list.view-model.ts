@@ -8,7 +8,7 @@ export class PairingListViewModel {
     items: User[] = [];
     optionsTitle = new CustomTitleWithButtonsViewModel({
         title: 'Emparejamientos',
-        buttons: [{ name: 'Nuevo', link: '/pairings/one', separated: false }],
+        buttons: [],
     });
     optionsTable = new CustomTableOptionsModel({
         loading: false,

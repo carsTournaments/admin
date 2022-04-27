@@ -9,31 +9,26 @@ import { PairingOnePage } from './one/pairing-one.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ServicesModule,
-    ComponentsModule,
-    PipesModule,
-    FormsModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: PairingListPage,
-        data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
-      },
-      {
-        path: 'one',
-        component: PairingOnePage,
-        data: { breadcrumb: 'Nuevo', title: 'Usuarios - Nuevo' },
-      },
-      {
-        path: 'one/:id',
-        component: PairingOnePage,
-        data: { breadcrumb: 'Editar', title: 'Usuarios - Editar' },
-      },
-    ]),
-  ],
-  declarations: [PairingListPage, PairingOnePage],
-  providers: [],
+    imports: [
+        CommonModule,
+        ServicesModule,
+        ComponentsModule,
+        PipesModule,
+        FormsModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: PairingListPage,
+                data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
+            },
+            {
+                path: 'one/:id',
+                component: PairingOnePage,
+                data: { breadcrumb: 'Editar', title: 'Usuarios - Editar' },
+            },
+        ]),
+    ],
+    declarations: [PairingListPage, PairingOnePage],
+    providers: [],
 })
 export class PairingModule {}

@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
 import { Vote } from 'src/app/models/vote.model';
-import { PairingService, VoteService } from 'src/app/services';
+import {
+    AlertService,
+    PairingService,
+    SnackBarService,
+    VoteService,
+} from 'src/app/services';
 import { PairingOnePageViewModel } from './model/pairing-one.view-model';
 
 @Component({
@@ -15,46 +20,39 @@ export class PairingOnePage implements OnInit {
         private route: ActivatedRoute,
         private pairingService: PairingService,
         private voteService: VoteService,
-        private router: Router
+        private router: Router,
+        private snackBarService: SnackBarService,
+        private alertService: AlertService
     ) {}
 
     ngOnInit() {
         this.vm.id = this.route.snapshot.paramMap.get('id') as string;
-        if (this.vm.id) {
-            this.vm.optionsTitle.title = 'Editar Emparejamiento';
-            this.vm.edit = true;
-            this.getOne();
-        } else {
-            this.vm.optionsTitle.title = 'Nuevo Emparejamiento';
-            this.vm.edit = false;
-        }
+        this.vm.optionsTitle.title = 'Editar Emparejamiento';
+        this.vm.edit = true;
+        this.getOne();
     }
 
     async getOne() {
-        try {
-            this.pairingService
-                .getOne({ id: this.vm.id, site: 'admin' })
-                .subscribe((item) => {
+        this.pairingService
+            .getOne({ id: this.vm.id, site: 'admin' })
+            .subscribe({
+                next: (item) => {
                     this.vm.item = item;
-                });
-        } catch (error) {
-            console.error(error);
-        }
+                },
+                error: (error) => {
+                    this.snackBarService.open(error);
+                },
+            });
     }
 
     async onSubmit() {
-        try {
-            this.vm.edit
-                ? this.pairingService.update(this.vm.item).subscribe(() => {
-                      this.router.navigate(['/pairings']);
-                  })
-                : this.pairingService.create(this.vm.item).subscribe(() => {
-                      alert('Marca creada');
-                      this.router.navigate(['/pairings']);
-                  });
-        } catch (error) {
-            console.error(error);
-        }
+        this.pairingService.update(this.vm.item).subscribe({
+            next: () => {
+                this.snackBarService.open('Emparejamiento actualizado');
+                this.router.navigate(['/pairings']);
+            },
+            error: (error) => this.snackBarService.open(error),
+        });
     }
 
     actionForOption(option: ActionForOptionI) {

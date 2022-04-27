@@ -8,7 +8,7 @@ export class WinnerListViewModel {
     items: User[] = [];
     optionsTitle = new CustomTitleWithButtonsViewModel({
         title: 'Ganadores',
-        buttons: [{ name: 'Nuevo', link: '/winners/one', separated: false }],
+        buttons: [],
     });
     optionsTable = new CustomTableOptionsModel({
         loading: false,

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
-import { InscriptionService } from 'src/app/services';
+import {
+    AlertService,
+    InscriptionService,
+    SnackBarService,
+} from 'src/app/services';
 import { InscriptionListViewModel } from './model/inscription-list.view-model';
 
 @Component({
@@ -9,7 +13,11 @@ import { InscriptionListViewModel } from './model/inscription-list.view-model';
 })
 export class InscriptionListPage implements OnInit {
     vm = new InscriptionListViewModel();
-    constructor(private inscriptionService: InscriptionService) {}
+    constructor(
+        private inscriptionService: InscriptionService,
+        private snackBarService: SnackBarService,
+        private alertService: AlertService
+    ) {}
 
     ngOnInit() {
         this.getAll();
@@ -32,7 +40,7 @@ export class InscriptionListPage implements OnInit {
             },
             error: (error) => {
                 this.vm.optionsTable.error = true;
-                console.error(error);
+                this.snackBarService.open(error);
             },
         });
         this.vm.optionsTable.loading = false;
@@ -63,12 +71,21 @@ export class InscriptionListPage implements OnInit {
         this.getAll(true);
     }
 
-    onDeleteItem(id: string) {
-        if (confirm('¿Está seguro de eliminar la inscripcion?')) {
-            this.inscriptionService.deleteOne(id).subscribe({
-                next: () => this.getAll(),
-                error: (error) => console.error(error),
-            });
-        }
+    async onDeleteItem(id: string) {
+        const alert = await this.alertService.showConfirmation(
+            'Eliminar inscripcion',
+            '¿Está seguro de eliminar la inscripcion?'
+        );
+        alert.subscribe((data) => {
+            if (data) {
+                this.inscriptionService.deleteOne(id).subscribe({
+                    next: () => {
+                        this.snackBarService.open('Inscripcion eliminada');
+                        this.getAll();
+                    },
+                    error: (error) => this.snackBarService.open(error),
+                });
+            }
+        });
     }
 }

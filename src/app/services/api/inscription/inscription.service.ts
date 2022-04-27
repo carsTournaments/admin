@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { InscriptionCreateDto, InscriptionGetAllDto } from './inscription.dto';
 import { Inscription } from 'src/app/models/inscription.model';
-import { IdDto } from 'src/app/core/dtos/id.dto';
+import { IdDto, IdSiteDto } from 'src/app/core/dtos/id.dto';
 import { PaginatorI } from 'src/app/interfaces/paginator.interface';
 import { HttpService } from '../../http/http.service';
 import { take } from 'rxjs';
@@ -25,7 +25,7 @@ export class InscriptionService {
             .pipe(take(1));
     }
 
-    getAllOfTournament(data: IdDto): Observable<Inscription[]> {
+    getAllOfTournament(data: IdSiteDto): Observable<Inscription[]> {
         return this.httpClient
             .post<Inscription[]>(`${this.url}/getAllOfTournament`, data)
             .pipe(take(1));

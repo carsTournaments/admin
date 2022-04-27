@@ -8,7 +8,7 @@ export class VoteListViewModel {
     items: User[] = [];
     optionsTitle = new CustomTitleWithButtonsViewModel({
         title: 'Votos',
-        buttons: [{ name: 'Nuevo', link: '/votes/one', separated: false }],
+        buttons: [],
     });
     optionsTable = new CustomTableOptionsModel({
         loading: false,
