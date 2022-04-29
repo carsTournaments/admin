@@ -78,6 +78,15 @@ const routes: Routes = [
         canActivate: [LoginGuard],
     },
     {
+        path: 'settings',
+        data: { breadcrumb: 'Configuracion' },
+        loadChildren: () =>
+            import('./modules/settings/settings.module').then(
+                (m) => m.SettingsModule
+            ),
+        canActivate: [LoginGuard],
+    },
+    {
         path: 'tournaments',
         data: { breadcrumb: 'Torneos' },
         loadChildren: () =>

@@ -9,31 +9,31 @@ import { TournamentOnePage } from './one/tournament-one.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ServicesModule,
-    ComponentsModule,
-    PipesModule,
-    FormsModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: TournamentListPage,
-        data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
-      },
-      {
-        path: 'one',
-        component: TournamentOnePage,
-        data: { breadcrumb: 'Nuevo', title: 'Usuarios - Nuevo' },
-      },
-      {
-        path: 'one/:id',
-        component: TournamentOnePage,
-        data: { breadcrumb: 'Editar', title: 'Usuarios - Editar' },
-      },
-    ]),
-  ],
-  declarations: [TournamentListPage, TournamentOnePage],
-  providers: [],
+    imports: [
+        CommonModule,
+        ServicesModule,
+        ComponentsModule,
+        PipesModule,
+        FormsModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: TournamentListPage,
+                data: { breadcrumb: 'Listado', title: 'Torneos - Listado' },
+            },
+            {
+                path: 'one',
+                component: TournamentOnePage,
+                data: { breadcrumb: 'Nuevo', title: 'Torneos - Nuevo' },
+            },
+            {
+                path: 'one/:id',
+                component: TournamentOnePage,
+                data: { breadcrumb: 'Editar', title: 'Torneos - Editar' },
+            },
+        ]),
+    ],
+    declarations: [TournamentListPage, TournamentOnePage],
+    providers: [],
 })
 export class TournamentModule {}

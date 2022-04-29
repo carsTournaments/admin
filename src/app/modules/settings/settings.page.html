@@ -1,0 +1,188 @@
+<navbar></navbar>
+<custom-menu [itemSelected]="5"></custom-menu>
+
+<div class="container">
+    <div class="box-white">
+        <custom-title-with-buttons
+            [options]="vm.optionsTitle"
+        ></custom-title-with-buttons>
+        <div class="mb-3">
+            <div class="row mt-1 g-3">
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input
+                            class="form-control"
+                            name="name"
+                            [(ngModel)]="vm.settings.title"
+                            placeholder="Nombre"
+                            required
+                        />
+                        <label for="floatingInput" class="form-label"
+                            >Nombre</label
+                        >
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input
+                            class="form-control"
+                            name="name"
+                            [(ngModel)]="vm.settings.logo"
+                            placeholder="Logo"
+                        />
+                        <label for="floatingInput" class="form-label"
+                            >Logo</label
+                        >
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-floating">
+                        <input
+                            class="form-control"
+                            name="name"
+                            [(ngModel)]="vm.settings.description"
+                            placeholder="Descripcion"
+                        />
+                        <label for="floatingInput" class="form-label"
+                            >Descripcion</label
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-1 g-3">
+                <div class="col-sm-12">
+                    <div class="form-floating"></div>
+                    <h3>Versiones</h3>
+                    <hr />
+                    <div class="row mt-1 g-3">
+                        <div class="col-sm-6">
+                            <h4>Android</h4>
+                            <!-- VERSIONS -->
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input
+                                            class="form-control"
+                                            name="name"
+                                            [(ngModel)]="vm.settings.android?.version!.latestVersion"
+                                            placeholder="Nombre"
+                                            required
+                                        />
+                                        <label
+                                            for="floatingInput"
+                                            class="form-label"
+                                            >Version Actual</label
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input
+                                            class="form-control"
+                                            name="name"
+                                            [(ngModel)]="vm.settings.android?.version!.minVersion"
+                                            placeholder="Url"
+                                            required
+                                        />
+                                        <label
+                                            for="floatingInput"
+                                            class="form-label"
+                                            >Version Minima</label
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 mt-3">
+                                    <div class="form-floating">
+                                        <input
+                                            class="form-control"
+                                            name="name"
+                                            [(ngModel)]="vm.settings.android!.urlMarket"
+                                            placeholder="Nombre"
+                                            required
+                                        />
+                                        <label
+                                            for="floatingInput"
+                                            class="form-label"
+                                            >Url Market</label
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <h4>iOS</h4>
+                            <!-- VERSIONS -->
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input
+                                            class="form-control"
+                                            name="name"
+                                            [(ngModel)]="vm.settings.ios?.version!.latestVersion"
+                                            placeholder="Nombre"
+                                            required
+                                        />
+                                        <label
+                                            for="floatingInput"
+                                            class="form-label"
+                                            >Version Actual</label
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input
+                                            class="form-control"
+                                            name="name"
+                                            [(ngModel)]="vm.settings.ios?.version!.minVersion"
+                                            placeholder="Url"
+                                            required
+                                        />
+                                        <label
+                                            for="floatingInput"
+                                            class="form-label"
+                                            >Version Minima</label
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 mt-3">
+                                    <div class="form-floating">
+                                        <input
+                                            class="form-control"
+                                            name="name"
+                                            [(ngModel)]="vm.settings.ios!.urlMarket"
+                                            placeholder="Nombre"
+                                            required
+                                        />
+                                        <label
+                                            for="floatingInput"
+                                            class="form-label"
+                                            >Url Market</label
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUTTON -->
+            <div class="row mt-1 g-3">
+                <div class="col-sm-12">
+                    <button class="btn btn-primary w-100" (click)="save()">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
