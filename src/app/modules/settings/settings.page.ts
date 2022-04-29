@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    AlertService,
-    SettingsService,
-    SnackBarService,
-} from 'src/app/services';
+import { SettingsService, SnackBarService } from 'src/app/services';
 import { SettingsViewModel } from './model/settings.view-model';
 
 @Component({
@@ -26,18 +22,17 @@ export class SettingsPage implements OnInit {
             next: (settings) => {
                 this.vm.settings = settings;
             },
-            error: (err) => {},
         });
     }
 
     save() {
         this.settingsService.update(this.vm.settings).subscribe({
-            next: (settings) => {
+            next: () => {
                 this.snackBarService.open(
                     'Configuración guardada correctamente'
                 );
             },
-            error: (err) => {
+            error: () => {
                 this.snackBarService.open('Error al guardar la configuración');
             },
         });

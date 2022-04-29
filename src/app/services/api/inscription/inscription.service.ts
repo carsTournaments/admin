@@ -6,7 +6,6 @@ import { InscriptionCreateDto, InscriptionGetAllDto } from './inscription.dto';
 import { Inscription } from 'src/app/models/inscription.model';
 import { IdDto, IdSiteDto } from 'src/app/core/dtos/id.dto';
 import { PaginatorI } from 'src/app/interfaces/paginator.interface';
-import { HttpService } from '../../http/http.service';
 import { take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
