@@ -163,7 +163,9 @@ export class TournamentOnePage implements OnInit {
                     .subscribe({
                         next: (response) => {
                             this.snackBarService.open(response.message);
+                            this.getInscriptionsByTournament();
                             this.getRoundsByTournament();
+                            this.getPairingsByTournament();
                         },
                         error: (error) => {
                             this.snackBarService.open(error);
