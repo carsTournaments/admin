@@ -180,6 +180,50 @@
                     </tr>
                 </ng-container>
 
+                <!-- Inscription -->
+                <ng-container *ngIf="options.type === 'inscription'">
+                    <tr class="pointer" *ngFor="let item of options.items">
+                        <td [routerLink]="['/cars/one', item.car._id]">
+                            <div class="chip chip-primary">
+                                <img
+                                    class="image-table"
+                                    [src]="item.car.image?.url | image"
+                                />
+                                {{ item.car.brand?.name }} {{ item.car?.model }}
+                            </div>
+                        </td>
+                        <td [routerLink]="['/users/one', item.driver?._id]">
+                            <div class="chip chip-dark">
+                                {{ item.driver?.name }}
+                            </div>
+                        </td>
+                        <td
+                            [routerLink]="[
+                                '/tournaments/one',
+                                item.tournament._id
+                            ]"
+                        >
+                            <div class="chip chip-dark">
+                                <img
+                                    class="image-table"
+                                    [src]="item.tournament.image?.url | image"
+                                />
+                                {{ item.tournament.name }}
+                            </div>
+                        </td>
+                        <td (click)="deleteItem.emit(item._id)">
+                            <span class="badge bg-medium">
+                                {{ item.updated | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                        <td (click)="deleteItem.emit(item._id)">
+                            <span class="badge bg-medium">
+                                {{ item.created | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+
                 <!-- Likes -->
                 <ng-container *ngIf="options.type === 'like'">
                     <tr class="pointer" *ngFor="let item of options.items">
@@ -199,50 +243,6 @@
                                         ? item.user.name
                                         : 'Anonimo'
                                 }}
-                            </div>
-                        </td>
-                        <td (click)="deleteItem.emit(item._id)">
-                            <span class="badge bg-medium">
-                                {{ item.updated | dateToTimeAgo | titlecase }}
-                            </span>
-                        </td>
-                        <td (click)="deleteItem.emit(item._id)">
-                            <span class="badge bg-medium">
-                                {{ item.created | dateToTimeAgo | titlecase }}
-                            </span>
-                        </td>
-                    </tr>
-                </ng-container>
-
-                <!-- Inscription -->
-                <ng-container *ngIf="options.type === 'inscription'">
-                    <tr class="pointer" *ngFor="let item of options.items">
-                        <td [routerLink]="['/cars/one', item.car._id]">
-                            <div class="chip chip-primary">
-                                <img
-                                    class="image-table"
-                                    [src]="item.car.image?.url | image"
-                                />
-                                {{ item.car.brand?.name }} {{ item.car?.model }}
-                            </div>
-                        </td>
-                        <td [routerLink]="['/users/one', item.car?.driver._id]">
-                            <div class="chip chip-dark">
-                                {{ item.car?.driver.name }}
-                            </div>
-                        </td>
-                        <td
-                            [routerLink]="[
-                                '/tournaments/one',
-                                item.tournament._id
-                            ]"
-                        >
-                            <div class="chip chip-dark">
-                                <img
-                                    class="image-table"
-                                    [src]="item.tournament.image?.url | image"
-                                />
-                                {{ item.tournament.name }}
                             </div>
                         </td>
                         <td (click)="deleteItem.emit(item._id)">
