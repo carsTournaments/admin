@@ -22,7 +22,9 @@ import { AddComponentComponent } from './add-image/add-image.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AlertComponent } from './alert/alert.component';
+import { ToggleComponent } from './toggle/toggle.component';
 
 @NgModule({
     imports: [
@@ -34,6 +36,7 @@ import { AlertComponent } from './alert/alert.component';
         MatSnackBarModule,
         MatDialogModule,
         MatButtonModule,
+        MatSlideToggleModule,
     ],
     declarations: [
         AddComponentComponent,
@@ -52,6 +55,7 @@ import { AlertComponent } from './alert/alert.component';
         StatsResumeComponent,
         // Material
         AlertComponent,
+        ToggleComponent,
     ],
     exports: [
         AddComponentComponent,
@@ -70,6 +74,7 @@ import { AlertComponent } from './alert/alert.component';
         StatsResumeComponent,
         // Material
         AlertComponent,
+        ToggleComponent,
     ],
     providers: [],
 })

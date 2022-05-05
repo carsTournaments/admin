@@ -61,7 +61,10 @@
                         <div class="col-sm-6">
                             <h4>Android</h4>
                             <!-- VERSIONS -->
-                            <div class="row">
+                            <div
+                                class="row"
+                                *ngIf="vm.settings?.android?.version! && vm.settings?.android?.version!.latestVersion"
+                            >
                                 <div class="col-sm-6">
                                     <div class="form-floating">
                                         <input
@@ -115,7 +118,10 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div
+                            class="col-sm-6"
+                            *ngIf="vm.settings?.ios?.version && vm.settings?.ios?.version!.latestVersion"
+                        >
                             <h4>iOS</h4>
                             <!-- VERSIONS -->
                             <div class="row">
@@ -167,6 +173,31 @@
                                             class="form-label"
                                             >Url Market</label
                                         >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-1 g-3" *ngIf="vm.settings?.state!">
+                <div class="col-sm-12">
+                    <div class="form-floating"></div>
+                    <h3>Estados</h3>
+                    <hr />
+
+                    <div class="row mt-1 g-3">
+                        <div class="col-sm-12">
+                            <h4>Admob</h4>
+                            <!-- VERSIONS -->
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <toggle
+                                            [checked]="vm.settings?.state!.admob"
+                                            (change)="vm.settings?.state!.admob = !vm.settings?.state!.admob"
+                                        ></toggle>
                                     </div>
                                 </div>
                             </div>

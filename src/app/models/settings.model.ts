@@ -11,6 +11,9 @@ export class Settings implements SettingsI {
     logo?: string;
     android?: SettingsAndroidI;
     ios?: SettingsIosI;
+    state?: {
+        admob: boolean;
+    };
     updated?: Date;
     constructor(data?: Settings) {
         this.title = data?.title;
@@ -18,6 +21,7 @@ export class Settings implements SettingsI {
         this.logo = data?.logo;
         this.android = data?.android;
         this.ios = data?.ios;
+        this.state = data?.state;
         this.updated = data?.updated;
     }
 }
