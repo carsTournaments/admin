@@ -51,11 +51,17 @@ export class TournamentService {
             .pipe(take(1));
     }
 
+    cancelTournament(data: IdDto): Observable<Tournament> {
+        return this.httpClient
+            .post<Tournament>(`${this.url}/cancelTournament`, data)
+            .pipe(take(1));
+    }
+
     forceNextRound(
         data: TournamentForceNextRoundDto
     ): Observable<{ message: string }> {
         return this.httpClient
-            .put<{ message: string }>(`${this.url}/forceNextRound`, data)
+            .post<{ message: string }>(`${this.url}/forceNextRound`, data)
             .pipe(take(1));
     }
 

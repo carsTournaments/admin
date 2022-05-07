@@ -12,7 +12,7 @@ export class StatusPipe implements PipeTransform {
                 return 'En curso';
             case 'Completed':
                 return 'Finalizado';
-            case 'Canceled':
+            case 'Cancelled':
                 return 'Cancelado';
             default:
                 return 'Sin definir';

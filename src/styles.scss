@@ -199,3 +199,33 @@ body {
     margin: 0;
     font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.banner-status {
+    text-align: center;
+    h1 {
+        margin: 0;
+        padding: 0;
+    }
+
+    .banner-Todo {
+        background: #ffc107;
+    }
+
+    .banner-InProgress {
+        // info
+        background: #002bc8;
+        color: #fff;
+    }
+
+    .banner-Completed {
+        // success
+        background: #28a745;
+        color: #fff;
+    }
+
+    .banner-Cancelled {
+        // danger
+        background: #dc3545;
+        color: #fff;
+    }
+}

@@ -61,6 +61,12 @@ export class TournamentOnePage implements OnInit {
         this.vm.item = item;
         this.vm.startDate = moment(item.startDate).format('YYYY-MM-DD');
         this.vm.startTime = moment(item.startDate).format('HH:mm');
+        this.vm.endDate = item.endDate
+            ? moment(item.endDate).format('YYYY-MM-DD')
+            : '';
+        this.vm.endTime = item.endDate
+            ? moment(item.endDate).format('HH:mm')
+            : '';
         this.vm.disabledItems =
             this.vm.item.status === 'InProgress' ||
             this.vm.item.status === 'Completed';
@@ -208,6 +214,9 @@ export class TournamentOnePage implements OnInit {
             case 'resetTournament':
                 this.resetTournament();
                 break;
+            case 'cancelTournament':
+                this.cancelTournament();
+                break;
             case 'deleteInscriptions':
                 this.deleteInscriptions();
                 break;
@@ -288,12 +297,32 @@ export class TournamentOnePage implements OnInit {
     async resetTournament() {
         const alert = await this.alertService.showConfirmation(
             'Forzar reseteo de torneo',
-            '¿Estas seguro de resetear el torneo?'
+            '¿Estas seguro de resetear el torneo? Se perderán inscripciones, rondas, emparejamientosm votos y el estado del torneo sera como Sin empezar'
         );
         alert.subscribe((data) => {
             if (data) {
                 this.tournamentService
                     .resetTournament({ id: this.vm.id })
+                    .subscribe({
+                        next: () => {
+                            this.snackBarService.open('Torneo reseteado');
+                            this.getOne();
+                        },
+                        error: (e) => this.snackBarService.open(e),
+                    });
+            }
+        });
+    }
+
+    async cancelTournament() {
+        const alert = await this.alertService.showConfirmation(
+            'Cancelar torneo',
+            '¿Estas seguro de cancelar el torneo? Se perderán rondas, emparejamientos, votos y el estado del torneo sera como Cancelado'
+        );
+        alert.subscribe((data) => {
+            if (data) {
+                this.tournamentService
+                    .cancelTournament({ id: this.vm.id })
                     .subscribe({
                         next: () => {
                             this.snackBarService.open('Torneo reseteado');

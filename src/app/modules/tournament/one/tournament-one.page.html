@@ -9,6 +9,29 @@
 
         <div class="mb-3" *ngIf="vm.optionsSegments.currentSegment === 0">
             <div class="row mt-1 g-3" *ngIf="vm.item">
+                <!-- Banner to status -->
+                <div
+                    class="col-12 col-md-12 banner-status animate__animated animate__fadeIn"
+                    *ngIf="vm.edit && !vm.roundsOptionsTable.loading && vm.item.status"
+                >
+                    <div class="card banner-{{vm.item.status}}">
+                        <div class="card-body">
+                            <h1
+                                class="card-title animate__animated animate__fadeIn"
+                            >
+                                <span *ngIf="vm.item.status === 'InProgress'">
+                                    {{ vm.item.status! | status }} - {{
+                                    vm.roundsOptionsTable.items ?
+                                    vm.roundsOptionsTable.items[0]?.name : ''}}
+                                </span>
+                                <span *ngIf="vm.item.status !== 'InProgress'"
+                                    >{{ vm.item.status! | status }}</span
+                                >
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-sm-6">
                     <div class="form-floating">
                         <input
@@ -21,6 +44,23 @@
                         <label for="floatingInput" class="form-label"
                             >Nombre</label
                         >
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input
+                            class="form-control"
+                            type="number"
+                            name="name"
+                            [(ngModel)]="vm.item.durationDays"
+                            placeholder="Duracion"
+                            required
+                            [disabled]="vm.disabledItems"
+                        />
+                        <label for="floatingInput" class="form-label">
+                            Duracion (dias)
+                        </label>
                     </div>
                 </div>
 
@@ -70,7 +110,7 @@
                             [disabled]="vm.disabledItems"
                         />
                         <label for="floatingInput" class="form-label">
-                            Fecha de inicio
+                            Fecha de fin
                         </label>
                     </div>
                 </div>
@@ -87,45 +127,18 @@
                             [disabled]="vm.disabledItems"
                         />
                         <label for="floatingInput" class="form-label">
-                            Hora de inicio
+                            Hora de fin
                         </label>
                     </div>
                 </div>
 
                 <div class="col-sm-6">
                     <div class="form-floating">
-                        <input
-                            class="form-control"
-                            type="number"
-                            name="name"
-                            [(ngModel)]="vm.item.durationDays"
-                            placeholder="Duracion"
-                            required
-                            [disabled]="vm.disabledItems"
-                        />
-                        <label for="floatingInput" class="form-label">
-                            Duracion (dias)
-                        </label>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="form-floating">
-                        <!-- <input
-                            class="form-control"
-                            type="number"
-                            name="name"
-                            [(ngModel)]="vm.item.maxParticipants"
-                            placeholder="Nombre"
-                            required
-                            [disabled]="vm.disabledItems"
-                        /> -->
                         <select
                             class="form-select"
                             [(ngModel)]="vm.item.maxParticipants"
                             [disabled]="vm.disabledItems"
                         >
-                            <option [value]="2">2 coches - 1 ronda</option>
                             <option [value]="4">4 coches - 2 rondas</option>
                             <option [value]="8">8 coches - 4 rondas</option>
                             <option [value]="16">16 coches - 8 rondas</option>
@@ -141,17 +154,15 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6" *ngIf="!vm.edit">
                     <div class="form-floating">
                         <select
                             class="form-select"
                             [(ngModel)]="vm.item.status"
-                            [disabled]="true"
+                            [disabled]="vm.disabledItems"
                         >
                             <option value="Todo">Sin empezar</option>
-                            <option value="InProgress">En progreso</option>
-                            <option value="Completed">Completado</option>
-                            <option value="Canceled">Cancelado</option>
+                            <option value="Cancelled">Cancelado</option>
                         </select>
                         <label for="floatingInput" class="form-label"
                             >Estado</label
@@ -160,63 +171,66 @@
                 </div>
 
                 <div class="col-sm-12">
-                    <div class="form-floating">
+                    <div class="">
                         <textarea
                             class="form-control"
                             name="name"
+                            rows="5"
                             [(ngModel)]="vm.item.info"
                             placeholder="Info"
                             required
                         ></textarea>
-                        <label for="floatingInput" class="form-label">
-                            Info
-                        </label>
                     </div>
                 </div>
 
-                <hr class="my-4" />
-                <h4>Requisitos</h4>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <select
-                            class="form-control"
-                            [(ngModel)]="vm.requisiteSelected"
-                            [disabled]="vm.disabledItems"
-                        >
-                            <option
-                                *ngFor="let requisite of vm.requisitesDefault"
+                <!-- TODO: Revisar -->
+                <ng-container
+                    *ngIf="!vm.edit || vm.edit && vm.item.requisites.length > 0 || vm.edit && vm.item.status === 'Todo'"
+                >
+                    <hr class="my-4" />
+                    <h4>Requisitos</h4>
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <select
+                                class="form-control"
+                                [(ngModel)]="vm.requisiteSelected"
+                                [disabled]="vm.disabledItems"
                             >
-                                {{ requisite.name }}
-                            </option>
-                        </select>
+                                <option
+                                    *ngFor="let requisite of vm.requisitesDefault"
+                                >
+                                    {{ requisite.name }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <button
+                                class="btn btn-primary btn-sm w-100"
+                                (click)="addRequisite()"
+                                [disabled]="vm.disabledItems"
+                            >
+                                Añadir requisito
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-sm-3">
-                        <button
-                            class="btn btn-primary btn-sm w-100"
-                            (click)="addRequisite()"
-                            [disabled]="vm.disabledItems"
-                        >
-                            Añadir requisito
-                        </button>
-                    </div>
-                </div>
 
-                <ul class="list-group mt-3">
-                    <li
-                        class="list-group-item m-2"
-                        *ngFor="let requisite of vm.item.requisites"
-                    >
-                        {{ requisite.name }}
-                        <button
-                            class="btn btn-dark btn-sm float-right"
-                            style="float: right"
-                            (click)="deleteRequisite(requisite)"
-                            [disabled]="vm.disabledItems"
+                    <ul class="list-group mt-3">
+                        <li
+                            class="list-group-item m-2"
+                            *ngFor="let requisite of vm.item.requisites"
                         >
-                            Eliminar
-                        </button>
-                    </li>
-                </ul>
+                            {{ requisite.name }}
+                            <button
+                                class="btn btn-dark btn-sm float-right"
+                                style="float: right"
+                                (click)="deleteRequisite(requisite)"
+                                [disabled]="vm.disabledItems"
+                            >
+                                Eliminar
+                            </button>
+                        </li>
+                    </ul>
+                </ng-container>
             </div>
 
             <hr class="my-4" />
@@ -264,7 +278,8 @@
             <custom-table
                 (deleteItem)="onDeleteInscription($event)"
                 [options]="vm.inscriptionsOptionsTable"
-            ></custom-table>
+            >
+            </custom-table>
         </ng-container>
 
         <ng-container *ngIf="vm.optionsSegments.currentSegment === 4">

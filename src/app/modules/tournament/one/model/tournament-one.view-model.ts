@@ -78,6 +78,11 @@ export class TournamentOnePageViewModel {
             disabled: false,
         },
         {
+            name: 'Cancelar torneo',
+            value: 'cancelTournament',
+            disabled: false,
+        },
+        {
             name: 'Eliminar torneo',
             value: 'delete',
             disabled: false,
