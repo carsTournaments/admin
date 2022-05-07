@@ -9,31 +9,31 @@ import { WinnerOnePage } from './one/winner-one.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ServicesModule,
-    ComponentsModule,
-    PipesModule,
-    FormsModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: WinnerListPage,
-        data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
-      },
-      {
-        path: 'one',
-        component: WinnerOnePage,
-        data: { breadcrumb: 'Nuevo', title: 'Usuarios - Nuevo' },
-      },
-      {
-        path: 'one/:id',
-        component: WinnerOnePage,
-        data: { breadcrumb: 'Editar', title: 'Usuarios - Editar' },
-      },
-    ]),
-  ],
-  declarations: [WinnerListPage, WinnerOnePage],
-  providers: [],
+    imports: [
+        CommonModule,
+        ServicesModule,
+        ComponentsModule,
+        PipesModule,
+        FormsModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: WinnerListPage,
+                data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
+            },
+            {
+                path: 'one',
+                component: WinnerOnePage,
+                data: { breadcrumb: 'Nuevo', title: 'Usuarios - Nuevo' },
+            },
+            {
+                path: 'one/:id',
+                component: WinnerOnePage,
+                data: { breadcrumb: 'Editar', title: 'Usuarios - Editar' },
+            },
+        ]),
+    ],
+    declarations: [WinnerListPage, WinnerOnePage],
+    providers: [],
 })
 export class WinnerModule {}

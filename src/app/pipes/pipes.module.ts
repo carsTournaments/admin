@@ -7,21 +7,21 @@ import { TruncateTextPipe } from './truncate-text.pipe';
 import { TypePipe } from './type.pipe';
 
 @NgModule({
-  declarations: [
-    DateToTimeAgoPipe,
-    ImagePipe,
-    StatusPipe,
-    StarsForListPipe,
-    TypePipe,
-    TruncateTextPipe,
-  ],
-  exports: [
-    DateToTimeAgoPipe,
-    ImagePipe,
-    StatusPipe,
-    StarsForListPipe,
-    TypePipe,
-    TruncateTextPipe,
-  ],
+    declarations: [
+        DateToTimeAgoPipe,
+        ImagePipe,
+        StatusPipe,
+        StarsForListPipe,
+        TypePipe,
+        TruncateTextPipe,
+    ],
+    exports: [
+        DateToTimeAgoPipe,
+        ImagePipe,
+        StatusPipe,
+        StarsForListPipe,
+        TypePipe,
+        TruncateTextPipe,
+    ],
 })
 export class PipesModule {}

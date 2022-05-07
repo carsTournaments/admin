@@ -4,28 +4,28 @@ import { SegmentsViewModel } from 'src/app/components/segments/model/segments.vi
 import { Brand } from 'src/app/models/brand.model';
 
 export class BrandOnePageViewModel {
-  id!: string;
-  item: Brand = new Brand();
-  optionsTitle = new CustomTitleWithButtonsViewModel({
-    title: '',
-    buttons: [],
-  });
-  optionsSegments = new SegmentsViewModel({
-    segments: ['Info', 'Opciones', 'Imagen', 'Coches'],
-    currentSegment: 0,
-  });
-  edit = false;
-  options = [
-    {
-      name: 'Eliminar',
-      value: 'delete',
-    },
-  ];
-  carsOptionsTable = new CustomTableOptionsModel({
-    loading: false,
-    items: [],
-    type: 'car',
-    showLoadMore: true,
-    error: false,
-  });
+    id!: string;
+    item: Brand = new Brand();
+    optionsTitle = new CustomTitleWithButtonsViewModel({
+        title: '',
+        buttons: [],
+    });
+    optionsSegments = new SegmentsViewModel({
+        segments: ['Info', 'Opciones', 'Imagen', 'Coches'],
+        currentSegment: 0,
+    });
+    edit = false;
+    options = [
+        {
+            name: 'Eliminar',
+            value: 'delete',
+        },
+    ];
+    carsOptionsTable = new CustomTableOptionsModel({
+        loading: false,
+        items: [],
+        type: 'car',
+        showLoadMore: true,
+        error: false,
+    });
 }

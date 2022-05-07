@@ -1,4 +1,4 @@
 export interface BreadcrumbI {
-  label: string;
-  url: string;
+    label: string;
+    url: string;
 }

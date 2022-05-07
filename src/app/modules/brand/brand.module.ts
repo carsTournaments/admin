@@ -9,31 +9,31 @@ import { BrandOnePage } from './one/brand-one.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ServicesModule,
-    ComponentsModule,
-    PipesModule,
-    FormsModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: BrandListPage,
-        data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
-      },
-      {
-        path: 'one',
-        component: BrandOnePage,
-        data: { breadcrumb: 'Nuevo', title: 'Usuarios - Nuevo' },
-      },
-      {
-        path: 'one/:id',
-        component: BrandOnePage,
-        data: { breadcrumb: 'Editar', title: 'Usuarios - Editar' },
-      },
-    ]),
-  ],
-  declarations: [BrandListPage, BrandOnePage],
-  providers: [],
+    imports: [
+        CommonModule,
+        ServicesModule,
+        ComponentsModule,
+        PipesModule,
+        FormsModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: BrandListPage,
+                data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
+            },
+            {
+                path: 'one',
+                component: BrandOnePage,
+                data: { breadcrumb: 'Nuevo', title: 'Usuarios - Nuevo' },
+            },
+            {
+                path: 'one/:id',
+                component: BrandOnePage,
+                data: { breadcrumb: 'Editar', title: 'Usuarios - Editar' },
+            },
+        ]),
+    ],
+    declarations: [BrandListPage, BrandOnePage],
+    providers: [],
 })
 export class BrandModule {}

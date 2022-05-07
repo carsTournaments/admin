@@ -8,21 +8,21 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ServicesModule,
-    ComponentsModule,
-    PipesModule,
-    FormsModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: ImageListPage,
-        data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
-      },
-    ]),
-  ],
-  declarations: [ImageListPage],
-  providers: [],
+    imports: [
+        CommonModule,
+        ServicesModule,
+        ComponentsModule,
+        PipesModule,
+        FormsModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: ImageListPage,
+                data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
+            },
+        ]),
+    ],
+    declarations: [ImageListPage],
+    providers: [],
 })
 export class ImageModule {}

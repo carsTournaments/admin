@@ -8,21 +8,21 @@ import { LogsPage } from './logs.page';
 import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ServicesModule,
-    ComponentsModule,
-    NgChartsModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: LogsPage,
-        data: { title: 'Logs' },
-      },
-    ]),
-  ],
-  declarations: [LogsPage],
-  providers: [],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ServicesModule,
+        ComponentsModule,
+        NgChartsModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: LogsPage,
+                data: { title: 'Logs' },
+            },
+        ]),
+    ],
+    declarations: [LogsPage],
+    providers: [],
 })
 export class LogsModule {}

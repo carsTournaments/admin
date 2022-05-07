@@ -57,6 +57,7 @@ export class CustomTableViewModel {
             { name: '#', order: '', col: null },
             { name: 'Nombre', order: 'name', col: null },
             { name: 'Fecha Inicio', order: 'startDate', col: null },
+            { name: 'Fecha Fin', order: 'endDate', col: null },
             { name: 'Inscritos', order: '', col: null },
             { name: 'Rondas', order: '', col: null },
             { name: 'Requisitos', order: 'requisites', col: null },

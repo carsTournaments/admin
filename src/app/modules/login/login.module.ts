@@ -6,19 +6,19 @@ import { ServicesModule } from 'src/app/services/services.module';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ServicesModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: LoginPage,
-        data: { title: 'Login' },
-      },
-    ]),
-  ],
-  declarations: [LoginPage],
-  providers: [],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ServicesModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: LoginPage,
+                data: { title: 'Login' },
+            },
+        ]),
+    ],
+    declarations: [LoginPage],
+    providers: [],
 })
 export class LoginModule {}

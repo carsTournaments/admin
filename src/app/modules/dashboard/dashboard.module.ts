@@ -7,20 +7,20 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ServicesModule,
-    ComponentsModule,
-    PipesModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: DashboardPage,
-        data: { title: 'Dashboard' },
-      },
-    ]),
-  ],
-  declarations: [DashboardPage],
-  providers: [],
+    imports: [
+        CommonModule,
+        ServicesModule,
+        ComponentsModule,
+        PipesModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: DashboardPage,
+                data: { title: 'Dashboard' },
+            },
+        ]),
+    ],
+    declarations: [DashboardPage],
+    providers: [],
 })
 export class DashboardModule {}

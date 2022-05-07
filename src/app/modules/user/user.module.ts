@@ -9,31 +9,31 @@ import { UserOnePage } from './one/user-one.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ServicesModule,
-    ComponentsModule,
-    PipesModule,
-    FormsModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: UserListPage,
-        data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
-      },
-      {
-        path: 'one',
-        component: UserOnePage,
-        data: { breadcrumb: 'Nuevo', title: 'Usuarios - Nuevo' },
-      },
-      {
-        path: 'one/:id',
-        component: UserOnePage,
-        data: { breadcrumb: 'Editar', title: 'Usuarios - Editar' },
-      },
-    ]),
-  ],
-  declarations: [UserListPage, UserOnePage],
-  providers: [],
+    imports: [
+        CommonModule,
+        ServicesModule,
+        ComponentsModule,
+        PipesModule,
+        FormsModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: UserListPage,
+                data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
+            },
+            {
+                path: 'one',
+                component: UserOnePage,
+                data: { breadcrumb: 'Nuevo', title: 'Usuarios - Nuevo' },
+            },
+            {
+                path: 'one/:id',
+                component: UserOnePage,
+                data: { breadcrumb: 'Editar', title: 'Usuarios - Editar' },
+            },
+        ]),
+    ],
+    declarations: [UserListPage, UserOnePage],
+    providers: [],
 })
 export class UserModule {}

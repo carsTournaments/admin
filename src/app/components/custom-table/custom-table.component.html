@@ -295,9 +295,12 @@
                                 />
                                 {{ item.winner?.brand?.name }}
                             </div>
-                            <ng-container *ngIf="item.winner === null">
+                            <span
+                                class="badge bg-dark"
+                                *ngIf="item.winner === null"
+                            >
                                 N/D
-                            </ng-container>
+                            </span>
                         </td>
                         <td [routerLink]="['/rounds/one', item.round._id]">
                             {{ item.round?.name }}
@@ -349,9 +352,15 @@
                             </div>
                         </td>
                         <td>
-                            {{ item.startDate | dateToTimeAgo | titlecase }}
+                            <span class="badge bg-dark">
+                                {{ item.startDate | dateToTimeAgo | titlecase }}
+                            </span>
                         </td>
-                        <td>{{ item.endDate | dateToTimeAgo | titlecase }}</td>
+                        <td>
+                            <span class="badge bg-dark">
+                                {{ item.endDate | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
                         <td>
                             <span
                                 class="badge"
@@ -388,6 +397,14 @@
                         <td>
                             <span class="badge bg-dark">
                                 {{ item.startDate | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge bg-dark">
+                                <span *ngIf="item.endDate">{{
+                                    item.endDate | dateToTimeAgo | titlecase
+                                }}</span>
+                                <span *ngIf="!item.endDate">N/D</span>
                             </span>
                         </td>
                         <td>

@@ -9,31 +9,31 @@ import { InscriptionOnePage } from './one/inscription-one.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ServicesModule,
-    ComponentsModule,
-    PipesModule,
-    FormsModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: InscriptionListPage,
-        data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
-      },
-      {
-        path: 'one',
-        component: InscriptionOnePage,
-        data: { breadcrumb: 'Nuevo', title: 'Usuarios - Nuevo' },
-      },
-      {
-        path: 'one/:id',
-        component: InscriptionOnePage,
-        data: { breadcrumb: 'Editar', title: 'Usuarios - Editar' },
-      },
-    ]),
-  ],
-  declarations: [InscriptionListPage, InscriptionOnePage],
-  providers: [],
+    imports: [
+        CommonModule,
+        ServicesModule,
+        ComponentsModule,
+        PipesModule,
+        FormsModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: InscriptionListPage,
+                data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
+            },
+            {
+                path: 'one',
+                component: InscriptionOnePage,
+                data: { breadcrumb: 'Nuevo', title: 'Usuarios - Nuevo' },
+            },
+            {
+                path: 'one/:id',
+                component: InscriptionOnePage,
+                data: { breadcrumb: 'Editar', title: 'Usuarios - Editar' },
+            },
+        ]),
+    ],
+    declarations: [InscriptionListPage, InscriptionOnePage],
+    providers: [],
 })
 export class InscriptionModule {}
