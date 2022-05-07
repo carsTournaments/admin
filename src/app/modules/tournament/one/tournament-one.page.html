@@ -111,7 +111,7 @@
 
                 <div class="col-sm-6">
                     <div class="form-floating">
-                        <input
+                        <!-- <input
                             class="form-control"
                             type="number"
                             name="name"
@@ -119,7 +119,22 @@
                             placeholder="Nombre"
                             required
                             [disabled]="vm.disabledItems"
-                        />
+                        /> -->
+                        <select
+                            class="form-select"
+                            [(ngModel)]="vm.item.maxParticipants"
+                            [disabled]="vm.disabledItems"
+                        >
+                            <option [value]="2">2 coches - 1 ronda</option>
+                            <option [value]="4">4 coches - 2 rondas</option>
+                            <option [value]="8">8 coches - 4 rondas</option>
+                            <option [value]="16">16 coches - 8 rondas</option>
+                            <option [value]="32">32 coches - 16 rondas</option>
+                            <option [value]="64">64 coches - 32 rondas</option>
+                            <option [value]="128">
+                                128 coches - 64 rondas
+                            </option>
+                        </select>
                         <label for="floatingInput" class="form-label">
                             Participantes Maximos
                         </label>

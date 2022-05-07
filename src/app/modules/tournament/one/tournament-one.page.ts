@@ -136,12 +136,36 @@ export class TournamentOnePage implements OnInit {
     async onSubmit() {
         try {
             this.vm.item.startDate = `${this.vm.startDate} ${this.vm.startTime}`;
-            this.vm.edit ? this.update() : this.create();
+            this.vm.item.maxParticipants = Number(this.vm.item.maxParticipants);
+            const validations = this.validations();
+            if (validations.state) {
+                this.vm.edit ? this.update() : this.create();
+            } else {
+                this.snackBarService.open(validations.message);
+            }
         } catch (error: any) {
             this.snackBarService.open(
-                error.message ? error.message : 'Ha ocurrido un error'
+                error?.message ? error.message : 'Ha ocurrido un error'
             );
         }
+    }
+
+    validations(): { state: boolean; message: string } {
+        const data = {
+            state: true,
+            message: '',
+        };
+        if (this.vm.item.name === '') {
+            data.state = false;
+            data.message = 'El nombre del torneo no puede estar vacio';
+        }
+
+        if (this.vm.item.info === '') {
+            data.state = false;
+            data.message = 'La info del torneo no puede estar vacia';
+        }
+
+        return data;
     }
 
     update() {
