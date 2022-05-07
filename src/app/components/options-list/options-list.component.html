@@ -1,9 +1,10 @@
 <ul class="list-group">
-  <li
-    (click)="action.emit(option)"
-    class="list-group-item list-group-item-action pointer"
-    *ngFor="let option of options"
-  >
-    {{ option.name }}
-  </li>
+    <li
+        (click)="action.emit(option)"
+        class="list-group-item list-group-item-action pointer"
+        [ngClass]="{ disabled: option.disabled }"
+        *ngFor="let option of options"
+    >
+        {{ option.name }}
+    </li>
 </ul>

@@ -60,30 +60,27 @@ export class TournamentOnePageViewModel {
         {
             name: 'Avanzar ronda',
             value: 'nextRound',
+            disabled: false,
         },
         {
             name: 'Forzar inscripciones',
             value: 'forceInscriptions',
+            disabled: false,
         },
         {
             name: 'Forzar inicio de torneo',
             value: 'startTournament',
+            disabled: false,
         },
         {
             name: 'Resetear torneo',
             value: 'resetTournament',
-        },
-        {
-            name: 'Eliminar inscripciones',
-            value: 'deleteInscriptions',
-        },
-        {
-            name: 'Eliminar rondas',
-            value: 'deleteRounds',
+            disabled: false,
         },
         {
             name: 'Eliminar torneo',
             value: 'delete',
+            disabled: false,
         },
     ];
     requisitesDefault: TournamentRequisiteI[] = [];
@@ -95,4 +92,5 @@ export class TournamentOnePageViewModel {
     startTime = '';
     endDate = '';
     endTime = '';
+    disabledItems = false;
 }

@@ -52,17 +52,49 @@ export class TournamentOnePage implements OnInit {
 
     async getOne() {
         this.tournamentService.getOne(this.vm.id).subscribe({
-            next: (item) => {
-                this.vm.item = item;
-                this.vm.startDate = moment(item.startDate).format('YYYY-MM-DD');
-                this.vm.startTime = moment(item.startDate).format('HH:mm');
-                this.getInscriptionsByTournament();
-                this.getRoundsByTournament();
-                this.getPairingsByTournament();
-                this.getVotesByTournament();
-            },
+            next: (item) => this.getOneOnSuccess(item),
             error: (e) => console.error(e),
         });
+    }
+
+    private getOneOnSuccess(item: Tournament) {
+        this.vm.item = item;
+        this.vm.startDate = moment(item.startDate).format('YYYY-MM-DD');
+        this.vm.startTime = moment(item.startDate).format('HH:mm');
+        this.vm.disabledItems =
+            this.vm.item.status === 'InProgress' ||
+            this.vm.item.status === 'Completed';
+        this.setItemOptions();
+        this.getInscriptionsByTournament();
+        this.getRoundsByTournament();
+        this.getPairingsByTournament();
+        this.getVotesByTournament();
+    }
+
+    setItemOptions() {
+        for (const i of this.vm.options) {
+            i.disabled = false;
+        }
+        const nextRoundIndex = this.vm.options.findIndex(
+            (item) => item.value === 'nextRound'
+        );
+        const forceInscriptionsIndex = this.vm.options.findIndex(
+            (item) => item.value === 'forceInscriptions'
+        );
+        const startTournamentIndex = this.vm.options.findIndex(
+            (item) => item.value === 'startTournament'
+        );
+
+        if (this.vm.item.status === 'Todo') {
+            this.vm.options[nextRoundIndex].disabled = true;
+        } else if (this.vm.item.status === 'InProgress') {
+            this.vm.options[forceInscriptionsIndex].disabled = true;
+            this.vm.options[startTournamentIndex].disabled = true;
+        } else if (this.vm.item.status === 'Completed') {
+            this.vm.options[nextRoundIndex].disabled = true;
+            this.vm.options[forceInscriptionsIndex].disabled = true;
+            this.vm.options[startTournamentIndex].disabled = true;
+        }
     }
 
     async getInscriptionsByTournament() {
@@ -104,22 +136,38 @@ export class TournamentOnePage implements OnInit {
     async onSubmit() {
         try {
             this.vm.item.startDate = `${this.vm.startDate} ${this.vm.startTime}`;
-            this.vm.edit
-                ? this.tournamentService.update(this.vm.item).subscribe(() => {
-                      this.snackBarService.open(
-                          'Torneo actualizado correctamente'
-                      );
-                      this.router.navigate(['/tournaments']);
-                  })
-                : this.tournamentService.create(this.vm.item).subscribe(() => {
-                      this.snackBarService.open('Torneo creado correctamente');
-                      this.router.navigate(['/tournaments']);
-                  });
+            this.vm.edit ? this.update() : this.create();
         } catch (error: any) {
             this.snackBarService.open(
                 error.message ? error.message : 'Ha ocurrido un error'
             );
         }
+    }
+
+    update() {
+        this.tournamentService.update(this.vm.item).subscribe({
+            next: () => {
+                this.snackBarService.open('Torneo actualizado correctamente');
+                this.router.navigate(['/tournaments']);
+            },
+            error: (error) =>
+                this.snackBarService.open(
+                    error.message ? error.message : 'Ha ocurrido un error'
+                ),
+        });
+    }
+
+    create() {
+        this.tournamentService.create(this.vm.item).subscribe({
+            next: () => {
+                this.snackBarService.open('Torneo creado correctamente');
+                this.router.navigate(['/tournaments']);
+            },
+            error: (error) =>
+                this.snackBarService.open(
+                    error.message ? error.message : 'Ha ocurrido un error'
+                ),
+        });
     }
 
     actionForOption(option: ActionForOptionI) {
@@ -163,9 +211,7 @@ export class TournamentOnePage implements OnInit {
                     .subscribe({
                         next: (response) => {
                             this.snackBarService.open(response.message);
-                            this.getInscriptionsByTournament();
-                            this.getRoundsByTournament();
-                            this.getPairingsByTournament();
+                            this.getOne();
                         },
                         error: (error) => {
                             this.snackBarService.open(error);
