@@ -29,3 +29,7 @@ export interface TournamentUpdateDto {
     image?: string;
     info?: string;
 }
+
+export interface TournamentForceNextRoundDto {
+    tournamentId: string;
+}

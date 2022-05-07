@@ -230,7 +230,7 @@ export class TournamentOnePage implements OnInit {
         alert.subscribe((data) => {
             if (data) {
                 this.vm.forceNextRoundBody.tournamentId = this.vm.id;
-                this.roundService
+                this.tournamentService
                     .forceNextRound(this.vm.forceNextRoundBody)
                     .subscribe({
                         next: (response) => {

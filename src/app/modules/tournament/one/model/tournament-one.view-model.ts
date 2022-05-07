@@ -6,7 +6,7 @@ import {
     Tournament,
     TournamentRequisiteI,
 } from 'src/app/models/tournament.model';
-import { RoundForceNextRoundDto } from 'src/app/services/api/round/round.dto';
+import { TournamentForceNextRoundDto } from 'src/app/services/api/tournament/tournament.dto';
 
 export class TournamentOnePageViewModel {
     id!: string;
@@ -85,7 +85,7 @@ export class TournamentOnePageViewModel {
     ];
     requisitesDefault: TournamentRequisiteI[] = [];
     requisiteSelected!: string;
-    forceNextRoundBody: RoundForceNextRoundDto = {
+    forceNextRoundBody: TournamentForceNextRoundDto = {
         tournamentId: '',
     };
     startDate = '';

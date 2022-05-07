@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { Round } from 'src/app/models/round.model';
-import { RoundForceNextRoundDto, RoundGetAllDto } from './round.dto';
+import { RoundGetAllDto } from './round.dto';
 import { PaginatorI } from 'src/app/interfaces/paginator.interface';
 import { take } from 'rxjs';
 
@@ -39,14 +39,6 @@ export class RoundService {
     create(data: Round): Observable<Round> {
         return this.httpClient
             .post<Round>(`${this.url}/create`, data)
-            .pipe(take(1));
-    }
-
-    forceNextRound(
-        data: RoundForceNextRoundDto
-    ): Observable<{ message: string }> {
-        return this.httpClient
-            .put<{ message: string }>(`${this.url}/forceNextRound`, data)
             .pipe(take(1));
     }
 

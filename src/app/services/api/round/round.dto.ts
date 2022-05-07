@@ -9,10 +9,6 @@ export interface RoundCreateAutomaticsRoundsDto {
     tournamentId: string;
 }
 
-export interface RoundForceNextRoundDto {
-    tournamentId: string;
-}
-
 export interface RoundUpdateDto {
     _id: string;
     name: string;

@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
-import { TournamentGetAllDto } from './tournament.dto';
+import {
+    TournamentForceNextRoundDto,
+    TournamentGetAllDto,
+} from './tournament.dto';
 import { Tournament } from 'src/app/models/tournament.model';
 import { PaginatorI } from 'src/app/interfaces/paginator.interface';
 import { take } from 'rxjs';
@@ -45,6 +48,14 @@ export class TournamentService {
     resetTournament(data: IdDto): Observable<Tournament> {
         return this.httpClient
             .post<Tournament>(`${this.url}/resetTournament`, data)
+            .pipe(take(1));
+    }
+
+    forceNextRound(
+        data: TournamentForceNextRoundDto
+    ): Observable<{ message: string }> {
+        return this.httpClient
+            .put<{ message: string }>(`${this.url}/forceNextRound`, data)
             .pipe(take(1));
     }
 
