@@ -330,6 +330,78 @@
                     </tr>
                 </ng-container>
 
+                <!-- Report -->
+                <ng-container *ngIf="options.type === 'report'">
+                    <tr class="pointer" *ngFor="let item of options.items">
+                        <td
+                            [routerLink]="['/users/one', item.userReporter._id]"
+                        >
+                            <div class="chip chip-dark">
+                                {{ item.userReporter.name }}
+                            </div>
+                        </td>
+                        <td [routerLink]="['/cars/one', item.carReported._id]">
+                            <div class="chip chip-primary">
+                                <img
+                                    class="image-table"
+                                    [src]="item.carReported.image?.url | image"
+                                />
+                                {{
+                                    item.carReported.brand.name +
+                                        ' ' +
+                                        item.carReported.model
+                                }}
+                            </div>
+                        </td>
+                        <td
+                            [routerLink]="['/users/one', item.userReported._id]"
+                        >
+                            <div class="chip chip-primary">
+                                {{ item.userReported.name }}
+                            </div>
+                        </td>
+                        <td [routerLink]="['/reports/one', item._id]">
+                            <span
+                                class="badge"
+                                [ngClass]="{
+                                    'bg-warning': !item.state,
+                                    'bg-success': item.state
+                                }"
+                            >
+                                <span
+                                    *ngIf="
+                                        !item.state &&
+                                        item.created === item.updated
+                                    "
+                                >
+                                    Sin revisar
+                                </span>
+
+                                <span
+                                    *ngIf="
+                                        !item.state &&
+                                        item.created !== item.updated
+                                    "
+                                >
+                                    Rechazado
+                                </span>
+
+                                <span *ngIf="item.state"> Aprobado </span>
+                            </span>
+                        </td>
+                        <td [routerLink]="['/reports/one', item._id]">
+                            <span class="badge bg-dark">
+                                {{ item.endDate | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                        <td [routerLink]="['/reports/one', item._id]">
+                            <span class="badge bg-medium">
+                                {{ item.created | dateToTimeAgo | titlecase }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+
                 <!-- Round -->
                 <ng-container *ngIf="options.type === 'round'">
                     <tr class="pointer" *ngFor="let item of options.items">

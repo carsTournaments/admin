@@ -34,6 +34,10 @@ export class MenuViewModel {
                     name: 'Likes',
                     link: '/likes',
                 },
+                {
+                    name: 'Reportes',
+                    link: '/reports',
+                },
             ],
         },
         {

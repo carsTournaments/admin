@@ -43,6 +43,14 @@ export class CarOnePageViewModel {
             value: 'like',
         },
         {
+            name: 'Reportar',
+            value: 'report',
+        },
+        {
+            name: 'Eliminar todos los reportes',
+            value: 'deleteInscriptions',
+        },
+        {
             name: 'Eliminar todas las inscripciones',
             value: 'deleteInscriptions',
         },

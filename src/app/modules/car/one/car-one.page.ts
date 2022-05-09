@@ -3,15 +3,20 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
 import {
+    AlertService,
     BrandService,
     CarService,
     InscriptionService,
     LikeService,
+    ReportService,
+    SnackBarService,
     UserService,
     VoteService,
     WinnerService,
 } from 'src/app/services';
 import { CarOnePageViewModel } from './model/car-one.view-model';
+import { Report } from 'src/app/models/report.model';
+import { User } from 'src/app/models';
 
 @Component({
     selector: 'page-car-one',
@@ -28,7 +33,10 @@ export class CarOnePage implements OnInit {
         private winnerService: WinnerService,
         private inscriptionService: InscriptionService,
         private likeService: LikeService,
-        private router: Router
+        private reportService: ReportService,
+        private router: Router,
+        private alertService: AlertService,
+        private snackBarService: SnackBarService
     ) {}
 
     ngOnInit() {
@@ -122,6 +130,9 @@ export class CarOnePage implements OnInit {
             case 'like':
                 this.likeCar();
                 break;
+            case 'report':
+                this.reportCar();
+                break;
             case 'deleteInscriptions':
                 this.deleteInscriptions();
                 break;
@@ -139,13 +150,35 @@ export class CarOnePage implements OnInit {
                 car: this.vm.id,
             };
             this.likeService.create(like).subscribe({
-                next: () => alert('Like añadido'),
-                error: (e) => {
-                    console.error(e);
-                },
+                next: () => this.snackBarService.open('Like añadido'),
+                error: (e) => this.snackBarService.open(e),
             });
         } catch (error) {
             console.error(error);
+        }
+    }
+
+    reportCar() {
+        const userString: string | null = localStorage.getItem('user');
+        if (userString) {
+            const reason = prompt('Indica el motivo del reporte');
+            if (reason) {
+                const user = JSON.parse(userString) as User;
+                const report: Report = {
+                    carReported: this.vm.id,
+                    userReported: this.vm.item.driver._id,
+                    userReporter: user._id,
+                    reason,
+                    state: true,
+                };
+                this.reportService.create(report).subscribe({
+                    next: () =>
+                        this.snackBarService.open(
+                            'Reporte creado correctamente'
+                        ),
+                    error: (e) => this.snackBarService.open(e),
+                });
+            }
         }
     }
 

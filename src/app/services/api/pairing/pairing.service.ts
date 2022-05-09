@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { Pairing } from 'src/app/models/pairing.model';
-import { IdDto, IdSiteDto } from 'src/app/core/dtos/id.dto';
+import { IdDto, IdSiteDto } from 'src/app/core/dtos/generic.dto';
 import { PairingGetAllDto } from './pairing.dto';
 import { PaginatorI } from 'src/app/interfaces/paginator.interface';
 import { take } from 'rxjs';

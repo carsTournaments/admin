@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { InscriptionCreateDto, InscriptionGetAllDto } from './inscription.dto';
 import { Inscription } from 'src/app/models/inscription.model';
-import { IdDto, IdSiteDto } from 'src/app/core/dtos/id.dto';
+import { IdDto, IdSiteDto } from 'src/app/core/dtos/generic.dto';
 import { PaginatorI } from 'src/app/interfaces/paginator.interface';
 import { take } from 'rxjs';
 
