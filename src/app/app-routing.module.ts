@@ -71,6 +71,15 @@ const routes: Routes = [
         canActivate: [LoginGuard],
     },
     {
+        path: 'reports',
+        data: { breadcrumb: 'Reportes' },
+        loadChildren: () =>
+            import('./modules/report/report.module').then(
+                (m) => m.ReportModule
+            ),
+        canActivate: [LoginGuard],
+    },
+    {
         path: 'rounds',
         data: { breadcrumb: 'Rondas' },
         loadChildren: () =>

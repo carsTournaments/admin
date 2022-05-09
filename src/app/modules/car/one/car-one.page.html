@@ -222,5 +222,11 @@
         <ng-container *ngIf="vm.optionsSegments.currentSegment === 6">
             <custom-table [options]="vm.winnersOptionsTable"></custom-table>
         </ng-container>
+
+        <ng-container *ngIf="vm.optionsSegments.currentSegment === 7">
+            <custom-table
+                [options]="vm.likesReceivedOptionsTable"
+            ></custom-table>
+        </ng-container>
     </div>
 </div>

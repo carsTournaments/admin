@@ -6,6 +6,7 @@ export { InscriptionService } from './api/inscription/inscription.service';
 export { LikeService } from './api/like/like.service';
 export { LoggerService } from './api/logger/logger.service';
 export { PairingService } from './api/pairing/pairing.service';
+export { ReportService } from './api/report/report.service';
 export { RoundService } from './api/round/round.service';
 export { SearchService } from './api/search/search.service';
 export { SettingsService } from './api/settings/settings.service';

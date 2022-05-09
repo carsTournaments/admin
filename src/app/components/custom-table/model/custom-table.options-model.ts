@@ -7,6 +7,7 @@ export class CustomTableOptionsModel {
         | 'inscription'
         | 'like'
         | 'pairing'
+        | 'report'
         | 'round'
         | 'tournament'
         | 'vote'

@@ -3,15 +3,20 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
 import {
+    AlertService,
     BrandService,
     CarService,
     InscriptionService,
     LikeService,
+    ReportService,
+    SnackBarService,
     UserService,
     VoteService,
     WinnerService,
 } from 'src/app/services';
 import { CarOnePageViewModel } from './model/car-one.view-model';
+import { Report } from 'src/app/models/report.model';
+import { User } from 'src/app/models';
 
 @Component({
     selector: 'page-car-one',
@@ -28,7 +33,10 @@ export class CarOnePage implements OnInit {
         private winnerService: WinnerService,
         private inscriptionService: InscriptionService,
         private likeService: LikeService,
-        private router: Router
+        private reportService: ReportService,
+        private router: Router,
+        private alertService: AlertService,
+        private snackBarService: SnackBarService
     ) {}
 
     ngOnInit() {
@@ -41,6 +49,7 @@ export class CarOnePage implements OnInit {
             this.vm.edit = true;
             this.getInscriptionsByCar();
             this.getVotesByCar();
+            this.getLikesReceivedByCar();
             this.getOne();
         } else {
             this.vm.optionsTitle.title = 'Nuevo Coche';
@@ -63,39 +72,42 @@ export class CarOnePage implements OnInit {
     getAllDrivers() {
         this.userService.getAll(this.vm.bodyUsers).subscribe({
             next: (result) => (this.vm.users = result.items),
-            error: (e) => console.error(e),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 
     getAllWinners() {
         this.winnerService.getAll(this.vm.bodyWinners).subscribe({
             next: (result) => (this.vm.winners = result.items),
-            error: (e) => console.error(e),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 
     getAllBrands() {
         this.brandService.getAll(this.vm.bodyBrands).subscribe({
             next: (result) => (this.vm.brands = result.items),
-            error: (e) => console.error(e),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 
     getInscriptionsByCar() {
         this.inscriptionService.getAllOfCar({ id: this.vm.id }).subscribe({
-            next: (items) => {
-                this.vm.inscriptionsOptionsTable.loading = true;
-                this.vm.inscriptionsOptionsTable.items = items;
-                this.vm.inscriptionsOptionsTable.loading = false;
-            },
-            error: (e) => console.error(e),
+            next: (items) => (this.vm.inscriptionsOptionsTable.items = items),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 
     getVotesByCar() {
         this.voteService.getAllOfCar({ id: this.vm.id }).subscribe({
             next: (items) => (this.vm.votesOptionsTable.items = items),
-            error: (e) => console.error(e),
+            error: (e) => this.snackBarService.open(e),
+        });
+    }
+
+    getLikesReceivedByCar() {
+        this.likeService.getAllReceivedForCar({ id: this.vm.id }).subscribe({
+            next: (items) => (this.vm.likesReceivedOptionsTable.items = items),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 
@@ -122,6 +134,9 @@ export class CarOnePage implements OnInit {
             case 'like':
                 this.likeCar();
                 break;
+            case 'report':
+                this.reportCar();
+                break;
             case 'deleteInscriptions':
                 this.deleteInscriptions();
                 break;
@@ -139,13 +154,35 @@ export class CarOnePage implements OnInit {
                 car: this.vm.id,
             };
             this.likeService.create(like).subscribe({
-                next: () => alert('Like añadido'),
-                error: (e) => {
-                    console.error(e);
-                },
+                next: () => this.snackBarService.open('Like añadido'),
+                error: (e) => this.snackBarService.open(e),
             });
         } catch (error) {
             console.error(error);
+        }
+    }
+
+    reportCar() {
+        const userString: string | null = localStorage.getItem('user');
+        if (userString) {
+            const reason = prompt('Indica el motivo del reporte');
+            if (reason) {
+                const user = JSON.parse(userString) as User;
+                const report: Report = {
+                    carReported: this.vm.id,
+                    userReported: this.vm.item.driver._id,
+                    userReporter: user._id,
+                    reason,
+                    state: true,
+                };
+                this.reportService.create(report).subscribe({
+                    next: () =>
+                        this.snackBarService.open(
+                            'Reporte creado correctamente'
+                        ),
+                    error: (e) => this.snackBarService.open(e),
+                });
+            }
         }
     }
 
