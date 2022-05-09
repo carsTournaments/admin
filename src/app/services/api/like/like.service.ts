@@ -6,6 +6,7 @@ import { PaginatorI } from 'src/app/interfaces/paginator.interface';
 import { LikeGetAllDto } from './like.dto';
 import { Like } from 'src/app/models/like.model';
 import { take } from 'rxjs';
+import { IdDto } from 'src/app/core/dtos/generic.dto';
 
 @Injectable({ providedIn: 'root' })
 export class LikeService {
@@ -20,6 +21,12 @@ export class LikeService {
                 items: Like[];
                 paginator: PaginatorI;
             }>(`${this.url}/getAll`, data)
+            .pipe(take(1));
+    }
+
+    getAllReceivedForCar(data: IdDto): Observable<Like[]> {
+        return this.httpClient
+            .post<Like[]>(`${this.url}/getAllReceivedForCar`, data)
             .pipe(take(1));
     }
 

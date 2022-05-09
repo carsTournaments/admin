@@ -49,6 +49,7 @@ export class CarOnePage implements OnInit {
             this.vm.edit = true;
             this.getInscriptionsByCar();
             this.getVotesByCar();
+            this.getLikesReceivedByCar();
             this.getOne();
         } else {
             this.vm.optionsTitle.title = 'Nuevo Coche';
@@ -71,39 +72,42 @@ export class CarOnePage implements OnInit {
     getAllDrivers() {
         this.userService.getAll(this.vm.bodyUsers).subscribe({
             next: (result) => (this.vm.users = result.items),
-            error: (e) => console.error(e),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 
     getAllWinners() {
         this.winnerService.getAll(this.vm.bodyWinners).subscribe({
             next: (result) => (this.vm.winners = result.items),
-            error: (e) => console.error(e),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 
     getAllBrands() {
         this.brandService.getAll(this.vm.bodyBrands).subscribe({
             next: (result) => (this.vm.brands = result.items),
-            error: (e) => console.error(e),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 
     getInscriptionsByCar() {
         this.inscriptionService.getAllOfCar({ id: this.vm.id }).subscribe({
-            next: (items) => {
-                this.vm.inscriptionsOptionsTable.loading = true;
-                this.vm.inscriptionsOptionsTable.items = items;
-                this.vm.inscriptionsOptionsTable.loading = false;
-            },
-            error: (e) => console.error(e),
+            next: (items) => (this.vm.inscriptionsOptionsTable.items = items),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 
     getVotesByCar() {
         this.voteService.getAllOfCar({ id: this.vm.id }).subscribe({
             next: (items) => (this.vm.votesOptionsTable.items = items),
-            error: (e) => console.error(e),
+            error: (e) => this.snackBarService.open(e),
+        });
+    }
+
+    getLikesReceivedByCar() {
+        this.likeService.getAllReceivedForCar({ id: this.vm.id }).subscribe({
+            next: (items) => (this.vm.likesReceivedOptionsTable.items = items),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 

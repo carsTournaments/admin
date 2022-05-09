@@ -25,6 +25,7 @@ export class CarOnePageViewModel {
             'Nueva Inscripcion',
             'Votos',
             'Torneos Ganados',
+            'Likes Recibidos',
         ],
         currentSegment: 0,
     });
@@ -74,6 +75,13 @@ export class CarOnePageViewModel {
         site: 'admin',
         order: ['created', 'desc'],
     };
+    likesReceivedOptionsTable = new CustomTableOptionsModel({
+        loading: false,
+        items: [],
+        type: 'like',
+        showLoadMore: true,
+        error: false,
+    });
     users: User[] = [];
     userIdSelected = '';
     votesOptionsTable = new CustomTableOptionsModel({
