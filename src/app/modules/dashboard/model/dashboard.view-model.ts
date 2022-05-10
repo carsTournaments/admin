@@ -8,22 +8,21 @@ export class DashboardViewModel {
     tournamentsOptionsTitle = new CustomTitleWithButtonsViewModel({
         title: 'Ultimos Torneos',
         buttons: [
-            { name: 'Todos', link: '/sites/', separated: false },
-            { name: 'Nuevo', link: '/sites/one/', separated: true },
+            { name: 'Todos', link: '/tournaments/' },
+            { name: 'Nuevo', link: '/tournaments/one/' },
         ],
     });
     carsOptionsTitle = new CustomTitleWithButtonsViewModel({
         title: 'Ultimos Coches',
         buttons: [
-            { name: 'Todos', link: '/events/', separated: false },
-            { name: 'Nuevo', link: '/events/one/', separated: true },
+            { name: 'Todos', link: '/cars/' },
+            { name: 'Nuevo', link: '/cars/one/' },
         ],
     });
     statsOptionsTitle = new CustomTitleWithButtonsViewModel({
         title: 'Servidor',
         buttons: [{ name: 'Actualizar', link: '', separated: false }],
     });
-
     tournamentsOptionsTable = new CustomTableOptionsModel({
         loading: false,
         type: 'tournament',
