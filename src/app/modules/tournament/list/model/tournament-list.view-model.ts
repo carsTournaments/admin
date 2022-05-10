@@ -8,9 +8,11 @@ export class TournamentListViewModel {
     items: User[] = [];
     optionsTitle = new CustomTitleWithButtonsViewModel({
         title: 'Torneos',
-        buttons: [
-            { name: 'Nuevo', link: '/tournaments/one', separated: false },
-        ],
+        buttons: [{ name: 'Nuevo', link: '/tournaments/one' }],
+    });
+    optionsSegments = new SegmentsViewModel({
+        segments: ['Listado', 'Opciones'],
+        currentSegment: 0,
     });
     optionsTable = new CustomTableOptionsModel({
         loading: false,
@@ -18,10 +20,6 @@ export class TournamentListViewModel {
         type: 'tournament',
         showLoadMore: true,
         error: false,
-    });
-    optionsSegments = new SegmentsViewModel({
-        segments: ['Listado', 'Opciones'],
-        currentSegment: 0,
     });
     tournamentBody: TournamentGetAllDto = {
         page: 1,

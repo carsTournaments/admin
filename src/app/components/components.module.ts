@@ -19,12 +19,13 @@ import { SelectNumberEntriesComponent } from './select-number-entries/select-num
 import { StatsComponent } from './stats/stats.component';
 import { StatsResumeComponent } from './stats-resume/stats-resume.component';
 import { AddComponentComponent } from './add-image/add-image.component';
+import { AlertComponent } from './alert/alert.component';
+import { ToggleComponent } from './toggle/toggle.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { AlertComponent } from './alert/alert.component';
-import { ToggleComponent } from './toggle/toggle.component';
 
 @NgModule({
     imports: [
@@ -36,6 +37,7 @@ import { ToggleComponent } from './toggle/toggle.component';
         MatSnackBarModule,
         MatDialogModule,
         MatButtonModule,
+        MatButtonToggleModule,
         MatSlideToggleModule,
     ],
     declarations: [
