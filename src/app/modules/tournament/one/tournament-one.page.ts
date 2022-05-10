@@ -13,6 +13,7 @@ import {
     RoundService,
     VoteService,
     SnackBarService,
+    WinnerService,
 } from 'src/app/services';
 import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
 import { AlertService } from 'src/app/services/material/alert/alert.service';
@@ -31,6 +32,7 @@ export class TournamentOnePage implements OnInit {
         private pairingService: PairingService,
         private roundService: RoundService,
         private voteService: VoteService,
+        private winnerService: WinnerService,
         private router: Router,
         private snackBarService: SnackBarService,
         private alertService: AlertService
@@ -53,7 +55,7 @@ export class TournamentOnePage implements OnInit {
     async getOne() {
         this.tournamentService.getOne(this.vm.id).subscribe({
             next: (item) => this.getOneOnSuccess(item),
-            error: (e) => console.error(e),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 
@@ -75,6 +77,7 @@ export class TournamentOnePage implements OnInit {
         this.getRoundsByTournament();
         this.getPairingsByTournament();
         this.getVotesByTournament();
+        this.getAllWinnersForTournament();
     }
 
     setItemOptions() {
@@ -109,28 +112,35 @@ export class TournamentOnePage implements OnInit {
             .subscribe({
                 next: (items) =>
                     (this.vm.inscriptionsOptionsTable.items = items),
-                error: (e) => console.error(e),
+                error: (e) => this.snackBarService.open(e),
             });
     }
 
     async getRoundsByTournament() {
         this.roundService.getAllOfTournament({ id: this.vm.id }).subscribe({
             next: (items) => (this.vm.roundsOptionsTable.items = items),
-            error: (e) => console.error(e),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 
     async getPairingsByTournament() {
         this.pairingService.getAllOfTournament({ id: this.vm.id }).subscribe({
             next: (items) => (this.vm.pairingsOptionsTable.items = items),
-            error: (e) => console.error(e),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 
     async getVotesByTournament() {
         this.voteService.getAllOfTournament({ id: this.vm.id }).subscribe({
             next: (items) => (this.vm.votesOptionsTable.items = items),
-            error: (e) => console.error(e),
+            error: (e) => this.snackBarService.open(e),
+        });
+    }
+
+    async getAllWinnersForTournament() {
+        this.winnerService.getAllForTournament({ id: this.vm.id }).subscribe({
+            next: (items) => (this.vm.winnersOptionsTable.items = items),
+            error: (e) => this.snackBarService.open(e),
         });
     }
 

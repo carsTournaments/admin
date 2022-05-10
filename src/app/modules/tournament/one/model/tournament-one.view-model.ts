@@ -24,6 +24,7 @@ export class TournamentOnePageViewModel {
             'Rondas',
             'Emparejamientos',
             'Votos',
+            'Ganadores',
         ],
         currentSegment: 0,
     });
@@ -52,6 +53,13 @@ export class TournamentOnePageViewModel {
         loading: false,
         items: [],
         type: 'vote',
+        showLoadMore: true,
+        error: false,
+    });
+    winnersOptionsTable = new CustomTableOptionsModel({
+        loading: false,
+        items: [],
+        type: 'winner',
         showLoadMore: true,
         error: false,
     });

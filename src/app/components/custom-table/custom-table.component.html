@@ -528,20 +528,6 @@
                 <!-- Winners -->
                 <ng-container *ngIf="options.type === 'winner'">
                     <tr class="pointer" *ngFor="let item of options.items">
-                        <td
-                            [routerLink]="[
-                                '/tournaments/one',
-                                item.tournament._id
-                            ]"
-                        >
-                            <div class="chip chip-primary">
-                                <img
-                                    class="image-table"
-                                    [src]="item.tournament.image?.url | image"
-                                />
-                                {{ item.tournament.name }}
-                            </div>
-                        </td>
                         <td [routerLink]="['/cars/one', item.gold._id]">
                             <div class="chip chip-gold">
                                 <img
@@ -576,6 +562,20 @@
                                 {{ item.bronze?.model }} ({{
                                     item.bronze?.driver?.name
                                 }})
+                            </div>
+                        </td>
+                        <td
+                            [routerLink]="[
+                                '/tournaments/one',
+                                item.tournament._id
+                            ]"
+                        >
+                            <div class="chip chip-primary">
+                                <img
+                                    class="image-table"
+                                    [src]="item.tournament.image?.url | image"
+                                />
+                                {{ item.tournament.name }}
                             </div>
                         </td>
                         <td [routerLink]="['/winners/one', item._id]">
