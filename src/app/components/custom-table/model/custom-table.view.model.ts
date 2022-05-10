@@ -99,10 +99,10 @@ export class CustomTableViewModel {
             { name: 'Creado', order: 'created', col: null },
         ],
         winner: [
-            { name: 'Torneo', order: 'tournament', col: null },
             { name: 'Oro', order: 'golrd', col: null },
             { name: 'Plata', order: 'silver', col: null },
             { name: 'Bronce', order: 'bronze', col: null },
+            { name: 'Torneo', order: 'tournament', col: null },
             { name: 'Creado', order: 'created', col: null },
         ],
     };
