@@ -1,4 +1,4 @@
-import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 
 export class ChartOptionsModel {
     options: ChartConfiguration['options'] = {};

@@ -24,7 +24,7 @@ export class ChartBarComponent {
         active,
     }: {
         event?: ChartEvent;
-        active?: {}[];
+        active?: any;
     }): void {
         console.log(event, active);
     }
@@ -34,7 +34,7 @@ export class ChartBarComponent {
         active,
     }: {
         event?: ChartEvent;
-        active?: {}[];
+        active?: any;
     }): void {
         console.log(event, active);
     }
