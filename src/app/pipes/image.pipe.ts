@@ -9,7 +9,7 @@ export class ImagePipe implements PipeTransform {
         if (value) {
             return `${environment.urlImages}/${value}`;
         } else {
-            return 'assets/no-image.png';
+            return 'assets/images/no-image.png';
         }
     }
 }
