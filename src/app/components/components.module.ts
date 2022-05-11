@@ -26,6 +26,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { NgChartsModule } from 'ng2-charts';
+import { ChartBarComponent } from './chart-bar/chart-bar.component';
 
 @NgModule({
     imports: [
@@ -34,6 +36,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
         CommonModule,
         PipesModule,
         ServicesModule,
+        NgChartsModule,
         MatSnackBarModule,
         MatDialogModule,
         MatButtonModule,
@@ -44,6 +47,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
         AddComponentComponent,
         AddInscriptionComponent,
         BreadcrumbComponent,
+        ChartBarComponent,
         CustomTableComponent,
         CustomTitleWithButtonsComponent,
         LoadingComponent,
@@ -63,6 +67,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
         AddComponentComponent,
         AddInscriptionComponent,
         BreadcrumbComponent,
+        ChartBarComponent,
         CustomTableComponent,
         CustomTitleWithButtonsComponent,
         LoadingComponent,

@@ -43,6 +43,9 @@ export class LogsPage implements OnInit {
             this.vm.optionsDays.data.labels!.push(element.name);
             this.vm.optionsDays.data.datasets[0].data.push(element.count);
         });
+        this.vm.optionsMethods.loading = false;
+        this.vm.optionsRoles.loading = false;
+        this.vm.optionsDays.loading = false;
         this.vm.urls = this.vm.items.urls;
     }
 
