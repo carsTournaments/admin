@@ -15,6 +15,7 @@ export class InscriptionOnePageViewModel {
         pageSize: 1000,
         site: 'admin',
         order: ['created', 'desc'],
+        onlyWithPhoto: false,
     };
     tournaments: Tournament[] = [];
     tournamentBody: TournamentGetAllDto = {

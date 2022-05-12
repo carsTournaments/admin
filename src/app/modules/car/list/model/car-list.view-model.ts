@@ -26,6 +26,7 @@ export class CarListViewModel {
         pageSize: 20,
         site: 'admin',
         order: ['created', 'desc'],
+        onlyWithPhoto: false,
     };
     options = [
         {

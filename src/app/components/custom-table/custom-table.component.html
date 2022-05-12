@@ -109,7 +109,7 @@
                             {{ item.year }}
                         </td>
                         <td [routerLink]="['/cars/one', item._id]">
-                            {{ item.inscriptions.length }}
+                            {{ item.inscriptions?.length }}
                         </td>
                         <td [routerLink]="['/cars/one', item._id]">
                             <span class="badge bg-medium">

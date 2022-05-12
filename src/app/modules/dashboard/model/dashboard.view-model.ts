@@ -54,5 +54,6 @@ export class DashboardViewModel {
         pageSize: 5,
         order: ['created', 'desc'],
         site: 'admin',
+        onlyWithPhoto: false,
     };
 }

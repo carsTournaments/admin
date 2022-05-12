@@ -39,6 +39,7 @@ export class WinnerOnePageViewModel {
         pageSize: 1000,
         site: 'admin',
         order: ['name', 'desc'],
+        onlyWithPhoto: false,
     };
     tournaments: Tournament[] = [];
     cars: Car[] = [];
