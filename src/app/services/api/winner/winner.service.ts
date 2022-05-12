@@ -18,7 +18,7 @@ export class WinnerService {
     ): Observable<{ items: Winner[]; paginator: PaginatorI }> {
         return this.httpClient
             .post<{ items: Winner[]; paginator: PaginatorI }>(
-                `${this.url}/all`,
+                `${this.url}/getAll`,
                 data
             )
             .pipe(take(1));

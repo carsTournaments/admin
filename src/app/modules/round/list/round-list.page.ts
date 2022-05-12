@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
 import { RoundService } from 'src/app/services';
 import { RoundListViewModel } from './model/round-list.view-model';
 
@@ -36,11 +35,6 @@ export class RoundListPage implements OnInit {
             },
         });
         this.vm.optionsTable.loading = false;
-    }
-
-    actionForOption(option: ActionForOptionI) {
-        // TODO: Implementar
-        console.log(option);
     }
 
     onChangeOrder(order: string) {

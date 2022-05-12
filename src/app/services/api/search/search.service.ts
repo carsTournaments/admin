@@ -11,6 +11,6 @@ export class SearchService {
     constructor(private httpClient: HttpClient) {}
 
     getAll(data: SearchDto): Observable<any> {
-        return this.httpClient.post(`${this.url}/all`, data).pipe(take(1));
+        return this.httpClient.post(`${this.url}/getAll`, data).pipe(take(1));
     }
 }

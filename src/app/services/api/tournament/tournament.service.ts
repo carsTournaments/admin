@@ -23,7 +23,7 @@ export class TournamentService {
             .post<{
                 items: Tournament[];
                 paginator: PaginatorI;
-            }>(`${this.url}/all`, data)
+            }>(`${this.url}/getAll`, data)
             .pipe(take(1));
     }
 

@@ -1,30 +1,29 @@
 <navbar></navbar>
 <custom-menu [itemSelected]="2"></custom-menu>
 <div class="container">
-  <div class="box-white">
-    <custom-title-with-buttons
-      [options]="vm.optionsTitle"
-    ></custom-title-with-buttons>
-    <segments [options]="vm.optionsSegments"></segments>
-    <ng-container *ngIf="vm.optionsSegments.currentSegment === 0">
-      <custom-table
-        [options]="vm.optionsTable"
-        (changeOrder)="onChangeOrder($event)"
-        (changePage)="onChangePage()"
-      >
-      </custom-table>
-    </ng-container>
+    <div class="box-white">
+        <custom-title-with-buttons
+            [options]="vm.optionsTitle"
+        ></custom-title-with-buttons>
+        <segments [options]="vm.optionsSegments"></segments>
+        <ng-container *ngIf="vm.optionsSegments.currentSegment === 0">
+            <custom-table
+                [options]="vm.optionsTable"
+                (changeOrder)="onChangeOrder($event)"
+                (changePage)="onChangePage()"
+            >
+            </custom-table>
+        </ng-container>
 
-    <ng-container *ngIf="vm.optionsSegments.currentSegment === 1">
-      <ul class="list-group mt-3">
-        <li
-          (click)="actionForOption(option)"
-          class="list-group-item list-group-item-action pointer"
-          *ngFor="let option of vm.options"
-        >
-          {{ option.name }}
-        </li>
-      </ul>
-    </ng-container>
-  </div>
+        <ng-container *ngIf="vm.optionsSegments.currentSegment === 1">
+            <ul class="list-group mt-3">
+                <li
+                    class="list-group-item list-group-item-action pointer"
+                    *ngFor="let option of vm.options"
+                >
+                    {{ option.name }}
+                </li>
+            </ul>
+        </ng-container>
+    </div>
 </div>

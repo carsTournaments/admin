@@ -19,7 +19,7 @@ export class ReportService {
             .post<{
                 items: Report[];
                 paginator: PaginatorI;
-            }>(`${this.url}/all`, data)
+            }>(`${this.url}/getAll`, data)
             .pipe(take(1));
     }
 

@@ -1,7 +1,6 @@
 import { PaginatorI } from '../../../interfaces/paginator.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpService } from '../../http/http.service';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { ImageGetAllDto, ImageUploadDto } from './image.dto';
@@ -11,15 +10,12 @@ import { take } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class ImageService {
     url = `${environment.urlApi}/images`;
-    constructor(
-        private httpClient: HttpClient,
-        private httpService: HttpService
-    ) {}
+    constructor(private httpClient: HttpClient) {}
 
     getAll(
         data: ImageGetAllDto
     ): Observable<{ items: Image[]; paginator: PaginatorI }> {
-        const url = `${this.url}/all`;
+        const url = `${this.url}/getAll`;
         return this.httpClient
             .post<{ items: Image[]; paginator: PaginatorI }>(url, data)
             .pipe(take(1));

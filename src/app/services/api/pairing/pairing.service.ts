@@ -20,7 +20,7 @@ export class PairingService {
             .post<{
                 items: Pairing[];
                 paginator: PaginatorI;
-            }>(`${this.url}/all`, data)
+            }>(`${this.url}/getAll`, data)
             .pipe(take(1));
     }
 

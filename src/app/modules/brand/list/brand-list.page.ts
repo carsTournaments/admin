@@ -38,11 +38,6 @@ export class BrandListPage implements OnInit {
         this.vm.optionsTable.loading = false;
     }
 
-    actionForOption(option: ActionForOptionI) {
-        // TODO: Implementar
-        console.log(option);
-    }
-
     onChangeOrder(order: string) {
         if (
             !this.vm.brandBody.order ||

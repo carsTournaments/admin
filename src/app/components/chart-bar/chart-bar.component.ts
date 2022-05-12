@@ -13,29 +13,4 @@ export class ChartBarComponent {
         data: ChartData<ChartType>;
         type: ChartType;
     };
-
-    constructor() {
-        console.log(this.data);
-    }
-
-    // events
-    chartClicked({
-        event,
-        active,
-    }: {
-        event?: ChartEvent;
-        active?: any;
-    }): void {
-        console.log(event, active);
-    }
-
-    chartHovered({
-        event,
-        active,
-    }: {
-        event?: ChartEvent;
-        active?: any;
-    }): void {
-        console.log(event, active);
-    }
 }

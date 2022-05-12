@@ -364,8 +364,13 @@
                             <span
                                 class="badge"
                                 [ngClass]="{
-                                    'bg-warning': !item.state,
-                                    'bg-success': item.state
+                                    'bg-success': item.state,
+                                    'bg-warning':
+                                        !item.state &&
+                                        item.created === item.updated,
+                                    'bg-danger':
+                                        !item.state &&
+                                        item.created !== item.updated
                                 }"
                             >
                                 <span
@@ -391,7 +396,7 @@
                         </td>
                         <td [routerLink]="['/reports/one', item._id]">
                             <span class="badge bg-dark">
-                                {{ item.endDate | dateToTimeAgo | titlecase }}
+                                {{ item.updated | dateToTimeAgo | titlecase }}
                             </span>
                         </td>
                         <td [routerLink]="['/reports/one', item._id]">

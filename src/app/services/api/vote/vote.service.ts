@@ -17,7 +17,7 @@ export class VoteService {
     ): Observable<{ items: Vote[]; paginator: PaginatorI }> {
         return this.httpClient
             .post<{ items: Vote[]; paginator: PaginatorI }>(
-                `${this.url}/all`,
+                `${this.url}/getAll`,
                 data
             )
             .pipe(take(1));

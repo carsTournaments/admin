@@ -46,11 +46,6 @@ export class InscriptionListPage implements OnInit {
         this.vm.optionsTable.loading = false;
     }
 
-    actionForOption(option: ActionForOptionI) {
-        // TODO: Implementar
-        console.log(option);
-    }
-
     onChangeOrder(order: string) {
         if (
             !this.vm.inscriptionBody.order ||

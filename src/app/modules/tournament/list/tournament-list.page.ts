@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
 import { TournamentService } from 'src/app/services';
 import { TournamentListViewModel } from './model/tournament-list.view-model';
 
@@ -36,11 +35,6 @@ export class TournamentListPage implements OnInit {
             },
         });
         this.vm.optionsTable.loading = false;
-    }
-
-    actionForOption(option: ActionForOptionI) {
-        // TODO: Implementar
-        console.log(option);
     }
 
     onChangeOrder(order: string) {

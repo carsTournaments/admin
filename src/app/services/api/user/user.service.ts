@@ -19,7 +19,7 @@ export class UserService {
             .post<{
                 items: User[];
                 paginator: PaginatorI;
-            }>(`${this.url}/all`, data)
+            }>(`${this.url}/getAll`, data)
             .pipe(take(1));
     }
 
