@@ -85,7 +85,11 @@
                             {{ item.model }}
                         </td>
                         <td [routerLink]="['/cars/one', item._id]">
-                            {{ item.fuel }}
+                            {{
+                                item.fuel && item.fuel !== ''
+                                    ? item.fuel
+                                    : 'N/D'
+                            }}
                         </td>
                         <td [routerLink]="['/cars/one', item._id]">
                             <span
@@ -96,8 +100,8 @@
                                     'bg-info': item.traction === '4x4'
                                 }"
                             >
-                                {{ item.traction }}</span
-                            >
+                                {{ item.traction }}
+                            </span>
                         </td>
                         <td [routerLink]="['/cars/one', item._id]">
                             {{ item.cc }}
@@ -109,7 +113,13 @@
                             {{ item.year }}
                         </td>
                         <td [routerLink]="['/cars/one', item._id]">
-                            {{ item.inscriptions?.length }}
+                            {{ item.inscriptions?.count ?? 0 }}
+                        </td>
+                        <td [routerLink]="['/cars/one', item._id]">
+                            {{ item.likes?.count ?? 0 }}
+                        </td>
+                        <td [routerLink]="['/cars/one', item._id]">
+                            {{ item.votes?.count ?? 0 }}
                         </td>
                         <td [routerLink]="['/cars/one', item._id]">
                             <span class="badge bg-medium">
