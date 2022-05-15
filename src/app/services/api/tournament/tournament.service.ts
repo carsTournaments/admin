@@ -29,7 +29,7 @@ export class TournamentService {
 
     getOne(id: string): Observable<Tournament> {
         return this.httpClient
-            .post<Tournament>(`${this.url}/one`, { id, site: 'admin' })
+            .post<Tournament>(`${this.url}/getOne`, { id, site: 'admin' })
             .pipe(take(1));
     }
 

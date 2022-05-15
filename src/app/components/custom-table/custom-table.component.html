@@ -202,6 +202,11 @@
                                 {{ item.car.brand?.name }} {{ item.car?.model }}
                             </div>
                         </td>
+                        <td [routerLink]="['/cars/one', item.car._id]">
+                            <div class="chip chip-success">
+                                {{ item.car.likes?.count ?? 0 }}
+                            </div>
+                        </td>
                         <td [routerLink]="['/users/one', item.driver?._id]">
                             <div class="chip chip-dark">
                                 {{ item.driver?.name }}
@@ -277,8 +282,13 @@
                                     class="image-table"
                                     [src]="item?.car1?.image?.url | image"
                                 />
-                                {{ item.car1?.brand.name }}
+                                {{ item.car1?.brand?.name }}
                                 {{ item.car1?.model }}
+                            </div>
+                        </td>
+                        <td [routerLink]="['/pairings/one', item._id]">
+                            <div class="chip chip-gold">
+                                {{ item.votes?.count ?? 0 }}
                             </div>
                         </td>
                         <td [routerLink]="['/cars/one', item.car2?._id]">
@@ -287,28 +297,21 @@
                                     class="image-table"
                                     [src]="item?.car2?.image?.url | image"
                                 />
-                                {{ item.car2?.brand.name }}
+                                {{ item.car2?.brand?.name }}
                                 {{ item.car2?.model }}
                             </div>
                         </td>
+
                         <td [routerLink]="['/pairings/one', item._id]">
-                            {{ item.votes?.length }}
-                        </td>
-                        <td [routerLink]="['/pairings/one', item._id]">
-                            <div
-                                *ngIf="item.winner !== null"
-                                class="chip chip-success"
-                            >
+                            <div *ngIf="item.winner" class="chip chip-success">
                                 <img
                                     class="image-table"
                                     [src]="item.winner?.image?.url | image"
                                 />
                                 {{ item.winner?.brand?.name }}
+                                {{ item.winner?.model }}
                             </div>
-                            <span
-                                class="badge bg-dark"
-                                *ngIf="item.winner === null"
-                            >
+                            <span class="badge bg-dark" *ngIf="!item.winner">
                                 N/D
                             </span>
                         </td>
@@ -318,18 +321,15 @@
                         <td
                             [routerLink]="[
                                 '/tournaments/one',
-                                item.round.tournament._id
+                                item.tournament._id
                             ]"
                         >
                             <div class="chip chip-primary">
                                 <img
                                     class="image-table"
-                                    [src]="
-                                        item?.round.tournament.image?.url
-                                            | image
-                                    "
+                                    [src]="item?.tournament?.image?.url | image"
                                 />
-                                {{ item.round?.tournament.name }}
+                                {{ item.tournament?.name }}
                             </div>
                         </td>
                         <td>
@@ -423,7 +423,11 @@
                         <td [routerLink]="['/rounds/one', item._id]">
                             {{ item.name }}
                         </td>
-                        <td>{{ item.participants }}</td>
+                        <td>
+                            <div class="chip chip-gold">
+                                {{ item.participants }}
+                            </div>
+                        </td>
                         <td
                             [routerLink]="[
                                 '/tournaments/one',
@@ -495,12 +499,26 @@
                             </span>
                         </td>
                         <td>{{ item.durationDays }}</td>
+                        <td>{{ item.requisites.length }}</td>
                         <td>
-                            {{ item.inscriptions?.length }} /
+                            {{ item.inscriptions?.count ?? 0 }} /
                             {{ item.maxParticipants }}
                         </td>
-                        <td>{{ item.rounds?.length }}</td>
-                        <td>{{ item.requisites.length }}</td>
+                        <td>
+                            <div class="chip chip-gold">
+                                {{ item.rounds?.count ?? 0 }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="chip chip-silver">
+                                {{ item.pairings?.count ?? 0 }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="chip chip-bronze">
+                                {{ item.votes?.count ?? 0 }}
+                            </div>
+                        </td>
                         <td>
                             <span
                                 class="badge"
@@ -593,7 +611,9 @@
                                 item.pairing.round._id
                             ]"
                         >
-                            {{ item.pairing.round.name }}
+                            <div class="chip chip-gold">
+                                {{ item.pairing.round.name }}
+                            </div>
                         </td>
                         <td [routerLink]="['/cars/one', item.car._id]">
                             <div class="chip chip-dark">
