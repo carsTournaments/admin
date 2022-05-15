@@ -78,7 +78,7 @@ export class CustomTableViewModel {
             { name: 'Nombre', order: 'name', col: null },
             { name: 'Fecha Inicio', order: 'startDate', col: null },
             { name: 'Fecha Fin', order: 'endDate', col: null },
-            { name: 'Duracion', order: 'durationDays', col: null },
+            { name: 'Dias', order: 'durationDays', col: null },
             { name: 'Requisitos', order: 'requisites', col: null },
             { name: 'Inscritos', order: 'inscriptions', col: null },
             { name: 'Rondas', order: 'rounds', col: null },
@@ -86,7 +86,6 @@ export class CustomTableViewModel {
             { name: 'Votos', order: 'votes', col: null },
             { name: 'Estado', order: 'status', col: null },
             { name: 'Actualizado', order: 'updated', col: null },
-            { name: 'Creado', order: 'created', col: null },
         ],
         user: [
             { name: '#', order: '', col: null },

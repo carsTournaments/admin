@@ -124,7 +124,7 @@ tbody {
     display: inline-block;
     padding: 0px 12px;
     height: 20px;
-    font-size: 12px;
+    font-size: 11px;
     line-height: 20px;
     border-radius: 4px;
     font-weight: 500;
@@ -163,6 +163,22 @@ tbody {
     }
 }
 
+.chip-warning {
+    background-color: $warning !important;
+    color: $dark;
+    img {
+        border: 2px solid $success;
+    }
+}
+
+.chip-danger {
+    background-color: $danger !important;
+    color: $light;
+    img {
+        border: 2px solid $success;
+    }
+}
+
 .chip-gold {
     background-color: #ffd700 !important;
     color: $dark;
@@ -184,6 +200,14 @@ tbody {
     color: $light;
     img {
         border: 2px solid #cd7f32;
+    }
+}
+
+.chip-info {
+    background-color: #002bc8 !important;
+    color: $light;
+    img {
+        border: 2px solid #002bc8;
     }
 }
 
