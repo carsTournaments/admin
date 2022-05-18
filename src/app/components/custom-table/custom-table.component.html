@@ -575,6 +575,9 @@
                         <td>{{ item.votes?.count ?? 0 }}</td>
                         <td>{{ item.inscriptions?.count ?? 0 }}</td>
                         <td>
+                            {{ item.fcm && item.fcm.length > 0 ? 'Si' : 'No' }}
+                        </td>
+                        <td>
                             <span class="chip chip-silver">
                                 {{ item.updated | dateToTimeAgo | titlecase }}
                             </span>

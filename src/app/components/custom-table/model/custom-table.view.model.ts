@@ -95,7 +95,7 @@ export class CustomTableViewModel {
             { name: 'Likes Env.', order: 'likes', col: null },
             { name: 'Votos Env.', order: 'votes', col: null },
             { name: 'Inscrip.', order: 'inscriptions', col: null },
-
+            { name: 'Push', order: 'fcm', col: null },
             { name: 'Actualizado', order: 'updated', col: null },
             { name: 'Creado', order: 'created', col: null },
         ],
