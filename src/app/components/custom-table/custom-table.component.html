@@ -555,16 +555,6 @@
                 <ng-container *ngIf="options.type === 'user'">
                     <tr class="pointer" *ngFor="let item of options.items">
                         <td>
-                            <img
-                                class="image-table"
-                                [src]="item.image?.url | image"
-                            />
-                        </td>
-                        <td [routerLink]="['/users/one', item._id]">
-                            {{ item.name }}
-                        </td>
-                        <td>{{ item.email }}</td>
-                        <td>
                             <span
                                 class="badge"
                                 [ngClass]="{
@@ -576,7 +566,14 @@
                                 {{ item.role }}
                             </span>
                         </td>
-                        <td>{{ item.cars.length }}</td>
+                        <td [routerLink]="['/users/one', item._id]">
+                            {{ item.name }}
+                        </td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.cars?.count ?? 0 }}</td>
+                        <td>{{ item.likes?.count ?? 0 }}</td>
+                        <td>{{ item.votes?.count ?? 0 }}</td>
+                        <td>{{ item.inscriptions?.count ?? 0 }}</td>
                         <td>
                             <span class="chip chip-silver">
                                 {{ item.updated | dateToTimeAgo | titlecase }}

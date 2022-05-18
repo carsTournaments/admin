@@ -88,11 +88,14 @@ export class CustomTableViewModel {
             { name: 'Actualizado', order: 'updated', col: null },
         ],
         user: [
-            { name: '#', order: '', col: null },
+            { name: 'Rol', order: 'role', col: null },
             { name: 'Nombre', order: 'name', col: null },
             { name: 'Email', order: 'email', col: null },
-            { name: 'Rol', order: 'role', col: null },
-            { name: 'Coches', order: null, col: null },
+            { name: 'Coches', order: 'cars', col: null },
+            { name: 'Likes Env.', order: 'likes', col: null },
+            { name: 'Votos Env.', order: 'votes', col: null },
+            { name: 'Inscrip.', order: 'inscriptions', col: null },
+
             { name: 'Actualizado', order: 'updated', col: null },
             { name: 'Creado', order: 'created', col: null },
         ],
