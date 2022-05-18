@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Notification } from 'src/app/models/notification.model';
 
 @Component({
@@ -12,7 +12,6 @@ export class UserNotificationsSendComponent {
     linkType = 'internal';
     @Output() save: EventEmitter<Notification> =
         new EventEmitter<Notification>();
-    constructor() {}
 
     setAndSave() {
         this.notification.data = {

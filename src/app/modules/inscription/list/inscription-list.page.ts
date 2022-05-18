@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
 import {
     AlertService,
     InscriptionService,

@@ -8,7 +8,6 @@ import { User } from 'src/app/models/user.model';
 import { BrandGetAllDto } from 'src/app/services/api/brand/brand.dto';
 import { UserGetAllDto } from 'src/app/services/api/user/dtos/user.dto';
 import { WinnerGetAllDto } from 'src/app/services/api/winner/winner.dto';
-import { Notification } from 'src/app/models/notification.model';
 
 export class CarOnePageViewModel {
     id!: string;
