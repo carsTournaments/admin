@@ -98,10 +98,12 @@ export class CarOnePage implements OnInit {
     }
 
     getVotesByCar() {
-        this.voteService.getAllOfCar({ id: this.vm.id }).subscribe({
-            next: (items) => (this.vm.votesOptionsTable.items = items),
-            error: (e) => this.snackBarService.open(e),
-        });
+        this.voteService
+            .getAllOfCar({ id: this.vm.id, limit: '20' })
+            .subscribe({
+                next: (items) => (this.vm.votesOptionsTable.items = items),
+                error: (e) => this.snackBarService.open(e),
+            });
     }
 
     getLikesReceivedByCar() {

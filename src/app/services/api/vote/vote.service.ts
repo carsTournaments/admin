@@ -23,21 +23,21 @@ export class VoteService {
             .pipe(take(1));
     }
 
-    getAllOfCar(data: IdDto): Observable<Vote[]> {
+    getAllOfCar(data: any): Observable<Vote[]> {
         return this.httpClient
-            .post<Vote[]>(`${this.url}/allOfCar`, data)
+            .post<Vote[]>(`${this.url}/getAllOfCar`, data)
             .pipe(take(1));
     }
 
     getAllOfTournament(data: IdDto): Observable<Vote[]> {
         return this.httpClient
-            .post<Vote[]>(`${this.url}/allOfTournament`, data)
+            .post<Vote[]>(`${this.url}/getAllOfTournament`, data)
             .pipe(take(1));
     }
 
     getOne(id: string): Observable<Vote> {
         return this.httpClient
-            .post<Vote>(`${this.url}/one`, { id, site: 'admin' })
+            .post<Vote>(`${this.url}/getOne`, { id, site: 'admin' })
             .pipe(take(1));
     }
 
