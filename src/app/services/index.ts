@@ -5,6 +5,7 @@ export { ImageService } from './api/image/image.service';
 export { InscriptionService } from './api/inscription/inscription.service';
 export { LikeService } from './api/like/like.service';
 export { LoggerService } from './api/logger/logger.service';
+export { NotificationService } from './api/notification/notification.service';
 export { PairingService } from './api/pairing/pairing.service';
 export { ReportService } from './api/report/report.service';
 export { RoundService } from './api/round/round.service';

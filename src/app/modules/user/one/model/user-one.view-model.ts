@@ -1,6 +1,7 @@
 import { CustomTableOptionsModel } from 'src/app/components/custom-table/model/custom-table.options-model';
 import { CustomTitleWithButtonsViewModel } from 'src/app/components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { SegmentsViewModel } from 'src/app/components/segments/model/segments.view-model';
+import { Notification } from 'src/app/models/notification.model';
 import { User } from 'src/app/models/user.model';
 export class UserOnePageViewModel {
     id!: string;
@@ -31,4 +32,5 @@ export class UserOnePageViewModel {
         showLoadMore: true,
         error: false,
     });
+    notification = new Notification();
 }

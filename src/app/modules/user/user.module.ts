@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { UserOnePage } from './one/user-one.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { UserNotificationsSendComponent } from './one/components/user-notifications-send.component';
 
 @NgModule({
     imports: [
@@ -33,7 +34,7 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
             },
         ]),
     ],
-    declarations: [UserListPage, UserOnePage],
+    declarations: [UserListPage, UserOnePage, UserNotificationsSendComponent],
     providers: [],
 })
 export class UserModule {}

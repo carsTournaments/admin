@@ -1,0 +1,44 @@
+<div class="row mt-1 g-3" *ngIf="notification">
+    <div class="col-sm-6">
+        <div class="form-floating">
+            <input
+                class="form-control"
+                name="name"
+                [(ngModel)]="notification.title"
+                placeholder="Nombre"
+                required
+            />
+            <label for="floatingInput" class="form-label">Titulo</label>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-floating">
+            <input
+                class="form-control"
+                name="name"
+                [(ngModel)]="notification.link"
+                placeholder="Enlace"
+            />
+            <label for="floatingInput" class="form-label">Enlace</label>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <textarea
+            class="form-control"
+            name="name"
+            rows="3"
+            [(ngModel)]="notification.message"
+            placeholder="Info"
+            required
+        ></textarea>
+    </div>
+
+    <hr class="my-4" />
+
+    <button
+        class="w-100 btn btn-primary btn-lg"
+        (click)="save.emit(notification)"
+    >
+        Enviar notificacion
+    </button>
+</div>

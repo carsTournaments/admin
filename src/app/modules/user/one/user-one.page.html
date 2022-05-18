@@ -1,93 +1,124 @@
 <navbar></navbar>
 <custom-menu [itemSelected]="4"></custom-menu>
 <div class="container">
-  <div class="box-white">
-    <custom-title-with-buttons
-      [options]="vm.optionsTitle"
-    ></custom-title-with-buttons>
-    <segments *ngIf="vm.edit" [options]="vm.optionsSegments"></segments>
+    <div class="box-white">
+        <custom-title-with-buttons
+            [options]="vm.optionsTitle"
+        ></custom-title-with-buttons>
+        <segments *ngIf="vm.edit" [options]="vm.optionsSegments"></segments>
 
-    <div class="mb-3" *ngIf="vm.optionsSegments.currentSegment === 0">
-      <div class="row mt-1 g-3" *ngIf="vm.item">
-        <div class="col-sm-6">
-          <div class="form-floating">
-            <input
-              class="form-control"
-              name="name"
-              [(ngModel)]="vm.item.name"
-              placeholder="Nombre"
-              required
-            />
-            <label for="floatingInput" class="form-label">Nombre</label>
-          </div>
-        </div>
+        <div class="mb-3" *ngIf="vm.optionsSegments.currentSegment === 0">
+            <div class="row mt-1 g-3" *ngIf="vm.item">
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input
+                            class="form-control"
+                            name="name"
+                            [(ngModel)]="vm.item.name"
+                            placeholder="Nombre"
+                            required
+                        />
+                        <label for="floatingInput" class="form-label"
+                            >Nombre</label
+                        >
+                    </div>
+                </div>
 
-        <div class="col-sm-6">
-          <div class="form-floating">
-            <input
-              type="email"
-              class="form-control"
-              name="email"
-              [(ngModel)]="vm.item.email"
-              placeholder="Email"
-              required
-            />
-            <label for="floatingInput" class="form-label">Email</label>
-          </div>
-        </div>
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input
+                            type="email"
+                            class="form-control"
+                            name="email"
+                            [(ngModel)]="vm.item.email"
+                            placeholder="Email"
+                            required
+                        />
+                        <label for="floatingInput" class="form-label"
+                            >Email</label
+                        >
+                    </div>
+                </div>
 
-        <div class="col-sm-6">
-          <div class="form-floating">
-            <select class="form-select" [(ngModel)]="vm.item.role">
-              <option value="ADMIN">Admin</option>
-              <option value="USER">Usuario</option>
-              <option value="FAKE">Fake</option>
-            </select>
-            <label for="floatingInput" class="form-label">Rol</label>
-          </div>
-        </div>
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <select class="form-select" [(ngModel)]="vm.item.role">
+                            <option value="ADMIN">Admin</option>
+                            <option value="USER">Usuario</option>
+                            <option value="FAKE">Fake</option>
+                        </select>
+                        <label for="floatingInput" class="form-label"
+                            >Rol</label
+                        >
+                    </div>
+                </div>
 
-        <hr class="my-4" />
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input
+                            class="form-control"
+                            name="fcm"
+                            [(ngModel)]="vm.item.fcm"
+                            placeholder="fcm"
+                        />
+                        <label for="floatingInput" class="form-label"
+                            >FCM</label
+                        >
+                    </div>
+                </div>
 
-        <button class="w-100 btn btn-primary btn-lg" (click)="onSubmit()">
-          Guardar
-        </button>
-      </div>
-    </div>
+                <hr class="my-4" />
 
-    <ng-container *ngIf="vm.optionsSegments.currentSegment === 1">
-      <div class="row mt-3">
-        <div class="col-6">
-          <ul class="list-group">
-            <li
-              (click)="actionForOption(option)"
-              class="list-group-item list-group-item-action pointer"
-              *ngFor="let option of vm.options"
-            >
-              {{ option.name }}
-            </li>
-          </ul>
-        </div>
-        <div class="col-6">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-text">
-                <strong>Creado</strong>: {{ vm.item.created! | dateToTimeAgo |
-                titlecase }}
-              </p>
-              <hr />
-              <p class="card-text">
-                <strong>Actualizado</strong>: {{ vm.item.updated! |
-                dateToTimeAgo | titlecase }}
-              </p>
+                <button
+                    class="w-100 btn btn-primary btn-lg"
+                    (click)="onSubmit()"
+                >
+                    Guardar
+                </button>
             </div>
-          </div>
         </div>
-      </div>
-    </ng-container>
 
-    <ng-container *ngIf="vm.optionsSegments.currentSegment === 2">
-      <custom-table [options]="vm.carsOptionsTable"></custom-table>
-    </ng-container>
-  </div>
+        <ng-container *ngIf="vm.optionsSegments.currentSegment === 1">
+            <div class="row mt-3">
+                <div class="col-6">
+                    <ul class="list-group">
+                        <li
+                            (click)="actionForOption(option)"
+                            class="list-group-item list-group-item-action pointer"
+                            *ngFor="let option of vm.options"
+                        >
+                            {{ option.name }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong>Creado</strong>: {{ vm.item.created! |
+                                dateToTimeAgo | titlecase }}
+                            </p>
+                            <hr />
+                            <p class="card-text">
+                                <strong>Actualizado</strong>: {{
+                                vm.item.updated! | dateToTimeAgo | titlecase }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="vm.optionsSegments.currentSegment === 2">
+            <custom-table [options]="vm.carsOptionsTable"></custom-table>
+        </ng-container>
+
+        <ng-container *ngIf="vm.optionsSegments.currentSegment === 3">
+            <user-notifications-send
+                [notification]="vm.notification"
+                (save)="createNotification($event)"
+            >
+            </user-notifications-send>
+        </ng-container>
+    </div>
 </div>

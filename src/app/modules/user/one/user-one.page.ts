@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
-import { UserService, CarService, SnackBarService } from 'src/app/services';
+import { Notification } from 'src/app/models/notification.model';
+import {
+    UserService,
+    CarService,
+    SnackBarService,
+    NotificationService,
+} from 'src/app/services';
 import { UserOnePageViewModel } from './model/user-one.view-model';
 
 @Component({
@@ -15,7 +21,8 @@ export class UserOnePage implements OnInit {
         private userService: UserService,
         private carService: CarService,
         private router: Router,
-        private snackBarService: SnackBarService
+        private snackBarService: SnackBarService,
+        private notificationService: NotificationService
     ) {}
 
     ngOnInit() {
@@ -35,6 +42,11 @@ export class UserOnePage implements OnInit {
         try {
             this.userService.getOne(this.vm.id).subscribe((item) => {
                 this.vm.item = item;
+                if (this.vm.item.fcm && this.vm.item.fcm.length > 0) {
+                    this.vm.notification.fcms = [this.vm.item.fcm!];
+                    this.vm.notification.users = [this.vm.item._id!];
+                    this.vm.optionsSegments.segments.push('Notificaciones');
+                }
             });
         } catch (error) {
             console.error(error);
@@ -71,5 +83,15 @@ export class UserOnePage implements OnInit {
             default:
                 break;
         }
+    }
+
+    createNotification(event: Notification) {
+        this.notificationService.create(event).subscribe({
+            next: () =>
+                this.snackBarService.open(
+                    `Notificacion enviada a ${this.vm.item.name}`
+                ),
+            error: (e) => this.snackBarService.open(e),
+        });
     }
 }

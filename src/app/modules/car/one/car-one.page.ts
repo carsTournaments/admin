@@ -1,4 +1,3 @@
-import { Like } from './../../../models/like.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
@@ -8,6 +7,7 @@ import {
     CarService,
     InscriptionService,
     LikeService,
+    NotificationService,
     ReportService,
     SnackBarService,
     UserService,
@@ -16,7 +16,7 @@ import {
 } from 'src/app/services';
 import { CarOnePageViewModel } from './model/car-one.view-model';
 import { Report } from 'src/app/models/report.model';
-import { User } from 'src/app/models';
+import { Like, User } from 'src/app/models';
 
 @Component({
     selector: 'page-car-one',
@@ -120,13 +120,15 @@ export class CarOnePage implements OnInit {
             this.vm.item.stock = Boolean(this.vm.stock);
             this.vm.edit
                 ? this.carService.update(this.vm.item).subscribe(() => {
+                      this.snackBarService.open('Coche editado');
                       this.router.navigate(['/cars']);
                   })
                 : this.carService.create(this.vm.item).subscribe(() => {
-                      alert('Coche creado');
+                      this.snackBarService.open('Coche creado');
                       this.router.navigate(['/cars']);
                   });
         } catch (error) {
+            this.snackBarService.open('Error al dar guardar el coche');
             console.error(error);
         }
     }
@@ -160,7 +162,7 @@ export class CarOnePage implements OnInit {
                 error: (e) => this.snackBarService.open(e),
             });
         } catch (error) {
-            console.error(error);
+            this.snackBarService.open('Error al dar Like');
         }
     }
 
@@ -198,7 +200,7 @@ export class CarOnePage implements OnInit {
                 },
                 error: (e) => {
                     this.vm.inscriptionsOptionsTable.loading = false;
-                    console.error(e);
+                    this.snackBarService.open(e);
                 },
             });
         }
@@ -209,6 +211,7 @@ export class CarOnePage implements OnInit {
             this.carService.delete(this.vm.id).subscribe({
                 next: () => {
                     alert('Coche eliminado');
+                    this.snackBarService.open('Coche eliminado');
                     this.router.navigate(['/cars']);
                 },
                 error: (e) => alert(e),
@@ -224,7 +227,7 @@ export class CarOnePage implements OnInit {
         if (confirm('¿Está seguro de eliminar la inscripcion?')) {
             this.inscriptionService.deleteOne(id).subscribe({
                 next: () => this.getInscriptionsByCar(),
-                error: (error) => console.error(error),
+                error: (e) => this.snackBarService.open(e),
             });
         }
     }

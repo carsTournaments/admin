@@ -69,7 +69,7 @@
                         </td>
                         <td [routerLink]="['/users/one/', item.driver?._id]">
                             <div class="chip chip-dark">
-                                {{ item.driver.name }}
+                                {{ item.driver?.name ?? 'N/D' }}
                             </div>
                         </td>
                         <td [routerLink]="['/brands/one/', item.brand?._id]">
