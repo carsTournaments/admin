@@ -4,7 +4,7 @@ export class Notification {
     fcms: string[];
     title: string;
     message: string;
-    link?: string;
+    data?: any;
 
     constructor(data?: Notification) {
         this._id = data?._id;
@@ -12,6 +12,6 @@ export class Notification {
         this.fcms = data?.fcms || [];
         this.title = data?.title || '';
         this.message = data?.message || '';
-        this.link = data?.link;
+        this.data = data?.data;
     }
 }

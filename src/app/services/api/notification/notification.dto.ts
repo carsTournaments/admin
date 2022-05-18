@@ -3,5 +3,5 @@ export interface NotificationCreateDto {
     fcms: string[];
     title: string;
     message: string;
-    link?: string;
+    data?: any;
 }

@@ -16,12 +16,41 @@
             <input
                 class="form-control"
                 name="name"
-                [(ngModel)]="notification.link"
+                [(ngModel)]="titleButton"
+                placeholder="Enlace"
+            />
+            <label for="floatingInput" class="form-label">Titulo boton</label>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="form-floating">
+            <input
+                class="form-control"
+                name="name"
+                [(ngModel)]="link"
                 placeholder="Enlace"
             />
             <label for="floatingInput" class="form-label">Enlace</label>
         </div>
     </div>
+
+    <div class="col-sm-6">
+        <div class="form-floating">
+            <select
+                class="form-control"
+                name="name"
+                [(ngModel)]="linkType"
+                placeholder="Selecciona"
+            >
+                <option value="">Selecciona</option>
+                <option value="internal">Interno</option>
+                <option value="external">Externo</option>
+            </select>
+            <label for="floatingInput" class="form-label">Tipo</label>
+        </div>
+    </div>
+
     <div class="col-sm-12">
         <textarea
             class="form-control"
@@ -35,10 +64,7 @@
 
     <hr class="my-4" />
 
-    <button
-        class="w-100 btn btn-primary btn-lg"
-        (click)="save.emit(notification)"
-    >
+    <button class="w-100 btn btn-primary btn-lg" (click)="setAndSave()">
         Enviar notificacion
     </button>
 </div>
