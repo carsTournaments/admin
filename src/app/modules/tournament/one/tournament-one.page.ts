@@ -17,7 +17,6 @@ import {
 } from 'src/app/services';
 import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
 import { AlertService } from 'src/app/services/material/alert/alert.service';
-import { TypePipe } from 'src/app/pipes/type.pipe';
 import { StatusPipe } from 'src/app/pipes/status.pipe';
 
 @Component({

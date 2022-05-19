@@ -13,7 +13,6 @@ import { LoadingComponent } from './loading/loading.component';
 import { MenuComponent } from './menu/menu.component';
 import { OptionsListComponent } from './options-list/options-list.component';
 import { SearchComponent } from './search/search.component';
-import { SegmentsComponent } from './segments/segments.component';
 import { SelectNumberEntriesComponent } from './select-number-entries/select-number-entries.component';
 import { StatsComponent } from './stats/stats.component';
 import { StatsResumeComponent } from './stats-resume/stats-resume.component';
@@ -47,7 +46,6 @@ import { AngularMaterialModule } from '../modules/angular-material.module';
         OptionsListComponent,
         SearchComponent,
         MenuComponent,
-        SegmentsComponent,
         SelectNumberEntriesComponent,
         StatsComponent,
         StatsResumeComponent,
@@ -66,7 +64,6 @@ import { AngularMaterialModule } from '../modules/angular-material.module';
         OptionsListComponent,
         SearchComponent,
         MenuComponent,
-        SegmentsComponent,
         SelectNumberEntriesComponent,
         StatsComponent,
         StatsResumeComponent,

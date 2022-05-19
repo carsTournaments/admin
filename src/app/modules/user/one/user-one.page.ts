@@ -45,7 +45,6 @@ export class UserOnePage implements OnInit {
                 if (this.vm.item.fcm && this.vm.item.fcm.length > 0) {
                     this.vm.notification.fcms = [this.vm.item.fcm!];
                     this.vm.notification.users = [this.vm.item._id!];
-                    this.vm.optionsSegments.segments.push('Notificaciones');
                 }
             });
         } catch (error) {

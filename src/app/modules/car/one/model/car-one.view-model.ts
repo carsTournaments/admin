@@ -1,7 +1,6 @@
 import { Winner } from 'src/app/models/winner.model';
 import { CustomTableOptionsModel } from 'src/app/components/custom-table/model/custom-table.options-model';
 import { CustomTitleWithButtonsViewModel } from 'src/app/components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
-import { SegmentsViewModel } from 'src/app/components/segments/model/segments.view-model';
 import { Car } from 'src/app/models/car.model';
 import { Brand } from 'src/app/models/brand.model';
 import { User } from 'src/app/models/user.model';
@@ -15,19 +14,6 @@ export class CarOnePageViewModel {
     optionsTitle = new CustomTitleWithButtonsViewModel({
         title: '',
         buttons: [],
-    });
-    optionsSegments = new SegmentsViewModel({
-        segments: [
-            'Info',
-            'Opciones',
-            'Imagen',
-            'Inscripciones',
-            'Nueva Inscripcion',
-            'Votos',
-            'Torneos Ganados',
-            'Likes Recibidos',
-        ],
-        currentSegment: 0,
     });
     inscriptionsOptionsTable = new CustomTableOptionsModel({
         loading: false,

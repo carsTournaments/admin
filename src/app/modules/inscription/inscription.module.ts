@@ -5,7 +5,6 @@ import { ServicesModule } from 'src/app/services/services.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ComponentsModule } from 'src/app/components/components.module';
-import { InscriptionOnePage } from './one/inscription-one.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
@@ -21,19 +20,9 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
                 component: InscriptionListPage,
                 data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
             },
-            {
-                path: 'one',
-                component: InscriptionOnePage,
-                data: { breadcrumb: 'Nuevo', title: 'Usuarios - Nuevo' },
-            },
-            {
-                path: 'one/:id',
-                component: InscriptionOnePage,
-                data: { breadcrumb: 'Editar', title: 'Usuarios - Editar' },
-            },
         ]),
     ],
-    declarations: [InscriptionListPage, InscriptionOnePage],
+    declarations: [InscriptionListPage],
     providers: [],
 })
 export class InscriptionModule {}

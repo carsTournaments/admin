@@ -63,6 +63,7 @@ export class CarOnePage implements OnInit {
                 this.vm.stock = this.vm.item.stock;
                 this.vm.brandIdSelected = item.brand._id;
                 this.vm.userIdSelected = item.driver._id;
+                this.vm.optionsTitle.subtitle = `${item.brand.name} ${item.model}`;
             },
             error: (error) => console.error(error),
         });
