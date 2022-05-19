@@ -5,7 +5,6 @@ import { ServicesModule } from 'src/app/services/services.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ComponentsModule } from 'src/app/components/components.module';
-import { PairingOnePage } from './one/pairing-one.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
@@ -21,14 +20,9 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
                 component: PairingListPage,
                 data: { breadcrumb: 'Listado', title: 'Usuarios - Listado' },
             },
-            {
-                path: 'one/:id',
-                component: PairingOnePage,
-                data: { breadcrumb: 'Editar', title: 'Usuarios - Editar' },
-            },
         ]),
     ],
-    declarations: [PairingListPage, PairingOnePage],
+    declarations: [PairingListPage],
     providers: [],
 })
 export class PairingModule {}
