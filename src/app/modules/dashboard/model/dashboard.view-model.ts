@@ -51,7 +51,7 @@ export class DashboardViewModel {
     };
     carBody: CarGetAllDto = {
         page: 1,
-        pageSize: 5,
+        pageSize: 10,
         order: ['created', 'desc'],
         site: 'admin',
         onlyWithPhoto: false,

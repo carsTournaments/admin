@@ -1,5 +1,5 @@
-import { User } from './../../models/user.model';
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { User } from 'src/app/models';
 import { Notification } from 'src/app/models/notification.model';
 import {
     NotificationService,

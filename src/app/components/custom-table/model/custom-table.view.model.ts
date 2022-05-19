@@ -13,7 +13,7 @@ export class CustomTableViewModel {
         car: [
             { name: '#', order: 'image', col: null },
             { name: 'Conductor', order: 'driver', col: null },
-            { name: 'Marca', order: 'brand', col: null },
+            { name: 'Marca', order: 'brand', col: null, width: 1000 },
             { name: 'Modelo', order: 'model', col: null },
             { name: 'Combustible', order: 'fuel', col: null },
             { name: 'Traccion', order: 'traction', col: null },

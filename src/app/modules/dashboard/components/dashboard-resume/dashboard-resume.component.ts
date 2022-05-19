@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
     templateUrl: 'dashboard-resume.component.html',
     styleUrls: ['./dashboard-resume.component.scss'],
 })
-export class DashboardResumeComponent {
-    constructor() {}
-}
+export class DashboardResumeComponent {}

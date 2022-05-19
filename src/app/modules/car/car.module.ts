@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { CarOnePage } from './one/car-one.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { CarOneEditComponent } from './one/components/car-one-edit/car-one-edit.component';
 
 @NgModule({
     imports: [
@@ -33,7 +34,7 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
             },
         ]),
     ],
-    declarations: [CarListPage, CarOnePage],
+    declarations: [CarListPage, CarOnePage, CarOneEditComponent],
     providers: [],
 })
 export class CarModule {}

@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 @NgModule({
     imports: [
         MatSnackBarModule,
@@ -19,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatInputModule,
         MatSelectModule,
         MatFormFieldModule,
+        MatGridListModule,
     ],
     exports: [
         MatSnackBarModule,
@@ -30,6 +33,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatInputModule,
         MatSelectModule,
         MatFormFieldModule,
+        MatGridListModule,
     ],
     declarations: [],
     providers: [],

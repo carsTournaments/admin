@@ -7,8 +7,7 @@
                 <custom-title-with-buttons
                     [options]="vm.tournamentsOptionsTitle"
                 ></custom-title-with-buttons>
-                <!-- <custom-table [options]="vm.tournamentsOptionsTable"
-                    (changeOrder)="onChangeOrder('tournament', $event)"></custom-table> -->
+
                 <dashboard-last-tournaments
                     *ngIf="vm.tournamentsOptionsTable.items"
                     [items]="vm.tournamentsOptionsTable.items"
@@ -19,11 +18,17 @@
                 <custom-title-with-buttons
                     [options]="vm.carsOptionsTitle"
                 ></custom-title-with-buttons>
-                <custom-table
+                <!-- <custom-table
                     [options]="vm.carsOptionsTable"
                     (changeOrder)="onChangeOrder('car', $event)"
                 >
-                </custom-table>
+                </custom-table> -->
+
+                <dashboard-last-cars
+                    *ngIf="vm.carsOptionsTable.items"
+                    [items]="vm.carsOptionsTable.items"
+                >
+                </dashboard-last-cars>
             </div>
         </div>
 

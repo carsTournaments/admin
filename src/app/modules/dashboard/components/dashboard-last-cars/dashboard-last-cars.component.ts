@@ -1,15 +1,15 @@
 import { Component, Input } from '@angular/core';
-import { Tournament } from 'src/app/models';
+import { Car } from 'src/app/models';
 
 @Component({
-    selector: 'dashboard-last-tournaments',
-    templateUrl: 'dashboard-last-tournaments.component.html',
-    styleUrls: ['./dashboard-last-tournaments.component.scss'],
+    selector: 'dashboard-last-cars',
+    templateUrl: 'dashboard-last-cars.component.html',
+    styleUrls: ['./dashboard-last-cars.component.scss'],
 })
-export class DashboardLastTournamentsComponent {
-    @Input() items!: Tournament[];
+export class DashboardLastCarsComponent {
+    @Input() items!: Car[];
     slideOpts = {
-        slidesPerView: 3,
+        slidesPerView: 5,
         navigation: false,
         zoom: {
             maxRatio: 5,
@@ -26,7 +26,7 @@ export class DashboardLastTournamentsComponent {
         if (window.innerWidth < 768) {
             this.slideOpts.slidesPerView = 1;
         } else {
-            this.slideOpts.slidesPerView = 3;
+            this.slideOpts.slidesPerView = 4;
         }
     }
 }

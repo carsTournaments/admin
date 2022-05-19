@@ -7,6 +7,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { DashboardResumeComponent } from './components/dashboard-resume/dashboard-resume.component';
 import { DashboardLastTournamentsComponent } from './components/dashboard-last-tournaments/dashboard-last-tournaments.component';
+import { DashboardLastCarsComponent } from './components/dashboard-last-cars/dashboard-last-cars.component';
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import { DashboardLastTournamentsComponent } from './components/dashboard-last-t
     declarations: [
         DashboardPage,
         DashboardLastTournamentsComponent,
+        DashboardLastCarsComponent,
         DashboardResumeComponent,
     ],
     providers: [],
