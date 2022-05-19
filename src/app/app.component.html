@@ -1,1 +1,49 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button>
+            <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+        </button>
+        <h1 class="title">CarsTournaments</h1>
+        <button mat-icon-button>
+            <mat-icon (click)="logout()">exit_to_app</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <mat-nav-list>
+            <ng-container *ngFor="let item of items">
+                <a
+                    mat-list-item
+                    class="item"
+                    (click)="item.state = !item.state"
+                >
+                    {{ item.name }}
+                    <mat-icon class="item-state" *ngIf="item.state"
+                        >expand_more</mat-icon
+                    >
+                    <mat-icon class="item-state" *ngIf="!item.state"
+                        >expand_less</mat-icon
+                    >
+                </a>
+                <ng-container *ngIf="item.state">
+                    <a
+                        mat-list-item
+                        class="subitem"
+                        *ngFor="let item of item.subitems"
+                        (click)="onClickItem(item.link)"
+                    >
+                        {{ item.name }}
+                        <mat-icon class="item-link">chevron_right</mat-icon>
+                    </a>
+                </ng-container>
+            </ng-container>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div style="height: 90vh">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

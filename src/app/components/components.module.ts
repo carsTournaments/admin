@@ -11,7 +11,6 @@ import { CustomTableComponent } from './custom-table/custom-table.component';
 import { CustomTitleWithButtonsComponent } from './custom-title-with-buttons/custom-title-with-buttons.component';
 import { LoadingComponent } from './loading/loading.component';
 import { MenuComponent } from './menu/menu.component';
-import { NavBarComponent } from './navbar/navbar.component';
 import { OptionsListComponent } from './options-list/options-list.component';
 import { SearchComponent } from './search/search.component';
 import { SegmentsComponent } from './segments/segments.component';
@@ -37,6 +36,7 @@ import { ChartBarComponent } from './chart-bar/chart-bar.component';
         PipesModule,
         ServicesModule,
         NgChartsModule,
+        // Angular Material
         MatSnackBarModule,
         MatDialogModule,
         MatButtonModule,
@@ -51,7 +51,6 @@ import { ChartBarComponent } from './chart-bar/chart-bar.component';
         CustomTableComponent,
         CustomTitleWithButtonsComponent,
         LoadingComponent,
-        NavBarComponent,
         OptionsListComponent,
         SearchComponent,
         MenuComponent,
@@ -71,7 +70,6 @@ import { ChartBarComponent } from './chart-bar/chart-bar.component';
         CustomTableComponent,
         CustomTitleWithButtonsComponent,
         LoadingComponent,
-        NavBarComponent,
         OptionsListComponent,
         SearchComponent,
         MenuComponent,
