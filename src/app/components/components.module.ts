@@ -19,10 +19,12 @@ import { StatsResumeComponent } from './stats-resume/stats-resume.component';
 import { AddComponentComponent } from './add-image/add-image.component';
 import { AlertComponent } from './alert/alert.component';
 import { ToggleComponent } from './toggle/toggle.component';
+import { NotificationSendComponent } from './notification-send/notification-send.component';
 
 import { NgChartsModule } from 'ng2-charts';
 import { ChartBarComponent } from './chart-bar/chart-bar.component';
 import { AngularMaterialModule } from '../modules/angular-material.module';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
     imports: [
@@ -33,6 +35,7 @@ import { AngularMaterialModule } from '../modules/angular-material.module';
         PipesModule,
         ServicesModule,
         NgChartsModule,
+        SwiperModule,
         // Angular Material
     ],
     declarations: [
@@ -43,6 +46,7 @@ import { AngularMaterialModule } from '../modules/angular-material.module';
         CustomTableComponent,
         CustomTitleWithButtonsComponent,
         LoadingComponent,
+        NotificationSendComponent,
         OptionsListComponent,
         SearchComponent,
         MenuComponent,
@@ -61,6 +65,7 @@ import { AngularMaterialModule } from '../modules/angular-material.module';
         CustomTableComponent,
         CustomTitleWithButtonsComponent,
         LoadingComponent,
+        NotificationSendComponent,
         OptionsListComponent,
         SearchComponent,
         MenuComponent,
@@ -71,6 +76,7 @@ import { AngularMaterialModule } from '../modules/angular-material.module';
         AlertComponent,
         ToggleComponent,
         AngularMaterialModule,
+        SwiperModule,
     ],
     providers: [],
 })

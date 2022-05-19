@@ -1,25 +1,35 @@
-<stats-resume></stats-resume>
+<!-- <stats-resume></stats-resume> -->
 
 <div class="container">
-    <div style="margin: 0.25rem; background: #fff; padding: 1rem">
-        <custom-title-with-buttons
-            [options]="vm.tournamentsOptionsTitle"
-        ></custom-title-with-buttons>
-        <custom-table
-            [options]="vm.tournamentsOptionsTable"
-            (changeOrder)="onChangeOrder('tournament', $event)"
-        ></custom-table>
-    </div>
-</div>
+    <div class="row">
+        <div class="col-12 col-md-9">
+            <div style="margin: 0.25rem; background: #fff; padding: 1rem">
+                <custom-title-with-buttons
+                    [options]="vm.tournamentsOptionsTitle"
+                ></custom-title-with-buttons>
+                <!-- <custom-table [options]="vm.tournamentsOptionsTable"
+                    (changeOrder)="onChangeOrder('tournament', $event)"></custom-table> -->
+                <dashboard-last-tournaments
+                    *ngIf="vm.tournamentsOptionsTable.items"
+                    [items]="vm.tournamentsOptionsTable.items"
+                >
+                </dashboard-last-tournaments>
+            </div>
+            <div style="margin: 0.25rem; background: #fff; padding: 1rem">
+                <custom-title-with-buttons
+                    [options]="vm.carsOptionsTitle"
+                ></custom-title-with-buttons>
+                <custom-table
+                    [options]="vm.carsOptionsTable"
+                    (changeOrder)="onChangeOrder('car', $event)"
+                >
+                </custom-table>
+            </div>
+        </div>
 
-<div class="container">
-    <div style="margin: 0.25rem; background: #fff; padding: 1rem">
-        <custom-title-with-buttons
-            [options]="vm.carsOptionsTitle"
-        ></custom-title-with-buttons>
-        <custom-table
-            [options]="vm.carsOptionsTable"
-            (changeOrder)="onChangeOrder('car', $event)"
-        ></custom-table>
+        <div class="col-12 col-md-3">
+            <dashboard-resume></dashboard-resume>
+            <notification-send></notification-send>
+        </div>
     </div>
 </div>

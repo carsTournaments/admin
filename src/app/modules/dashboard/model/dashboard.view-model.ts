@@ -45,8 +45,8 @@ export class DashboardViewModel {
     });
     tournamentBody: TournamentGetAllDto = {
         page: 1,
-        pageSize: 5,
-        order: ['created', 'desc'],
+        pageSize: 10,
+        order: ['startDate', 'desc'],
         site: 'admin',
     };
     carBody: CarGetAllDto = {

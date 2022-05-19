@@ -3,6 +3,7 @@ export interface UserGetAllDto {
     pageSize: number;
     site: string;
     order: string[];
+    onlyFCM?: boolean;
 }
 
 export interface UserCreateFakeDto {
