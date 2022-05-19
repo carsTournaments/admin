@@ -1,7 +1,14 @@
 <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom"
 >
-    <h1>{{ options.title }}</h1>
+    <h1>
+        {{ options.title }}
+        <ng-container *ngIf="options?.subtitle"
+            ><br /><small class="small">{{
+                options.subtitle
+            }}</small></ng-container
+        >
+    </h1>
 
     <ng-container *ngIf="options.buttons.length === 1">
         <button

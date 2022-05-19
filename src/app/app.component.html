@@ -14,27 +14,33 @@
     <mat-sidenav #sidenav>
         <mat-nav-list>
             <ng-container *ngFor="let item of items">
-                <a
-                    mat-list-item
-                    class="item"
-                    (click)="item.state = !item.state"
-                >
+                <a mat-list-item class="item" (click)="onClickItem(item)">
                     {{ item.name }}
-                    <mat-icon class="item-state" *ngIf="item.state"
-                        >expand_more</mat-icon
+                    <mat-icon
+                        class="item-state"
+                        *ngIf="item.subitems && !item.state"
                     >
-                    <mat-icon class="item-state" *ngIf="!item.state"
-                        >expand_less</mat-icon
+                        expand_more
+                    </mat-icon>
+                    <mat-icon
+                        class="item-state"
+                        *ngIf="item.subitems && item.state"
                     >
+                        expand_less
+                    </mat-icon>
+                    <mat-icon class="item-state" *ngIf="!item.subitems">
+                        chevron_right
+                    </mat-icon>
                 </a>
-                <ng-container *ngIf="item.state">
+                <ng-container *ngIf="item.state && item.state === true">
                     <a
                         mat-list-item
                         class="subitem"
                         *ngFor="let item of item.subitems"
-                        (click)="onClickItem(item.link)"
+                        (click)="onClickSubItem(item.link)"
                     >
-                        {{ item.name }}
+                        <mat-icon class="icon-item-link">remove</mat-icon
+                        >&nbsp;{{ item.name }}
                         <mat-icon class="item-link">chevron_right</mat-icon>
                     </a>
                 </ng-container>

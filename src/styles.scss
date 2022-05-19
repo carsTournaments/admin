@@ -1,7 +1,6 @@
 @import 'node_modules/bootstrap/scss/functions';
 @import 'node_modules/bootstrap/scss/variables';
 @import './scss/colors.scss';
-@import 'node_modules/font-awesome/scss/font-awesome.scss';
 @import 'node_modules/bootstrap/scss/bootstrap.scss';
 @import '~animate.css/animate.min.css';
 @import './scss/angular-material.scss';
@@ -23,6 +22,10 @@ body {
     font-size: 1.6rem;
     font-weight: bold;
     color: $light;
+}
+
+.container {
+    margin-top: 1rem;
 }
 
 .nav.navbar-nav.notika-top-nav {

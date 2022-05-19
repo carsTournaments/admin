@@ -20,28 +20,21 @@ import { StatsResumeComponent } from './stats-resume/stats-resume.component';
 import { AddComponentComponent } from './add-image/add-image.component';
 import { AlertComponent } from './alert/alert.component';
 import { ToggleComponent } from './toggle/toggle.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 import { NgChartsModule } from 'ng2-charts';
 import { ChartBarComponent } from './chart-bar/chart-bar.component';
+import { AngularMaterialModule } from '../modules/angular-material.module';
 
 @NgModule({
     imports: [
         RouterModule,
         FormsModule,
         CommonModule,
+        AngularMaterialModule,
         PipesModule,
         ServicesModule,
         NgChartsModule,
         // Angular Material
-        MatSnackBarModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatButtonToggleModule,
-        MatSlideToggleModule,
     ],
     declarations: [
         AddComponentComponent,
@@ -80,6 +73,7 @@ import { ChartBarComponent } from './chart-bar/chart-bar.component';
         // Material
         AlertComponent,
         ToggleComponent,
+        AngularMaterialModule,
     ],
     providers: [],
 })

@@ -13,6 +13,7 @@ export class TournamentOnePageViewModel {
     item: Tournament = new Tournament();
     optionsTitle = new CustomTitleWithButtonsViewModel({
         title: '',
+        subtitle: '',
         buttons: [],
     });
     optionsSegments = new SegmentsViewModel({

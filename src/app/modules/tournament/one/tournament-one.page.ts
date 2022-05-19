@@ -17,6 +17,8 @@ import {
 } from 'src/app/services';
 import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
 import { AlertService } from 'src/app/services/material/alert/alert.service';
+import { TypePipe } from 'src/app/pipes/type.pipe';
+import { StatusPipe } from 'src/app/pipes/status.pipe';
 
 @Component({
     selector: 'page-tournament-one',
@@ -35,7 +37,8 @@ export class TournamentOnePage implements OnInit {
         private winnerService: WinnerService,
         private router: Router,
         private snackBarService: SnackBarService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private statusPipe: StatusPipe
     ) {}
 
     ngOnInit() {
@@ -43,7 +46,6 @@ export class TournamentOnePage implements OnInit {
         if (this.vm.id) {
             this.vm.optionsTitle.title = 'Editar Torneo';
             this.vm.edit = true;
-
             this.getOne();
         } else {
             this.vm.optionsTitle.title = 'Nuevo Torneo';
@@ -72,6 +74,10 @@ export class TournamentOnePage implements OnInit {
         this.vm.disabledItems =
             this.vm.item.status === 'InProgress' ||
             this.vm.item.status === 'Completed';
+        this.vm.optionsTitle.subtitle = this.statusPipe.transform(
+            this.vm.item.status!
+        );
+        console.log(this.vm.optionsTitle.subtitle, this.vm.item.status);
         this.setItemOptions();
         this.getInscriptionsByTournament();
         this.getRoundsByTournament();

@@ -11,7 +11,7 @@
 }
 
 mat-sidenav {
-    min-width: 200px !important;
+    min-width: 220px !important;
 }
 
 .item {
@@ -27,6 +27,10 @@ mat-sidenav {
 
 .subitem {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.icon-item-link {
+    color: rgba(0, 0, 0, 0.12);
 }
 
 .item-link {

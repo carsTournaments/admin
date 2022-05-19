@@ -4,6 +4,7 @@ import { CustomTitleWithButtonsViewModel } from './model/custom-title-with-butto
 @Component({
     selector: 'custom-title-with-buttons',
     templateUrl: 'custom-title-with-buttons.component.html',
+    styleUrls: ['./custom-title-with-buttons.component.scss'],
 })
 export class CustomTitleWithButtonsComponent {
     @Input() options = new CustomTitleWithButtonsViewModel();

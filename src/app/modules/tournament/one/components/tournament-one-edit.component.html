@@ -1,0 +1,199 @@
+<div class="row mt-1 g-3" *ngIf="item">
+    <div class="col-sm-6">
+        <div class="form-floating">
+            <input
+                class="form-control"
+                name="name"
+                [(ngModel)]="item.name"
+                placeholder="Nombre"
+                required
+            />
+            <label for="floatingInput" class="form-label">Nombre</label>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="form-floating">
+            <input
+                class="form-control"
+                type="number"
+                name="name"
+                [(ngModel)]="item.durationDays"
+                placeholder="Duracion"
+                required
+                [disabled]="disabledItems"
+            />
+            <label for="floatingInput" class="form-label">
+                Duracion (dias)
+            </label>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="form-floating">
+            <input
+                class="form-control"
+                type="date"
+                name="name"
+                [(ngModel)]="dateTime.startDate"
+                placeholder="Nombre"
+                required
+                [disabled]="disabledItems"
+            />
+            <label for="floatingInput" class="form-label">
+                Fecha de inicio
+            </label>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="form-floating">
+            <input
+                class="form-control"
+                type="time"
+                name="name"
+                [(ngModel)]="dateTime.startTime"
+                placeholder="Nombre"
+                required
+                [disabled]="disabledItems"
+            />
+            <label for="floatingInput" class="form-label">
+                Hora de inicio
+            </label>
+        </div>
+    </div>
+
+    <div class="col-sm-3" *ngIf="dateTime.endDate">
+        <div class="form-floating">
+            <input
+                class="form-control"
+                type="date"
+                name="name"
+                [(ngModel)]="dateTime.endDate"
+                placeholder="Nombre"
+                required
+                [disabled]="disabledItems"
+            />
+            <label for="floatingInput" class="form-label"> Fecha de fin </label>
+        </div>
+    </div>
+
+    <div class="col-sm-3" *ngIf="dateTime.endTime">
+        <div class="form-floating">
+            <input
+                class="form-control"
+                type="time"
+                name="name"
+                [(ngModel)]="dateTime.endTime"
+                placeholder="Nombre"
+                required
+                [disabled]="disabledItems"
+            />
+            <label for="floatingInput" class="form-label"> Hora de fin </label>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="form-floating">
+            <select
+                class="form-select"
+                [(ngModel)]="item.maxParticipants"
+                [disabled]="disabledItems"
+            >
+                <option [value]="4">4 coches - 2 rondas</option>
+                <option [value]="8">8 coches - 4 rondas</option>
+                <option [value]="16">16 coches - 8 rondas</option>
+                <option [value]="32">32 coches - 16 rondas</option>
+                <option [value]="64">64 coches - 32 rondas</option>
+                <option [value]="128">128 coches - 64 rondas</option>
+            </select>
+            <label for="floatingInput" class="form-label">
+                Participantes Maximos
+            </label>
+        </div>
+    </div>
+
+    <div class="col-sm-6" *ngIf="!edit">
+        <div class="form-floating">
+            <select
+                class="form-select"
+                [(ngModel)]="item.status"
+                [disabled]="disabledItems"
+            >
+                <option value="Todo">Sin empezar</option>
+                <option value="Cancelled">Cancelado</option>
+            </select>
+            <label for="floatingInput" class="form-label">Estado</label>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <div class="">
+            <textarea
+                class="form-control"
+                name="name"
+                rows="5"
+                [(ngModel)]="item.info"
+                placeholder="Info"
+                required
+            ></textarea>
+        </div>
+    </div>
+
+    <!-- TODO: Revisar -->
+    <ng-container
+        *ngIf="
+            !edit ||
+            (edit && item.requisites.length > 0) ||
+            (edit && item.status === 'Todo')
+        "
+    >
+        <hr class="my-4" />
+        <h4>Requisitos</h4>
+        <div class="row">
+            <div class="col-sm-9">
+                <select
+                    class="form-control"
+                    [(ngModel)]="requisiteSelected"
+                    [disabled]="disabledItems"
+                >
+                    <option *ngFor="let requisite of requisitesDefault">
+                        {{ requisite.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <button
+                    class="btn btn-primary btn-sm w-100"
+                    (click)="addRequisite.emit()"
+                    [disabled]="disabledItems"
+                >
+                    Añadir requisito
+                </button>
+            </div>
+        </div>
+
+        <ul class="list-group mt-3">
+            <li
+                class="list-group-item m-2"
+                *ngFor="let requisite of item.requisites"
+            >
+                {{ requisite.name }}
+                <button
+                    class="btn btn-dark btn-sm float-right"
+                    style="float: right"
+                    (click)="deleteRequisite.emit(requisite)"
+                    [disabled]="disabledItems"
+                >
+                    Eliminar
+                </button>
+            </li>
+        </ul>
+    </ng-container>
+</div>
+
+<hr class="my-4" />
+
+<button class="w-100 btn btn-primary btn-lg" (click)="submit.emit()">
+    Guardar
+</button>

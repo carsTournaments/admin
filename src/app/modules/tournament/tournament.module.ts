@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { TournamentOnePage } from './one/tournament-one.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { TournamentOneEditComponent } from './one/components/tournament-one-edit.component';
+import { StatusPipe } from 'src/app/pipes/status.pipe';
 
 @NgModule({
     imports: [
@@ -33,7 +35,11 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
             },
         ]),
     ],
-    declarations: [TournamentListPage, TournamentOnePage],
-    providers: [],
+    declarations: [
+        TournamentListPage,
+        TournamentOnePage,
+        TournamentOneEditComponent,
+    ],
+    providers: [StatusPipe],
 })
 export class TournamentModule {}

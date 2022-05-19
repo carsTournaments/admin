@@ -13,21 +13,7 @@ export class AppComponent {
         {
             name: 'Dashboard',
             icon: 'fa-home',
-            state: false,
-            subitems: [
-                {
-                    name: 'Dashboard',
-                    link: '/dashboard',
-                },
-                {
-                    name: 'Logs',
-                    link: '/logs',
-                },
-                {
-                    name: 'Cerrar sesion',
-                    action: 'logout',
-                },
-            ],
+            link: '/dashboard',
         },
         {
             name: 'Coches',
@@ -86,39 +72,22 @@ export class AppComponent {
         {
             name: 'Imagenes',
             icon: 'fa-photo',
-            state: false,
-            subitems: [
-                {
-                    name: 'Imagenes',
-                    link: '/images',
-                },
-            ],
+            link: '/images',
         },
         {
             name: 'Usuarios',
             icon: 'fa-users',
-            state: false,
-            subitems: [
-                {
-                    name: 'Usuarios',
-                    link: '/users',
-                },
-                {
-                    name: 'Nuevo',
-                    link: '/users/one',
-                },
-            ],
+            link: '/users',
         },
         {
             name: 'Configuración',
             icon: 'fa-cog',
-            state: false,
-            subitems: [
-                {
-                    name: 'Configuración',
-                    link: '/settings',
-                },
-            ],
+            link: '/settings',
+        },
+        {
+            name: 'Logs',
+            icon: '',
+            link: '/logs',
         },
     ];
     constructor(private router: Router) {}
@@ -128,8 +97,26 @@ export class AppComponent {
         this.router.navigate(['/login']);
     }
 
-    onClickItem(link: string) {
+    onClickItem(item: any) {
+        if (item.subitems) {
+            this.closeAllWithSubItems(item);
+            item.state = !item.state;
+        } else {
+            this.router.navigate([item.link]);
+            this.sidenav.close();
+        }
+    }
+
+    onClickSubItem(link: string) {
         this.router.navigate([link]);
         this.sidenav.close();
+    }
+
+    closeAllWithSubItems(item: any) {
+        this.items.forEach((i) => {
+            if (i.subitems && item !== i) {
+                i.state = false;
+            }
+        });
     }
 }

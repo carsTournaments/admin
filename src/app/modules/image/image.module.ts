@@ -9,9 +9,9 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
     imports: [
+        ComponentsModule,
         CommonModule,
         ServicesModule,
-        ComponentsModule,
         PipesModule,
         FormsModule,
         RouterModule.forChild([

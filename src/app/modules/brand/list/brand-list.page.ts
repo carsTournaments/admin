@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionForOptionI } from 'src/app/interfaces/action-for-option.interface';
 import { BrandService } from 'src/app/services';
 import { BrandListViewModel } from './model/brand-list.view-model';
 
