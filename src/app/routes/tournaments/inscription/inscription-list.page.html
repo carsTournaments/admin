@@ -4,7 +4,6 @@
         <mat-tab-group>
             <mat-tab label="Listado">
                 <custom-table2
-                    *ngIf="!vm.optionsTable.loading"
                     [options]="vm.optionsTable"
                     (changePage)="onChangePage()"
                     (rowClick)="onRowClick($event)"

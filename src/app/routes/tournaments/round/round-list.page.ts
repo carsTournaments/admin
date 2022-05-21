@@ -20,7 +20,6 @@ export class RoundListPage implements OnInit {
             next: (response) => {
                 if (!showMore) {
                     this.vm.optionsTable.items = response.items;
-                    this.vm.optionsTable.loading = false;
                     this.vm.title = `Rondas (${response.paginator.total})`;
                 } else {
                     this.vm.optionsTable.items = [
@@ -28,9 +27,10 @@ export class RoundListPage implements OnInit {
                         ...response.items,
                     ];
                 }
+                this.vm.optionsTable.loading = false;
             },
+            error: () => (this.vm.optionsTable.loading = false),
         });
-        this.vm.optionsTable.loading = false;
     }
 
     onChangeOrder(order: string) {

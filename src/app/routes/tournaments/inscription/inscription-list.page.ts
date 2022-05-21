@@ -25,7 +25,6 @@ export class InscriptionListPage implements OnInit {
             next: (response) => {
                 if (!showMore) {
                     this.vm.optionsTable.items = response.items;
-                    this.vm.optionsTable.loading = false;
                     this.vm.title = `Inscripciones (${response.paginator.total})`;
                 } else {
                     this.vm.optionsTable.items = [
@@ -33,12 +32,10 @@ export class InscriptionListPage implements OnInit {
                         ...response.items,
                     ];
                 }
+                this.vm.optionsTable.loading = false;
             },
-            error: (error) => {
-                this.snackBarService.open(error);
-            },
+            error: () => (this.vm.optionsTable.loading = false),
         });
-        this.vm.optionsTable.loading = false;
     }
 
     onChangeOrder(order: string) {

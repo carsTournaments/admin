@@ -33,9 +33,9 @@ export class TournamentListPage implements OnInit {
                         ...response.items,
                     ];
                 }
+                this.vm.optionsTable.loading = false;
             },
         });
-        this.vm.optionsTable.loading = false;
     }
 
     onChangeOrder(order: string) {

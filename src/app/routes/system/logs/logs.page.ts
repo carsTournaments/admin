@@ -48,7 +48,6 @@ export class LogsPage implements OnInit {
         this.vm.optionsRoles.loading = false;
         this.vm.optionsDays.loading = false;
         this.vm.urlsOptionsTable.items = this.vm.items.urls;
-        console.log(this.vm.urlsOptionsTable.items);
         this.vm.urlsOptionsTable.loading = false;
     }
 

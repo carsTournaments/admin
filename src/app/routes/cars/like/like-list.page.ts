@@ -21,7 +21,6 @@ export class LikeListPage implements OnInit {
             next: (response) => {
                 if (!showMore) {
                     this.vm.optionsTable.items = response.items;
-                    this.vm.optionsTable.loading = false;
                     this.vm.title = `Likes (${response.paginator.total})`;
                 } else {
                     if (response.items.length > 0) {
@@ -33,9 +32,10 @@ export class LikeListPage implements OnInit {
                         this.vm.optionsTable.showLoadMore = false;
                     }
                 }
+                this.vm.optionsTable.loading = false;
             },
+            error: () => (this.vm.optionsTable.loading = false),
         });
-        this.vm.optionsTable.loading = false;
     }
 
     actionForOption(option: ActionForOptionI) {

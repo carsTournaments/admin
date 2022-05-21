@@ -21,7 +21,6 @@ export class WinnerListPage implements OnInit {
             next: (response) => {
                 if (!showMore) {
                     this.vm.optionsTable.items = response.items;
-                    this.vm.optionsTable.loading = false;
                     this.vm.title = `Ganadores (${response.paginator.total})`;
                 } else {
                     this.vm.optionsTable.items = [
@@ -29,11 +28,9 @@ export class WinnerListPage implements OnInit {
                         ...response.items,
                     ];
                 }
-            },
-            error: (error) => {
                 this.vm.optionsTable.loading = false;
-                console.error(error);
             },
+            error: () => (this.vm.optionsTable.loading = false),
         });
     }
 
@@ -60,7 +57,6 @@ export class WinnerListPage implements OnInit {
                     },
                     error: (error) => alert(error),
                 });
-                this.vm.optionsTable.loading = false;
             }
         } catch (error) {
             console.error(error);

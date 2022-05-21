@@ -33,9 +33,10 @@ export class VoteListPage implements OnInit {
                         ...response.items,
                     ];
                 }
+                this.vm.optionsTable.loading = false;
             },
+            error: () => (this.vm.optionsTable.loading = false),
         });
-        this.vm.optionsTable.loading = false;
     }
 
     actionForOption(option: ActionForOptionI) {

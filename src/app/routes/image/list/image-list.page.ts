@@ -28,9 +28,9 @@ export class ImageListPage implements OnInit {
                         ...response.items,
                     ];
                 }
+                this.vm.optionsTable.loading = false;
             },
         });
-        this.vm.optionsTable.loading = false;
     }
 
     actionForOption(option: ActionForOptionI) {

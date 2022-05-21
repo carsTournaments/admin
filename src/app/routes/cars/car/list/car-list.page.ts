@@ -23,11 +23,10 @@ export class CarListPage implements OnInit {
             next: (response) => {
                 this.onGetAllSuccess(showMore, response);
             },
-            error: (error) => {
-                console.error(error);
+            error: () => {
+                this.vm.optionsTable.loading = false;
             },
         });
-        this.vm.optionsTable.loading = false;
     }
 
     private onGetAllSuccess(
@@ -47,11 +46,10 @@ export class CarListPage implements OnInit {
                     ...this.vm.optionsTable.items,
                     ...response.items,
                 ];
-                this.vm.optionsTable.loading = false;
             } else {
-                this.vm.optionsTable.loading = false;
                 this.vm.optionsTable.showLoadMore = false;
             }
+            this.vm.optionsTable.loading = false;
         }
     }
 
