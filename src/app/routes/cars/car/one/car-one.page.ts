@@ -90,26 +90,32 @@ export class CarOnePage implements OnInit {
     }
 
     getInscriptionsByCar() {
+        this.vm.inscriptionsOptionsTable.loading = true;
         this.inscriptionService.getAllOfCar({ id: this.vm.id }).subscribe({
             next: (items) => (this.vm.inscriptionsOptionsTable.items = items),
             error: (e) => this.snackBarService.open(e),
         });
+        this.vm.inscriptionsOptionsTable.loading = false;
     }
 
     getVotesByCar() {
+        this.vm.votesOptionsTable.loading = true;
         this.voteService
             .getAllOfCar({ id: this.vm.id, limit: '20' })
             .subscribe({
                 next: (items) => (this.vm.votesOptionsTable.items = items),
                 error: (e) => this.snackBarService.open(e),
             });
+        this.vm.votesOptionsTable.loading = false;
     }
 
     getLikesReceivedByCar() {
+        this.vm.likesReceivedOptionsTable.loading = true;
         this.likeService.getAllReceivedForCar({ id: this.vm.id }).subscribe({
             next: (items) => (this.vm.likesReceivedOptionsTable.items = items),
             error: (e) => this.snackBarService.open(e),
         });
+        this.vm.likesReceivedOptionsTable.loading = false;
     }
 
     async onSubmit() {

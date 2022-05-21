@@ -90,4 +90,8 @@ export class NotificationListPage implements OnInit {
             });
         }
     }
+
+    onRowClick(event: { rowData: Notification; index: number }) {
+        this.onClickItem(event.rowData);
+    }
 }

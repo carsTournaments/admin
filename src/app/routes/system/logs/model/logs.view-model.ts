@@ -1,4 +1,5 @@
 import { ChartOptionsModel } from '@components/chart-bar/chart-bar.options-model';
+import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
 import { LogItem } from '@interfaces/logs-getAll.interface';
 import { LoggerGetAllDto } from '@services/api/logger/dtos/logger-get-all.dto';
 
@@ -44,5 +45,11 @@ export class LogsViewModel {
         },
         loading: true,
     });
-    urls: LogItem[] = [];
+    urlsOptionsTable = new CustomTable2OptionsModel({
+        type: 'logs',
+        items: [],
+        loading: true,
+        showPaginator: true,
+        pageSize: 10,
+    });
 }

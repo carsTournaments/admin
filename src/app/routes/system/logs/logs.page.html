@@ -1,27 +1,34 @@
 <div class="container">
     <page-header [title]="vm.title"></page-header>
-    <div class="box-white">
-        <div class="row">
-            <div class="col-6">
-                <input
-                    class="form-control from-control-sm"
-                    name="month"
-                    [(ngModel)]="vm.logsBody.month"
-                    (change)="onChangeMonth()"
-                />
+    <mat-card>
+        <div fxLayout="row wrap" class="matero-row form-field-full">
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Mes</mat-label>
+                    <input
+                        matInput
+                        name="month"
+                        [(ngModel)]="vm.logsBody.month"
+                        (change)="onChangeMonth()"
+                    />
+                </mat-form-field>
             </div>
-            <div class="col-6">
-                <input
-                    class="form-control from-control-sm"
-                    name="year"
-                    [(ngModel)]="vm.logsBody.year"
-                    (change)="onChangeYear()"
-                />
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Año</mat-label>
+                    <input
+                        matInput
+                        name="year"
+                        [(ngModel)]="vm.logsBody.year"
+                        (change)="onChangeYear()"
+                    />
+                </mat-form-field>
             </div>
         </div>
-        <div class="row mt-3 mb-5">
+
+        <div fxLayout="row wrap" class="matero-row">
             <!-- METHODS -->
-            <div class="col col-lg-6">
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
                 <h3>Metodos</h3>
                 <hr />
                 <chart-bar
@@ -30,7 +37,7 @@
                 ></chart-bar>
             </div>
             <!-- ROLES -->
-            <div class="col-12 col-lg-6">
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
                 <h3>Roles</h3>
                 <hr />
                 <chart-bar
@@ -39,7 +46,7 @@
                 ></chart-bar>
             </div>
             <!-- DAYS -->
-            <div class="col-12 col-lg-12 mt-5">
+            <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
                 <h3>Peticiones por dia</h3>
                 <hr />
                 <chart-bar
@@ -48,32 +55,11 @@
                 ></chart-bar>
             </div>
             <!-- URLS -->
-            <div class="col-12 col-lg-12 mt-5">
+            <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
                 <h3>Top Urls</h3>
                 <hr />
-                <div class="table-responsive py-1">
-                    <table class="table table-hover">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>URL</th>
-                                <th>Metodo</th>
-                                <th>Rol</th>
-                                <th>Peticiones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let url of vm.urls">
-                                <td>{{url.name}}</td>
-                                <td>{{url.method}}</td>
-                                <td>
-                                    {{url.role !== '' ? url.role : 'NO_ROLE'}}
-                                </td>
-                                <td>{{url.count}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <custom-table2 [options]="vm.urlsOptionsTable"></custom-table2>
             </div>
         </div>
-    </div>
+    </mat-card>
 </div>

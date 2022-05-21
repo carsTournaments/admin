@@ -1,4 +1,3 @@
-import { CustomTableOptionsModel } from '@components/custom-table/model/custom-table.options-model';
 import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
 import { OptionItemI } from '@interfaces/option-item.interface';
 import { Tournament, TournamentRequisiteI } from '@models/tournament.model';

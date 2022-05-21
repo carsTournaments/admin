@@ -15,6 +15,7 @@ export class LogsPage implements OnInit {
     }
 
     async getLogs() {
+        this.vm.urlsOptionsTable.loading = true;
         this.initData();
         this.vm.loading = true;
         this.loggerService.getAll(this.vm.logsBody).subscribe({
@@ -46,7 +47,9 @@ export class LogsPage implements OnInit {
         this.vm.optionsMethods.loading = false;
         this.vm.optionsRoles.loading = false;
         this.vm.optionsDays.loading = false;
-        this.vm.urls = this.vm.items.urls;
+        this.vm.urlsOptionsTable.items = this.vm.items.urls;
+        console.log(this.vm.urlsOptionsTable.items);
+        this.vm.urlsOptionsTable.loading = false;
     }
 
     onChangeMonth() {

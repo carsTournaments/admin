@@ -179,6 +179,42 @@ export class CustomTableColumnsModel {
             { header: 'Torneo', field: 'tournament.name' },
             defaults.created,
         ],
+        logs: [
+            {
+                header: 'Nombre',
+                field: 'name',
+                sortable: true,
+            },
+            {
+                header: 'Metodo',
+                field: 'method',
+                sortable: true,
+                type: 'tag',
+                tag: {
+                    GET: { text: 'GET', color: 'red-100' },
+                    POST: { text: 'POST', color: 'green-100' },
+                    PATCH: { text: 'PATCH', color: 'blue-100' },
+                    PUT: { text: 'PUT', color: 'orange-100' },
+                    DELETE: { text: 'DELETE', color: 'blue-100' },
+                },
+            },
+            {
+                header: 'Rol',
+                field: 'role',
+                sortable: true,
+                type: 'tag',
+                tag: {
+                    ADMIN: { text: 'Admin', color: 'green-200' },
+                    USER: { text: 'Usuario', color: 'orange-200' },
+                    NO_ROLE: { text: 'Sin rol', color: 'red-400' },
+                },
+            },
+            {
+                header: 'Total',
+                field: 'count',
+                sortable: true,
+            },
+        ],
         likes: [
             {
                 header: 'Coche',

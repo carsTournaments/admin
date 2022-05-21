@@ -9,6 +9,7 @@ export class CustomTable2OptionsModel {
         | 'images'
         | 'inscriptions'
         | 'likes'
+        | 'logs'
         | 'notifications'
         | 'pairings'
         | 'reports'
@@ -32,9 +33,9 @@ export class CustomTable2OptionsModel {
     showStatusbar? = false;
     toolbarTitle? = '';
     pageOnFront? = false;
-    pageSizeOptions? = [5, 10, 50, 100];
-    pageIndex? = '0';
-    pageSize? = '5';
+    pageSizeOptions? = [10, 50, 100];
+    pageIndex? = 0;
+    pageSize? = 5;
 
     constructor(data?: CustomTable2OptionsModel) {
         if (data?.type) {
