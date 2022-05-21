@@ -23,15 +23,15 @@
             </mat-tab>
 
             <mat-tab label="Opciones">
-                <div class="row mt-3">
-                    <div class="col-6">
+                <div fxLayout="row wrap" class="matero-row">
+                    <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
                         <options-list
                             [options]="vm.options"
                             (action)="actionForOption($event)"
                         ></options-list>
                     </div>
-                    <div class="col-6">
-                        <div class="card">
+                    <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                        <mat-card>
                             <div class="card-body">
                                 <p class="card-text">
                                     <strong>Creado</strong>: {{ vm.item.created!
@@ -44,7 +44,7 @@
                                     }}
                                 </p>
                             </div>
-                        </div>
+                        </mat-card>
                     </div>
                 </div>
             </mat-tab>

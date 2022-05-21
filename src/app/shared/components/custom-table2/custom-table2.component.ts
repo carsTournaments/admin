@@ -5,6 +5,7 @@ import { CustomTable2OptionsModel } from './models/custom-table2.options-model';
 @Component({
     selector: 'custom-table2',
     templateUrl: 'custom-table2.component.html',
+    styleUrls: ['./custom-table2.component.scss'],
 })
 export class CustomTable2Component {
     @Input() options: CustomTable2OptionsModel = new CustomTable2OptionsModel();

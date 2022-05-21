@@ -41,7 +41,6 @@ export class TournamentOnePage implements OnInit {
     ngOnInit() {
         this.vm.id = this.route.snapshot.paramMap.get('id') as string;
         if (this.vm.id) {
-            this.vm.title = 'Editar Torneo';
             this.vm.edit = true;
             this.getOne();
         } else {
@@ -71,6 +70,8 @@ export class TournamentOnePage implements OnInit {
         this.vm.disabledItems =
             this.vm.item.status === 'InProgress' ||
             this.vm.item.status === 'Completed';
+        this.vm.title = this.vm.item.name;
+
         this.setItemOptions();
         this.getInscriptionsByTournament();
         this.getRoundsByTournament();

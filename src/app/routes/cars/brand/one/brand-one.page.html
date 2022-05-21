@@ -3,61 +3,10 @@
     <div class="box-white">
         <mat-tab-group>
             <mat-tab label="Info">
-                <div class="row mt-1 g-3" *ngIf="vm.item">
-                    <div class="col-sm-12">
-                        <div class="form-floating">
-                            <input
-                                class="form-control"
-                                name="name"
-                                [(ngModel)]="vm.item.name"
-                                placeholder="Nombre"
-                                required
-                            />
-                            <label for="floatingInput" class="form-label"
-                                >Nombre</label
-                            >
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-floating">
-                            <input
-                                class="form-control"
-                                name="name"
-                                [(ngModel)]="vm.item.country"
-                                placeholder="Pais"
-                                required
-                            />
-                            <label for="floatingInput" class="form-label"
-                                >Pais</label
-                            >
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-floating">
-                            <input
-                                class="form-control"
-                                name="name"
-                                [(ngModel)]="vm.item.continent"
-                                placeholder="Pais"
-                                required
-                            />
-                            <label for="floatingInput" class="form-label"
-                                >Continente</label
-                            >
-                        </div>
-                    </div>
-
-                    <hr class="my-4" />
-
-                    <button
-                        class="w-100 btn btn-primary btn-lg"
-                        (click)="onSubmit()"
-                    >
-                        Guardar
-                    </button>
-                </div>
+                <brand-one-edit
+                    [item]="vm.item"
+                    (submit)="onSubmit()"
+                ></brand-one-edit>
             </mat-tab>
 
             <mat-tab label="Opciones">

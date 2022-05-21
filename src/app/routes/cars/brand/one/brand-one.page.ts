@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
-import { BrandService, CarService } from '@services';
+import { BrandService, CarService, SnackBarService } from '@services';
+import { ToastrService } from 'ngx-toastr';
 import { BrandOnePageViewModel } from './model/brand-one.view-model';
 
 @Component({
@@ -14,7 +15,8 @@ export class BrandOnePage implements OnInit {
         private route: ActivatedRoute,
         private brandService: BrandService,
         private carService: CarService,
-        private router: Router
+        private router: Router,
+        private snackBarService: SnackBarService
     ) {}
 
     ngOnInit() {
@@ -48,10 +50,12 @@ export class BrandOnePage implements OnInit {
         try {
             this.vm.edit
                 ? this.brandService.update(this.vm.item).subscribe(() => {
-                      this.router.navigate(['/brands']);
+                      this.snackBarService.open('Marca editada correctamente');
+                      this.router.navigate(['/cars/brands']);
                   })
                 : this.brandService.create(this.vm.item).subscribe(() => {
-                      this.router.navigate(['/brands']);
+                      this.snackBarService.open('Marca creada correctamente');
+                      this.router.navigate(['/cars/brands']);
                   });
         } catch (error) {
             console.error(error);

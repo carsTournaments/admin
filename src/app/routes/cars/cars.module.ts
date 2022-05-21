@@ -8,6 +8,7 @@ import { SharedModule } from '@shared/shared.module';
 import { BrandListPage } from './brand/list/brand-list.page';
 import { BrandOnePage } from './brand/one/brand-one.page';
 import { LikeListPage } from './like/like-list.page';
+import { BrandOneEditComponent } from './brand/one/components/brands-one-edit/brand-one-edit.component';
 
 @NgModule({
     imports: [
@@ -64,6 +65,7 @@ import { LikeListPage } from './like/like-list.page';
         CarOneEditComponent,
         BrandListPage,
         BrandOnePage,
+        BrandOneEditComponent,
         LikeListPage,
     ],
     providers: [],

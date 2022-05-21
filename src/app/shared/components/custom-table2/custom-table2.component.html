@@ -19,16 +19,24 @@
         (rowClick)="rowClick.emit($event)"
         [showSummary]="options.showSummary!"
         [showStatusbar]="options.showStatusbar!"
+        [noResultTemplate]="noResultsTpl"
     >
     </mtx-grid>
     <ng-template #expansionTpl let-row>
         {{ row.name }}
     </ng-template>
+
+    <ng-template #noResultsTpl let-col>
+        <div class="no-results-tpl">
+            <img src="./assets/images/logo.png" />
+            <p>Sin resultados</p>
+        </div>
+    </ng-template>
+
     <br />
     <button
         mat-raised-button
-        color="primary"
-        class="button-100"
+        class="bg-red-800 text-white w-full"
         *ngIf="options.showLoadMore && options.items.length > 19"
         (click)="changePage.emit()"
     >

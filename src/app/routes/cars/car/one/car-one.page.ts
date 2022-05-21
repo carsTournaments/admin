@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import {
-    AlertService,
     BrandService,
     CarService,
     InscriptionService,
@@ -34,7 +33,6 @@ export class CarOnePage implements OnInit {
         private likeService: LikeService,
         private reportService: ReportService,
         private router: Router,
-        private alertService: AlertService,
         private snackBarService: SnackBarService
     ) {}
 
@@ -44,7 +42,6 @@ export class CarOnePage implements OnInit {
         this.getAllDrivers();
         this.getAllWinners();
         if (this.vm.id) {
-            this.vm.title = 'Editar Coche';
             this.vm.edit = true;
             this.getInscriptionsByCar();
             this.getVotesByCar();
@@ -63,6 +60,7 @@ export class CarOnePage implements OnInit {
                 this.vm.stock = this.vm.item.stock;
                 this.vm.brandIdSelected = item.brand._id;
                 this.vm.userIdSelected = item.driver._id;
+                this.vm.title = `${item.brand.name} ${item.model}`;
             },
             error: (error) => console.error(error),
         });
@@ -163,7 +161,8 @@ export class CarOnePage implements OnInit {
                 car: this.vm.id,
             };
             this.likeService.create(like).subscribe({
-                next: () => this.snackBarService.open('Like añadido'),
+                next: () =>
+                    this.snackBarService.open('Like añadido correctamente'),
                 error: (e) => this.snackBarService.open(e),
             });
         } catch (error) {
@@ -216,7 +215,7 @@ export class CarOnePage implements OnInit {
             this.carService.delete(this.vm.id).subscribe({
                 next: () => {
                     alert('Coche eliminado');
-                    this.snackBarService.open('Coche eliminado');
+                    this.snackBarService.open('Coche eliminado correctamente');
                     this.router.navigate(['/cars']);
                 },
                 error: (e) => alert(e),
