@@ -10,15 +10,10 @@
             </mat-tab>
 
             <mat-tab label="Opciones">
-                <ul class="list-group mt-3">
-                    <li
-                        (click)="actionForOption(option)"
-                        class="list-group-item list-group-item-action pointer"
-                        *ngFor="let option of vm.options"
-                    >
-                        {{ option.name }}
-                    </li>
-                </ul>
+                <options-list
+                    [options]="vm.options"
+                    (action)="actionForOption($event)"
+                ></options-list>
             </mat-tab>
         </mat-tab-group>
     </div>

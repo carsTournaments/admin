@@ -10,35 +10,11 @@
             </mat-tab>
 
             <mat-tab label="Opciones">
-                <div class="row mt-3">
-                    <div class="col-6">
-                        <ul class="list-group">
-                            <li
-                                (click)="actionForOption(option)"
-                                class="list-group-item list-group-item-action pointer"
-                                *ngFor="let option of vm.options"
-                            >
-                                {{ option.name }}
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="card-text">
-                                    <strong>Creado</strong>: {{ vm.item.created!
-                                    | dateToTimeAgo | titlecase }}
-                                </p>
-                                <hr />
-                                <p class="card-text">
-                                    <strong>Actualizado</strong>: {{
-                                    vm.item.updated! | dateToTimeAgo | titlecase
-                                    }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <options-list
+                    [options]="vm.options"
+                    [item]="vm.item"
+                    (action)="actionForOption($event)"
+                ></options-list>
             </mat-tab>
 
             <mat-tab label="Imagen">

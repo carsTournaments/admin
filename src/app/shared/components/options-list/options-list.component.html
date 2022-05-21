@@ -1,10 +1,37 @@
-<ul class="list-group">
-    <li
-        (click)="action.emit(option)"
-        class="list-group-item list-group-item-action pointer"
-        [ngClass]="{ disabled: option.disabled }"
-        *ngFor="let option of options"
-    >
-        {{ option.name }}
-    </li>
-</ul>
+<div fxLayout="row wrap" class="matero-row">
+    <div [fxFlex.gt-sm]="item ? 50 : 100" [fxFlex]="100" class="matero-col">
+        <mat-card class="p-0">
+            <mat-nav-list>
+                <ng-container *ngFor="let option of options">
+                    <a
+                        mat-list-item
+                        (click)="action.emit(option)"
+                        [disabled]="option.disabled"
+                    >
+                        {{ option.name }}
+                        <mat-icon class="float-right-absolute">
+                            chevron_right
+                        </mat-icon>
+                    </a>
+                    <mat-divider inset></mat-divider>
+                </ng-container>
+            </mat-nav-list>
+        </mat-card>
+    </div>
+
+    <div *ngIf="item" [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+        <mat-card>
+            <div class="card-body">
+                <p class="card-text">
+                    <strong>Creado</strong>:
+                    {{ item.created! | dateToTimeAgo | titlecase }}
+                </p>
+                <hr />
+                <p class="card-text">
+                    <strong>Actualizado</strong>:
+                    {{ item.updated! | dateToTimeAgo | titlecase }}
+                </p>
+            </div>
+        </mat-card>
+    </div>
+</div>

@@ -7,5 +7,7 @@ import { OptionItemI } from '@interfaces/option-item.interface';
 })
 export class OptionsListComponent {
     @Input() options: OptionItemI[] = [];
+    @Input() info = false;
+    @Input() item: any;
     @Output() action: EventEmitter<OptionItemI> = new EventEmitter();
 }
