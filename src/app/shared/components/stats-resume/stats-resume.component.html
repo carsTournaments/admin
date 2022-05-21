@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div
+            *ngFor="let item of items"
+            class="col-4 text-center"
+            style="padding: 1rem"
+        >
+            <div class="item-stats-resume">
+                <h2>{{ item.total }}</h2>
+                <p style="margin-bottom: 0">{{ item.name }}</p>
+            </div>
+        </div>
+    </div>
+</div>

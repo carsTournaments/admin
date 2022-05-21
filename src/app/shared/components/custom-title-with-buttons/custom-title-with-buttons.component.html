@@ -1,0 +1,22 @@
+<div class="">
+    <h1>
+        {{ options.title }}
+        <ng-container *ngIf="options?.subtitle">
+            <br />
+            <small class="small">
+                {{ options.subtitle }}
+            </small>
+        </ng-container>
+    </h1>
+
+    <button
+        mat-raised-button
+        *ngFor="let button of options.buttons"
+        color="primary"
+        (click)="checkClickOrLink(button)"
+    >
+        {{ button.name }}
+    </button>
+</div>
+
+<mat-divider></mat-divider>

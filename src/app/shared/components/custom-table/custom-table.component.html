@@ -1,0 +1,66 @@
+<loading [isLoading]="options.loading"></loading>
+
+<div class="table-responsive py-1" *ngIf="!options.loading">
+    <mat-table
+        aria-readonly="true"
+        [dataSource]="data"
+        aria-label="Users favorite colors and age"
+    >
+        <ng-container cdkColumnDef="image">
+            <mat-header-cell *cdkHeaderCellDef>Imagen</mat-header-cell>
+            <mat-cell *cdkCellDef="let row">
+                <img class="image-table" [src]="row.image?.url | image" />
+            </mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="brand">
+            <mat-header-cell *cdkHeaderCellDef>Marca</mat-header-cell>
+            <mat-cell *cdkCellDef="let row">{{ row.brand?.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="model">
+            <mat-header-cell *cdkHeaderCellDef>Modelo</mat-header-cell>
+            <mat-cell *cdkCellDef="let row">{{ row.model }}</mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="cc">
+            <mat-header-cell *cdkHeaderCellDef>CC</mat-header-cell>
+            <mat-cell *cdkCellDef="let row">{{ row.cc }}</mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="cv">
+            <mat-header-cell *cdkHeaderCellDef>CV</mat-header-cell>
+            <mat-cell *cdkCellDef="let row">{{ row.cv }}</mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="updated">
+            <mat-header-cell *cdkHeaderCellDef>Actualizado</mat-header-cell>
+            <mat-cell *cdkCellDef="let row">{{
+                row.updated | dateToTimeAgo | titlecase
+            }}</mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="created">
+            <mat-header-cell *cdkHeaderCellDef>Creado</mat-header-cell>
+            <mat-cell *cdkCellDef="let row">{{
+                row.created | dateToTimeAgo | titlecase
+            }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *cdkRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+
+    <div *ngIf="options.items.length === 0" class="alert alert-warning">
+        No hay elementos disponibles
+    </div>
+    <div class="text-center mb-3">
+        <button
+            class="btn btn-primary w-100"
+            *ngIf="options.showLoadMore && options.items.length > 9"
+            (click)="changePage.emit()"
+        >
+            Cargar mas
+        </button>
+    </div>
+</div>

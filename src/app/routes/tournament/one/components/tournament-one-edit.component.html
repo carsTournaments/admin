@@ -1,0 +1,228 @@
+<mat-card *ngIf="item">
+    <form class="form-field-full">
+        <div fxLayout="row wrap" class="matero-row">
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        name="name"
+                        [(ngModel)]="item.name"
+                        placeholder="Nombre"
+                        required
+                    />
+                    <mat-label>Nombre</mat-label>
+                </mat-form-field>
+            </div>
+
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        type="number"
+                        name="durationDays"
+                        [(ngModel)]="item.durationDays"
+                        placeholder="Duracion"
+                        required
+                        [disabled]="disabledItems"
+                    />
+                    <mat-label> Duracion (dias) </mat-label>
+                </mat-form-field>
+            </div>
+
+            <div [fxFlex.gt-sm]="25" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        type="date"
+                        name="startDate"
+                        [(ngModel)]="dateTime.startDate"
+                        placeholder="Nombre"
+                        required
+                        [disabled]="disabledItems"
+                    />
+                    <mat-label> Fecha de inicio </mat-label>
+                </mat-form-field>
+            </div>
+
+            <div [fxFlex.gt-sm]="25" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        type="time"
+                        name="startTime"
+                        [(ngModel)]="dateTime.startTime"
+                        placeholder="Nombre"
+                        required
+                        [disabled]="disabledItems"
+                    />
+                    <mat-label> Hora de inicio </mat-label>
+                </mat-form-field>
+            </div>
+
+            <div
+                [fxFlex.gt-sm]="25"
+                [fxFlex]="100"
+                class="matero-col"
+                *ngIf="dateTime.endDate"
+            >
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        type="date"
+                        name="endDate"
+                        [(ngModel)]="dateTime.endDate"
+                        placeholder="Nombre"
+                        required
+                        [disabled]="disabledItems"
+                    />
+                    <mat-label> Fecha de fin </mat-label>
+                </mat-form-field>
+            </div>
+
+            <div
+                [fxFlex.gt-sm]="25"
+                [fxFlex]="100"
+                class="matero-col"
+                *ngIf="dateTime.endTime"
+            >
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        type="time"
+                        name="endTime"
+                        [(ngModel)]="dateTime.endTime"
+                        placeholder="Nombre"
+                        required
+                        [disabled]="disabledItems"
+                    />
+                    <mat-label> Hora de fin </mat-label>
+                </mat-form-field>
+            </div>
+
+            <div class="col-sm-6">
+                <mat-form-field appearance="outline">
+                    <mat-select
+                        class="form-select"
+                        name="maxParticipants"
+                        [(ngModel)]="item.maxParticipants"
+                        [disabled]="disabledItems"
+                    >
+                        <mat-option [value]="4">4 coches - 2 rondas</mat-option>
+                        <mat-option [value]="8">8 coches - 4 rondas</mat-option>
+                        <mat-option [value]="16"
+                            >16 coches - 8 rondas</mat-option
+                        >
+                        <mat-option [value]="32"
+                            >32 coches - 16 rondas</mat-option
+                        >
+                        <mat-option [value]="64"
+                            >64 coches - 32 rondas</mat-option
+                        >
+                        <mat-option [value]="128"
+                            >128 coches - 64 rondas</mat-option
+                        >
+                    </mat-select>
+                    <mat-label> Participantes Maximos </mat-label>
+                </mat-form-field>
+            </div>
+            <div
+                [fxFlex.gt-sm]="50"
+                [fxFlex]="100"
+                class="matero-col"
+                *ngIf="!edit"
+            >
+                <mat-form-field appearance="outline">
+                    <mat-select
+                        class="form-select"
+                        name="status"
+                        [(ngModel)]="item.status"
+                        [disabled]="disabledItems"
+                    >
+                        <mat-option value="Todo">Sin empezar</mat-option>
+                        <mat-option value="Cancelled">Cancelado</mat-option>
+                    </mat-select>
+                    <mat-label>Estado</mat-label>
+                </mat-form-field>
+            </div>
+
+            <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <textarea
+                        matInput
+                        name="info"
+                        rows="5"
+                        [(ngModel)]="item.info"
+                        placeholder="Info"
+                        required
+                    ></textarea>
+                </mat-form-field>
+
+                <!-- TODO: Revisar -->
+                <ng-container
+                    *ngIf="
+                        !edit ||
+                        (edit && item.requisites.length > 0) ||
+                        (edit && item.status === 'Todo')
+                    "
+                >
+                    <hr class="my-4" />
+                    <h4>Requisitos</h4>
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <mat-select
+                                matInput
+                                name="requisiteSelected"
+                                [(ngModel)]="requisiteSelected"
+                                [disabled]="disabledItems"
+                                placeholder="Selecciona requisito"
+                            >
+                                <mat-option
+                                    *ngFor="let requisite of requisitesDefault"
+                                >
+                                    {{ requisite.name }}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                        <div class="col-sm-3">
+                            <button
+                                mat-raised-button
+                                color="primary"
+                                class="w-100"
+                                (click)="addRequisite.emit()"
+                                [disabled]="disabledItems"
+                            >
+                                Añadir requisito
+                            </button>
+                        </div>
+                    </div>
+
+                    <ul class="list-group mt-3">
+                        <li
+                            class="list-group-item m-2"
+                            *ngFor="let requisite of item.requisites"
+                        >
+                            {{ requisite.name }}
+                            <button
+                                class="btn btn-dark btn-sm float-right"
+                                style="float: right"
+                                (click)="deleteRequisite.emit(requisite)"
+                                [disabled]="disabledItems"
+                            >
+                                Eliminar
+                            </button>
+                        </li>
+                    </ul>
+                </ng-container>
+
+                <button
+                    mat-raised-button
+                    color="primary"
+                    class="button-100"
+                    (click)="submit.emit()"
+                >
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</mat-card>

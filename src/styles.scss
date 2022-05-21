@@ -1,272 +1,291 @@
-@import 'node_modules/bootstrap/scss/functions';
-@import 'node_modules/bootstrap/scss/variables';
-@import './scss/colors.scss';
-@import 'node_modules/bootstrap/scss/bootstrap.scss';
-@import '~animate.css/animate.min.css';
-@import './scss/angular-material.scss';
-@import 'swiper/scss';
-@import 'swiper/scss/navigation';
-@import 'swiper/scss/pagination';
+// @import 'node_modules/bootstrap/scss/functions';
+// @import 'node_modules/bootstrap/scss/variables';
+// @import './scss/colors.scss';
+// @import 'node_modules/bootstrap/scss/bootstrap.scss';
+// @import './scss/angular-material.scss';
 
-// NEW
-body {
-    background: #f6f8fa;
-    font-family: Roboto, 'Helvetica Neue', sans-serif;
-}
-
-.navbar {
-    background-color: $primary;
-    border-color: $primary;
-    color: $dark;
-    height: 50px;
-}
-
-.logo-header {
-    font-size: 1.6rem;
-    font-weight: bold;
-    color: $light;
-}
-
-.container {
-    margin-top: 1rem;
-}
-
-.nav.navbar-nav.notika-top-nav {
-    float: right;
-}
-
-a {
-    transition: all 0.3s ease 0s;
-    text-decoration: none;
-}
-
-h1 {
-    font-size: 2rem;
-}
-
-.box-white {
-    background: #fff;
-    padding: 1rem;
-}
-
-.normal-table-list .table {
-    margin-bottom: 0px;
-}
-
-.table {
-    border-collapse: separate;
-    border-spacing: 0px 0px;
-}
-
-.bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-}
-
-@media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-    }
-}
-
-body {
-    font-size: 0.875rem;
-}
-
-.pointer {
-    cursor: pointer;
-}
-
-.breadcrumb {
-    border-radius: 8px;
-    padding-top: 1rem;
-    padding-bottom: 0;
-    padding-left: 0;
-}
-
-.breadcrumb-item a {
-    text-decoration: none !important;
-    font-weight: 600;
-    color: $primary;
-}
-
-.nav-tabs .nav-link {
-    color: $medium !important;
-}
-
-.nav-tabs .nav-link.active,
-.nav-tabs .nav-item.show .nav-link {
-    color: $dark !important;
-}
-
-thead {
-    color: $dark;
-    text-align: center;
-}
-
-tbody {
-    text-align: center;
-}
-
-.select-inline {
-    width: auto;
-    display: inline-block;
-}
-
-.icon-primary {
-    color: $primary;
-}
-
-.notika-icon {
-    margin-right: 0.5rem;
-    color: #777777;
-}
-
-.image-table {
-    width: 25px;
-    height: 25px;
-    border-radius: 25px;
-}
-
-.chip {
-    display: inline-block;
-    padding: 0px 12px;
-    height: 20px;
-    font-size: 11px;
-    line-height: 20px;
-    border-radius: 4px;
-    font-weight: 500;
-}
-
-.chip img {
-    float: left;
-    margin: -5px 5px 0 -28px;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    background: #fff;
-}
-
-.chip-primary {
-    background-color: $primary;
-    color: $light;
-    img {
-        border: 2px solid $primary;
-    }
-}
-
-.chip-dark {
-    background-color: $dark !important;
-    color: $light;
-    img {
-        border: 2px solid $dark;
-    }
-}
-
-.chip-success {
-    background-color: $success !important;
-    color: $light;
-    img {
-        border: 2px solid $success;
-    }
-}
-
-.chip-warning {
-    background-color: $warning !important;
-    color: $dark;
-    img {
-        border: 2px solid $success;
-    }
-}
-
-.chip-danger {
-    background-color: $danger !important;
-    color: $light;
-    img {
-        border: 2px solid $success;
-    }
-}
-
-.chip-gold {
-    background-color: #ffd700 !important;
-    color: $dark;
-    img {
-        border: 2px solid #ffd700;
-    }
-}
-
-.chip-silver {
-    background-color: #c0c0c0 !important;
-    color: $dark;
-    img {
-        border: 2px solid #c0c0c0;
-    }
-}
-
-.chip-bronze {
-    background-color: #cd7f32 !important;
-    color: $light;
-    img {
-        border: 2px solid #cd7f32;
-    }
-}
-
-.chip-info {
-    background-color: #002bc8 !important;
-    color: $light;
-    img {
-        border: 2px solid #002bc8;
-    }
-}
-
-.bg-medium {
-    background-color: $medium;
-}
-
-// html,
+// // NEW
 // body {
-//     height: 100%;
-// }
-// body {
-//     margin: 0;
+//     background: #f6f8fa;
 //     font-family: Roboto, 'Helvetica Neue', sans-serif;
 // }
 
-.banner-status {
-    text-align: center;
-    h1 {
-        margin: 0;
-        padding: 0;
-    }
+// .navbar {
+//     background-color: $primary;
+//     border-color: $primary;
+//     color: $dark;
+//     height: 50px;
+// }
 
-    .banner-Todo {
-        background: #ffc107;
-    }
+// .logo-header {
+//     font-size: 1.6rem;
+//     font-weight: bold;
+//     color: $light;
+// }
 
-    .banner-InProgress {
-        // info
-        background: #002bc8;
-        color: #fff;
-    }
+// .container {
+//     margin-top: 1rem;
+// }
 
-    .banner-Completed {
-        // success
-        background: #28a745;
-        color: #fff;
-    }
+// .nav.navbar-nav.notika-top-nav {
+//     float: right;
+// }
 
-    .banner-Cancelled {
-        // danger
-        background: #dc3545;
-        color: #fff;
-    }
-}
+// a {
+//     transition: all 0.3s ease 0s;
+//     text-decoration: none;
+// }
 
-.input-full-width {
-    width: 100%;
+// h1 {
+//     font-size: 2rem;
+// }
+
+// .box-white {
+//     background: #fff;
+//     padding: 1rem;
+//     border-radius: 8px;
+// }
+
+// .normal-table-list .table {
+//     margin-bottom: 0px;
+// }
+
+// .table {
+//     border-collapse: separate;
+//     border-spacing: 0px 0px;
+// }
+
+// .bd-placeholder-img {
+//     font-size: 1.125rem;
+//     text-anchor: middle;
+//     -webkit-user-select: none;
+//     -moz-user-select: none;
+//     user-select: none;
+// }
+
+// @media (min-width: 768px) {
+//     .bd-placeholder-img-lg {
+//         font-size: 3.5rem;
+//     }
+// }
+
+// body {
+//     font-size: 0.875rem;
+// }
+
+// .pointer {
+//     cursor: pointer;
+// }
+
+// .breadcrumb {
+//     border-radius: 8px;
+//     padding-top: 1rem;
+//     padding-bottom: 0;
+//     padding-left: 0;
+// }
+
+// .breadcrumb-item a {
+//     text-decoration: none !important;
+//     font-weight: 600;
+//     color: $primary;
+// }
+
+// .nav-tabs .nav-link {
+//     color: $medium !important;
+// }
+
+// .nav-tabs .nav-link.active,
+// .nav-tabs .nav-item.show .nav-link {
+//     color: $dark !important;
+// }
+
+// thead {
+//     color: $dark;
+//     text-align: center;
+// }
+
+// tbody {
+//     text-align: center;
+// }
+
+// .select-inline {
+//     width: auto;
+//     display: inline-block;
+// }
+
+// .icon-primary {
+//     color: $primary;
+// }
+
+// .notika-icon {
+//     margin-right: 0.5rem;
+//     color: #777777;
+// }
+
+// .image-table {
+//     width: 25px;
+//     height: 25px;
+//     border-radius: 25px;
+// }
+
+// .chip {
+//     display: inline-block;
+//     padding: 0px 12px;
+//     height: 20px;
+//     font-size: 11px;
+//     line-height: 20px;
+//     border-radius: 4px;
+//     font-weight: 500;
+// }
+
+// .chip img {
+//     float: left;
+//     margin: -5px 5px 0 -28px;
+//     height: 30px;
+//     width: 30px;
+//     border-radius: 50%;
+//     background: #fff;
+// }
+
+// .chip-primary {
+//     background-color: $primary;
+//     color: $light;
+//     img {
+//         border: 2px solid $primary;
+//     }
+// }
+
+// .chip-dark {
+//     background-color: $dark !important;
+//     color: $light;
+//     img {
+//         border: 2px solid $dark;
+//     }
+// }
+
+// .chip-success {
+//     background-color: $success !important;
+//     color: $light;
+//     img {
+//         border: 2px solid $success;
+//     }
+// }
+
+// .chip-warning {
+//     background-color: $warning !important;
+//     color: $dark;
+//     img {
+//         border: 2px solid $success;
+//     }
+// }
+
+// .chip-danger {
+//     background-color: $danger !important;
+//     color: $light;
+//     img {
+//         border: 2px solid $success;
+//     }
+// }
+
+// .chip-gold {
+//     background-color: #ffd700 !important;
+//     color: $dark;
+//     img {
+//         border: 2px solid #ffd700;
+//     }
+// }
+
+// .chip-silver {
+//     background-color: #c0c0c0 !important;
+//     color: $dark;
+//     img {
+//         border: 2px solid #c0c0c0;
+//     }
+// }
+
+// .chip-bronze {
+//     background-color: #cd7f32 !important;
+//     color: $light;
+//     img {
+//         border: 2px solid #cd7f32;
+//     }
+// }
+
+// .chip-info {
+//     background-color: #002bc8 !important;
+//     color: $light;
+//     img {
+//         border: 2px solid #002bc8;
+//     }
+// }
+
+// .bg-medium {
+//     background-color: $medium;
+// }
+
+// // html,
+// // body {
+// //     height: 100%;
+// // }
+// // body {
+// //     margin: 0;
+// //     font-family: Roboto, 'Helvetica Neue', sans-serif;
+// // }
+
+// .banner-status {
+//     text-align: center;
+//     h1 {
+//         margin: 0;
+//         padding: 0;
+//     }
+
+//     .banner-Todo {
+//         background: #ffc107;
+//     }
+
+//     .banner-InProgress {
+//         // info
+//         background: #002bc8;
+//         color: #fff;
+//     }
+
+//     .banner-Completed {
+//         // success
+//         background: #28a745;
+//         color: #fff;
+//     }
+
+//     .banner-Cancelled {
+//         // danger
+//         background: #dc3545;
+//         color: #fff;
+//     }
+// }
+
+// .input-full-width {
+//     width: 100%;
+// }
+
+// .button-100 {
+//     width: 100% !important;
+// }
+
+// .dialog-component {
+//     mat-dialog-container {
+//         padding: 0;
+//     }
+// }
+
+/* You can add global styles to this file, and also import other style files */
+@use 'app/theme/style';
+@use 'styles/themes';
+@use 'styles/custom';
+@use 'styles/grid';
+@use 'styles/helpers';
+@use 'styles/plugins';
+
+mat-tab-header {
+    margin-bottom: 1rem;
 }
 
 .button-100 {
