@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { UserListPage } from './list/user-list.page';
 import { RouterModule } from '@angular/router';
 import { UserOnePage } from './one/user-one.page';
-import { UserNotificationsSendComponent } from './one/components/user-notifications-send.component';
 import { SharedModule } from '@shared/shared.module';
+import { UserNotificationsSendComponent } from './one/components/user-notifications-send/user-notifications-send.component';
+import { UserOneEditComponent } from './one/components/user-one-edit/user-one-edit.component';
 
 @NgModule({
     imports: [
@@ -28,7 +29,12 @@ import { SharedModule } from '@shared/shared.module';
             },
         ]),
     ],
-    declarations: [UserListPage, UserOnePage, UserNotificationsSendComponent],
+    declarations: [
+        UserListPage,
+        UserOnePage,
+        UserOneEditComponent,
+        UserNotificationsSendComponent,
+    ],
     providers: [],
 })
 export class UserModule {}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Brand } from '@models';
 import { BrandService } from '@services';
 import { BrandListViewModel } from './model/brand-list.view-model';
 
@@ -8,7 +10,7 @@ import { BrandListViewModel } from './model/brand-list.view-model';
 })
 export class BrandListPage implements OnInit {
     vm = new BrandListViewModel();
-    constructor(private brandService: BrandService) {}
+    constructor(private brandService: BrandService, private router: Router) {}
 
     ngOnInit() {
         this.getAll();
@@ -49,5 +51,9 @@ export class BrandListPage implements OnInit {
     onChangePage() {
         this.vm.brandBody.page += 1;
         this.getAll(true);
+    }
+
+    onRowClick(event: { rowData: Brand; index: number }) {
+        this.router.navigate([`/cars/brands/one/${event.rowData._id}`]);
     }
 }

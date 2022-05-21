@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { UserService } from '@services';
 import { UserListViewModel } from './model/user-list.view-model';
+import { Router } from '@angular/router';
+import { User } from '@models';
 
 @Component({
     selector: 'page-user-list',
@@ -9,7 +11,7 @@ import { UserListViewModel } from './model/user-list.view-model';
 })
 export class UserListPage implements OnInit {
     vm = new UserListViewModel();
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private router: Router) {}
 
     ngOnInit() {
         this.getAll();
@@ -90,5 +92,9 @@ export class UserListPage implements OnInit {
     onChangePage() {
         this.vm.userBody.page += 1;
         this.getAll(true);
+    }
+
+    onRowClick(event: { rowData: User; index: number }) {
+        this.router.navigate([`/users/one/${event.rowData._id}`]);
     }
 }

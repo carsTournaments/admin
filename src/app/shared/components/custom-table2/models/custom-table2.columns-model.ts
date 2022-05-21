@@ -435,7 +435,28 @@ export class CustomTableColumnsModel {
             },
             defaults.created,
         ],
-        winners: [defaults.created],
+        winners: [
+            {
+                header: 'Oro',
+                field: 'gold',
+                formatter: (item: any) =>
+                    `${item.gold?.brand.name} ${item.gold?.model}`,
+            },
+            {
+                header: 'Plata',
+                field: 'silver',
+                formatter: (item: any) =>
+                    `${item.silver?.brand.name} ${item.silver?.model}`,
+            },
+            {
+                header: 'Bronze',
+                field: 'bronze',
+                formatter: (item: any) =>
+                    `${item.bronze?.brand.name} ${item.bronze?.model}`,
+            },
+            { header: 'Torneo', field: 'tournament.name' },
+            defaults.created,
+        ],
     };
 
     getColumns(type: string): MtxGridColumn[] {

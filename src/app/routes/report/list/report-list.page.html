@@ -7,6 +7,7 @@
                     *ngIf="!vm.optionsTable.loading"
                     [options]="vm.optionsTable"
                     (changePage)="onChangePage()"
+                    (rowClick)="onRowClick($event)"
                 >
                 </custom-table2>
             </mat-tab>

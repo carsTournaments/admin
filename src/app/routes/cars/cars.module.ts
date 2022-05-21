@@ -43,7 +43,7 @@ import { LikeListPage } from './like/like-list.page';
                 data: { breadcrumb: 'Nuevo', title: 'Coches - Marcas - Nuevo' },
             },
             {
-                path: 'brand/one/:id',
+                path: 'brands/one/:id',
                 component: BrandOnePage,
                 data: {
                     breadcrumb: 'Editar',

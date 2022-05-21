@@ -3,77 +3,7 @@
     <div class="box-white">
         <mat-tab-group>
             <mat-tab label="Info">
-                <div class="row mt-1 g-3" *ngIf="vm.item">
-                    <div class="col-sm-6">
-                        <div class="form-floating">
-                            <input
-                                class="form-control"
-                                name="name"
-                                [(ngModel)]="vm.item.name"
-                                placeholder="Nombre"
-                                required
-                            />
-                            <label for="floatingInput" class="form-label"
-                                >Nombre</label
-                            >
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-floating">
-                            <input
-                                type="email"
-                                class="form-control"
-                                name="email"
-                                [(ngModel)]="vm.item.email"
-                                placeholder="Email"
-                                required
-                            />
-                            <label for="floatingInput" class="form-label"
-                                >Email</label
-                            >
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-floating">
-                            <select
-                                class="form-select"
-                                [(ngModel)]="vm.item.role"
-                            >
-                                <option value="ADMIN">Admin</option>
-                                <option value="USER">Usuario</option>
-                                <option value="FAKE">Fake</option>
-                            </select>
-                            <label for="floatingInput" class="form-label"
-                                >Rol</label
-                            >
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-floating">
-                            <input
-                                class="form-control"
-                                name="fcm"
-                                [(ngModel)]="vm.item.fcm"
-                                placeholder="fcm"
-                            />
-                            <label for="floatingInput" class="form-label"
-                                >FCM</label
-                            >
-                        </div>
-                    </div>
-
-                    <hr class="my-4" />
-
-                    <button
-                        class="w-100 btn btn-primary btn-lg"
-                        (click)="onSubmit()"
-                    >
-                        Guardar
-                    </button>
-                </div>
+                <user-one-edit [item]="vm.item"></user-one-edit>
             </mat-tab>
 
             <mat-tab label="Opciones">
@@ -109,7 +39,11 @@
             </mat-tab>
 
             <mat-tab label="Coches">
-                <custom-table [options]="vm.carsOptionsTable"></custom-table>
+                <custom-table2
+                    *ngIf="!vm.carsOptionsTable.loading"
+                    [options]="vm.carsOptionsTable"
+                >
+                </custom-table2>
             </mat-tab>
 
             <mat-tab label="Notificaciones">

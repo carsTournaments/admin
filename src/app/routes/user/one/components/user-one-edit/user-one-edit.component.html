@@ -1,0 +1,80 @@
+<mat-card *ngIf="item">
+    <form class="form-field-full">
+        <div fxLayout="row wrap" class="matero-row">
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        name="name"
+                        [(ngModel)]="item.name"
+                        placeholder="Nombre"
+                        required
+                    />
+                    <mat-label for="floatingInput" class="form-mat-label"
+                        >Nombre</mat-label
+                    >
+                </mat-form-field>
+            </div>
+
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        type="email"
+                        matInput
+                        name="email"
+                        [(ngModel)]="item.email"
+                        placeholder="Email"
+                        required
+                    />
+                    <mat-label for="floatingInput" class="form-mat-label"
+                        >Email</mat-label
+                    >
+                </mat-form-field>
+            </div>
+
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <mat-select
+                        class="form-select"
+                        name="role"
+                        [(ngModel)]="item.role"
+                    >
+                        <mat-option value="ADMIN">Admin</mat-option>
+                        <mat-option value="USER">Usuario</mat-option>
+                        <mat-option value="FAKE">Fake</mat-option>
+                    </mat-select>
+                    <mat-label for="floatingInput" class="form-mat-label"
+                        >Rol</mat-label
+                    >
+                </mat-form-field>
+            </div>
+
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        name="fcm"
+                        [(ngModel)]="item.fcm"
+                        placeholder="fcm"
+                    />
+                    <mat-label for="floatingInput" class="form-mat-label"
+                        >FCM</mat-label
+                    >
+                </mat-form-field>
+            </div>
+
+            <br />
+            <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+                <button
+                    mat-raised-button
+                    color="primary"
+                    class="button-100"
+                    (click)="submit.emit()"
+                >
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</mat-card>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Tournament } from '@models';
 import { TournamentService } from '@services';
 import { TournamentListViewModel } from './model/tournament-list.view-model';
 
@@ -8,7 +10,10 @@ import { TournamentListViewModel } from './model/tournament-list.view-model';
 })
 export class TournamentListPage implements OnInit {
     vm = new TournamentListViewModel();
-    constructor(private tournamentService: TournamentService) {}
+    constructor(
+        private tournamentService: TournamentService,
+        private router: Router
+    ) {}
 
     ngOnInit() {
         this.getAll();
@@ -51,5 +56,9 @@ export class TournamentListPage implements OnInit {
     onChangePage() {
         this.vm.tournamentBody.page += 1;
         this.getAll(true);
+    }
+
+    onRowClick(event: { rowData: Tournament; index: number }) {
+        this.router.navigate([`/tournaments/one/${event.rowData._id}`]);
     }
 }

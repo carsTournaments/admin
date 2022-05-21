@@ -53,7 +53,7 @@ export class VoteService {
             .pipe(take(1));
     }
 
-    delete(id: string): Observable<Vote> {
+    deleteOne(id: string): Observable<Vote> {
         return this.httpClient
             .delete<Vote>(`${this.url}/one/${id}`)
             .pipe(take(1));

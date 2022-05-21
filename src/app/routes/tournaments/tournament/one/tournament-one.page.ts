@@ -15,6 +15,7 @@ import {
 import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
 import { AlertService } from '@services/material/alert/alert.service';
 import { StatusPipe } from '@shared/pipes';
+import { Inscription } from '@models';
 
 @Component({
     selector: 'page-tournament-one',
@@ -105,6 +106,7 @@ export class TournamentOnePage implements OnInit {
     }
 
     async getInscriptionsByTournament() {
+        this.vm.inscriptionsOptionsTable.loading = true;
         this.inscriptionService
             .getAllOfTournament({ id: this.vm.id, site: 'admin' })
             .subscribe({
@@ -112,34 +114,43 @@ export class TournamentOnePage implements OnInit {
                     (this.vm.inscriptionsOptionsTable.items = items),
                 error: (e) => this.snackBarService.open(e),
             });
+        this.vm.inscriptionsOptionsTable.loading = false;
     }
 
     async getRoundsByTournament() {
+        this.vm.roundsOptionsTable.loading = true;
         this.roundService.getAllOfTournament({ id: this.vm.id }).subscribe({
             next: (items) => (this.vm.roundsOptionsTable.items = items),
             error: (e) => this.snackBarService.open(e),
         });
+        this.vm.roundsOptionsTable.loading = false;
     }
 
     async getPairingsByTournament() {
+        this.vm.pairingsOptionsTable.loading = true;
         this.pairingService.getAllOfTournament({ id: this.vm.id }).subscribe({
             next: (items) => (this.vm.pairingsOptionsTable.items = items),
             error: (e) => this.snackBarService.open(e),
         });
+        this.vm.pairingsOptionsTable.loading = true;
     }
 
     async getVotesByTournament() {
+        this.vm.votesOptionsTable.loading = true;
         this.voteService.getAllOfTournament({ id: this.vm.id }).subscribe({
             next: (items) => (this.vm.votesOptionsTable.items = items),
             error: (e) => this.snackBarService.open(e),
         });
+        this.vm.votesOptionsTable.loading = false;
     }
 
     async getAllWinnersForTournament() {
+        this.vm.winnersOptionsTable.loading = true;
         this.winnerService.getAllForTournament({ id: this.vm.id }).subscribe({
             next: (items) => (this.vm.winnersOptionsTable.items = items),
             error: (e) => this.snackBarService.open(e),
         });
+        this.vm.winnersOptionsTable.loading = false;
     }
 
     getRequisitesDefault(): void {
@@ -432,5 +443,9 @@ export class TournamentOnePage implements OnInit {
                 });
             }
         });
+    }
+
+    onRowClickInscription(event: { rowData: Inscription; index: number }) {
+        this.onDeleteInscription(event.rowData._id!);
     }
 }

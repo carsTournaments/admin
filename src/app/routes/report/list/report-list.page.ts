@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
+import { Report } from '@models';
 import { AlertService, ReportService, SnackBarService } from '@services';
 import { ReportListViewModel } from './model/report-list.view-model';
 
@@ -12,7 +14,8 @@ export class ReportListPage implements OnInit {
     constructor(
         private reportService: ReportService,
         private alertService: AlertService,
-        private snackBarService: SnackBarService
+        private snackBarService: SnackBarService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -90,5 +93,9 @@ export class ReportListPage implements OnInit {
     onChangePage() {
         this.vm.ReportBody.page += 1;
         this.getAll(true);
+    }
+
+    onRowClick(event: { rowData: Report; index: number }) {
+        this.router.navigate([`/reports/one/${event.rowData._id}`]);
     }
 }

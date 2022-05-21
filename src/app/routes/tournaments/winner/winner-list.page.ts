@@ -32,7 +32,6 @@ export class WinnerListPage implements OnInit {
             },
             error: (error) => {
                 this.vm.optionsTable.loading = false;
-                this.vm.optionsTable.error = true;
                 console.error(error);
             },
         });
@@ -64,22 +63,7 @@ export class WinnerListPage implements OnInit {
                 this.vm.optionsTable.loading = false;
             }
         } catch (error) {
-            this.vm.optionsTable.error = true;
             console.error(error);
-        }
-    }
-
-    onChangeOrder(order: string) {
-        if (
-            !this.vm.winnerBody.order ||
-            this.vm.winnerBody.order.filter((item: string) => item === 'desc')
-                .length > 0
-        ) {
-            this.vm.winnerBody.order = [order, 'asc'];
-            this.getAll();
-        } else {
-            this.vm.winnerBody.order = [order, 'desc'];
-            this.getAll();
         }
     }
 

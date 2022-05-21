@@ -1,4 +1,5 @@
 import { CustomTableOptionsModel } from '@components/custom-table/model/custom-table.options-model';
+import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
 import { OptionItemI } from '@interfaces/option-item.interface';
 import { Tournament, TournamentRequisiteI } from '@models/tournament.model';
 import { TournamentForceNextRoundDto } from '@services/api/tournament/tournament.dto';
@@ -7,40 +8,30 @@ export class TournamentOnePageViewModel {
     id!: string;
     item: Tournament = new Tournament();
     title = '';
-    inscriptionsOptionsTable = new CustomTableOptionsModel({
-        loading: false,
+    inscriptionsOptionsTable = new CustomTable2OptionsModel({
+        type: 'inscriptions',
         items: [],
-        type: 'inscription',
-        showLoadMore: true,
-        error: false,
+        loading: true,
     });
-    roundsOptionsTable = new CustomTableOptionsModel({
-        loading: false,
+    roundsOptionsTable = new CustomTable2OptionsModel({
+        type: 'rounds',
         items: [],
-        type: 'round',
-        showLoadMore: true,
-        error: false,
+        loading: true,
     });
-    pairingsOptionsTable = new CustomTableOptionsModel({
-        loading: false,
+    pairingsOptionsTable = new CustomTable2OptionsModel({
+        type: 'pairings',
         items: [],
-        type: 'pairing',
-        showLoadMore: true,
-        error: false,
+        loading: true,
     });
-    votesOptionsTable = new CustomTableOptionsModel({
-        loading: false,
+    votesOptionsTable = new CustomTable2OptionsModel({
+        type: 'votes',
         items: [],
-        type: 'vote',
-        showLoadMore: true,
-        error: false,
+        loading: true,
     });
-    winnersOptionsTable = new CustomTableOptionsModel({
-        loading: false,
+    winnersOptionsTable = new CustomTable2OptionsModel({
+        type: 'winners',
         items: [],
-        type: 'winner',
-        showLoadMore: true,
-        error: false,
+        loading: true,
     });
     edit = false;
     options: OptionItemI[] = [

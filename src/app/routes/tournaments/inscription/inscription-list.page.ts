@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Inscription } from '@models';
 import { AlertService, InscriptionService, SnackBarService } from '@services';
 import { InscriptionListViewModel } from './model/inscription-list.view-model';
 
@@ -63,7 +64,7 @@ export class InscriptionListPage implements OnInit {
     async onDeleteItem(id: string) {
         const alert = await this.alertService.showConfirmation(
             'Eliminar inscripcion',
-            '¿Está seguro de eliminar la inscripcion?'
+            '¿Estas seguro de eliminar la inscripcion?'
         );
         alert.subscribe((data) => {
             if (data) {
@@ -76,5 +77,9 @@ export class InscriptionListPage implements OnInit {
                 });
             }
         });
+    }
+
+    onRowClick(event: { rowData: Inscription; index: number }) {
+        this.onDeleteItem(event.rowData._id!);
     }
 }

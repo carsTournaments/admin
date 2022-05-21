@@ -58,29 +58,33 @@
             </mat-tab>
 
             <mat-tab label="Inscripciones">
-                <custom-table
-                    (deleteItem)="onDeleteInscription($event)"
+                <custom-table2
+                    (rowClick)="onRowClickInscription($event)"
                     [options]="vm.inscriptionsOptionsTable"
                 >
-                </custom-table>
+                </custom-table2>
             </mat-tab>
 
             <mat-tab label="Rondas">
-                <custom-table [options]="vm.roundsOptionsTable"></custom-table>
+                <custom-table2
+                    [options]="vm.roundsOptionsTable"
+                ></custom-table2>
             </mat-tab>
 
             <mat-tab label="Emparejamientos">
-                <custom-table
+                <custom-table2
                     [options]="vm.pairingsOptionsTable"
-                ></custom-table>
+                ></custom-table2>
             </mat-tab>
 
             <mat-tab label="Votos">
-                <custom-table [options]="vm.votesOptionsTable"></custom-table>
+                <custom-table2 [options]="vm.votesOptionsTable"></custom-table2>
             </mat-tab>
 
             <mat-tab label="Ganadores">
-                <custom-table [options]="vm.winnersOptionsTable"></custom-table>
+                <custom-table2
+                    [options]="vm.winnersOptionsTable"
+                ></custom-table2>
             </mat-tab>
         </mat-tab-group>
     </div>

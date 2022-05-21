@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { CarService } from '@services';
 import { CarListViewModel } from './model/car-list.view-model';
+import { Router } from '@angular/router';
+import { Car } from '@models';
 
 @Component({
     selector: 'page-car-list',
@@ -9,7 +11,7 @@ import { CarListViewModel } from './model/car-list.view-model';
 })
 export class CarListPage implements OnInit {
     vm = new CarListViewModel();
-    constructor(private carService: CarService) {}
+    constructor(private carService: CarService, private router: Router) {}
 
     ngOnInit() {
         this.getAll();
@@ -109,5 +111,9 @@ export class CarListPage implements OnInit {
     onChangePage() {
         this.vm.carBody.page += 1;
         this.getAll(true);
+    }
+
+    onRowClick(event: { rowData: Car; index: number }) {
+        this.router.navigate([`/cars/one/${event.rowData._id}`]);
     }
 }

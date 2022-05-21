@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
-import { VoteService } from '@services';
+import { Vote } from '@models';
+import { AlertService, SnackBarService, VoteService } from '@services';
 import { VoteListViewModel } from './model/vote-list.view-model';
 
 @Component({
@@ -9,7 +10,11 @@ import { VoteListViewModel } from './model/vote-list.view-model';
 })
 export class VoteListPage implements OnInit {
     vm = new VoteListViewModel();
-    constructor(private voteService: VoteService) {}
+    constructor(
+        private voteService: VoteService,
+        private alertService: AlertService,
+        private snackBarService: SnackBarService
+    ) {}
 
     ngOnInit() {
         this.getAll();
@@ -71,5 +76,27 @@ export class VoteListPage implements OnInit {
     onChangePage() {
         this.vm.voteBody.page += 1;
         this.getAll(true);
+    }
+
+    async onDeleteItem(id: string) {
+        const alert = await this.alertService.showConfirmation(
+            'Eliminar voto',
+            '¿Estas seguro de eliminar el voto?'
+        );
+        alert.subscribe((data) => {
+            if (data) {
+                this.voteService.deleteOne(id).subscribe({
+                    next: () => {
+                        this.snackBarService.open('Voto eliminado');
+                        this.getAll();
+                    },
+                    error: (error) => this.snackBarService.open(error),
+                });
+            }
+        });
+    }
+
+    onRowClick(event: { rowData: Vote; index: number }) {
+        this.onDeleteItem(event.rowData._id!);
     }
 }
