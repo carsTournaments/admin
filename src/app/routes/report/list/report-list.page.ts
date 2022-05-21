@@ -26,7 +26,7 @@ export class ReportListPage implements OnInit {
                 if (!showMore) {
                     this.vm.optionsTable.items = response.items;
                     this.vm.optionsTable.loading = false;
-                    this.vm.optionsTitle.title = `Reportes (${response.paginator.total})`;
+                    this.vm.title = `Reportes (${response.paginator.total})`;
                 } else {
                     this.vm.optionsTable.items = [
                         ...this.vm.optionsTable.items,

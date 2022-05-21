@@ -1,14 +1,10 @@
 import { CustomTableOptionsModel } from '@components/custom-table/model/custom-table.options-model';
-import { CustomTitleWithButtonsViewModel } from '@components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { User } from '@models';
 import { VoteGetAllDto } from '@services/api/vote/dtos/vote.dto';
 
 export class VoteListViewModel {
     items: User[] = [];
-    optionsTitle = new CustomTitleWithButtonsViewModel({
-        title: 'Votos',
-        buttons: [],
-    });
+    title = 'Votos';
     optionsTable = new CustomTableOptionsModel({
         loading: false,
         items: [],

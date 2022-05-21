@@ -21,7 +21,7 @@ export class BrandListPage implements OnInit {
                 if (!showMore) {
                     this.vm.optionsTable.items = response.items;
                     this.vm.optionsTable.loading = false;
-                    this.vm.optionsTitle.title = `Marcas (${response.paginator.total})`;
+                    this.vm.title = `Marcas (${response.paginator.total})`;
                 } else {
                     this.vm.optionsTable.items = [
                         ...this.vm.optionsTable.items,

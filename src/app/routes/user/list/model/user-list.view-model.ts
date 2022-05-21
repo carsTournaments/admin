@@ -1,14 +1,10 @@
 import { CustomTableOptionsModel } from '@components/custom-table/model/custom-table.options-model';
-import { CustomTitleWithButtonsViewModel } from '@components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { User } from '@models';
 import { UserGetAllDto } from '@services/api/user/dtos/user.dto';
 
 export class UserListViewModel {
     items: User[] = [];
-    optionsTitle = new CustomTitleWithButtonsViewModel({
-        title: 'Usuarios',
-        buttons: [{ name: 'Nuevo', link: '/users/one', separated: false }],
-    });
+    title = 'Usuarios';
     optionsTable = new CustomTableOptionsModel({
         loading: false,
         items: [],

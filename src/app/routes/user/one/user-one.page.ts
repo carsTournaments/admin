@@ -28,12 +28,12 @@ export class UserOnePage implements OnInit {
     ngOnInit() {
         this.vm.id = this.route.snapshot.paramMap.get('id') as string;
         if (this.vm.id) {
-            this.vm.optionsTitle.title = 'Editar Usuario';
+            this.vm.title = 'Editar Usuario';
             this.vm.edit = true;
             this.getCarsForUser();
             this.getOne();
         } else {
-            this.vm.optionsTitle.title = 'Nuevo Usuario';
+            this.vm.title = 'Nuevo Usuario';
             this.vm.edit = false;
         }
     }

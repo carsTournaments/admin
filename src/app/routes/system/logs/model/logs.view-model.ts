@@ -1,13 +1,9 @@
 import { ChartOptionsModel } from '@components/chart-bar/chart-bar.options-model';
-import { CustomTitleWithButtonsViewModel } from '@components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { LogItem } from '@interfaces/logs-getAll.interface';
 import { LoggerGetAllDto } from '@services/api/logger/dtos/logger-get-all.dto';
 
 export class LogsViewModel {
-    optionsTitle = new CustomTitleWithButtonsViewModel({
-        title: 'Logs',
-        buttons: [],
-    });
+    title = 'Logs';
     loading = true;
     items: any = [];
     logsBody: LoggerGetAllDto = {

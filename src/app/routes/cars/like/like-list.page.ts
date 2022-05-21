@@ -22,7 +22,7 @@ export class LikeListPage implements OnInit {
                 if (!showMore) {
                     this.vm.optionsTable.items = response.items;
                     this.vm.optionsTable.loading = false;
-                    this.vm.optionsTitle.title = `Likes (${response.paginator.total})`;
+                    this.vm.title = `Likes (${response.paginator.total})`;
                 } else {
                     if (response.items.length > 0) {
                         this.vm.optionsTable.items = [

@@ -5,10 +5,7 @@ import { LikeGetAllDto } from '@services/api/like/like.dto';
 
 export class LikeListViewModel {
     items: User[] = [];
-    optionsTitle = new CustomTitleWithButtonsViewModel({
-        title: 'Likes',
-        buttons: [{ name: 'Nuevo', link: '/likes/one', separated: false }],
-    });
+    title = 'Likes';
     optionsTable = new CustomTableOptionsModel({
         loading: false,
         items: [],

@@ -4,10 +4,7 @@ import { Report } from '@models/report.model';
 export class ReportOnePageViewModel {
     id!: string;
     item: Report = new Report();
-    optionsTitle = new CustomTitleWithButtonsViewModel({
-        title: '',
-        buttons: [],
-    });
+    title = '';
     edit = false;
     options = [
         {

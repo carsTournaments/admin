@@ -20,7 +20,7 @@ export class ReportOnePage implements OnInit {
 
     ngOnInit() {
         this.vm.id = this.route.snapshot.paramMap.get('id') as string;
-        this.vm.optionsTitle.title = 'Editar Reporte';
+        this.vm.title = 'Editar Reporte';
         this.vm.edit = true;
         this.getOne();
     }

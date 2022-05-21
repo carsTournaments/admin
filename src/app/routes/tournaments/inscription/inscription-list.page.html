@@ -1,10 +1,6 @@
 <div class="container">
-    <breadcrumb></breadcrumb>
+    <page-header [title]="vm.title"></page-header>
     <div class="box-white">
-        <custom-title-with-buttons
-            [options]="vm.optionsTitle"
-        ></custom-title-with-buttons>
-
         <mat-tab-group>
             <mat-tab label="Listado">
                 <custom-table

@@ -20,12 +20,12 @@ export class BrandOnePage implements OnInit {
     ngOnInit() {
         this.vm.id = this.route.snapshot.paramMap.get('id') as string;
         if (this.vm.id) {
-            this.vm.optionsTitle.title = 'Editar Marca';
+            this.vm.title = 'Editar Marca';
             this.vm.edit = true;
             this.getCarsOffBrand();
             this.getOne();
         } else {
-            this.vm.optionsTitle.title = 'Nuevo Marca';
+            this.vm.title = 'Nuevo Marca';
             this.vm.edit = false;
         }
     }

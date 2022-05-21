@@ -1,14 +1,10 @@
 import { CustomTableOptionsModel } from '@components/custom-table/model/custom-table.options-model';
-import { CustomTitleWithButtonsViewModel } from '@components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { Brand } from '@models/brand.model';
 
 export class BrandOnePageViewModel {
     id!: string;
     item: Brand = new Brand();
-    optionsTitle = new CustomTitleWithButtonsViewModel({
-        title: '',
-        buttons: [],
-    });
+    title = '';
     edit = false;
     options = [
         {
