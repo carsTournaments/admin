@@ -15,7 +15,7 @@ export interface MenuPermissions {
 export interface MenuChildrenItem {
     route: string;
     name: string;
-    type: 'link' | 'sub' | 'extLink' | 'extTabLink';
+    type: 'link' | 'linkSecondary' | 'sub' | 'extLink' | 'extTabLink';
     children?: MenuChildrenItem[];
     permissions?: MenuPermissions;
 }
@@ -23,7 +23,7 @@ export interface MenuChildrenItem {
 export interface Menu {
     route: string;
     name: string;
-    type: 'link' | 'sub' | 'extLink' | 'extTabLink';
+    type: 'link' | 'linkSecondary' | 'sub' | 'extLink' | 'extTabLink';
     icon: string;
     label?: MenuTag;
     badge?: MenuTag;
@@ -148,15 +148,5 @@ export class MenuService {
             }
         });
         return tmpArr;
-    }
-
-    /** Add namespace for translation. */
-    addNamespace(menu: Menu[] | MenuChildrenItem[], namespace: string) {
-        menu.forEach((menuItem) => {
-            menuItem.name = `${namespace}.${menuItem.name}`;
-            if (menuItem.children && menuItem.children.length > 0) {
-                this.addNamespace(menuItem.children, menuItem.name);
-            }
-        });
     }
 }

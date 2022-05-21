@@ -14,6 +14,8 @@ import {
     BASE_URL,
     httpInterceptorProviders,
 } from '@core';
+import { NgxPermissionsModule } from 'ngx-permissions';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -25,6 +27,8 @@ import {
         SharedModule,
         RoutesModule,
         FormsModule,
+        NgxPermissionsModule.forRoot(),
+        ToastrModule.forRoot(),
     ],
     providers: [
         { provide: BASE_URL, useValue: environment.urlApi },

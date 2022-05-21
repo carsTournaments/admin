@@ -12,11 +12,10 @@ import { User } from '@models';
 export class LoginService {
     constructor(protected http: HttpClient) {}
 
-    login(email: string, password: string, rememberMe = false) {
+    login(email: string, password: string) {
         return this.http.post<LoginResponseI>('/auth/login', {
             email,
             password,
-            rememberMe,
         });
     }
 
@@ -25,12 +24,12 @@ export class LoginService {
     }
 
     me() {
-        return this.http.get<User>('/me');
+        return this.http.post<User>('/auth/me', {});
     }
 
     menu(): Observable<Menu[]> {
         return this.http
-            .post<{ menu: Menu[] }>('/menu', { site: 'admin' })
-            .pipe(map((res) => res.menu));
+            .post<Menu[]>('/menu', { site: 'admin' })
+            .pipe(map((res) => res));
     }
 }

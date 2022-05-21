@@ -26,28 +26,3 @@ export class LocalStorageService {
         localStorage.clear();
     }
 }
-
-export class MemoryStorageService {
-    private store: { [k: string]: string } = {};
-
-    get(key: string) {
-        return JSON.parse(this.store[key] || '{}') || {};
-    }
-
-    set(key: string, value: any): boolean {
-        this.store[key] = JSON.stringify(value);
-        return true;
-    }
-
-    has(key: string): boolean {
-        return !!this.store[key];
-    }
-
-    remove(key: string) {
-        delete this.store[key];
-    }
-
-    clear() {
-        this.store = {};
-    }
-}

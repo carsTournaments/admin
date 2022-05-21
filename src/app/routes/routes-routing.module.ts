@@ -15,58 +15,24 @@ const routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent },
             {
+                path: 'tournaments',
+                data: { breadcrumb: 'Torneos' },
+                loadChildren: () =>
+                    import('./tournaments/tournaments.module').then(
+                        (m) => m.TournamentsModule
+                    ),
+            },
+            {
                 path: 'cars',
                 data: { breadcrumb: 'Coches' },
                 loadChildren: () =>
-                    import('./car/car.module').then((m) => m.CarModule),
-            },
-            {
-                path: 'brands',
-                data: { breadcrumb: 'Marcas' },
-                loadChildren: () =>
-                    import('./brand/brand.module').then((m) => m.BrandModule),
+                    import('./cars/cars.module').then((m) => m.CarsModule),
             },
             {
                 path: 'images',
                 data: { breadcrumb: 'Imagenes' },
                 loadChildren: () =>
                     import('./image/image.module').then((m) => m.ImageModule),
-            },
-            {
-                path: 'inscriptions',
-                data: { breadcrumb: 'Inscripciones' },
-                loadChildren: () =>
-                    import('./inscription/inscription.module').then(
-                        (m) => m.InscriptionModule
-                    ),
-            },
-            {
-                path: 'likes',
-                data: { breadcrumb: 'Likes' },
-                loadChildren: () =>
-                    import('./like/like.module').then((m) => m.LikeModule),
-            },
-            {
-                path: 'logs',
-                data: { breadcrumb: 'Logs' },
-                loadChildren: () =>
-                    import('./logs/logs.module').then((m) => m.LogsModule),
-            },
-            {
-                path: 'notifications',
-                data: { breadcrumb: 'Notificaciones' },
-                loadChildren: () =>
-                    import('./notification/notification.module').then(
-                        (m) => m.NotificationModule
-                    ),
-            },
-            {
-                path: 'pairings',
-                data: { breadcrumb: 'Emparejamientos' },
-                loadChildren: () =>
-                    import('./pairing/pairing.module').then(
-                        (m) => m.PairingModule
-                    ),
             },
             {
                 path: 'reports',
@@ -77,25 +43,11 @@ const routes = [
                     ),
             },
             {
-                path: 'rounds',
-                data: { breadcrumb: 'Rondas' },
-                loadChildren: () =>
-                    import('./round/round.module').then((m) => m.RoundModule),
-            },
-            {
-                path: 'settings',
+                path: 'system',
                 data: { breadcrumb: 'Configuracion' },
                 loadChildren: () =>
-                    import('./settings/settings.module').then(
-                        (m) => m.SettingsModule
-                    ),
-            },
-            {
-                path: 'tournaments',
-                data: { breadcrumb: 'Torneos' },
-                loadChildren: () =>
-                    import('./tournament/tournament.module').then(
-                        (m) => m.TournamentModule
+                    import('./system/system.module').then(
+                        (m) => m.SystemModule
                     ),
             },
             {
@@ -103,20 +55,6 @@ const routes = [
                 data: { breadcrumb: 'Usuarios' },
                 loadChildren: () =>
                     import('./user/user.module').then((m) => m.UserModule),
-            },
-            {
-                path: 'votes',
-                data: { breadcrumb: 'Votos' },
-                loadChildren: () =>
-                    import('./vote/vote.module').then((m) => m.VoteModule),
-            },
-            {
-                path: 'winners',
-                data: { breadcrumb: 'Ganadores' },
-                loadChildren: () =>
-                    import('./winner/winner.module').then(
-                        (m) => m.WinnerModule
-                    ),
             },
         ],
     },

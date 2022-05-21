@@ -9,7 +9,7 @@ import { AuthService } from '@services';
 export class StartupService {
     constructor(
         private authService: AuthService,
-        private menuService: MenuService // private permissonsService: NgxPermissionsService, // private rolesService: NgxRolesService
+        private menuService: MenuService
     ) {}
 
     /**
@@ -32,8 +32,6 @@ export class StartupService {
     }
 
     private setMenu(menu: Menu[]) {
-        this.menuService.addNamespace(menu, 'menu');
         this.menuService.set(menu);
-        console.log('menu', menu);
     }
 }

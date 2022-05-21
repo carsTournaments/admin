@@ -59,25 +59,29 @@ import {
     VoteService,
     WinnerService,
 } from './services';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpInterceptorService } from '../core/interceptors/http.interceptor';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgProgressModule } from 'ngx-progressbar';
 import { NgProgressHttpModule } from 'ngx-progressbar/http';
 import { NgProgressRouterModule } from 'ngx-progressbar/router';
+import { MaterialExtensionsModule } from 'app/material-extensions.module';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 const MODULES = [
     CommonModule,
     RouterModule,
+    ReactiveFormsModule,
     FormsModule,
     MaterialModule,
-    ReactiveFormsModule,
-    SwiperModule,
-    NgChartsModule,
+    MaterialExtensionsModule,
     FlexLayoutModule,
     NgProgressModule,
     NgProgressRouterModule,
     NgProgressHttpModule,
+    NgxPermissionsModule,
+    ToastrModule,
+    SwiperModule,
+    NgChartsModule,
 ];
 
 const COMPONENTS = [
@@ -137,11 +141,6 @@ const SERVICES = [
     // Material
     AlertService,
     SnackBarService,
-    {
-        provide: HTTP_INTERCEPTORS,
-        useClass: HttpInterceptorService,
-        multi: true,
-    },
 ];
 
 @NgModule({

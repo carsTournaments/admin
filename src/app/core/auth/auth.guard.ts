@@ -22,7 +22,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     }
 
     private authenticate(): boolean | UrlTree {
-        console.log(this.auth.check());
         return this.auth.check() ? true : this.router.parseUrl('/login');
     }
 }

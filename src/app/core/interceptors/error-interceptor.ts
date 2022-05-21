@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { SnackBarService } from '@services';
 
 export enum STATUS {
     UNAUTHORIZED = 401,
@@ -38,7 +39,10 @@ export class ErrorInterceptor implements HttpInterceptor {
         return `${error.status} ${error.statusText}`;
     };
 
-    constructor(private router: Router, private toast: ToastrService) {}
+    constructor(
+        private router: Router,
+        private snackBarService: SnackBarService
+    ) {}
 
     intercept(
         request: HttpRequest<unknown>,
@@ -60,7 +64,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             });
         } else {
             console.error('ERROR', error);
-            this.toast.error(this.getMessage(error));
+            this.snackBarService.open(this.getMessage(error));
             if (error.status === STATUS.UNAUTHORIZED) {
                 this.router.navigateByUrl('/auth/login');
             }

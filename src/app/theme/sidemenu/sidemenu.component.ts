@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { MenuService } from '@core/bootstrap/menu.service';
+import { MenuService } from '@core';
 
 @Component({
     selector: 'app-sidemenu',

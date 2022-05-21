@@ -20,7 +20,7 @@ export class TokenService {
             this._token = this.store.get(this.key)!;
             return this._token;
         } else {
-            return undefined;
+            return this._token;
         }
     }
 
@@ -29,7 +29,6 @@ export class TokenService {
     }
 
     set(token?: string): TokenService {
-        console.log('set token', token);
         this.save(token);
 
         return this;
@@ -40,9 +39,8 @@ export class TokenService {
     }
 
     valid(): boolean {
-        console.log({
-            valid: this.token,
-        });
+        if (!this.token) {
+        }
         return this.token && this.token?.length > 0 ? true : false;
     }
 
@@ -57,6 +55,7 @@ export class TokenService {
             this.store.remove(this.key);
         } else {
             this.store.set(this.key, token);
+            this._token = token;
         }
 
         this.change$.next(token);

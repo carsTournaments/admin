@@ -14,10 +14,9 @@ import { LoginResponseI } from '@interfaces';
 })
 export class AuthService {
     private user$ = new BehaviorSubject({});
-    private change$ = merge(this.tokenService.change()).pipe(
-        // switchMap(() => this.assignUser()),
-        share()
-    );
+    private change$ = this.tokenService
+        .change()
+        .pipe(switchMap(() => this.assignUser()));
 
     constructor(
         private loginService: LoginService,
@@ -43,7 +42,7 @@ export class AuthService {
         password: string,
         rememberMe = false
     ): Observable<boolean> {
-        return this.loginService.login(email, password, rememberMe).pipe(
+        return this.loginService.login(email, password).pipe(
             tap((item: LoginResponseI) => this.tokenService.set(item.token)),
             map(() => this.check())
         );
@@ -63,16 +62,22 @@ export class AuthService {
     }
 
     private assignUser(): any {
-        // if (!this.check()) {
-        //     return of({}).pipe(tap((user) => this.user$.next(user)));
-        // }
-        // if (!isEmptyObject(this.user$.getValue())) {
-        //     return of(this.user$.getValue());
-        // }
-        // return this.loginService
-        //     .me()
-        //     .pipe(tap((user) => this.user$.next(user)));
+        if (!this.check()) {
+            return of({}).pipe(
+                tap((user) => this.user$.next(user)),
+                share()
+            );
+        }
+        if (!isEmptyObject(this.user$.getValue())) {
+            return of(this.user$.getValue()).pipe(share());
+        }
+        return this.loginService.me().pipe(
+            tap((user) => this.user$.next(user)),
+            share()
+        );
     }
+
+    // deprecated
 
     setToken(token: string): void {
         localStorage.setItem('token', token);

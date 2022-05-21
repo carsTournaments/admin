@@ -29,10 +29,9 @@
                     navAccordionItem
                     class="matero-sidemenu-item"
                     routerLinkActive="active"
+                    [group]="menuItem.route"
                     [type]="menuItem.type"
                 >
-                    <!-- [group]="menuItem.route" -->
-
                     <a
                         class="matero-sidemenu-link"
                         [routerLink]="

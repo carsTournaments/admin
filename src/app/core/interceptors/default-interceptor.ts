@@ -9,11 +9,9 @@ import {
 import { Observable, of, throwError } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
-import { ToastrService } from 'ngx-toastr';
-
 @Injectable()
 export class DefaultInterceptor implements HttpInterceptor {
-    constructor(private toast: ToastrService) {}
+    constructor() {}
 
     intercept(
         req: HttpRequest<any>,
@@ -35,7 +33,8 @@ export class DefaultInterceptor implements HttpInterceptor {
             // success: { code: 0,  msg: 'success', data: {} }
             if (body && 'code' in body && body.code !== 0) {
                 if (body.msg) {
-                    this.toast.error(body.msg);
+                    // this.toast.error(body.msg);
+                    console.error(body.msg);
                 }
                 return throwError(() => new Error());
             }

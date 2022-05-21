@@ -14,7 +14,12 @@ export class AnalyticsVisitsLastDaysComponent implements OnInit {
     optionsChart = new ChartOptionsModel({
         data: {
             labels: [],
-            datasets: [{ data: [] }],
+            datasets: [
+                {
+                    data: [],
+                    backgroundColor: ['#CC0000'],
+                },
+            ],
         },
         type: 'line',
         options: {
@@ -71,7 +76,5 @@ export class AnalyticsVisitsLastDaysComponent implements OnInit {
             this.optionsChart.data.labels!.push(element.date);
         });
         this.optionsChart.loading = false;
-
-        console.log(this.optionsChart);
     }
 }
