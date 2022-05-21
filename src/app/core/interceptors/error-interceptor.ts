@@ -9,7 +9,6 @@ import {
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
 import { SnackBarService } from '@services';
 
 export enum STATUS {

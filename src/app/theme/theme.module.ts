@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MaterialModule } from '../material.module';
 import { HeaderUserComponent } from '../shared/components';
 import { SharedModule } from '../shared/shared.module';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';

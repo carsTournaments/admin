@@ -75,11 +75,7 @@ export class LoginComponent {
         this.isSubmitting = true;
 
         this.auth
-            .login(
-                this.email?.value,
-                this.password?.value,
-                this.rememberMe?.value
-            )
+            .login(this.email?.value, this.password?.value)
             .pipe(filter((authenticated) => authenticated))
             .subscribe({
                 next: () => this.router.navigateByUrl('/'),

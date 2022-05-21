@@ -1,7 +1,7 @@
 import { Menu } from './../bootstrap/menu.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, iif, merge, of } from 'rxjs';
+import { BehaviorSubject, iif, of } from 'rxjs';
 import { map, share, switchMap, tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
 import { LoginService } from './login.service';
@@ -37,11 +37,7 @@ export class AuthService {
         return this.tokenService.valid();
     }
 
-    login(
-        email: string,
-        password: string,
-        rememberMe = false
-    ): Observable<boolean> {
+    login(email: string, password: string): Observable<boolean> {
         return this.loginService.login(email, password).pipe(
             tap((item: LoginResponseI) => this.tokenService.set(item.token)),
             map(() => this.check())
@@ -53,7 +49,7 @@ export class AuthService {
         !this.check();
     }
 
-    user(): Observable<{}> {
+    user(): Observable<any> {
         return this.user$.pipe(share());
     }
 

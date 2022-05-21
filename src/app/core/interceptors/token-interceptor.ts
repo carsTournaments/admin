@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { TokenService } from '@core/auth';
 import { BASE_URL } from './base-url-interceptor';
 

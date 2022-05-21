@@ -11,8 +11,6 @@ import { mergeMap } from 'rxjs/operators';
 
 @Injectable()
 export class DefaultInterceptor implements HttpInterceptor {
-    constructor() {}
-
     intercept(
         req: HttpRequest<any>,
         next: HttpHandler

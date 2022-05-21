@@ -11,5 +11,4 @@ export class CustomTable2Component {
     columnsModel = new CustomTableColumnsModel();
     @Output() changePage = new EventEmitter();
     @Output() rowClick = new EventEmitter<any>();
-    constructor() {}
 }

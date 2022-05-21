@@ -1,10 +1,6 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { BaseUrlInterceptor } from './base-url-interceptor';
 import { TokenInterceptor } from './token-interceptor';
-import { DefaultInterceptor } from './default-interceptor';
-import { ErrorInterceptor } from './error-interceptor';
-import { LoggingInterceptor } from './logging-interceptor';
 
 export * from './noop-interceptor';
 export * from './base-url-interceptor';

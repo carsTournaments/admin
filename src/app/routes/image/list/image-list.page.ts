@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
-import { MtxGridColumnTag } from '@ng-matero/extensions/grid';
 import { ImageService } from '@services/api/image/image.service';
 import { ImageListViewModel } from './model/image-list.view-model';
 
