@@ -34,7 +34,6 @@ export class InscriptionListPage implements OnInit {
                 }
             },
             error: (error) => {
-                this.vm.optionsTable.error = true;
                 this.snackBarService.open(error);
             },
         });

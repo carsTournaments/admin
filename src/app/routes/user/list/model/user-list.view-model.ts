@@ -1,16 +1,15 @@
-import { CustomTableOptionsModel } from '@components/custom-table/model/custom-table.options-model';
+import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
 import { User } from '@models';
 import { UserGetAllDto } from '@services/api/user/dtos/user.dto';
 
 export class UserListViewModel {
     items: User[] = [];
     title = 'Usuarios';
-    optionsTable = new CustomTableOptionsModel({
-        loading: false,
+    optionsTable = new CustomTable2OptionsModel({
+        type: 'users',
         items: [],
-        type: 'user',
+        loading: true,
         showLoadMore: true,
-        error: false,
     });
     options = [
         {

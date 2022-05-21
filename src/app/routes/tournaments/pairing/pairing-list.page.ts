@@ -32,7 +32,6 @@ export class PairingListPage implements OnInit {
             },
             error: (error) => {
                 this.vm.optionsTable.loading = false;
-                this.vm.optionsTable.error = true;
                 console.error(error);
             },
         });
@@ -64,7 +63,6 @@ export class PairingListPage implements OnInit {
                 this.vm.optionsTable.loading = false;
             }
         } catch (error) {
-            this.vm.optionsTable.error = true;
             console.error(error);
         }
     }

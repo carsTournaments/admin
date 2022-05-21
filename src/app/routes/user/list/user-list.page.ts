@@ -30,10 +30,6 @@ export class UserListPage implements OnInit {
                     ];
                 }
             },
-            error: (error) => {
-                this.vm.optionsTable.error = true;
-                console.error(error);
-            },
         });
         this.vm.optionsTable.loading = false;
     }

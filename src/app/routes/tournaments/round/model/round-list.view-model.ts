@@ -1,16 +1,15 @@
+import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
 import { User } from '@models';
 import { RoundGetAllDto } from '@services/api/round/round.dto';
-import { CustomTableOptionsModel } from '@shared/components/custom-table/model/custom-table.options-model';
 
 export class RoundListViewModel {
     items: User[] = [];
     title = 'Rondas';
-    optionsTable = new CustomTableOptionsModel({
-        loading: false,
+    optionsTable = new CustomTable2OptionsModel({
+        type: 'rounds',
         items: [],
-        type: 'round',
+        loading: true,
         showLoadMore: true,
-        error: false,
     });
     options = [
         {

@@ -1,16 +1,15 @@
-import { CustomTableOptionsModel } from '@components/custom-table/model/custom-table.options-model';
+import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
 import { User } from '@models';
 import { InscriptionGetAllDto } from '@services/api/inscription/inscription.dto';
 
 export class InscriptionListViewModel {
     items: User[] = [];
     title = 'Inscripciones';
-    optionsTable = new CustomTableOptionsModel({
-        loading: false,
+    optionsTable = new CustomTable2OptionsModel({
+        type: 'inscriptions',
         items: [],
-        type: 'inscription',
+        loading: true,
         showLoadMore: true,
-        error: false,
     });
     userBody: InscriptionGetAllDto = {
         page: 1,

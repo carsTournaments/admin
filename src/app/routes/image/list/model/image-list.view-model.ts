@@ -1,16 +1,15 @@
-import { CustomTableOptionsModel } from '@components/custom-table/model/custom-table.options-model';
+import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
 import { User } from '@models';
 import { ImageGetAllDto } from '@services/api/image/image.dto';
 
 export class ImageListViewModel {
     items: User[] = [];
     title = 'Imagenes';
-    optionsTable = new CustomTableOptionsModel({
-        loading: false,
+    optionsTable = new CustomTable2OptionsModel({
+        type: 'images',
         items: [],
-        type: 'image',
+        loading: true,
         showLoadMore: true,
-        error: false,
     });
     userBody: ImageGetAllDto = {
         page: 1,

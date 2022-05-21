@@ -1,16 +1,15 @@
-import { CustomTableOptionsModel } from '@components/custom-table/model/custom-table.options-model';
+import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
 import { User } from '@models';
 import { BrandGetAllDto } from '@services/api/brand/brand.dto';
 
 export class BrandListViewModel {
     items: User[] = [];
     title = 'Marcas';
-    optionsTable = new CustomTableOptionsModel({
-        loading: false,
+    optionsTable = new CustomTable2OptionsModel({
+        type: 'brands',
         items: [],
-        type: 'brand',
+        loading: true,
         showLoadMore: true,
-        error: false,
     });
     options = [
         {

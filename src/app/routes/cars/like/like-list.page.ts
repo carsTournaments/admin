@@ -29,19 +29,13 @@ export class LikeListPage implements OnInit {
                             ...this.vm.optionsTable.items,
                             ...response.items,
                         ];
-                        this.vm.optionsTable.loading = false;
                     } else {
-                        this.vm.optionsTable.loading = false;
                         this.vm.optionsTable.showLoadMore = false;
                     }
                 }
             },
-            error: (error) => {
-                this.vm.optionsTable.loading = false;
-                this.vm.optionsTable.error = true;
-                console.error(error);
-            },
         });
+        this.vm.optionsTable.loading = false;
     }
 
     actionForOption(option: ActionForOptionI) {
@@ -121,7 +115,6 @@ export class LikeListPage implements OnInit {
                 this.vm.optionsTable.loading = false;
             }
         } catch (error) {
-            this.vm.optionsTable.error = true;
             console.error(error);
         }
     }

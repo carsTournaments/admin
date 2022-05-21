@@ -3,12 +3,12 @@
     <div class="box-white">
         <mat-tab-group>
             <mat-tab label="Listado">
-                <custom-table
+                <custom-table2
+                    *ngIf="!vm.optionsTable.loading"
                     [options]="vm.optionsTable"
-                    (changeOrder)="onChangeOrder($event)"
                     (changePage)="onChangePage()"
-                    (clickItem)="onClickItem($event)"
-                ></custom-table>
+                >
+                </custom-table2>
             </mat-tab>
 
             <mat-tab label="Opciones">

@@ -64,7 +64,7 @@ export class CustomTableViewModel {
             { name: 'Creado', order: 'created', col: null },
         ],
         report: [
-            { name: 'Reportador', order: 'name', col: null },
+            { name: 'Reportador', order: 'userReporter.name', col: null },
             { name: 'Coche Reportado', order: 'participants', col: null },
             { name: 'Usuario Reportado', order: 'date', col: null },
             { name: 'Estado', order: 'state', col: null },

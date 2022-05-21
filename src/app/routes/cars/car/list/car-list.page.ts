@@ -19,29 +19,38 @@ export class CarListPage implements OnInit {
         this.vm.optionsTable.loading = true;
         this.carService.getAll(this.vm.carBody).subscribe({
             next: (response) => {
-                if (!showMore) {
-                    this.vm.optionsTable.items = response.items;
-                    this.vm.optionsTable.loading = false;
-                    this.vm.title = `Coches (${response.paginator.total})`;
-                } else {
-                    if (response.items.length > 0) {
-                        this.vm.optionsTable.items = [
-                            ...this.vm.optionsTable.items,
-                            ...response.items,
-                        ];
-                        this.vm.optionsTable.loading = false;
-                    } else {
-                        this.vm.optionsTable.loading = false;
-                        this.vm.optionsTable.showLoadMore = false;
-                    }
-                }
+                this.onGetAllSuccess(showMore, response);
             },
             error: (error) => {
-                this.vm.optionsTable.error = true;
                 console.error(error);
             },
         });
         this.vm.optionsTable.loading = false;
+    }
+
+    private onGetAllSuccess(
+        showMore: boolean,
+        response: {
+            items: import('/Users/jgomepav/apps/carsTournaments-admin/src/app/shared/models/car.model').Car[];
+            paginator: import('/Users/jgomepav/apps/carsTournaments-admin/src/app/shared/interfaces/paginator.interface').PaginatorI;
+        }
+    ) {
+        if (!showMore) {
+            this.vm.optionsTable.items = response.items;
+            this.vm.optionsTable.loading = false;
+            this.vm.title = `Coches (${response.paginator.total})`;
+        } else {
+            if (response.items.length > 0) {
+                this.vm.optionsTable.items = [
+                    ...this.vm.optionsTable.items,
+                    ...response.items,
+                ];
+                this.vm.optionsTable.loading = false;
+            } else {
+                this.vm.optionsTable.loading = false;
+                this.vm.optionsTable.showLoadMore = false;
+            }
+        }
     }
 
     actionForOption(option: ActionForOptionI) {

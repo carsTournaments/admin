@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
+import { MtxGridColumnTag } from '@ng-matero/extensions/grid';
 import { ImageService } from '@services/api/image/image.service';
 import { ImageListViewModel } from './model/image-list.view-model';
 
@@ -21,7 +22,6 @@ export class ImageListPage implements OnInit {
             next: (response) => {
                 if (!showMore) {
                     this.vm.optionsTable.items = response.items;
-                    this.vm.optionsTable.loading = false;
                     this.vm.title = `Imagenes (${response.paginator.total})`;
                 } else {
                     this.vm.optionsTable.items = [
@@ -29,10 +29,6 @@ export class ImageListPage implements OnInit {
                         ...response.items,
                     ];
                 }
-            },
-            error: (error) => {
-                this.vm.optionsTable.error = true;
-                console.error(error);
             },
         });
         this.vm.optionsTable.loading = false;

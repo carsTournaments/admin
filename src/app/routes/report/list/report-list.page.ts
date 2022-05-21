@@ -36,7 +36,6 @@ export class ReportListPage implements OnInit {
             },
             error: (error) => {
                 this.vm.optionsTable.loading = false;
-                this.vm.optionsTable.error = true;
                 this.snackBarService.open(error);
             },
         });

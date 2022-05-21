@@ -24,18 +24,11 @@ export class AnalyticsVisitsLastDaysComponent implements OnInit {
         type: 'line',
         options: {
             scales: {
-                x: {
-                    grid: {
-                        display: false,
-                    },
-                },
+                x: { grid: { display: false } },
                 y: {
                     display: false,
                     ticks: { display: false },
-
-                    grid: {
-                        display: false,
-                    },
+                    grid: { display: false },
                 },
             },
             // scales: { x: { display: false }, y: { display: false } },

@@ -1,16 +1,15 @@
-import { CustomTableOptionsModel } from '@components/custom-table/model/custom-table.options-model';
+import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
 import { User } from '@models';
 import { VoteGetAllDto } from '@services/api/vote/dtos/vote.dto';
 
 export class VoteListViewModel {
     items: User[] = [];
     title = 'Votos';
-    optionsTable = new CustomTableOptionsModel({
-        loading: false,
+    optionsTable = new CustomTable2OptionsModel({
+        type: 'votes',
         items: [],
-        type: 'vote',
+        loading: true,
         showLoadMore: true,
-        error: false,
     });
     options = [
         {

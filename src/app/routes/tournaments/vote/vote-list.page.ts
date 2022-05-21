@@ -21,7 +21,6 @@ export class VoteListPage implements OnInit {
             next: (response) => {
                 if (!showMore) {
                     this.vm.optionsTable.items = response.items;
-                    this.vm.optionsTable.loading = false;
                     this.vm.title = `Votos (${response.paginator.total})`;
                 } else {
                     this.vm.optionsTable.items = [
@@ -29,10 +28,6 @@ export class VoteListPage implements OnInit {
                         ...response.items,
                     ];
                 }
-            },
-            error: (error) => {
-                this.vm.optionsTable.error = true;
-                console.error(error);
             },
         });
         this.vm.optionsTable.loading = false;

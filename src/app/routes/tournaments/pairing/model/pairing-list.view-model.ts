@@ -1,16 +1,15 @@
-import { CustomTableOptionsModel } from '@components/custom-table/model/custom-table.options-model';
+import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
 import { User } from '@models';
 import { PairingGetAllDto } from '@services/api/pairing/pairing.dto';
 
 export class PairingListViewModel {
     items: User[] = [];
     title = 'Emparejamientos';
-    optionsTable = new CustomTableOptionsModel({
-        loading: false,
+    optionsTable = new CustomTable2OptionsModel({
+        type: 'pairings',
         items: [],
-        type: 'pairing',
+        loading: true,
         showLoadMore: true,
-        error: false,
     });
     options = [
         {

@@ -37,7 +37,6 @@ export class NotificationListPage implements OnInit {
                 }
             },
             error: (error) => {
-                this.vm.optionsTable.error = true;
                 console.error(error);
             },
         });
