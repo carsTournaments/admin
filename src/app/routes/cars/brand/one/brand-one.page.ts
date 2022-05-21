@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { BrandService, CarService, SnackBarService } from '@services';
-import { ToastrService } from 'ngx-toastr';
 import { BrandOnePageViewModel } from './model/brand-one.view-model';
 
 @Component({
