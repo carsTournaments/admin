@@ -1,114 +1,115 @@
 <div class="container">
     <page-header [title]="vm.title"></page-header>
-    <div class="box-white">
-        <div class="mb-3">
-            <div class="row mt-1 g-3">
-                <div class="col-sm-6">
-                    <div class="form-floating">
+    <mat-card *ngIf="vm.settings">
+        <form class="form-field-full">
+            <div fxLayout="row wrap" class="matero-row">
+                <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                    <mat-form-field appearance="outline">
                         <input
-                            class="form-control"
-                            name="name"
+                            matInput
+                            name="title"
                             [(ngModel)]="vm.settings.title"
-                            placeholder="Nombre"
+                            placeholder="Introduce el nombre"
                             required
                         />
-                        <label for="floatingInput" class="form-label"
-                            >Nombre</label
+                        <mat-label for="floatingInput" class="form-mat-label"
+                            >Nombre</mat-label
                         >
-                    </div>
+                    </mat-form-field>
                 </div>
 
-                <div class="col-sm-6">
-                    <div class="form-floating">
+                <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                    <mat-form-field appearance="outline">
                         <input
-                            class="form-control"
-                            name="name"
+                            matInput
+                            name="logo"
                             [(ngModel)]="vm.settings.logo"
-                            placeholder="Logo"
+                            placeholder="Introduce el logo"
                         />
-                        <label for="floatingInput" class="form-label"
-                            >Logo</label
+                        <mat-label for="floatingInput" class="form-mat-label"
+                            >Logo</mat-label
                         >
-                    </div>
+                    </mat-form-field>
                 </div>
 
-                <div class="col-sm-12">
-                    <div class="form-floating">
+                <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+                    <mat-form-field appearance="outline">
                         <input
-                            class="form-control"
-                            name="name"
+                            matInput
+                            name="description"
                             [(ngModel)]="vm.settings.description"
                             placeholder="Descripcion"
                         />
-                        <label for="floatingInput" class="form-label"
-                            >Descripcion</label
+                        <mat-label for="floatingInput" class="form-mat-label"
+                            >Descripcion</mat-label
                         >
-                    </div>
+                    </mat-form-field>
                 </div>
             </div>
 
-            <div class="row mt-1 g-3">
-                <div class="col-sm-12">
-                    <div class="form-floating"></div>
+            <div fxLayout="row wrap" class="matero-row">
+                <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
                     <h3>Versiones</h3>
                     <hr />
                     <div class="row mt-1 g-3">
                         <div class="col-sm-6">
                             <h4>Android</h4>
-                            <!-- VERSIONS -->
                             <div
                                 class="row"
                                 *ngIf="vm.settings?.android?.version! && vm.settings?.android?.version!.latestVersion"
                             >
                                 <div class="col-sm-6">
-                                    <div class="form-floating">
+                                    <mat-form-field appearance="outline">
                                         <input
+                                            matInput
                                             class="form-control"
-                                            name="name"
+                                            name="androidLatestVersion"
                                             [(ngModel)]="vm.settings.android?.version!.latestVersion"
-                                            placeholder="Nombre"
+                                            placeholder="Introduce la version"
                                             required
                                         />
-                                        <label
+                                        <mat-label
                                             for="floatingInput"
-                                            class="form-label"
-                                            >Version Actual</label
+                                            class="form-mat-label"
+                                            >Version Actual</mat-label
                                         >
-                                    </div>
+                                    </mat-form-field>
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <div class="form-floating">
+                                    <mat-form-field appearance="outline">
                                         <input
                                             class="form-control"
-                                            name="name"
+                                            name="androidMinVersion"
+                                            matInput
                                             [(ngModel)]="vm.settings.android?.version!.minVersion"
                                             placeholder="Url"
                                             required
                                         />
-                                        <label
+                                        <mat-label
                                             for="floatingInput"
-                                            class="form-label"
-                                            >Version Minima</label
+                                            class="form-mat-label"
+                                            >Version Minima</mat-label
                                         >
-                                    </div>
+                                    </mat-form-field>
                                 </div>
 
                                 <div class="col-sm-12 mt-3">
-                                    <div class="form-floating">
+                                    <mat-form-field appearance="outline">
                                         <input
                                             class="form-control"
-                                            name="name"
+                                            name="Introduce la url"
+                                            matInput
                                             [(ngModel)]="vm.settings.android!.urlMarket"
-                                            placeholder="Nombre"
+                                            placeholder="androidUrl"
                                             required
                                         />
-                                        <label
+                                        <mat-label
                                             for="floatingInput"
-                                            class="form-label"
-                                            >Url Market</label
+                                            class="form-mat-label"
+                                            >Url Market</mat-label
                                         >
-                                    </div>
+                                    </mat-form-field>
                                 </div>
                             </div>
                         </div>
@@ -121,54 +122,57 @@
                             <!-- VERSIONS -->
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <div class="form-floating">
+                                    <mat-form-field appearance="outline">
                                         <input
                                             class="form-control"
-                                            name="name"
+                                            name="iosLaterstVersion"
+                                            matInput
                                             [(ngModel)]="vm.settings.ios?.version!.latestVersion"
-                                            placeholder="Nombre"
+                                            placeholder="Introduce la version"
                                             required
                                         />
-                                        <label
+                                        <mat-label
                                             for="floatingInput"
-                                            class="form-label"
-                                            >Version Actual</label
+                                            class="form-mat-label"
+                                            >Version Actual</mat-label
                                         >
-                                    </div>
+                                    </mat-form-field>
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <div class="form-floating">
+                                    <mat-form-field appearance="outline">
                                         <input
                                             class="form-control"
-                                            name="name"
+                                            name="iosMinVersion"
+                                            matInput
                                             [(ngModel)]="vm.settings.ios?.version!.minVersion"
-                                            placeholder="Url"
+                                            placeholder="Introduce la version"
                                             required
                                         />
-                                        <label
+                                        <mat-label
                                             for="floatingInput"
-                                            class="form-label"
-                                            >Version Minima</label
+                                            class="form-mat-label"
+                                            >Version Minima</mat-label
                                         >
-                                    </div>
+                                    </mat-form-field>
                                 </div>
 
                                 <div class="col-sm-12 mt-3">
-                                    <div class="form-floating">
+                                    <mat-form-field appearance="outline">
                                         <input
                                             class="form-control"
-                                            name="name"
+                                            name="iosUrl"
                                             [(ngModel)]="vm.settings.ios!.urlMarket"
-                                            placeholder="Nombre"
+                                            matInput
+                                            placeholder="Introduce la url"
                                             required
                                         />
-                                        <label
+                                        <mat-label
                                             for="floatingInput"
-                                            class="form-label"
-                                            >Url Market</label
+                                            class="form-mat-label"
+                                            >Url Market</mat-label
                                         >
-                                    </div>
+                                    </mat-form-field>
                                 </div>
                             </div>
                         </div>
@@ -176,39 +180,55 @@
                 </div>
             </div>
 
-            <div class="row mt-1 g-3" *ngIf="vm.settings?.state!">
-                <div class="col-sm-12">
-                    <div class="form-floating"></div>
+            <div
+                fxLayout="row wrap"
+                class="matero-row"
+                *ngIf="vm.settings?.state!"
+            >
+                <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
                     <h3>Estados</h3>
                     <hr />
 
-                    <div class="row mt-1 g-3">
-                        <div class="col-sm-12">
-                            <h4>Admob</h4>
-                            <!-- VERSIONS -->
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <toggle
-                                            [checked]="vm.settings?.state!.admob"
-                                            (change)="vm.settings?.state!.admob = !vm.settings?.state!.admob"
-                                        ></toggle>
-                                    </div>
-                                </div>
+                    <div
+                        fxLayout="row wrap"
+                        class="matero-row"
+                        *ngIf="vm.settings?.state!"
+                    >
+                        <div
+                            [fxFlex.gt-sm]="50"
+                            [fxFlex]="100"
+                            class="matero-col"
+                        >
+                            <div
+                                [fxFlex.gt-sm]="50"
+                                [fxFlex]="100"
+                                class="matero-col"
+                            >
+                                <mat-checkbox
+                                    [(ngModel)]="vm.settings?.state!.admob"
+                                    name="stateAdmob"
+                                >
+                                    Admob
+                                </mat-checkbox>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <br />
             <!-- BUTTON -->
-            <div class="row mt-1 g-3">
-                <div class="col-sm-12">
-                    <button class="btn btn-primary w-100" (click)="save()">
+            <div fxLayout="row wrap" class="matero-row">
+                <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        class="button-100"
+                        (click)="save()"
+                    >
                         Guardar
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
+        </form>
+    </mat-card>
 </div>

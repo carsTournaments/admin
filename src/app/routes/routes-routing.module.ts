@@ -44,7 +44,7 @@ const routes = [
             },
             {
                 path: 'system',
-                data: { breadcrumb: 'Configuracion' },
+                data: { breadcrumb: 'Sistema' },
                 loadChildren: () =>
                     import('./system/system.module').then(
                         (m) => m.SystemModule
