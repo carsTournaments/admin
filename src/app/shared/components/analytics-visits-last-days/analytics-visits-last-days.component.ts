@@ -17,7 +17,15 @@ export class AnalyticsVisitsLastDaysComponent implements OnInit {
             datasets: [
                 {
                     data: [],
-                    backgroundColor: ['#CC0000'],
+                    fill: {
+                        target: 'origin',
+                        above: 'rgba(0, 0, 0, .5)',
+                    },
+                    label: 'Visitas',
+                    borderColor: '#000',
+                    pointBorderColor: '#CC0000',
+                    pointBackgroundColor: '#CC0000',
+                    pointBorderWidth: 4,
                 },
             ],
         },
