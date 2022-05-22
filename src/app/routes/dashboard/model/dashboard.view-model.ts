@@ -5,14 +5,6 @@ import { CarGetAllDto } from '@services/api/car/car.dto';
 import { TournamentGetAllDto } from '@services/api/tournament/tournament.dto';
 
 export class DashboardViewModel {
-    tournamentsOptionsTitle = new CustomTitleWithButtonsViewModel({
-        title: 'Ultimos Torneos',
-        buttons: [],
-    });
-    carsOptionsTitle = new CustomTitleWithButtonsViewModel({
-        title: 'Ultimos Coches',
-        buttons: [],
-    });
     statsOptionsTitle = new CustomTitleWithButtonsViewModel({
         title: 'Servidor',
         buttons: [{ name: 'Actualizar', link: '', separated: false }],

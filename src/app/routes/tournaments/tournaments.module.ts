@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TournamentListPage } from './tournament/list/tournament-list.page';
 import { RouterModule } from '@angular/router';
-import { TournamentOnePage } from './tournament/one/tournament-one.page';
-import { TournamentOneEditComponent } from './tournament/one/components/tournament-one-edit.component';
 import { SharedModule } from '@shared/shared.module';
 import { StatusPipe } from '@shared/pipes';
 import { InscriptionListPage } from './inscription/inscription-list.page';
 import { PairingListPage } from './pairing/pairing-list.page';
 import { RoundListPage } from './round/round-list.page';
-import { WinnerListPage } from './winner/winner-list.page';
+import { TournamentOneEditComponent } from './tournament/components/tournament-one-edit.component';
+import { TournamentListPage } from './tournament/pages/list/tournament-list.page';
+import { TournamentOnePage } from './tournament/pages/one/tournament-one.page';
 import { VoteListPage } from './vote/vote-list.page';
+import { WinnerListPage } from './winner/winner-list.page';
 
 @NgModule({
     imports: [

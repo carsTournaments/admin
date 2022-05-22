@@ -1,4 +1,4 @@
-import { Tournament, TournamentRequisiteI } from '@models/tournament.model';
+import { Tournament } from '@models/tournament.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
@@ -12,7 +12,7 @@ import {
     SnackBarService,
     WinnerService,
 } from '@services';
-import { TournamentOnePageViewModel } from './model/tournament-one.view-model';
+import { TournamentOnePageViewModel } from '../../models/tournament-one.view-model';
 import { AlertService } from '@services/material/alert/alert.service';
 import { StatusPipe } from '@shared/pipes';
 import { Inscription } from '@models';
@@ -157,67 +157,6 @@ export class TournamentOnePage implements OnInit {
     getRequisitesDefault(): void {
         this.vm.requisitesDefault = new Tournament().getRequisitesDefault();
         this.vm.requisiteSelected = this.vm.requisitesDefault[0].name;
-    }
-
-    async onSubmit() {
-        try {
-            this.vm.item.startDate = `${this.vm.startDate} ${this.vm.startTime}`;
-            this.vm.item.maxParticipants = Number(this.vm.item.maxParticipants);
-            const validations = this.validations();
-            if (validations.state) {
-                this.vm.edit ? this.update() : this.create();
-            } else {
-                this.snackBarService.open(validations.message);
-            }
-        } catch (error: any) {
-            this.snackBarService.open(
-                error?.message ? error.message : 'Ha ocurrido un error'
-            );
-        }
-    }
-
-    validations(): { state: boolean; message: string } {
-        const data = {
-            state: true,
-            message: '',
-        };
-        if (this.vm.item.name === '') {
-            data.state = false;
-            data.message = 'El nombre del torneo no puede estar vacio';
-        }
-
-        if (this.vm.item.info === '') {
-            data.state = false;
-            data.message = 'La info del torneo no puede estar vacia';
-        }
-
-        return data;
-    }
-
-    update() {
-        this.tournamentService.update(this.vm.item).subscribe({
-            next: () => {
-                this.snackBarService.open('Torneo actualizado correctamente');
-                this.router.navigate(['/tournaments']);
-            },
-            error: (error) =>
-                this.snackBarService.open(
-                    error.message ? error.message : 'Ha ocurrido un error'
-                ),
-        });
-    }
-
-    create() {
-        this.tournamentService.create(this.vm.item).subscribe({
-            next: () => {
-                this.snackBarService.open('Torneo creado correctamente');
-                this.router.navigate(['/tournaments']);
-            },
-            error: (error) =>
-                this.snackBarService.open(
-                    error.message ? error.message : 'Ha ocurrido un error'
-                ),
-        });
     }
 
     actionForOption(option: ActionForOptionI) {
@@ -410,25 +349,6 @@ export class TournamentOnePage implements OnInit {
                 });
             }
         });
-    }
-
-    addRequisite() {
-        const item = this.vm.requisitesDefault.find(
-            (i) => i.name === this.vm.requisiteSelected
-        );
-        const checkItem = this.vm.item.requisites.find(
-            (i) => i.name === item!.name
-        );
-        if (!checkItem) {
-            this.vm.item.requisites.push(item!);
-        } else {
-            this.snackBarService.open('Requisito ya agregado');
-        }
-    }
-
-    deleteRequisite(item: TournamentRequisiteI): void {
-        const index = this.vm.item.requisites.indexOf(item);
-        this.vm.item.requisites.splice(index, 1);
     }
 
     async onDeleteInscription(id: string) {

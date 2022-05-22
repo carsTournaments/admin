@@ -1,7 +1,7 @@
 export class CustomTitleWithButtonsViewModel {
     title = '';
     subtitle?: string;
-    buttons: {
+    buttons?: {
         name: string;
         link?: string;
         separated?: boolean;
@@ -10,7 +10,7 @@ export class CustomTitleWithButtonsViewModel {
     constructor(data?: CustomTitleWithButtonsViewModel) {
         if (data) {
             this.title = data.title ?? this.title;
-            this.buttons = data.buttons ?? this.buttons;
+            this.buttons = data.buttons ?? [];
             this.subtitle = data.subtitle ?? this.subtitle;
         }
     }

@@ -1,5 +1,5 @@
 import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
-import { User } from '@models';
+import { Tournament, User } from '@models';
 import { TournamentGetAllDto } from '@services/api/tournament/tournament.dto';
 
 export class TournamentListViewModel {
@@ -23,4 +23,9 @@ export class TournamentListViewModel {
             value: '',
         },
     ];
+    item = new Tournament();
+    startDate = '';
+    startTime = '';
+    endDate = '';
+    endTime = '';
 }

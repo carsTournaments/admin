@@ -1,19 +1,24 @@
-<swiper [config]="slideOpts">
-    <ng-template swiperSlide *ngFor="let item of items">
-        <div
-            class="box-white last-tournaments-item"
-            style="background-image: linear-gradient(
+<mat-card>
+    <h2 class="mat-title">Ultimos Torneos</h2>
+    <mat-divider></mat-divider>
+    <br />
+    <swiper [config]="slideOpts">
+        <ng-template swiperSlide *ngFor="let item of items">
+            <div
+                class="box-white last-tournaments-item"
+                style="background-image: linear-gradient(
                     rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.63)), url({{
-                item?.image?.url! | image
-            }}
+                    item?.image?.url! | image
+                }}
                 )"
-            [routerLink]="['/tournaments/one', item._id]"
-        >
-            <p class="title">{{ item.name }}</p>
-            <p class="date">
-                {{ item.startDate | dateToTimeAgo }} -
-                {{ item.status! | status }}
-            </p>
-        </div>
-    </ng-template>
-</swiper>
+                [routerLink]="['/tournaments/one', item._id]"
+            >
+                <p class="title">{{ item.name }}</p>
+                <p class="date">
+                    {{ item.startDate | dateToTimeAgo }} -
+                    {{ item.status! | status }}
+                </p>
+            </div>
+        </ng-template>
+    </swiper>
+</mat-card>

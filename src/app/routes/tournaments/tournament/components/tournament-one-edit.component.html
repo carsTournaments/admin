@@ -152,72 +152,90 @@
                         name="info"
                         rows="5"
                         [(ngModel)]="item.info"
-                        placeholder="Info"
-                        required
+                        placeholder="Introduce informacion del torneo"
                     ></textarea>
+                    <mat-label>Info</mat-label>
                 </mat-form-field>
 
                 <!-- TODO: Revisar -->
-                <ng-container
-                    *ngIf="
-                        !edit ||
-                        (edit && item.requisites.length > 0) ||
-                        (edit && item.status === 'Todo')
-                    "
-                >
-                    <hr class="my-4" />
-                    <h4>Requisitos</h4>
-                    <div class="row">
-                        <div class="col-sm-9">
-                            <mat-select
-                                matInput
-                                name="requisiteSelected"
-                                [(ngModel)]="requisiteSelected"
-                                [disabled]="disabledItems"
-                                placeholder="Selecciona requisito"
-                            >
-                                <mat-option
-                                    *ngFor="let requisite of requisitesDefault"
+                <ng-container *ngIf="!disabledItems">
+                    <br />
+                    <div fxLayout="row wrap" class="matero-row">
+                        <div
+                            [fxFlex.gt-sm]="70"
+                            [fxFlex]="70"
+                            class="matero-col"
+                        >
+                            <mat-form-field appearance="outline">
+                                <mat-select
+                                    matInput
+                                    name="requisiteSelected"
+                                    [(ngModel)]="requisiteSelected"
+                                    [disabled]="disabledItems"
+                                    placeholder="Selecciona requisito"
                                 >
-                                    {{ requisite.name }}
-                                </mat-option>
-                            </mat-select>
+                                    <mat-option
+                                        [value]="requisite.name"
+                                        *ngFor="
+                                            let requisite of requisitesDefault
+                                        "
+                                    >
+                                        {{ requisite.name }}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-label>Requisitos</mat-label>
+                            </mat-form-field>
                         </div>
-                        <div class="col-sm-3">
+                        <div
+                            [fxFlex.gt-sm]="30"
+                            [fxFlex]="30"
+                            class="matero-col"
+                        >
                             <button
                                 mat-raised-button
                                 color="primary"
-                                class="w-100"
-                                (click)="addRequisite.emit()"
+                                class="w-full p-y-8 m-t-8"
+                                (click)="addRequisite()"
                                 [disabled]="disabledItems"
                             >
-                                Añadir requisito
+                                Añadir
                             </button>
                         </div>
                     </div>
 
-                    <ul class="list-group mt-3">
-                        <li
-                            class="list-group-item m-2"
-                            *ngFor="let requisite of item.requisites"
-                        >
-                            {{ requisite.name }}
-                            <button
-                                class="btn btn-dark btn-sm float-right"
-                                style="float: right"
-                                (click)="deleteRequisite.emit(requisite)"
-                                [disabled]="disabledItems"
-                            >
-                                Eliminar
-                            </button>
-                        </li>
-                    </ul>
+                    <ng-container *ngIf="item.requisites">
+                        <mat-nav-list>
+                            <div fxLayout="row wrap" class="matero-row">
+                                <div
+                                    [fxFlex.gt-sm]="
+                                        item.requisites.length > 1 ? 50 : 100
+                                    "
+                                    [fxFlex]="100"
+                                    class="matero-col"
+                                    *ngFor="let requisite of item.requisites"
+                                >
+                                    <mat-list-item
+                                        class="list-group-item m-2"
+                                        (click)="deleteRequisite(requisite)"
+                                    >
+                                        {{ requisite.name }}
+                                        <mat-icon class="float-right-absolute"
+                                            >close</mat-icon
+                                        >
+                                        <mat-divider></mat-divider>
+                                    </mat-list-item>
+                                    <br />
+                                </div>
+                            </div>
+                        </mat-nav-list>
+                    </ng-container>
                 </ng-container>
 
                 <button
                     mat-raised-button
-                    class="bg-red-800 text-white w-full"
-                    (click)="submit.emit()"
+                    color="primary"
+                    class="w-full"
+                    (click)="onSubmit()"
                 >
                     Guardar
                 </button>

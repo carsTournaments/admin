@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Tournament } from '@models';
 import { TournamentService } from '@services';
-import { TournamentListViewModel } from './model/tournament-list.view-model';
+import { TournamentListViewModel } from '../../models/tournament-list.view-model';
 
 @Component({
     selector: 'page-tournament-list',

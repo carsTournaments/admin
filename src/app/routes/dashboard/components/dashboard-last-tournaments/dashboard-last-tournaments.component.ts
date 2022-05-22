@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CustomTitleWithButtonsViewModel } from '@components/custom-title-with-buttons/model/custom-title-with-buttons.view-model';
 import { Tournament } from '@models';
 
 @Component({
@@ -18,6 +19,9 @@ export class DashboardLastTournamentsComponent {
             crossFade: true,
         },
     };
+    optionsTitle = new CustomTitleWithButtonsViewModel({
+        title: 'Ultimos Coches',
+    });
     constructor() {
         this.checkIsMobile();
     }

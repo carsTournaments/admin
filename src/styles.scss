@@ -13,14 +13,14 @@
 // .navbar {
 //     background-color: $primary;
 //     border-color: $primary;
-//     color: $dark;
+//     color: #000;
 //     height: 50px;
 // }
 
 // .logo-header {
 //     font-size: 1.6rem;
 //     font-weight: bold;
-//     color: $light;
+//     color: #ffffff;
 // }
 
 // .container {
@@ -100,7 +100,7 @@
 // }
 
 // thead {
-//     color: $dark;
+//     color: #000;
 //     text-align: center;
 // }
 
@@ -128,96 +128,7 @@
 //     border-radius: 25px;
 // }
 
-// .chip {
-//     display: inline-block;
-//     padding: 0px 12px;
-//     height: 20px;
-//     font-size: 11px;
-//     line-height: 20px;
-//     border-radius: 4px;
-//     font-weight: 500;
-// }
-
-// .chip img {
-//     float: left;
-//     margin: -5px 5px 0 -28px;
-//     height: 30px;
-//     width: 30px;
-//     border-radius: 50%;
-//     background: #fff;
-// }
-
-// .chip-primary {
-//     background-color: $primary;
-//     color: $light;
-//     img {
-//         border: 2px solid $primary;
-//     }
-// }
-
-// .chip-dark {
-//     background-color: $dark !important;
-//     color: $light;
-//     img {
-//         border: 2px solid $dark;
-//     }
-// }
-
-// .chip-success {
-//     background-color: $success !important;
-//     color: $light;
-//     img {
-//         border: 2px solid $success;
-//     }
-// }
-
-// .chip-warning {
-//     background-color: $warning !important;
-//     color: $dark;
-//     img {
-//         border: 2px solid $success;
-//     }
-// }
-
-// .chip-danger {
-//     background-color: $danger !important;
-//     color: $light;
-//     img {
-//         border: 2px solid $success;
-//     }
-// }
-
-// .chip-gold {
-//     background-color: #ffd700 !important;
-//     color: $dark;
-//     img {
-//         border: 2px solid #ffd700;
-//     }
-// }
-
-// .chip-silver {
-//     background-color: #c0c0c0 !important;
-//     color: $dark;
-//     img {
-//         border: 2px solid #c0c0c0;
-//     }
-// }
-
-// .chip-bronze {
-//     background-color: #cd7f32 !important;
-//     color: $light;
-//     img {
-//         border: 2px solid #cd7f32;
-//     }
-// }
-
-// .chip-info {
-//     background-color: #002bc8 !important;
-//     color: $light;
-//     img {
-//         border: 2px solid #002bc8;
-//     }
-// }
+// .
 
 // .bg-medium {
 //     background-color: $medium;
@@ -283,6 +194,10 @@
 @use 'styles/grid';
 @use 'styles/helpers';
 @use 'styles/plugins';
+// necesario para get-color-from-palette
+@use 'sass:color';
+@use 'sass:map';
+@use '@angular/material' as mat;
 
 mat-tab-header {
     margin-bottom: 1rem;
@@ -297,4 +212,95 @@ mat-tab-header {
 .float-right-absolute {
     right: 0.5rem;
     position: absolute;
+}
+
+.chip {
+    display: inline-block;
+    padding: 0px 12px;
+    height: 20px;
+    font-size: 13px;
+    line-height: 20px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.chip img {
+    float: left;
+    margin: -5px 5px 0 -28px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.chip-primary {
+    background-color: #cc0000;
+    color: #ffffff;
+    img {
+        border: 2px solid #cc0000;
+    }
+}
+
+.chip-dark {
+    background-color: #000;
+    color: #ffffff;
+    img {
+        border: 2px solid #000;
+    }
+}
+
+.chip-success {
+    background-color: green !important;
+    color: #ffffff;
+    img {
+        border: 2px solid green;
+    }
+}
+
+.chip-warning {
+    background-color: orange !important;
+    color: #000;
+    img {
+        border: 2px solid orange;
+    }
+}
+
+.chip-danger {
+    background-color: red !important;
+    color: #ffffff;
+    img {
+        border: 2px solid red;
+    }
+}
+
+.chip-gold {
+    background-color: #ffd700 !important;
+    color: #000;
+    img {
+        border: 2px solid #ffd700;
+    }
+}
+
+.chip-silver {
+    background-color: #c0c0c0 !important;
+    color: #000;
+    img {
+        border: 2px solid #c0c0c0;
+    }
+}
+
+.chip-bronze {
+    background-color: #cd7f32 !important;
+    color: #ffffff;
+    img {
+        border: 2px solid #cd7f32;
+    }
+}
+
+.chip-info {
+    background-color: #002bc8 !important;
+    color: #ffffff;
+    img {
+        border: 2px solid #002bc8;
+    }
 }

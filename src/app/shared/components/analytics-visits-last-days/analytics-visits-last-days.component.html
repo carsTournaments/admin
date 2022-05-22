@@ -1,3 +1,5 @@
-<div class="box-white wrapper">
+<mat-card>
+    <h2 class="mat-title">Visitas ultimos 30 dias</h2>
+    <mat-divider></mat-divider>
     <chart-bar *ngIf="!optionsChart.loading" [data]="optionsChart"></chart-bar>
-</div>
+</mat-card>

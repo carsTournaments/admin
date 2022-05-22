@@ -171,8 +171,8 @@ export class CustomTableColumnsModel {
             {
                 header: 'Coche',
                 field: 'car',
-                formatter: (item: any) =>
-                    `${item.car.brand?.name} ${item.car?.model}`,
+                width: '220px',
+                formatter: (item: any) => this.getChip('car', item, true),
             },
             { header: 'Likes', field: 'car.likes.count' },
             { header: 'Usuario', field: 'driver.name' },
@@ -497,5 +497,18 @@ export class CustomTableColumnsModel {
 
     getColumns(type: string): MtxGridColumn[] {
         return this.data[type];
+    }
+
+    getChip(type: string, item: any, image?: boolean) {
+        if (type === 'car') {
+            return `
+            <div class="chip chip-primary">
+                <img class="image-table" src="${environment.urlImages}/${item.car.image?.url}" />
+                ${item.car.brand?.name} ${item.car?.model}
+            </div>
+        `;
+        } else {
+            return '';
+        }
     }
 }
