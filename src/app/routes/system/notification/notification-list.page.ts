@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationSendComponent } from '@components/notification-send/notification-send.component';
+import { NotificationSendComponent } from 'app/routes/system/notification/components/notification-send/notification-send.component';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { Notification } from '@models/notification.model';
 import { AlertService, NotificationService, SnackBarService } from '@services';
@@ -28,7 +28,7 @@ export class NotificationListPage implements OnInit {
                 if (!showMore) {
                     this.vm.optionsTable.items = response.items;
                     this.vm.optionsTable.loading = false;
-                    this.vm.title = `Notificaciones (${response.paginator.total})`;
+                    this.vm.title = `Notificaciones Push (${response.paginator.total})`;
                 } else {
                     this.vm.optionsTable.items = [
                         ...this.vm.optionsTable.items,

@@ -30,7 +30,12 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) => this.getImageRounded(item.image?.url),
             },
             { header: 'Nombre', field: 'name' },
-            { header: 'Pais', field: 'country' },
+            {
+                header: 'Pais',
+                field: 'country',
+                formatter: (item: any) =>
+                    this.getChip(item.country, false, null, 'dark'),
+            },
             { header: 'Continente', field: 'continent' },
             {
                 header: 'Coches',
@@ -307,14 +312,31 @@ export class CustomTableColumnsModel {
             defaults.created,
         ],
         reports: [
-            { header: 'Reportador', field: 'userReporter.name' },
+            {
+                header: 'Reportador',
+                field: 'userReporter.name',
+                width: '200px',
+                formatter: (item: any) =>
+                    this.getChip(item.userReporter.name, false, null, 'dark'),
+            },
             {
                 header: 'Coche Reportado',
                 field: 'carReported',
+                width: '200px',
                 formatter: (item: any) =>
-                    `${item.carReported.brand.name} ${item.carReported.model}`,
+                    this.getChip(
+                        item.carReported.brand.name,
+                        true,
+                        item.carReported?.image?.url
+                    ),
             },
-            { header: 'Reportado', field: 'userReported.name' },
+            {
+                header: 'Reportado',
+                field: 'userReported.name',
+                width: '200px',
+                formatter: (item: any) =>
+                    this.getChip(item.userReporter.name, false, null, 'dark'),
+            },
             {
                 header: 'Estado',
                 field: 'state',
@@ -467,6 +489,9 @@ export class CustomTableColumnsModel {
                 header: 'Email',
                 field: 'email',
                 sortable: true,
+                width: '250px',
+                formatter: (item: any) =>
+                    this.getChip(item.email, false, null, 'dark'),
             },
             {
                 header: 'Rol',

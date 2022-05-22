@@ -2,84 +2,8 @@
     <page-header [title]="vm.title"></page-header>
     <div class="box-white">
         <mat-tab-group>
-            <mat-tab label="Listado">
-                <div class="row mt-1 g-3" *ngIf="vm.item">
-                    <div class="col-sm-12">
-                        <div class="form-floating">
-                            <input
-                                class="form-control"
-                                name="name"
-                                [(ngModel)]="vm.item.userReporter"
-                                placeholder="Nombre"
-                                required
-                            />
-                            <label for="floatingInput" class="form-label"
-                                >Usuario reportador</label
-                            >
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-floating">
-                            <input
-                                class="form-control"
-                                name="name"
-                                [(ngModel)]="vm.item.userReported"
-                                placeholder="Nombre"
-                                required
-                            />
-                            <label for="floatingInput" class="form-label"
-                                >Usuario reportado</label
-                            >
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-floating">
-                            <input
-                                class="form-control"
-                                name="name"
-                                [(ngModel)]="vm.item.carReported"
-                                placeholder="Nombre"
-                                required
-                            />
-                            <label for="floatingInput" class="form-label"
-                                >Coche reportado</label
-                            >
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                        <div class="form-floating">
-                            <input
-                                class="form-control"
-                                name="name"
-                                [(ngModel)]="vm.item.reason"
-                                placeholder="Nombre"
-                                required
-                            />
-                            <label for="floatingInput" class="form-label"
-                                >Razon</label
-                            >
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                        <toggle
-                            [checked]="vm.item.state"
-                            (change)="vm.item.state = !vm.item.state"
-                        >
-                        </toggle>
-                    </div>
-
-                    <hr class="my-4" />
-
-                    <button
-                        class="w-100 btn btn-primary btn-lg"
-                        (click)="onSubmit()"
-                    >
-                        Guardar
-                    </button>
-                </div>
+            <mat-tab label="Info">
+                <report-one-edit [item]="vm.item"></report-one-edit>
             </mat-tab>
 
             <mat-tab label="Opciones">

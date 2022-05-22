@@ -4,6 +4,7 @@ import { ReportListPage } from './list/report-list.page';
 import { RouterModule } from '@angular/router';
 import { ReportOnePage } from './one/report-one.page';
 import { SharedModule } from '@shared/shared.module';
+import { ReportOneEditComponent } from './components/report-one-edit.component';
 
 @NgModule({
     imports: [
@@ -22,7 +23,7 @@ import { SharedModule } from '@shared/shared.module';
             },
         ]),
     ],
-    declarations: [ReportListPage, ReportOnePage],
+    declarations: [ReportListPage, ReportOnePage, ReportOneEditComponent],
     providers: [],
 })
 export class ReportModule {}

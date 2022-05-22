@@ -1,0 +1,73 @@
+<mat-card *ngIf="item">
+    <form class="form-field-full">
+        <div fxLayout="row wrap" class="matero-row">
+            <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        name="userReporter"
+                        [(ngModel)]="item.userReporter"
+                        placeholder="Introduce el id"
+                        required
+                    />
+                    <mat-label>Usuario reportador</mat-label>
+                </mat-form-field>
+            </div>
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        name="userReported"
+                        [(ngModel)]="item.userReported"
+                        placeholder="Introduce el id"
+                        required
+                    />
+                    <mat-label>Usuario reportado</mat-label>
+                </mat-form-field>
+            </div>
+
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        name="carReported"
+                        [(ngModel)]="item.carReported"
+                        placeholder="Introduce el id"
+                        required
+                    />
+                    <mat-label>Coche reportado</mat-label>
+                </mat-form-field>
+            </div>
+
+            <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <textarea
+                        matInput
+                        name="reason"
+                        [(ngModel)]="item.reason"
+                        placeholder="Introduce la razon"
+                        required
+                    ></textarea>
+                    <mat-label>Razon</mat-label>
+                </mat-form-field>
+            </div>
+
+            <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+                <mat-checkbox [(ngModel)]="item.state" name="state">
+                    Reporte Aceptado
+                </mat-checkbox>
+            </div>
+
+            <br /><br />
+            <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+                <button
+                    mat-raised-button
+                    class="bg-red-800 text-white w-full"
+                    (click)="onSubmit()"
+                >
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</mat-card>

@@ -32,16 +32,6 @@ export class ReportOnePage implements OnInit {
         });
     }
 
-    async onSubmit() {
-        this.reportService.update(this.vm.item).subscribe({
-            next: () => {
-                this.snackBarService.open('Reporte actualizado');
-                this.router.navigate(['/reports']);
-            },
-            error: (error) => this.snackBarService.open(error),
-        });
-    }
-
     actionForOption(option: ActionForOptionI) {
         switch (option.value) {
             case 'delete':

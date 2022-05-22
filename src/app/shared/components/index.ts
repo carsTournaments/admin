@@ -10,7 +10,6 @@ export { CustomTitleWithButtonsComponent } from './custom-title-with-buttons/cus
 export { HeaderUserComponent } from './header-user/header-user.component';
 export { LoadingComponent } from './loading/loading.component';
 export { MenuComponent } from './menu/menu.component';
-export { NotificationSendComponent } from './notification-send/notification-send.component';
 export { OptionsListComponent } from './options-list/options-list.component';
 export { PageHeaderComponent } from './page-header/page-header.component';
 export { SearchComponent } from './search/search.component';

@@ -1,9 +1,7 @@
-<div class="wrapper box-white">
-    <h1>Notificacion</h1>
-
-    <div class="row mt-1 g-3" *ngIf="notification">
-        <form class="example-form">
-            <div class="col-sm-12">
+<mat-card *ngIf="notification">
+    <form class="form-field-full">
+        <div fxLayout="row wrap" class="matero-row">
+            <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
                 <mat-form-field class="input-full-width" appearance="fill">
                     <mat-label>Titulo</mat-label>
                     <input
@@ -105,6 +103,6 @@
             >
                 Enviar notificacion
             </button>
-        </form>
-    </div>
-</div>
+        </div>
+    </form>
+</mat-card>

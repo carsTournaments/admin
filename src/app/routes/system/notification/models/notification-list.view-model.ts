@@ -2,7 +2,7 @@ import { CustomTable2OptionsModel } from '@components/custom-table2/models/custo
 import { GetAllDto } from '@core/dtos/generic.dto';
 
 export class NotificationListViewModel {
-    title = 'Notificaciones';
+    title = 'Notificaciones Push';
     optionsTable = new CustomTable2OptionsModel({
         type: 'notifications',
         items: [],

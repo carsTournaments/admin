@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
 import { NotificationListPage } from './notification/notification-list.page';
 import { LogsPage } from './logs/logs.page';
+import { NotificationSendComponent } from './notification/components/notification-send/notification-send.component';
 
 @NgModule({
     imports: [
@@ -38,7 +39,12 @@ import { LogsPage } from './logs/logs.page';
             { path: '**', redirectTo: 'settings' },
         ]),
     ],
-    declarations: [SettingsPage, LogsPage, NotificationListPage],
+    declarations: [
+        SettingsPage,
+        LogsPage,
+        NotificationListPage,
+        NotificationSendComponent,
+    ],
     providers: [],
 })
 export class SystemModule {}
