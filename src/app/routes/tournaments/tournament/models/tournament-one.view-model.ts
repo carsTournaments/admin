@@ -1,4 +1,4 @@
-import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
+import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 import { OptionItemI } from '@interfaces/option-item.interface';
 import { Tournament, TournamentRequisiteI } from '@models/tournament.model';
 import { TournamentForceNextRoundDto } from '@services/api/tournament/tournament.dto';
@@ -7,27 +7,27 @@ export class TournamentOnePageViewModel {
     id!: string;
     item: Tournament = new Tournament();
     title = '';
-    inscriptionsOptionsTable = new CustomTable2OptionsModel({
+    inscriptionsOptionsTable = new CustomTableOptionsModel({
         type: 'inscriptions',
         items: [],
         loading: true,
     });
-    roundsOptionsTable = new CustomTable2OptionsModel({
+    roundsOptionsTable = new CustomTableOptionsModel({
         type: 'rounds',
         items: [],
         loading: true,
     });
-    pairingsOptionsTable = new CustomTable2OptionsModel({
+    pairingsOptionsTable = new CustomTableOptionsModel({
         type: 'pairings',
         items: [],
         loading: true,
     });
-    votesOptionsTable = new CustomTable2OptionsModel({
+    votesOptionsTable = new CustomTableOptionsModel({
         type: 'votes',
         items: [],
         loading: true,
     });
-    winnersOptionsTable = new CustomTable2OptionsModel({
+    winnersOptionsTable = new CustomTableOptionsModel({
         type: 'winners',
         items: [],
         loading: true,

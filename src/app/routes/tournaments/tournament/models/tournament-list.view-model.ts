@@ -1,11 +1,11 @@
-import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
+import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 import { Tournament, User } from '@models';
 import { TournamentGetAllDto } from '@services/api/tournament/tournament.dto';
 
 export class TournamentListViewModel {
     items: User[] = [];
     title = 'Torneos';
-    optionsTable = new CustomTable2OptionsModel({
+    optionsTable = new CustomTableOptionsModel({
         type: 'tournaments',
         items: [],
         loading: true,

@@ -1,5 +1,5 @@
 import { ChartOptionsModel } from '@components/chart-bar/chart-bar.options-model';
-import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
+import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 import { LoggerGetAllDto } from '@services/api/logger/dtos/logger-get-all.dto';
 
 export class LogsViewModel {
@@ -44,7 +44,7 @@ export class LogsViewModel {
         },
         loading: true,
     });
-    urlsOptionsTable = new CustomTable2OptionsModel({
+    urlsOptionsTable = new CustomTableOptionsModel({
         type: 'logs',
         items: [],
         loading: true,

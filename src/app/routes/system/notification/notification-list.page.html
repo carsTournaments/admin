@@ -4,12 +4,12 @@
     <mat-card class="mat-card-wrapper">
         <mat-tab-group>
             <mat-tab label="Listado">
-                <custom-table2
+                <custom-table
                     [options]="vm.optionsTable"
                     (changePage)="onChangePage()"
                     (rowClick)="onRowClick($event)"
                 >
-                </custom-table2>
+                </custom-table>
             </mat-tab>
 
             <mat-tab label="Opciones">

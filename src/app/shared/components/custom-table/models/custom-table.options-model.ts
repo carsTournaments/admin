@@ -1,7 +1,7 @@
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
-import { CustomTableColumnsModel } from './custom-table2.columns-model';
+import { CustomTableColumnsModel } from './custom-table.columns-model';
 
-export class CustomTable2OptionsModel {
+export class CustomTableOptionsModel {
     type:
         | 'brands'
         | 'cars'
@@ -40,7 +40,7 @@ export class CustomTable2OptionsModel {
     pageIndex? = 0;
     pageSize? = 5;
 
-    constructor(data?: CustomTable2OptionsModel) {
+    constructor(data?: CustomTableOptionsModel) {
         if (data?.type) {
             this.type = data.type;
             const model = new CustomTableColumnsModel();

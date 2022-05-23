@@ -32,9 +32,9 @@
             </mat-tab>
 
             <mat-tab label="Inscripciones">
-                <custom-table2
+                <custom-table
                     [options]="vm.inscriptionsOptionsTable"
-                ></custom-table2>
+                ></custom-table>
             </mat-tab>
 
             <mat-tab label="Nueva inscripcion">
@@ -45,19 +45,17 @@
             </mat-tab>
 
             <mat-tab label="Votos">
-                <custom-table2 [options]="vm.votesOptionsTable"></custom-table2>
+                <custom-table [options]="vm.votesOptionsTable"></custom-table>
             </mat-tab>
 
             <mat-tab label="Torneos ganados">
-                <custom-table2
-                    [options]="vm.winnersOptionsTable"
-                ></custom-table2>
+                <custom-table [options]="vm.winnersOptionsTable"></custom-table>
             </mat-tab>
 
             <mat-tab label="Likes recibidos">
-                <custom-table2
+                <custom-table
                     [options]="vm.likesReceivedOptionsTable"
-                ></custom-table2>
+                ></custom-table>
             </mat-tab>
         </mat-tab-group>
     </mat-card>

@@ -5,7 +5,7 @@ import { User } from '@models';
 import { BrandGetAllDto } from '@services/api/brand/brand.dto';
 import { UserGetAllDto } from '@services/api/user/dtos/user.dto';
 import { WinnerGetAllDto } from '@services/api/winner/winner.dto';
-import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
+import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 
 export class CarOnePageViewModel {
     id!: string;
@@ -57,25 +57,25 @@ export class CarOnePageViewModel {
         site: 'admin',
         order: ['created', 'desc'],
     };
-    inscriptionsOptionsTable = new CustomTable2OptionsModel({
+    inscriptionsOptionsTable = new CustomTableOptionsModel({
         type: 'inscriptions',
         items: [],
         loading: true,
         showLoadMore: true,
     });
-    likesReceivedOptionsTable = new CustomTable2OptionsModel({
+    likesReceivedOptionsTable = new CustomTableOptionsModel({
         type: 'likes',
         items: [],
         loading: true,
         showLoadMore: true,
     });
-    votesOptionsTable = new CustomTable2OptionsModel({
+    votesOptionsTable = new CustomTableOptionsModel({
         type: 'votes',
         items: [],
         loading: true,
         showLoadMore: true,
     });
-    winnersOptionsTable = new CustomTable2OptionsModel({
+    winnersOptionsTable = new CustomTableOptionsModel({
         type: 'winners',
         items: [],
         loading: true,

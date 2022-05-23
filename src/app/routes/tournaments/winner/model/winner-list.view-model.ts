@@ -1,11 +1,11 @@
-import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
+import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 import { User } from '@models';
 import { WinnerGetAllDto } from '@services/api/winner/winner.dto';
 
 export class WinnerListViewModel {
     items: User[] = [];
     title = 'Ganadores';
-    optionsTable = new CustomTable2OptionsModel({
+    optionsTable = new CustomTableOptionsModel({
         type: 'winners',
         items: [],
         loading: true,

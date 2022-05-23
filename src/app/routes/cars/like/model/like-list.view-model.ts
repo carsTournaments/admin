@@ -1,11 +1,11 @@
-import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
+import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 import { User } from '@models';
 import { LikeGetAllDto } from '@services/api/like/like.dto';
 
 export class LikeListViewModel {
     items: User[] = [];
     title = 'Likes';
-    optionsTable = new CustomTable2OptionsModel({
+    optionsTable = new CustomTableOptionsModel({
         type: 'likes',
         items: [],
         loading: true,

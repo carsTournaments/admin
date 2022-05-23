@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
+import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 import { CarService, TournamentService, UserService } from '@services';
 
 @Component({
@@ -8,19 +8,19 @@ import { CarService, TournamentService, UserService } from '@services';
     templateUrl: 'dashboard-last-items.component.html',
 })
 export class DashboardLastItemsComponent {
-    optionsTableCars = new CustomTable2OptionsModel({
+    optionsTableCars = new CustomTableOptionsModel({
         type: 'carsDashboard',
         items: [],
         loading: true,
         showLoadMore: false,
     });
-    optionsTableTournaments = new CustomTable2OptionsModel({
+    optionsTableTournaments = new CustomTableOptionsModel({
         type: 'tournamentsDashboard',
         items: [],
         loading: true,
         showLoadMore: false,
     });
-    optionsTableUsers = new CustomTable2OptionsModel({
+    optionsTableUsers = new CustomTableOptionsModel({
         type: 'usersDashboard',
         items: [],
         loading: true,

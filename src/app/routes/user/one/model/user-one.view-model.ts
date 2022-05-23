@@ -1,6 +1,6 @@
 import { Notification } from '@models/notification.model';
 import { User } from '@models';
-import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
+import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 
 export class UserOnePageViewModel {
     id!: string;
@@ -17,7 +17,7 @@ export class UserOnePageViewModel {
             value: 'deleteUser',
         },
     ];
-    carsOptionsTable = new CustomTable2OptionsModel({
+    carsOptionsTable = new CustomTableOptionsModel({
         type: 'cars',
         items: [],
         loading: true,

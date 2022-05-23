@@ -1,11 +1,11 @@
-import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
+import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 import { User } from '@models';
 import { CarGetAllDto } from '@services/api/car/car.dto';
 
 export class CarListViewModel {
     items: User[] = [];
     title = 'Coches';
-    optionsTable = new CustomTable2OptionsModel({
+    optionsTable = new CustomTableOptionsModel({
         type: 'cars',
         items: [],
         loading: true,

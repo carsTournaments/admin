@@ -1,4 +1,4 @@
-import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
+import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 import { Brand } from '@models/brand.model';
 
 export class BrandOnePageViewModel {
@@ -12,7 +12,7 @@ export class BrandOnePageViewModel {
             value: 'delete',
         },
     ];
-    carsOptionsTable = new CustomTable2OptionsModel({
+    carsOptionsTable = new CustomTableOptionsModel({
         loading: false,
         items: [],
         type: 'cars',

@@ -16,11 +16,11 @@
             </mat-tab>
 
             <mat-tab label="Coches">
-                <custom-table2
+                <custom-table
                     *ngIf="!vm.carsOptionsTable.loading"
                     [options]="vm.carsOptionsTable"
                 >
-                </custom-table2>
+                </custom-table>
             </mat-tab>
 
             <mat-tab label="Notificaciones">

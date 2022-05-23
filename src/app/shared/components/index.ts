@@ -4,7 +4,6 @@ export { AlertComponent } from './alert/alert.component';
 export { AnalyticsVisitsLastDaysComponent } from './analytics-visits-last-days/analytics-visits-last-days.component';
 export { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 export { ChartBarComponent } from './chart-bar/chart-bar.component';
-export { CustomTable2Component } from './custom-table2/custom-table2.component';
 export { CustomTableComponent } from './custom-table/custom-table.component';
 export { CustomTitleWithButtonsComponent } from './custom-title-with-buttons/custom-title-with-buttons.component';
 export { HeaderUserComponent } from './header-user/header-user.component';
