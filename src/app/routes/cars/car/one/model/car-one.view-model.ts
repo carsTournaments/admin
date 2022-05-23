@@ -58,7 +58,7 @@ export class CarOnePageViewModel {
         order: ['created', 'desc'],
     };
     inscriptionsOptionsTable = new CustomTableOptionsModel({
-        type: 'inscriptions',
+        type: 'inscriptionsCar',
         items: [],
         loading: true,
         showLoadMore: true,

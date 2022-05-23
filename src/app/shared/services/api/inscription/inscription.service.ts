@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs/internal/Observable';
-import { InscriptionCreateDto, InscriptionGetAllDto } from './inscription.dto';
+import {
+    InscriptionCreateDto,
+    InscriptionGetAllDto,
+    InscriptionGetAllOfCarDto,
+} from './inscription.dto';
 import { Inscription } from '@models/inscription.model';
 import { IdDto, IdSiteDto } from '@core/dtos/generic.dto';
 import { PaginatorI } from '@interfaces';
@@ -30,7 +34,7 @@ export class InscriptionService {
             .pipe(take(1));
     }
 
-    getAllOfCar(data: IdDto): Observable<Inscription[]> {
+    getAllOfCar(data: InscriptionGetAllOfCarDto): Observable<Inscription[]> {
         return this.httpClient
             .post<Inscription[]>(`${this.url}/getAllOfCar`, data)
             .pipe(take(1));

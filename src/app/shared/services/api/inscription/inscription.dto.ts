@@ -9,3 +9,8 @@ export interface InscriptionCreateDto {
     car: string;
     tournament: string;
 }
+
+export interface InscriptionGetAllOfCarDto {
+    id: string;
+    limit: string;
+}

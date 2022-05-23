@@ -8,6 +8,7 @@ export class CustomTableOptionsModel {
         | 'carsDashboard'
         | 'images'
         | 'inscriptions'
+        | 'inscriptionsCar'
         | 'likes'
         | 'logs'
         | 'notifications'

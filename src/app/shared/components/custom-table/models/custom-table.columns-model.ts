@@ -2,26 +2,21 @@ import { environment } from '@env/environment';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import * as moment from 'moment';
 
-const defaults = {
-    created: {
-        header: 'Creado',
-        field: 'created',
-        sortable: true,
-        formatter: (rowData: any) => {
-            return moment(rowData.created).locale('es').fromNow();
-        },
-    },
-    updated: {
-        header: 'Actualizado',
-        field: 'updated',
-        sortable: true,
-        formatter: (rowData: any) => {
-            return moment(rowData.updated).locale('es').fromNow();
-        },
-    },
-};
-
 export class CustomTableColumnsModel {
+    defaults = {
+        created: {
+            header: 'Creado',
+            field: 'created',
+            sortable: true,
+            formatter: (item: any) => this.getDateTimeago(item.created!),
+        },
+        updated: {
+            header: 'Actualizado',
+            field: 'updated',
+            sortable: true,
+            formatter: (item: any) => this.getDateTimeago(item.updated!),
+        },
+    };
     private data: any = {
         brands: [
             {
@@ -80,23 +75,15 @@ export class CustomTableColumnsModel {
                 header: 'Combustible',
                 field: 'fuel',
                 sortable: true,
-                type: 'tag',
-                tag: {
-                    Hibrido: { text: 'Hibrido', color: 'red-100' },
-                    Diesel: { text: 'Diesel', color: 'green-100' },
-                    Gasolina: { text: 'Gasolina', color: 'orange-100' },
-                },
+                formatter: (item: any) =>
+                    this.getChip(item.fuel, false, null, 'info'),
             },
             {
                 header: 'Traccion',
                 field: 'traction',
                 sortable: true,
-                type: 'tag',
-                tag: {
-                    Trasera: { text: 'Trasera', color: 'red-100' },
-                    Delantera: { text: 'Diesel', color: 'green-100' },
-                    ['4x4']: { text: '4x4', color: 'orange-100' },
-                },
+                formatter: (item: any) =>
+                    this.getChip(item.traction, false, null, 'dark'),
             },
             {
                 header: 'CC',
@@ -126,8 +113,8 @@ export class CustomTableColumnsModel {
                 sortable: true,
                 type: 'number',
             },
-            defaults.updated,
-            defaults.created,
+            this.defaults.updated,
+            this.defaults.created,
         ],
         carsDashboard: [
             {
@@ -184,14 +171,14 @@ export class CustomTableColumnsModel {
             {
                 header: 'Titulo',
                 field: 'updated',
-                formatter: (rowData: any) => {
+                formatter: (item: any) => {
                     let data;
-                    if (rowData.type === 'brand') {
-                        data = `${rowData.brand.name}`;
-                    } else if (rowData.type === 'car') {
-                        data = `${rowData.car.brand.name} ${rowData.car.model}`;
-                    } else if (rowData.type === 'tournament') {
-                        data = `${rowData.tournament.name}`;
+                    if (item.type === 'brand') {
+                        data = `${item.brand.name}`;
+                    } else if (item.type === 'car') {
+                        data = `${item.car.brand.name} ${item.car.model}`;
+                    } else if (item.type === 'tournament') {
+                        data = `${item.tournament.name}`;
                     }
                     return data;
                 },
@@ -207,7 +194,7 @@ export class CustomTableColumnsModel {
                     brand: { text: 'Marca', color: 'orange-100' },
                 },
             },
-            defaults.created,
+            this.defaults.created,
         ],
         inscriptions: [
             {
@@ -235,7 +222,29 @@ export class CustomTableColumnsModel {
                         'dark'
                     ),
             },
-            defaults.created,
+            this.defaults.created,
+        ],
+        inscriptionsCar: [
+            {
+                header: 'Torneo',
+                field: 'tournament.name',
+                width: '250px',
+                formatter: (item: any) =>
+                    this.getChip(
+                        item.tournament?.name,
+                        true,
+                        item.tournament.image?.url,
+                        'dark'
+                    ),
+            },
+            {
+                header: 'Torneo',
+                field: 'tournament.status',
+                width: '200px',
+                formatter: (item: any) =>
+                    this.getStateChip(item.tournament?.status),
+            },
+            this.defaults.created,
         ],
         logs: [
             {
@@ -290,7 +299,7 @@ export class CustomTableColumnsModel {
                 field: 'user',
                 formatter: (item: any) => item.user?.name ?? 'Anonimo',
             },
-            defaults.created,
+            this.defaults.created,
         ],
         notifications: [
             { header: 'Titulo', field: 'title' },
@@ -301,7 +310,7 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) => item.fcms.length,
             },
             { header: 'Visto', field: 'opened', type: 'number' },
-            defaults.created,
+            this.defaults.created,
         ],
         pairings: [
             {
@@ -354,7 +363,7 @@ export class CustomTableColumnsModel {
                         'dark'
                     ),
             },
-            defaults.created,
+            this.defaults.created,
         ],
         reports: [
             {
@@ -390,8 +399,8 @@ export class CustomTableColumnsModel {
                     return item.state ? 'Aceptado' : 'Rechazado';
                 },
             },
-            defaults.updated,
-            defaults.created,
+            this.defaults.updated,
+            this.defaults.created,
         ],
         rounds: [
             { header: 'Nombre', field: 'name' },
@@ -411,33 +420,21 @@ export class CustomTableColumnsModel {
                 header: 'Fecha Inicio',
                 field: 'startDate',
                 sortable: true,
-                formatter: (rowData: any) => {
-                    return moment(rowData.startDate)
-                        .locale('es')
-                        .fromNow(false);
-                },
+                formatter: (item: any) => this.getDateTimeago(item.startDate),
             },
 
             {
                 header: 'Fecha Fin',
                 field: 'endDate',
                 sortable: true,
-                formatter: (rowData: any) => {
-                    return moment(rowData.endDate).locale('es').fromNow(false);
-                },
+                formatter: (item: any) => this.getDateTimeago(item.endDate),
             },
             {
                 header: 'Estado',
                 field: 'status',
-                type: 'tag',
-                tag: {
-                    Todo: { text: 'Proximamente', color: 'yellow-100' },
-                    Cancelled: { text: 'Cancelado', color: 'red-300' },
-                    InProgress: { text: 'En progreso', color: 'blue-300' },
-                    Completed: { text: 'Completado', color: 'green-300' },
-                },
+                formatter: (item: any) => this.getStateChip(item.status),
             },
-            defaults.created,
+            this.defaults.created,
         ],
         tournaments: [
             {
@@ -456,38 +453,19 @@ export class CustomTableColumnsModel {
                 header: 'Estado',
                 field: 'status',
                 sortable: true,
-                type: 'tag',
-                tag: {
-                    Todo: { text: 'Proximamente', color: 'yellow-100' },
-                    Cancelled: { text: 'Cancelado', color: 'red-300' },
-                    InProgress: { text: 'En progreso', color: 'blue-300' },
-                    Completed: { text: 'Completado', color: 'green-300' },
-                },
+                formatter: (item: any) => this.getStateChip(item.status),
             },
             {
                 header: 'Fecha Inicio',
                 field: 'startDate',
                 sortable: true,
-                formatter: (rowData: any) => {
-                    return moment(rowData.startDate)
-                        .locale('es')
-                        .fromNow(false);
-                },
+                formatter: (item: any) => this.getDateTimeago(item.startDate),
             },
             {
                 header: 'Fecha Fin',
                 field: 'endDate',
                 sortable: true,
-                type: 'perro',
-                formatter: (rowData: any) => {
-                    if (rowData.endDate) {
-                        return moment(rowData.endDate)
-                            .locale('es')
-                            .fromNow(false);
-                    } else {
-                        return '--';
-                    }
-                },
+                formatter: (item: any) => this.getDateTimeago(item.endDate),
             },
             {
                 header: 'Duracion',
@@ -521,8 +499,8 @@ export class CustomTableColumnsModel {
                 field: 'votes.count',
                 sortable: true,
             },
-            defaults.updated,
-            defaults.created,
+            this.defaults.updated,
+            this.defaults.created,
         ],
         tournamentsDashboard: [
             {
@@ -540,22 +518,14 @@ export class CustomTableColumnsModel {
                 header: 'Estado',
                 field: 'status',
                 sortable: true,
-                type: 'tag',
-                tag: {
-                    Todo: { text: 'Proximamente', color: 'yellow-100' },
-                    Cancelled: { text: 'Cancelado', color: 'red-300' },
-                    InProgress: { text: 'En progreso', color: 'blue-300' },
-                    Completed: { text: 'Completado', color: 'green-300' },
-                },
+                formatter: (item: any) => this.getStateChip(item.status),
             },
             {
                 header: 'Fecha Inicio',
                 field: 'startDate',
                 sortable: true,
-                formatter: (rowData: any) => {
-                    return moment(rowData.startDate)
-                        .locale('es')
-                        .fromNow(false);
+                formatter: (item: any) => {
+                    return moment(item.startDate).locale('es').fromNow(false);
                 },
             },
             {
@@ -616,8 +586,8 @@ export class CustomTableColumnsModel {
                     return item.fcm && item.fcm.length > 0 ? 'Si' : 'No';
                 },
             },
-            defaults.updated,
-            defaults.created,
+            this.defaults.updated,
+            this.defaults.created,
         ],
         usersDashboard: [
             {
@@ -683,7 +653,7 @@ export class CustomTableColumnsModel {
                         item.car.image?.url
                     ),
             },
-            defaults.created,
+            this.defaults.created,
         ],
         winners: [
             {
@@ -734,7 +704,7 @@ export class CustomTableColumnsModel {
                         'dark'
                     ),
             },
-            defaults.created,
+            this.defaults.created,
         ],
     };
 
@@ -747,10 +717,11 @@ export class CustomTableColumnsModel {
         imageState = false,
         image = null,
         color = 'primary'
-    ) {
-        let data;
-        if (imageState) {
-            data = `
+    ): string {
+        if (text) {
+            let data;
+            if (imageState) {
+                data = `
                 <div class="chip chip-${color}">
                     <img
                         class="image-table text-truncate"
@@ -759,14 +730,17 @@ export class CustomTableColumnsModel {
                     ${text}
                 </div>
             `;
-        } else {
-            data = `
+            } else {
+                data = `
                 <div class="chip chip-${color}">
                     ${text}
                 </div>
             `;
+            }
+            return data;
+        } else {
+            return '';
         }
-        return data;
     }
 
     private getImageRounded(image: string) {
@@ -778,5 +752,29 @@ export class CustomTableColumnsModel {
         return image
             ? `${environment.urlImages}/${image}`
             : 'assets/images/no-image.png';
+    }
+
+    private getStateChip(state: string): string {
+        if (state === 'InProgress') {
+            return this.getChip('En curso', false, null, 'warning');
+        } else if (state === 'Completed') {
+            return this.getChip('Completado', false, null, 'success');
+        } else if (state === 'Todo') {
+            return this.getChip('Proximamente', false, null, 'info');
+        } else if (state === 'Cancelled') {
+            return this.getChip('Cancelado', false, null, 'primary');
+            return '';
+        } else {
+            return '';
+        }
+    }
+
+    private getDateTimeago(date: string) {
+        if (date) {
+            const data = moment(date).locale('es').fromNow(false);
+            return data.charAt(0).toUpperCase() + data.slice(1);
+        } else {
+            return '';
+        }
     }
 }

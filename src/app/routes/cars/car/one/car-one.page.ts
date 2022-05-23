@@ -43,7 +43,7 @@ export class CarOnePage implements OnInit {
         this.getAllWinners();
         if (this.vm.id) {
             this.vm.edit = true;
-            this.getInscriptionsByCar();
+            this.getAllInscriptions();
             this.getVotesByCar();
             this.getLikesReceivedByCar();
             this.getOne();
@@ -87,12 +87,15 @@ export class CarOnePage implements OnInit {
         });
     }
 
-    getInscriptionsByCar() {
+    getAllInscriptions() {
         this.vm.inscriptionsOptionsTable.loading = true;
-        this.inscriptionService.getAllOfCar({ id: this.vm.id }).subscribe({
-            next: (items) => (this.vm.inscriptionsOptionsTable.items = items),
-            error: (e) => this.snackBarService.open(e),
-        });
+        this.inscriptionService
+            .getAllOfCar({ id: this.vm.id, limit: '20' })
+            .subscribe({
+                next: (items) =>
+                    (this.vm.inscriptionsOptionsTable.items = items),
+                error: (e) => this.snackBarService.open(e),
+            });
         this.vm.inscriptionsOptionsTable.loading = false;
     }
 
@@ -224,13 +227,13 @@ export class CarOnePage implements OnInit {
     }
 
     onInscription() {
-        this.getInscriptionsByCar();
+        this.getAllInscriptions();
     }
 
     onDeleteInscription(id: string) {
         if (confirm('¿Está seguro de eliminar la inscripcion?')) {
             this.inscriptionService.deleteOne(id).subscribe({
-                next: () => this.getInscriptionsByCar(),
+                next: () => this.getAllInscriptions(),
                 error: (e) => this.snackBarService.open(e),
             });
         }
