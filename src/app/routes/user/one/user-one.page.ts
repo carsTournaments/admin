@@ -63,24 +63,6 @@ export class UserOnePage implements OnInit {
         });
     }
 
-    async onSubmit() {
-        try {
-            this.vm.edit
-                ? this.userService.update(this.vm.item).subscribe(() => {
-                      this.snackBarService.open('Usuario actualizado');
-                      this.router.navigate(['/users']);
-                  })
-                : this.userService.create(this.vm.item).subscribe(() => {
-                      this.snackBarService.open('Usuario creado');
-                      this.router.navigate(['/users']);
-                  });
-        } catch (error: any) {
-            this.snackBarService.open(
-                error.message ? error.message : 'Ha ocurrido un error'
-            );
-        }
-    }
-
     actionForOption(option: ActionForOptionI) {
         switch (option.value) {
             default:

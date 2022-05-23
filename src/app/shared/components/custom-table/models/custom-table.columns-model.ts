@@ -52,7 +52,7 @@ export class CustomTableColumnsModel {
                 field: 'driver.name',
                 width: '175px',
                 formatter: (item: any) =>
-                    this.getChip(item.driver.name, false, null, 'dark'),
+                    this.getChip(item.driver?.name, false, null, 'dark'),
             },
             {
                 header: 'Marca',
