@@ -71,7 +71,9 @@ export class TournamentOnePage implements OnInit {
             this.vm.item.status === 'InProgress' ||
             this.vm.item.status === 'Completed';
         this.vm.title = this.vm.item.name;
-
+        this.vm.inscriptionsPercentage =
+            (this.vm.item.inscriptions.length * 100) /
+            this.vm.item.maxParticipants;
         this.setItemOptions();
         this.getInscriptionsByTournament();
         this.getRoundsByTournament();
@@ -133,7 +135,7 @@ export class TournamentOnePage implements OnInit {
             next: (items) => (this.vm.pairingsOptionsTable.items = items),
             error: (e) => this.snackBarService.open(e),
         });
-        this.vm.pairingsOptionsTable.loading = true;
+        this.vm.pairingsOptionsTable.loading = false;
     }
 
     async getVotesByTournament() {

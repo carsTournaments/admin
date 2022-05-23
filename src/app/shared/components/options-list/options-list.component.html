@@ -1,6 +1,10 @@
 <div fxLayout="row wrap" class="matero-row">
     <div [fxFlex.gt-sm]="item ? 50 : 100" [fxFlex]="100" class="matero-col">
         <mat-card class="p-0">
+            <mat-card-subtitle class="p-t-16 p-l-16"
+                >Opciones</mat-card-subtitle
+            >
+            <mat-divider></mat-divider>
             <mat-nav-list>
                 <ng-container *ngFor="let option of options">
                     <a

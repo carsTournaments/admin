@@ -13,7 +13,7 @@ export class Tournament {
     durationDays?: number;
     info?: string;
     rounds?: Round[]; // Virtual
-    inscriptions?: Inscription[]; // CarI[]
+    inscriptions: any; // CarI[]
     image: Image;
     created?: string;
     updated?: string;

@@ -75,4 +75,5 @@ export class TournamentOnePageViewModel {
     endDate = '';
     endTime = '';
     disabledItems = false;
+    inscriptionsPercentage?: number;
 }

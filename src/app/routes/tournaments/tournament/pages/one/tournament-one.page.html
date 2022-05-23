@@ -20,11 +20,39 @@
             </mat-tab>
 
             <mat-tab label="Opciones">
-                <options-list
-                    [options]="vm.options"
-                    [item]="vm.item"
-                    (action)="actionForOption($event)"
-                ></options-list>
+                <div fxLayout="row wrap" class="matero-row">
+                    <div [fxFlex.gt-sm]="70" [fxFlex]="100" class="matero-col">
+                        <options-list
+                            [options]="vm.options"
+                            (action)="actionForOption($event)"
+                        ></options-list>
+                        <!-- [item]="vm.item" -->
+                    </div>
+                    <div [fxFlex.gt-sm]="30" [fxFlex]="100" class="matero-col">
+                        <mat-card class="text-center">
+                            <mat-card-subtitle>Estadisticas</mat-card-subtitle>
+                            <mat-divider></mat-divider>
+                            <!-- <chart-bar *ngIf="!vm.optionsChart.loading" [data]="vm.optionsChart"></chart-bar> -->
+                            <circle-progress
+                                *ngIf="vm.inscriptionsPercentage"
+                                [percent]="vm.inscriptionsPercentage!"
+                                [radius]="100"
+                                [outerStrokeWidth]="20"
+                                [innerStrokeWidth]="20"
+                                [outerStrokeColor]="'#CC0000'"
+                                [innerStrokeColor]="'#000'"
+                                [animation]="true"
+                                [animationDuration]="300"
+                                [showTitle]="true"
+                                [title]="vm.item.inscriptions.length +'/'+vm.item.maxParticipants"
+                                subtitleFontSize="20"
+                                subtitle="Participantes"
+                                units=""
+                            >
+                            </circle-progress>
+                        </mat-card>
+                    </div>
+                </div>
             </mat-tab>
 
             <mat-tab label="Imagen">

@@ -22,7 +22,7 @@ const defaults = {
 };
 
 export class CustomTableColumnsModel {
-    data: any = {
+    private data: any = {
         brands: [
             {
                 header: '#',
@@ -128,6 +128,51 @@ export class CustomTableColumnsModel {
             },
             defaults.updated,
             defaults.created,
+        ],
+        carsDashboard: [
+            {
+                header: '#',
+                field: 'image.url',
+                width: '75px',
+                formatter: (item: any) => this.getImageRounded(item.image?.url),
+            },
+            {
+                header: 'Conductor',
+                field: 'driver.name',
+                width: '175px',
+                formatter: (item: any) =>
+                    this.getChip(item.driver.name, false, null, 'dark'),
+            },
+            {
+                header: 'Marca',
+                field: 'brand.name',
+                width: '200px',
+                formatter: (item: any) =>
+                    this.getChip(item.brand.name, true, item.brand?.image?.url),
+            },
+            {
+                header: 'Modelo',
+                field: 'model',
+                sortable: true,
+            },
+            {
+                header: 'Inscrip.',
+                field: 'inscriptions.count',
+                sortable: true,
+                type: 'number',
+            },
+            {
+                header: 'Likes.',
+                field: 'likes.count',
+                sortable: true,
+                type: 'number',
+            },
+            {
+                header: 'Votos.',
+                field: 'votes.count',
+                sortable: true,
+                type: 'number',
+            },
         ],
         images: [
             {
@@ -479,6 +524,48 @@ export class CustomTableColumnsModel {
             defaults.updated,
             defaults.created,
         ],
+        tournamentsDashboard: [
+            {
+                header: '#',
+                field: 'image.url',
+                width: '75px',
+                formatter: (item: any) => this.getImageRounded(item.image?.url),
+            },
+            {
+                header: 'Nombre',
+                field: 'name',
+                sortable: true,
+            },
+            {
+                header: 'Estado',
+                field: 'status',
+                sortable: true,
+                type: 'tag',
+                tag: {
+                    Todo: { text: 'Proximamente', color: 'yellow-100' },
+                    Cancelled: { text: 'Cancelado', color: 'red-300' },
+                    InProgress: { text: 'En progreso', color: 'blue-300' },
+                    Completed: { text: 'Completado', color: 'green-300' },
+                },
+            },
+            {
+                header: 'Fecha Inicio',
+                field: 'startDate',
+                sortable: true,
+                formatter: (rowData: any) => {
+                    return moment(rowData.startDate)
+                        .locale('es')
+                        .fromNow(false);
+                },
+            },
+            {
+                header: 'Inscritos',
+                field: 'inscriptions.count',
+                sortable: true,
+                formatter: (item: any) =>
+                    `${item.inscriptions?.count ?? 0}/${item.maxParticipants}`,
+            },
+        ],
         users: [
             {
                 header: 'Nombre',
@@ -531,6 +618,45 @@ export class CustomTableColumnsModel {
             },
             defaults.updated,
             defaults.created,
+        ],
+        usersDashboard: [
+            {
+                header: 'Nombre',
+                field: 'name',
+                sortable: true,
+            },
+            {
+                header: 'Email',
+                field: 'email',
+                sortable: true,
+                width: '250px',
+                formatter: (item: any) =>
+                    this.getChip(item.email, false, null, 'dark'),
+            },
+            {
+                header: 'Coches',
+                field: 'cars.count',
+            },
+            {
+                header: 'Likes',
+                field: 'likes.count',
+            },
+            {
+                header: 'Votos',
+                field: 'votes.count',
+            },
+            {
+                header: 'Inscrip.',
+                field: 'inscriptions.count',
+            },
+            {
+                header: 'FCM',
+                field: 'fcm',
+                sortable: true,
+                formatter: (item: any) => {
+                    return item.fcm && item.fcm.length > 0 ? 'Si' : 'No';
+                },
+            },
         ],
         votes: [
             {
@@ -624,7 +750,6 @@ export class CustomTableColumnsModel {
     ) {
         let data;
         if (imageState) {
-            console.log(image);
             data = `
                 <div class="chip chip-${color}">
                     <img

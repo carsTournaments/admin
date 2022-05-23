@@ -33,8 +33,7 @@ import {
     TruncateTextPipe,
 } from './pipes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DashboardLastCarsComponent } from '../routes/dashboard/components/dashboard-last-cars/dashboard-last-cars.component';
-import { DashboardLastTournamentsComponent } from '../routes/dashboard/components/dashboard-last-tournaments/dashboard-last-tournaments.component';
+import { DashboardLastItemsComponent } from '../routes/dashboard/components/dashboard-last-items/dashboard-last-items.component';
 import { DashboardResumeComponent } from '../routes/dashboard/components/dashboard-resume/dashboard-resume.component';
 import {
     AlertService,
@@ -66,6 +65,7 @@ import { NgProgressRouterModule } from 'ngx-progressbar/router';
 import { MaterialExtensionsModule } from 'app/material-extensions.module';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 const MODULES = [
     CommonModule,
@@ -82,6 +82,7 @@ const MODULES = [
     ToastrModule,
     SwiperModule,
     NgChartsModule,
+    NgCircleProgressModule,
 ];
 
 const COMPONENTS = [
@@ -93,8 +94,7 @@ const COMPONENTS = [
     CustomTableComponent,
     CustomTable2Component,
     CustomTitleWithButtonsComponent,
-    DashboardLastCarsComponent,
-    DashboardLastTournamentsComponent,
+    DashboardLastItemsComponent,
     DashboardResumeComponent,
     LoadingComponent,
     MenuComponent,

@@ -6,6 +6,7 @@ import { SharedModule } from '@shared/shared.module';
 import { NotificationListPage } from './notification/notification-list.page';
 import { LogsPage } from './logs/logs.page';
 import { NotificationSendComponent } from './notification/components/notification-send/notification-send.component';
+import { StatsPage } from './stats/stats.component';
 
 @NgModule({
     imports: [
@@ -18,6 +19,14 @@ import { NotificationSendComponent } from './notification/components/notificatio
                 data: {
                     breadcrumb: 'Configuración',
                     title: 'Sistema - Configuracion',
+                },
+            },
+            {
+                path: 'stats',
+                component: StatsPage,
+                data: {
+                    breadcrumb: 'Estadisticas',
+                    title: 'Sistema - Estadisticas',
                 },
             },
             {
@@ -41,6 +50,7 @@ import { NotificationSendComponent } from './notification/components/notificatio
     ],
     declarations: [
         SettingsPage,
+        StatsPage,
         LogsPage,
         NotificationListPage,
         NotificationSendComponent,

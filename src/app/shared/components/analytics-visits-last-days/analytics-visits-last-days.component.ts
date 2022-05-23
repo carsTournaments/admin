@@ -11,42 +11,15 @@ import { ChartOptionsModel } from '../chart-bar/chart-bar.options-model';
 })
 export class AnalyticsVisitsLastDaysComponent implements OnInit {
     data!: AnalyticsGetVisitsResponse[];
-    optionsChart = new ChartOptionsModel({
-        data: {
-            labels: [],
-            datasets: [
-                {
-                    data: [],
-                    fill: {
-                        target: 'origin',
-                        above: 'rgba(0, 0, 0, .5)',
-                    },
-                    label: 'Visitas',
-                    borderColor: '#000',
-                    pointBorderColor: '#CC0000',
-                    pointBackgroundColor: '#CC0000',
-                    pointBorderWidth: 4,
-                },
-            ],
-        },
-        type: 'line',
-        options: {
-            scales: {
-                x: { grid: { display: false } },
-                y: {
-                    display: false,
-                    ticks: { display: false },
-                    grid: { display: false },
-                },
-            },
-            // scales: { x: { display: false }, y: { display: false } },
-            elements: { line: { tension: 0.5 } },
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-        },
-        loading: true,
-    });
+    optionsChart!: any;
+    dateSelected = '7daysAgo';
+    dataDate = [
+        { name: 'Últimos 7 días', value: '7daysAgo' },
+        { name: 'Últimos 15 días', value: '15daysAgo' },
+        { name: 'Últimos 30 días', value: '30daysAgo' },
+        { name: 'Últimos 60 días', value: '60daysAgo' },
+        { name: 'Últimos 90 días', value: '90daysAgo' },
+    ];
     constructor(
         private analyticsService: AnalyticsService,
         private snackBarService: SnackBarService
@@ -58,24 +31,73 @@ export class AnalyticsVisitsLastDaysComponent implements OnInit {
 
     getVisits() {
         const body: AnalyticsGetVisitsDto = {
-            startDate: '30daysAgo',
+            startDate: this.dateSelected,
             endDate: 'today',
             order: 'date',
         };
         this.analyticsService.getVisits(body).subscribe({
             next: (response) => {
                 this.data = response;
+                this.createOptionsChart();
+                this.createDatasets();
                 this.setData();
             },
             error: (error) => this.snackBarService.open(error),
         });
     }
 
+    private createOptionsChart() {
+        this.optionsChart = new ChartOptionsModel({
+            data: {
+                labels: [],
+                datasets: [],
+            },
+            type: 'line',
+            options: {
+                scales: {
+                    x: { grid: { display: false } },
+                    y: {
+                        display: true,
+                        ticks: { display: true },
+                        grid: { display: false },
+                    },
+                },
+                // scales: { x: { display: false }, y: { display: false } },
+                elements: { line: { tension: 0.5 } },
+                responsive: true,
+                maintainAspectRatio: false,
+                // plugins: { legend: { display: false } },
+            },
+            loading: true,
+        });
+    }
+
+    private createDatasets() {
+        this.data[0].items.forEach((element) => {
+            this.optionsChart.data.datasets.push({
+                data: [],
+                fill: true,
+                label: element.name,
+                // borderColor: '#000',
+                // pointBorderColor: '#000',
+                // pointBackgroundColor: '#000',
+                // pointBorderWidth: 4,
+            });
+        });
+    }
+
     setData() {
-        this.data.forEach((element: any) => {
-            this.optionsChart.data.datasets[0].data.push(element.value);
+        this.data.forEach((element) => {
+            element.items.forEach((subi, i) => {
+                this.optionsChart.data.datasets[i].data.push(subi.value);
+            });
             this.optionsChart.data.labels!.push(element.date);
         });
         this.optionsChart.loading = false;
+        console.log(this.optionsChart.data.datasets);
+    }
+
+    onChangeSelect() {
+        this.getVisits();
     }
 }

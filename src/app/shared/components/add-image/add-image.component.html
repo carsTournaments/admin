@@ -1,16 +1,11 @@
-<form
-    class="mt-3"
-    method="post"
-    action="upload/post"
-    enctype="multipart/form-data"
->
-    <input
-        class="form-control"
-        #imageInput
-        type="file"
-        accept="image/*"
-        (change)="processFile($event)"
-    />
-</form>
-
 <img *ngIf="image" [src]="image.url! | image" class="img-fluid mt-3" />
+
+<button
+    mat-raised-button
+    color="primary"
+    class="w-full m-t-8"
+    (click)="fileInput.click()"
+>
+    Subir nueva imagen
+</button>
+<input hidden (change)="processFile($event)" #fileInput type="file" id="file" />

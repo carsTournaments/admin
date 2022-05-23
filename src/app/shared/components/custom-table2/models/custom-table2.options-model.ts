@@ -5,7 +5,7 @@ export class CustomTable2OptionsModel {
     type:
         | 'brands'
         | 'cars'
-        | 'users'
+        | 'carsDashboard'
         | 'images'
         | 'inscriptions'
         | 'likes'
@@ -15,6 +15,9 @@ export class CustomTable2OptionsModel {
         | 'reports'
         | 'rounds'
         | 'tournaments'
+        | 'tournamentsDashboard'
+        | 'users'
+        | 'usersDashboard'
         | 'votes'
         | 'winners' = 'users';
     columns?: MtxGridColumn[] = [];

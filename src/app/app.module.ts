@@ -16,6 +16,7 @@ import {
 } from '@core';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { ToastrModule } from 'ngx-toastr';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -27,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
         SharedModule,
         RoutesModule,
         FormsModule,
+        NgCircleProgressModule.forRoot(),
         NgxPermissionsModule.forRoot(),
         ToastrModule.forRoot(),
     ],

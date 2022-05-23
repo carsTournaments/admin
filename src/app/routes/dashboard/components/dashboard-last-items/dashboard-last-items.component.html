@@ -1,0 +1,25 @@
+<mat-card>
+    <mat-tab-group>
+        <mat-tab label="Ultimos Torneos">
+            <custom-table2
+                [options]="optionsTableTournaments"
+                (rowClick)="onRowClick('tournament', $event)"
+            >
+            </custom-table2>
+        </mat-tab>
+        <mat-tab label="Ultimos Coches">
+            <custom-table2
+                [options]="optionsTableCars"
+                (rowClick)="onRowClick('car', $event)"
+            >
+            </custom-table2>
+        </mat-tab>
+        <mat-tab label="Ultimos Usuarios">
+            <custom-table2
+                [options]="optionsTableUsers"
+                (rowClick)="onRowClick('user', $event)"
+            >
+            </custom-table2>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>

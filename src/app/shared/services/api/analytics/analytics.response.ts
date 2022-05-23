@@ -1,4 +1,4 @@
 export interface AnalyticsGetVisitsResponse {
     date: string;
-    value: number;
+    items: { name: string; value: number }[];
 }

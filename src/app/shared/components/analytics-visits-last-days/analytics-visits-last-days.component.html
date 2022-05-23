@@ -1,5 +1,17 @@
-<mat-card>
-    <h2 class="mat-title">Visitas ultimos 30 dias</h2>
+<mat-card *ngIf="optionsChart">
+    <mat-card-subtitle
+        >Trafico
+        <mat-select
+            placeholder="Selecciona"
+            name="dateSelected"
+            [(ngModel)]="dateSelected"
+            (selectionChange)="onChangeSelect()"
+        >
+            <mat-option [value]="date.value" *ngFor="let date of dataDate">{{
+                date.name
+            }}</mat-option>
+        </mat-select>
+    </mat-card-subtitle>
     <mat-divider></mat-divider>
     <chart-bar *ngIf="!optionsChart.loading" [data]="optionsChart"></chart-bar>
 </mat-card>

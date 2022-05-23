@@ -4,21 +4,8 @@
         <div [fxFlex.gt-sm]="80" [fxFlex]="100" class="matero-col">
             <analytics-visits-last-days></analytics-visits-last-days>
 
-            <div class="box-white">
-                <dashboard-last-tournaments
-                    *ngIf="vm.tournamentsOptionsTable.items"
-                    [items]="vm.tournamentsOptionsTable.items"
-                >
-                </dashboard-last-tournaments>
-            </div>
-            <br />
-            <div class="box-white">
-                <dashboard-last-cars
-                    *ngIf="vm.carsOptionsTable.items"
-                    [items]="vm.carsOptionsTable.items"
-                >
-                </dashboard-last-cars>
-            </div>
+            <dashboard-last-items *ngIf="vm.tournamentsOptionsTable.items">
+            </dashboard-last-items>
         </div>
 
         <div [fxFlex.gt-sm]="20" [fxFlex]="100" class="matero-col">
