@@ -1,6 +1,7 @@
 <div class="container">
     <page-header [title]="vm.title"></page-header>
-    <div class="box-white">
+
+    <mat-card class="mat-card-wrapper">
         <mat-tab-group>
             <mat-tab label="Info">
                 <brand-one-edit
@@ -26,8 +27,8 @@
             </mat-tab>
 
             <mat-tab label="Coches">
-                <custom-table [options]="vm.carsOptionsTable"></custom-table>
+                <custom-table2 [options]="vm.carsOptionsTable"></custom-table2>
             </mat-tab>
         </mat-tab-group>
-    </div>
+    </mat-card>
 </div>

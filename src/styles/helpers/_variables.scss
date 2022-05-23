@@ -32,7 +32,7 @@ $borders: (
 
 // Border radius
 
-$radius-base: 4px !default;
+$radius-base: 100% !default;
 $radius: (
     0: 0,
     4: $radius-base,

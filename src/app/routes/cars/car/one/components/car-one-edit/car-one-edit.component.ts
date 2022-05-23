@@ -6,7 +6,7 @@ import { Brand, Car, User } from '@models';
     templateUrl: 'car-one-edit.component.html',
 })
 export class CarOneEditComponent {
-    @Input() item!: Car;
+    @Input() item: Car = new Car();
     @Input() users!: User[];
     @Input() brands!: Brand[];
     @Input() stock!: boolean;

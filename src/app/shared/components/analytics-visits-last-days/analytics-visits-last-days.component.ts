@@ -14,6 +14,7 @@ export class AnalyticsVisitsLastDaysComponent implements OnInit {
     optionsChart!: any;
     dateSelected = '7daysAgo';
     dataDate = [
+        { name: 'Últimos 3 días', value: '3daysAgo' },
         { name: 'Últimos 7 días', value: '7daysAgo' },
         { name: 'Últimos 15 días', value: '15daysAgo' },
         { name: 'Últimos 30 días', value: '30daysAgo' },

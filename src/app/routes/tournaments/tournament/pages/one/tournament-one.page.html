@@ -1,6 +1,7 @@
 <div class="container">
     <page-header [title]="vm.title"></page-header>
-    <div class="box-white">
+
+    <mat-card class="mat-card-wrapper">
         <mat-tab-group>
             <mat-tab label="Info">
                 <tournament-one-edit
@@ -29,28 +30,25 @@
                         <!-- [item]="vm.item" -->
                     </div>
                     <div [fxFlex.gt-sm]="30" [fxFlex]="100" class="matero-col">
-                        <mat-card class="text-center">
-                            <mat-card-subtitle>Estadisticas</mat-card-subtitle>
-                            <mat-divider></mat-divider>
-                            <!-- <chart-bar *ngIf="!vm.optionsChart.loading" [data]="vm.optionsChart"></chart-bar> -->
-                            <circle-progress
-                                *ngIf="vm.inscriptionsPercentage"
-                                [percent]="vm.inscriptionsPercentage!"
-                                [radius]="100"
-                                [outerStrokeWidth]="20"
-                                [innerStrokeWidth]="20"
-                                [outerStrokeColor]="'#CC0000'"
-                                [innerStrokeColor]="'#000'"
-                                [animation]="true"
-                                [animationDuration]="300"
-                                [showTitle]="true"
-                                [title]="vm.item.inscriptions.length +'/'+vm.item.maxParticipants"
-                                subtitleFontSize="20"
-                                subtitle="Participantes"
-                                units=""
-                            >
-                            </circle-progress>
-                        </mat-card>
+                        <mat-card-subtitle>Estadisticas</mat-card-subtitle>
+                        <!-- <chart-bar *ngIf="!vm.optionsChart.loading" [data]="vm.optionsChart"></chart-bar> -->
+                        <circle-progress
+                            *ngIf="vm.inscriptionsPercentage"
+                            [percent]="vm.inscriptionsPercentage!"
+                            [radius]="100"
+                            [outerStrokeWidth]="20"
+                            [innerStrokeWidth]="20"
+                            [outerStrokeColor]="'#CC0000'"
+                            [innerStrokeColor]="'#000'"
+                            [animation]="true"
+                            [animationDuration]="300"
+                            [showTitle]="true"
+                            [title]="vm.item.inscriptions.length +'/'+vm.item.maxParticipants"
+                            subtitleFontSize="20"
+                            subtitle="Participantes"
+                            units=""
+                        >
+                        </circle-progress>
                     </div>
                 </div>
             </mat-tab>
@@ -93,5 +91,5 @@
                 ></custom-table2>
             </mat-tab>
         </mat-tab-group>
-    </div>
+    </mat-card>
 </div>

@@ -1,5 +1,4 @@
 import { Round } from '@models/round.model';
-import { Inscription } from '@models/inscription.model';
 import * as moment from 'moment';
 import { Image } from './image.model';
 export class Tournament {

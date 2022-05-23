@@ -3,14 +3,12 @@
     <div fxLayout="row wrap" class="matero-row">
         <div [fxFlex.gt-sm]="80" [fxFlex]="100" class="matero-col">
             <analytics-visits-last-days></analytics-visits-last-days>
+            <br />
 
-            <dashboard-last-items *ngIf="vm.tournamentsOptionsTable.items">
-            </dashboard-last-items>
+            <dashboard-last-items> </dashboard-last-items>
         </div>
-
         <div [fxFlex.gt-sm]="20" [fxFlex]="100" class="matero-col">
             <dashboard-resume></dashboard-resume>
-            <!-- <notification-send></notification-send> -->
         </div>
     </div>
 </div>

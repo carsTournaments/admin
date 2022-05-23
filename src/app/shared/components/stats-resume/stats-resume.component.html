@@ -1,16 +1,20 @@
-<div fxLayout="row wrap" class="matero-row">
-    <div
-        class="matero-col"
-        fxFlex.gt-sm="25"
-        fxFlex.gt-xs="50"
-        fxFlex="100"
-        *ngFor="let item of items"
-    >
-        <mat-card>
-            <div class="item-stats-resume">
-                <h2>{{ item.total }}</h2>
-                <p style="margin-bottom: 0">{{ item.name }}</p>
-            </div>
+<div class="mat-card-wrapper p-x-8 p-b-0">
+    <div fxLayout="row wrap" class="matero-row">
+        <mat-card
+            fxFlex.gt-sm
+            fxFlex
+            class="matero-col item {{ item.bg }} {{
+                item.text
+            }} mat-elevation-z4"
+            *ngFor="let item of items; let i = index"
+            [ngClass]="{
+                'border-right': i !== items.length - 1,
+                'm-r-8': i !== items.length - 1
+            }"
+            [routerLink]="[item.link]"
+        >
+            <h2 class="">{{ item.total }}</h2>
+            <p class="m-t--16">{{ item.name }}</p>
         </mat-card>
     </div>
 </div>

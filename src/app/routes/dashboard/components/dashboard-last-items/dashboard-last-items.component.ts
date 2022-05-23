@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CustomTable2OptionsModel } from '@components/custom-table2/models/custom-table2.options-model';
 import { CarService, TournamentService, UserService } from '@services';
 
@@ -28,7 +29,8 @@ export class DashboardLastItemsComponent {
     constructor(
         private carService: CarService,
         private tournamentService: TournamentService,
-        private userService: UserService
+        private userService: UserService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -59,5 +61,6 @@ export class DashboardLastItemsComponent {
 
     onRowClick(type: string, item: any) {
         console.log(type, item);
+        this.router.navigate([`/${type}/one/${item.rowData._id}`]);
     }
 }

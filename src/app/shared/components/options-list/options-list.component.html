@@ -1,41 +1,19 @@
-<div fxLayout="row wrap" class="matero-row">
-    <div [fxFlex.gt-sm]="item ? 50 : 100" [fxFlex]="100" class="matero-col">
-        <mat-card class="p-0">
-            <mat-card-subtitle class="p-t-16 p-l-16"
-                >Opciones</mat-card-subtitle
-            >
-            <mat-divider></mat-divider>
-            <mat-nav-list>
-                <ng-container *ngFor="let option of options">
-                    <a
-                        mat-list-item
-                        (click)="action.emit(option)"
-                        [disabled]="option.disabled"
-                    >
-                        {{ option.name }}
-                        <mat-icon class="float-right-absolute">
-                            chevron_right
-                        </mat-icon>
-                    </a>
-                    <mat-divider inset></mat-divider>
-                </ng-container>
-            </mat-nav-list>
-        </mat-card>
-    </div>
-
-    <div *ngIf="item" [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
-        <mat-card>
-            <div class="card-body">
-                <p class="card-text">
-                    <strong>Creado</strong>:
-                    {{ item.created! | dateToTimeAgo | titlecase }}
-                </p>
-                <hr />
-                <p class="card-text">
-                    <strong>Actualizado</strong>:
-                    {{ item.updated! | dateToTimeAgo | titlecase }}
-                </p>
+<mat-nav-list>
+    <div fxLayout="row wrap" class="matero-row">
+        <ng-container *ngFor="let option of options">
+            <div [fxFlex.gt-sm]="options.length > 1 ? 50 : 100" [fxFlex]="100">
+                <a
+                    mat-list-item
+                    (click)="action.emit(option)"
+                    [disabled]="option.disabled"
+                >
+                    {{ option.name }}
+                    <mat-icon class="float-right-absolute">
+                        chevron_right
+                    </mat-icon>
+                </a>
+                <mat-divider inset></mat-divider>
             </div>
-        </mat-card>
+        </ng-container>
     </div>
-</div>
+</mat-nav-list>
