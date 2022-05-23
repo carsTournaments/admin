@@ -1,6 +1,6 @@
 <div class="container">
     <page-header [title]="vm.title"></page-header>
-    <mat-card>
+    <mat-card class="p-b-0">
         <div fxLayout="row wrap" class="matero-row form-field-full">
             <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
                 <mat-form-field appearance="outline">
@@ -25,26 +25,35 @@
                 </mat-form-field>
             </div>
         </div>
+    </mat-card>
 
-        <div fxLayout="row wrap" class="matero-row">
-            <!-- METHODS -->
-            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+    <div fxLayout="row wrap" class="matero-row form-field-full">
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-card>
+                <!-- METHODS -->
                 <h3>Metodos</h3>
                 <hr />
                 <chart-bar
                     *ngIf="!vm.optionsMethods.loading"
                     [data]="vm.optionsMethods"
                 ></chart-bar>
-            </div>
-            <!-- ROLES -->
-            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            </mat-card>
+        </div>
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-card>
+                <!-- ROLES -->
                 <h3>Roles</h3>
                 <hr />
                 <chart-bar
                     *ngIf="!vm.optionsRoles.loading"
                     [data]="vm.optionsRoles"
                 ></chart-bar>
-            </div>
+            </mat-card>
+        </div>
+    </div>
+
+    <mat-card>
+        <div fxLayout="row wrap" class="matero-row form-field-full">
             <!-- DAYS -->
             <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
                 <h3>Peticiones por dia</h3>
@@ -54,6 +63,10 @@
                     [data]="vm.optionsDays"
                 ></chart-bar>
             </div>
+        </div>
+    </mat-card>
+    <mat-card>
+        <div fxLayout="row wrap" class="matero-row form-field-full">
             <!-- URLS -->
             <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
                 <h3>Top Urls</h3>
