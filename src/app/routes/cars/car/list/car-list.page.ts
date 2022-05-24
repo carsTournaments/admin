@@ -4,6 +4,7 @@ import { CarService } from '@services';
 import { CarListViewModel } from './model/car-list.view-model';
 import { Router } from '@angular/router';
 import { Car } from '@models';
+import { PaginatorI } from '@interfaces';
 
 @Component({
     selector: 'page-car-list',
@@ -32,8 +33,8 @@ export class CarListPage implements OnInit {
     private onGetAllSuccess(
         showMore: boolean,
         response: {
-            items: import('/Users/jgomepav/apps/carsTournaments-admin/src/app/shared/models/car.model').Car[];
-            paginator: import('/Users/jgomepav/apps/carsTournaments-admin/src/app/shared/interfaces/paginator.interface').PaginatorI;
+            items: Car[];
+            paginator: PaginatorI;
         }
     ) {
         if (!showMore) {

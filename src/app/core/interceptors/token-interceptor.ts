@@ -48,21 +48,15 @@ export class TokenInterceptor implements HttpInterceptor {
                     }
                 })
             );
-
-        // return next.handle(request).pipe(tap(() => handler()));
     }
 
-    private shouldAppendToken(url: string) {
-        return !this.hasHttpScheme(url) || this.includeBaseUrl(url);
-    }
+    // private includeBaseUrl(url: string) {
+    //     if (!this.baseUrl) {
+    //         return false;
+    //     }
 
-    private includeBaseUrl(url: string) {
-        if (!this.baseUrl) {
-            return false;
-        }
+    //     const baseUrl = this.baseUrl.replace(/\/$/, '');
 
-        const baseUrl = this.baseUrl.replace(/\/$/, '');
-
-        return new RegExp(`^${baseUrl}`, 'i').test(url);
-    }
+    //     return new RegExp(`^${baseUrl}`, 'i').test(url);
+    // }
 }
