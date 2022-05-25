@@ -13,21 +13,19 @@ export class AnalyticsVisitsLastDaysComponent implements OnInit {
     data!: AnalyticsGetVisitsResponse[];
     optionsChart!: any;
     dateSelected = '7daysAgo';
-    dataDate = [
-        { name: 'Últimos 3 días', value: '3daysAgo' },
-        { name: 'Últimos 7 días', value: '7daysAgo' },
-        { name: 'Últimos 15 días', value: '15daysAgo' },
-        { name: 'Últimos 30 días', value: '30daysAgo' },
-        { name: 'Últimos 60 días', value: '60daysAgo' },
-        { name: 'Últimos 90 días', value: '90daysAgo' },
-    ];
+    dataDate!: any[];
     constructor(
         private analyticsService: AnalyticsService,
         private snackBarService: SnackBarService
     ) {}
 
     ngOnInit() {
+        this.setDates();
         this.getVisits();
+    }
+
+    setDates() {
+        this.dataDate = this.analyticsService.dates;
     }
 
     getVisits() {

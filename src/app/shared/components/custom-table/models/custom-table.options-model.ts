@@ -15,6 +15,7 @@ export class CustomTableOptionsModel {
         | 'pairings'
         | 'reports'
         | 'rounds'
+        | 'statsEvents'
         | 'tournaments'
         | 'tournamentsDashboard'
         | 'users'

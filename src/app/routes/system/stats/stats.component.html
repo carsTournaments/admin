@@ -1,3 +1,92 @@
 <div class="container">
     <page-header [title]="vm.title"></page-header>
+
+    <mat-card class="mat-card-wrapper">
+        <mat-tab-group>
+            <mat-tab label="Eventos">
+                <div fxLayout="row wrap" class="matero-row">
+                    <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-select
+                                placeholder="Selecciona"
+                                name="dateSelected"
+                                [(ngModel)]="
+                                    vm.bodyEventsWithCategoryes.startDate
+                                "
+                                (selectionChange)="getEventsWithCategories()"
+                            >
+                                <mat-option
+                                    [value]="date.value"
+                                    *ngFor="let date of vm.dates"
+                                >
+                                    {{ date.name }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-label
+                                for="floatingInput"
+                                class="form-mat-label"
+                                >Inicio</mat-label
+                            >
+                        </mat-form-field>
+                    </div>
+                    <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-select
+                                placeholder="Selecciona"
+                                name="dateSelected"
+                                [(ngModel)]="
+                                    vm.bodyEventsWithCategoryes.endDate
+                                "
+                                (selectionChange)="getEventsWithCategories()"
+                            >
+                                <mat-option
+                                    [value]="date.value"
+                                    *ngFor="let date of vm.dates"
+                                >
+                                    {{ date.name }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-label
+                                for="floatingInput"
+                                class="form-mat-label"
+                                >Fin</mat-label
+                            >
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="vm.eventsWithCategories.length > 0">
+                    <div fxLayout="row wrap" class="matero-row">
+                        <ng-container
+                            *ngFor="
+                                let optionsTable of vm.optionsTables;
+                                let i = index
+                            "
+                        >
+                            <div
+                                [fxFlex.gt-sm]="50"
+                                [fxFlex]="100"
+                                class="matero-col"
+                            >
+                                <mat-card-subtitle
+                                    class="f-s-14 f-w-800 p-l-16 p-y-16 b-b-1"
+                                >
+                                    {{ vm.eventsWithCategories[i].name | type }}
+                                    <span
+                                        class="f-s-14 f-w-500 p-l-16 p-y-8 b-b-1 f-right text-right"
+                                    >
+                                        {{ vm.eventsWithCategories[i].total }}
+                                    </span>
+                                </mat-card-subtitle>
+                                <custom-table
+                                    *ngIf="!optionsTable.loading"
+                                    [options]="optionsTable"
+                                ></custom-table>
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
 </div>

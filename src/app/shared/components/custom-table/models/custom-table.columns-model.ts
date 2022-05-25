@@ -436,6 +436,16 @@ export class CustomTableColumnsModel {
             },
             this.defaults.created,
         ],
+        statsEvents: [
+            {
+                header: 'Evento',
+                field: 'name',
+            },
+            {
+                header: 'Total',
+                field: 'value',
+            },
+        ],
         tournaments: [
             {
                 header: '#',
@@ -524,9 +534,7 @@ export class CustomTableColumnsModel {
                 header: 'Fecha Inicio',
                 field: 'startDate',
                 sortable: true,
-                formatter: (item: any) => {
-                    return moment(item.startDate).locale('es').fromNow(false);
-                },
+                formatter: (item: any) => this.getDateTimeago(item.startDate),
             },
             {
                 header: 'Inscritos',
