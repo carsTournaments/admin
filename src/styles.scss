@@ -207,6 +207,10 @@ mat-tab-header {
     margin: -0.25rem;
 }
 
+.mat-tab-body-content {
+    overflow: hidden !important;
+}
+
 .image-table {
     width: 35px;
     height: 35px;

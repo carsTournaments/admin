@@ -6,11 +6,12 @@ import { StatusPipe } from '@shared/pipes';
 import { InscriptionListPage } from './inscription/inscription-list.page';
 import { PairingListPage } from './pairing/pairing-list.page';
 import { RoundListPage } from './round/round-list.page';
-import { TournamentOneEditComponent } from './tournament/components/tournament-one-edit.component';
+import { TournamentOneEditComponent } from './tournament/components/tournament-one-edit/tournament-one-edit.component';
 import { TournamentListPage } from './tournament/pages/list/tournament-list.page';
 import { TournamentOnePage } from './tournament/pages/one/tournament-one.page';
 import { VoteListPage } from './vote/vote-list.page';
 import { WinnerListPage } from './winner/winner-list.page';
+import { tournamentOneStatusComponent } from './tournament/components/tournament-one-status/tournament-one-status.component';
 
 @NgModule({
     imports: [
@@ -70,6 +71,7 @@ import { WinnerListPage } from './winner/winner-list.page';
         TournamentListPage,
         TournamentOnePage,
         TournamentOneEditComponent,
+        tournamentOneStatusComponent,
         InscriptionListPage,
         RoundListPage,
         PairingListPage,

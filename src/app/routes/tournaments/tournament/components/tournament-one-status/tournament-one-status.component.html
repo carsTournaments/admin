@@ -1,0 +1,11 @@
+<mat-card
+    class="text-white"
+    [ngClass]="{
+        'bg-green-500': status === 'Completed',
+        'bg-red-700': status === 'Cancelled',
+        'bg-orange-500 text-black': status === 'InProgress',
+        'bg-blue-800': status === 'Todo'
+    }"
+>
+    <strong>Torneo {{ status | status }}</strong>
+</mat-card>

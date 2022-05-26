@@ -4,6 +4,9 @@
     <mat-card class="mat-card-wrapper">
         <mat-tab-group>
             <mat-tab label="Info">
+                <tournament-one-status
+                    [status]="vm.item.status!"
+                ></tournament-one-status>
                 <tournament-one-edit
                     *ngIf="vm.item"
                     [item]="vm.item"
@@ -21,6 +24,9 @@
             </mat-tab>
 
             <mat-tab label="Opciones">
+                <tournament-one-status
+                    [status]="vm.item.status!"
+                ></tournament-one-status>
                 <div fxLayout="row wrap" class="matero-row">
                     <div [fxFlex.gt-sm]="70" [fxFlex]="100" class="matero-col">
                         <options-list
