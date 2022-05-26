@@ -33,7 +33,6 @@ export class StatsPage implements OnInit {
     generateOptionsTables() {
         this.vm.optionsTables = [];
         this.vm.eventsWithCategories.forEach((item) => {
-            console.log(item.items.length, item.name);
             this.vm.optionsTables.push(
                 new CustomTableOptionsModel({
                     type: 'statsEvents',

@@ -29,7 +29,6 @@ export class VoteNewComponent implements OnInit {
         this.round = this.data.round;
         this.tournament = this.data.tournament;
         this.pairing = this.data.pairing;
-        console.log(this.car1);
     }
 
     createVote() {

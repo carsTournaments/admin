@@ -93,7 +93,6 @@ export class AnalyticsVisitsLastDaysComponent implements OnInit {
             this.optionsChart.data.labels!.push(element.date);
         });
         this.optionsChart.loading = false;
-        console.log(this.optionsChart.data.datasets);
     }
 
     onChangeSelect() {

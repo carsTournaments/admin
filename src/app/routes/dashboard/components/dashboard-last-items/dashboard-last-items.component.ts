@@ -60,7 +60,6 @@ export class DashboardLastItemsComponent {
     }
 
     onRowClick(type: string, item: any) {
-        console.log(type, item);
         this.router.navigate([`/${type}/one/${item.rowData._id}`]);
     }
 }

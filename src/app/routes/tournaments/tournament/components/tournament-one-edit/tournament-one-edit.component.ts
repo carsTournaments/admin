@@ -89,7 +89,6 @@ export class TournamentOneEditComponent {
     }
 
     addRequisite() {
-        console.log(this.requisiteSelected);
         const item = this.requisitesDefault.find(
             (i) => i.name === this.requisiteSelected
         );
