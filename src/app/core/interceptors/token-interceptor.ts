@@ -1,4 +1,4 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
     HttpErrorResponse,
     HttpEvent,
@@ -6,22 +6,13 @@ import {
     HttpInterceptor,
     HttpRequest,
 } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { TokenService } from '@core/auth';
-import { BASE_URL } from './base-url-interceptor';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-    private hasHttpScheme = (url: string) =>
-        new RegExp('^http(s)?://', 'i').test(url);
-
-    constructor(
-        private tokenService: TokenService,
-        private router: Router,
-        @Optional() @Inject(BASE_URL) private baseUrl?: string
-    ) {}
+    constructor(private tokenService: TokenService) {}
 
     intercept(
         request: HttpRequest<unknown>,
@@ -39,24 +30,14 @@ export class TokenInterceptor implements HttpInterceptor {
                 catchError((error: HttpErrorResponse) => {
                     if (error.error instanceof ErrorEvent) {
                         console.error('Error Event', error);
-                        return throwError(error);
+                        return throwError(() => new Error(error.message));
                     } else {
                         if (error.status === 999) {
                             this.tokenService.clear();
                         }
-                        return throwError(error);
+                        return throwError(() => new Error(error.message));
                     }
                 })
             );
     }
-
-    // private includeBaseUrl(url: string) {
-    //     if (!this.baseUrl) {
-    //         return false;
-    //     }
-
-    //     const baseUrl = this.baseUrl.replace(/\/$/, '');
-
-    //     return new RegExp(`^${baseUrl}`, 'i').test(url);
-    // }
 }
