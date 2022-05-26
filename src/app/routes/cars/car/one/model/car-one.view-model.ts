@@ -1,6 +1,5 @@
 import { Winner } from '@models/winner.model';
 import { Car } from '@models/car.model';
-import { User } from '@models';
 import { WinnerGetAllDto } from '@services/api/winner/winner.dto';
 import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 

@@ -1,12 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'tournament-one-status',
     templateUrl: 'tournament-one-status.component.html',
 })
-export class tournamentOneStatusComponent implements OnInit {
+export class tournamentOneStatusComponent {
     @Input() status!: string;
-    constructor() {}
-
-    ngOnInit() {}
 }
