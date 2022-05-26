@@ -8,6 +8,7 @@ export interface InscriptionGetAllDto {
 export interface InscriptionCreateDto {
     car: string;
     tournament: string;
+    driver: string;
 }
 
 export interface InscriptionGetAllOfCarDto {

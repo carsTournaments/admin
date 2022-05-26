@@ -22,31 +22,44 @@
                 ></add-image>
             </mat-tab>
 
-            <mat-tab label="Inscripciones">
+            <mat-tab
+                label="Likes recibidos"
+                *ngIf="vm.likesReceivedOptionsTable.items.length > 0"
+            >
+                <custom-table
+                    [options]="vm.likesReceivedOptionsTable"
+                ></custom-table>
+            </mat-tab>
+
+            <mat-tab
+                label="Inscripciones"
+                *ngIf="vm.inscriptionsOptionsTable.items.length > 0"
+            >
                 <custom-table
                     [options]="vm.inscriptionsOptionsTable"
                 ></custom-table>
             </mat-tab>
 
             <mat-tab label="Nueva inscripcion">
-                <add-inscription
+                <car-one-add-inscription
                     [carId]="vm.id"
+                    [driverId]="vm.item.driver._id"
                     (onInscription)="onInscription()"
-                ></add-inscription>
+                ></car-one-add-inscription>
             </mat-tab>
 
-            <mat-tab label="Votos">
+            <mat-tab
+                label="Votos"
+                *ngIf="vm.votesOptionsTable.items.length > 0"
+            >
                 <custom-table [options]="vm.votesOptionsTable"></custom-table>
             </mat-tab>
 
-            <mat-tab label="Torneos ganados">
+            <mat-tab
+                label="Torneos ganados"
+                *ngIf="vm.winnersOptionsTable.items.length > 0"
+            >
                 <custom-table [options]="vm.winnersOptionsTable"></custom-table>
-            </mat-tab>
-
-            <mat-tab label="Likes recibidos">
-                <custom-table
-                    [options]="vm.likesReceivedOptionsTable"
-                ></custom-table>
             </mat-tab>
         </mat-tab-group>
     </mat-card>

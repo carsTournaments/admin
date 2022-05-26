@@ -1,5 +1,4 @@
 export { AddComponentComponent } from './add-image/add-image.component';
-export { AddInscriptionComponent } from './add-inscription/add-inscription.component';
 export { AlertComponent } from './alert/alert.component';
 export { AnalyticsVisitsLastDaysComponent } from './analytics-visits-last-days/analytics-visits-last-days.component';
 export { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';

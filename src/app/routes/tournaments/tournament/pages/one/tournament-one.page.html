@@ -28,16 +28,23 @@
                     [status]="vm.item.status!"
                 ></tournament-one-status>
                 <div fxLayout="row wrap" class="matero-row">
-                    <div [fxFlex.gt-sm]="70" [fxFlex]="100" class="matero-col">
+                    <div
+                        [fxFlex.gt-sm]="vm.item.inscriptions.length > 0 ? 70 : 100"
+                        [fxFlex]="100"
+                        class="matero-col"
+                    >
                         <options-list
                             [options]="vm.options"
                             (action)="actionForOption($event)"
                         ></options-list>
                         <!-- [item]="vm.item" -->
                     </div>
-                    <div [fxFlex.gt-sm]="30" [fxFlex]="100" class="matero-col">
-                        <mat-card-subtitle>Estadisticas</mat-card-subtitle>
-                        <!-- <chart-bar *ngIf="!vm.optionsChart.loading" [data]="vm.optionsChart"></chart-bar> -->
+                    <div
+                        *ngIf="vm.item.inscriptions.length > 0"
+                        [fxFlex.gt-sm]="30"
+                        [fxFlex]="100"
+                        class="matero-col text-center"
+                    >
                         <circle-progress
                             *ngIf="vm.inscriptionsPercentage"
                             [percent]="vm.inscriptionsPercentage!"
@@ -67,7 +74,10 @@
                 ></add-image>
             </mat-tab>
 
-            <mat-tab label="Inscripciones">
+            <mat-tab
+                label="Inscripciones"
+                *ngIf="vm.inscriptionsOptionsTable.items.length > 0"
+            >
                 <custom-table
                     (rowClick)="onRowClickInscription($event)"
                     [options]="vm.inscriptionsOptionsTable"
@@ -75,21 +85,33 @@
                 </custom-table>
             </mat-tab>
 
-            <mat-tab label="Rondas">
+            <mat-tab
+                label="Rondas"
+                *ngIf="vm.roundsOptionsTable.items.length > 0"
+            >
                 <custom-table [options]="vm.roundsOptionsTable"></custom-table>
             </mat-tab>
 
-            <mat-tab label="Emparejamientos">
+            <mat-tab
+                label="Emparejamientos"
+                *ngIf="vm.pairingsOptionsTable.items.length > 0"
+            >
                 <custom-table
                     [options]="vm.pairingsOptionsTable"
                 ></custom-table>
             </mat-tab>
 
-            <mat-tab label="Votos">
+            <mat-tab
+                label="Votos"
+                *ngIf="vm.votesOptionsTable.items.length > 0"
+            >
                 <custom-table [options]="vm.votesOptionsTable"></custom-table>
             </mat-tab>
 
-            <mat-tab label="Ganadores">
+            <mat-tab
+                label="Ganadores"
+                *ngIf="vm.winnersOptionsTable.items.length > 0"
+            >
                 <custom-table [options]="vm.winnersOptionsTable"></custom-table>
             </mat-tab>
         </mat-tab-group>

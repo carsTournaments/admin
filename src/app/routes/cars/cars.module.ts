@@ -9,6 +9,7 @@ import { BrandListPage } from './brand/list/brand-list.page';
 import { BrandOnePage } from './brand/one/brand-one.page';
 import { LikeListPage } from './like/like-list.page';
 import { BrandOneEditComponent } from './brand/one/components/brands-one-edit/brand-one-edit.component';
+import { CarOneAddInscriptionComponent } from './car/components/add-inscription/add-inscription.component';
 
 @NgModule({
     imports: [
@@ -63,6 +64,7 @@ import { BrandOneEditComponent } from './brand/one/components/brands-one-edit/br
         CarListPage,
         CarOnePage,
         CarOneEditComponent,
+        CarOneAddInscriptionComponent,
         BrandListPage,
         BrandOnePage,
         BrandOneEditComponent,

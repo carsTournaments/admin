@@ -6,7 +6,6 @@ import { SwiperModule } from 'swiper/angular';
 import { NgChartsModule } from 'ng2-charts';
 import {
     AddComponentComponent,
-    AddInscriptionComponent,
     AlertComponent,
     AnalyticsVisitsLastDaysComponent,
     BreadcrumbComponent,
@@ -86,7 +85,6 @@ const MODULES = [
 
 const COMPONENTS = [
     AddComponentComponent,
-    AddInscriptionComponent,
     AnalyticsVisitsLastDaysComponent,
     BreadcrumbComponent,
     ChartBarComponent,
