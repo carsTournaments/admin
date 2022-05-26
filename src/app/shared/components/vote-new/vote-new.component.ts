@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Car, Pairing, Round, Tournament } from '@models';
+import { Car } from '@models';
 import { SnackBarService, VoteService } from '@services';
 import { VoteCreateDto } from '@services/api/vote/dtos/vote.dto';
 
