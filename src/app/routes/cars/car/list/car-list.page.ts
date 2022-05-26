@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
-import { CarService } from '@services';
+import { AlertService, CarService, SnackBarService } from '@services';
 import { CarListViewModel } from './model/car-list.view-model';
 import { Router } from '@angular/router';
 import { Car } from '@models';
@@ -12,7 +12,12 @@ import { PaginatorI } from '@interfaces';
 })
 export class CarListPage implements OnInit {
     vm = new CarListViewModel();
-    constructor(private carService: CarService, private router: Router) {}
+    constructor(
+        private carService: CarService,
+        private router: Router,
+        private alertService: AlertService,
+        private snackBarService: SnackBarService
+    ) {}
 
     ngOnInit() {
         this.getAll();
@@ -59,6 +64,9 @@ export class CarListPage implements OnInit {
             case 'createFakes':
                 this.createFakes();
                 break;
+            case 'deleteFakesWithoutPhoto':
+                this.deleteFakesWithoutPhoto();
+                break;
             case 'deleteFakes':
                 this.deleteFakes();
                 break;
@@ -78,19 +86,40 @@ export class CarListPage implements OnInit {
         });
     }
 
+    async deleteFakesWithoutPhoto() {
+        const alert = await this.alertService.showConfirmation(
+            'Eliminar coches falsos sin foto',
+            'Esta seguro de eliminar todos los coches falsos sin foto?'
+        );
+        alert.subscribe((data) => {
+            if (data) {
+                this.carService.deleteAllFakeWithoutPhoto().subscribe({
+                    next: (response) => {
+                        this.getAll();
+                        this.snackBarService.open(response.message);
+                    },
+                    error: (e) => this.snackBarService.open(e),
+                });
+            }
+        });
+    }
+
     async deleteFakes() {
-        const state = confirm(
+        const alert = await this.alertService.showConfirmation(
+            'Eliminar coches falsos',
             'Esta seguro de eliminar todos los coches falsos?'
         );
-        if (state) {
-            this.carService.deleteAllFake().subscribe({
-                next: (response) => {
-                    this.getAll();
-                    alert(response.message);
-                },
-                error: (error) => console.error(error),
-            });
-        }
+        alert.subscribe((data) => {
+            if (data) {
+                this.carService.deleteAllFake().subscribe({
+                    next: (response) => {
+                        this.getAll();
+                        this.snackBarService.open(response.message);
+                    },
+                    error: (e) => this.snackBarService.open(e),
+                });
+            }
+        });
     }
 
     onChangeOrder(order: string) {
@@ -114,5 +143,10 @@ export class CarListPage implements OnInit {
 
     onRowClick(event: { rowData: Car; index: number }) {
         this.router.navigate([`/cars/one/${event.rowData._id}`]);
+    }
+
+    onCarCreated() {
+        this.vm.carBody.page = 1;
+        this.getAll();
     }
 }

@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import {
-    BrandService,
+    AlertService,
     CarService,
     InscriptionService,
     LikeService,
     ReportService,
     SnackBarService,
-    UserService,
     VoteService,
     WinnerService,
 } from '@services';
@@ -25,21 +24,18 @@ export class CarOnePage implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private carService: CarService,
-        private brandService: BrandService,
-        private userService: UserService,
         private voteService: VoteService,
         private winnerService: WinnerService,
         private inscriptionService: InscriptionService,
         private likeService: LikeService,
         private reportService: ReportService,
         private router: Router,
+        private alertService: AlertService,
         private snackBarService: SnackBarService
     ) {}
 
     ngOnInit() {
         this.vm.id = this.route.snapshot.paramMap.get('id') as string;
-        this.getAllBrands();
-        this.getAllDrivers();
         this.getAllWinners();
         if (this.vm.id) {
             this.vm.edit = true;
@@ -58,31 +54,16 @@ export class CarOnePage implements OnInit {
             next: (item) => {
                 this.vm.item = item;
                 this.vm.stock = this.vm.item.stock;
-                this.vm.brandIdSelected = item.brand._id;
-                this.vm.userIdSelected = item.driver._id;
+
                 this.vm.title = `${item.brand.name} ${item.model}`;
             },
             error: (error) => console.error(error),
         });
     }
 
-    getAllDrivers() {
-        this.userService.getAll(this.vm.bodyUsers).subscribe({
-            next: (result) => (this.vm.users = result.items),
-            error: (e) => this.snackBarService.open(e),
-        });
-    }
-
     getAllWinners() {
         this.winnerService.getAll(this.vm.bodyWinners).subscribe({
             next: (result) => (this.vm.winners = result.items),
-            error: (e) => this.snackBarService.open(e),
-        });
-    }
-
-    getAllBrands() {
-        this.brandService.getAll(this.vm.bodyBrands).subscribe({
-            next: (result) => (this.vm.brands = result.items),
             error: (e) => this.snackBarService.open(e),
         });
     }
@@ -117,26 +98,6 @@ export class CarOnePage implements OnInit {
             error: (e) => this.snackBarService.open(e),
         });
         this.vm.likesReceivedOptionsTable.loading = false;
-    }
-
-    async onSubmit() {
-        try {
-            this.vm.item.brand = this.vm.brandIdSelected;
-            this.vm.item.driver = this.vm.userIdSelected;
-            this.vm.item.stock = Boolean(this.vm.stock);
-            this.vm.edit
-                ? this.carService.update(this.vm.item).subscribe(() => {
-                      this.snackBarService.open('Coche editado');
-                      this.router.navigate(['/cars']);
-                  })
-                : this.carService.create(this.vm.item).subscribe(() => {
-                      this.snackBarService.open('Coche creado');
-                      this.router.navigate(['/cars']);
-                  });
-        } catch (error) {
-            this.snackBarService.open('Error al dar guardar el coche');
-            console.error(error);
-        }
     }
 
     actionForOption(option: ActionForOptionI) {
@@ -194,36 +155,48 @@ export class CarOnePage implements OnInit {
                     error: (e) => this.snackBarService.open(e),
                 });
             }
+        } else {
+            this.snackBarService.open('No se ha detectado usuario');
         }
     }
 
     async deleteInscriptions() {
-        if (confirm('¿Estás seguro de eliminar todas las inscripciones?')) {
-            this.vm.inscriptionsOptionsTable.loading = true;
-            this.inscriptionService.deleteAllOfCar(this.vm.id).subscribe({
-                next: () => {
-                    this.vm.inscriptionsOptionsTable.loading = false;
-                    this.vm.inscriptionsOptionsTable.items = [];
-                },
-                error: (e) => {
-                    this.vm.inscriptionsOptionsTable.loading = false;
-                    this.snackBarService.open(e);
-                },
-            });
-        }
+        const alert = await this.alertService.showConfirmation(
+            'Eliminar todas las inscripciones',
+            '¿Estás seguro de eliminar todas las inscripciones?'
+        );
+        alert.subscribe((data) => {
+            if (data) {
+                this.vm.inscriptionsOptionsTable.loading = true;
+                this.inscriptionService.deleteAllOfCar(this.vm.id).subscribe({
+                    next: () => {
+                        this.vm.inscriptionsOptionsTable.loading = false;
+                        this.vm.inscriptionsOptionsTable.items = [];
+                    },
+                    error: (e) => this.snackBarService.open(e),
+                });
+            }
+        });
     }
 
     async deleteOne() {
-        if (confirm('¿Está seguro de eliminar el coche?')) {
-            this.carService.delete(this.vm.id).subscribe({
-                next: () => {
-                    alert('Coche eliminado');
-                    this.snackBarService.open('Coche eliminado correctamente');
-                    this.router.navigate(['/cars']);
-                },
-                error: (e) => alert(e),
-            });
-        }
+        const alert = await this.alertService.showConfirmation(
+            'Eliminar coche',
+            '¿Está seguro de eliminar el coche? Si el coche esta en otra tabla, la puedes liar'
+        );
+        alert.subscribe((data) => {
+            if (data) {
+                this.carService.delete(this.vm.id).subscribe({
+                    next: () => {
+                        this.snackBarService.open(
+                            'Coche eliminado correctamente'
+                        );
+                        this.router.navigate(['/cars']);
+                    },
+                    error: (error) => this.snackBarService.open(error),
+                });
+            }
+        });
     }
 
     onInscription() {

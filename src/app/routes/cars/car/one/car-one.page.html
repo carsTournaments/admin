@@ -3,16 +3,7 @@
     <mat-card>
         <mat-tab-group>
             <mat-tab label="Info">
-                <car-one-edit
-                    [item]="vm.item"
-                    [users]="vm.users"
-                    [brands]="vm.brands"
-                    [stock]="vm.stock"
-                    [brandIdSelected]="vm.brandIdSelected"
-                    [userIdSelected]="vm.userIdSelected"
-                    (submit)="onSubmit()"
-                >
-                </car-one-edit>
+                <car-one-edit [item]="vm.item" [edit]="true"> </car-one-edit>
             </mat-tab>
 
             <mat-tab label="Opciones">

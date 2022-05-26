@@ -1,144 +1,133 @@
-<mat-card *ngIf="item">
-    <form class="form-field-full">
-        <div fxLayout="row wrap" class="matero-row">
-            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
-                <mat-form-field appearance="outline">
-                    <mat-label>Usuario</mat-label>
-                    <mat-select
-                        [(value)]="userIdSelected"
-                        placeholder="Selecciona"
-                    >
-                        <mat-option
-                            *ngFor="let user of users"
-                            [value]="user._id"
-                        >
-                            {{ user.name }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-
-            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
-                <mat-form-field appearance="outline">
-                    <mat-label>Marca</mat-label>
-                    <mat-select
-                        [(value)]="brandIdSelected"
-                        placeholder="Selecciona"
-                    >
-                        <mat-option
-                            *ngFor="let brand of brands"
-                            [value]="brand._id"
-                        >
-                            {{ brand.name }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-
-            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
-                <mat-form-field appearance="outline">
-                    <mat-label>Modelo</mat-label>
-                    <input
-                        matInput
-                        name="model"
-                        [(ngModel)]="item.model"
-                        placeholder="Introduce el modelo"
-                    />
-                </mat-form-field>
-            </div>
-
-            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
-                <mat-form-field appearance="outline">
-                    <mat-label>Combustible</mat-label>
-                    <mat-select [(value)]="item.fuel" placeholder="Selecciona">
-                        <mat-option value="Gasolina">Gasolina</mat-option>
-                        <mat-option value="Diesel">Diesel</mat-option>
-                        <mat-option value="Hibrido">Hibrido</mat-option>
-                        <mat-option value="Diesel">Diesel</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-
-            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
-                <mat-form-field appearance="outline">
-                    <mat-label>Traccion</mat-label>
-                    <mat-select
-                        [(value)]="item.traction"
-                        placeholder="Selecciona"
-                    >
-                        <mat-option value="Delantera">Delantera</mat-option>
-                        <mat-option value="Trasera">Trasera</mat-option>
-                        <mat-option value="4x4">4x4</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-
-            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
-                <mat-form-field appearance="outline">
-                    <mat-label>CC</mat-label>
-                    <input
-                        matInput
-                        name="cc"
-                        [(ngModel)]="item.cc"
-                        placeholder="Introduce los CC"
-                    />
-                </mat-form-field>
-            </div>
-
-            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
-                <mat-form-field appearance="outline">
-                    <mat-label>CV</mat-label>
-                    <input
-                        matInput
-                        name="cv"
-                        [(ngModel)]="item.cv"
-                        placeholder="Introduce los CV"
-                    />
-                </mat-form-field>
-            </div>
-
-            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
-                <mat-form-field appearance="outline">
-                    <mat-label>De serie</mat-label>
-                    <mat-select [(value)]="stock" placeholder="Selecciona">
-                        <mat-option [value]="true">Si</mat-option>
-                        <mat-option [value]="false">No</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-
-            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
-                <mat-form-field appearance="outline">
-                    <mat-label>Año</mat-label>
-                    <input
-                        matInput
-                        type="number"
-                        name="year"
-                        [(ngModel)]="item.year"
-                        placeholder="Introduce el año"
-                    />
-                </mat-form-field>
-            </div>
-
-            <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
-                <mat-form-field appearance="outline">
-                    <mat-label>Info</mat-label>
-                    <textarea
-                        matInput
-                        name="name"
-                        [(ngModel)]="item.info"
-                        placeholder="Introduce la informacion del coche"
-                    ></textarea>
-                </mat-form-field>
-
-                <button
-                    mat-raised-button
-                    class="bg-red-800 text-white w-full"
-                    (click)="submit.emit()"
-                >
-                    Guardar
-                </button>
-            </div>
+<form class="form-field-full" *ngIf="item">
+    <div fxLayout="row wrap" class="matero-row">
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>Usuario</mat-label>
+                <mat-select [(value)]="userIdSelected" placeholder="Selecciona">
+                    <mat-option *ngFor="let user of users" [value]="user._id">
+                        {{ user.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
-    </form>
-</mat-card>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>Marca</mat-label>
+                <mat-select
+                    [(value)]="brandIdSelected"
+                    placeholder="Selecciona"
+                >
+                    <mat-option
+                        *ngFor="let brand of brands"
+                        [value]="brand._id"
+                    >
+                        {{ brand.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>Modelo</mat-label>
+                <input
+                    matInput
+                    name="model"
+                    [(ngModel)]="item.model"
+                    placeholder="Introduce el modelo"
+                />
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>Combustible</mat-label>
+                <mat-select [(value)]="item.fuel" placeholder="Selecciona">
+                    <mat-option value="Gasolina">Gasolina</mat-option>
+                    <mat-option value="Diesel">Diesel</mat-option>
+                    <mat-option value="Hibrido">Hibrido</mat-option>
+                    <mat-option value="Diesel">Diesel</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>Traccion</mat-label>
+                <mat-select [(value)]="item.traction" placeholder="Selecciona">
+                    <mat-option value="Delantera">Delantera</mat-option>
+                    <mat-option value="Trasera">Trasera</mat-option>
+                    <mat-option value="4x4">4x4</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>CC</mat-label>
+                <input
+                    matInput
+                    name="cc"
+                    [(ngModel)]="item.cc"
+                    placeholder="Introduce los CC"
+                />
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>CV</mat-label>
+                <input
+                    matInput
+                    name="cv"
+                    [(ngModel)]="item.cv"
+                    placeholder="Introduce los CV"
+                />
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>De serie</mat-label>
+                <mat-select [(value)]="stock" placeholder="Selecciona">
+                    <mat-option [value]="true">Si</mat-option>
+                    <mat-option [value]="false">No</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>Año</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    name="year"
+                    [(ngModel)]="item.year"
+                    placeholder="Introduce el año"
+                />
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>Info</mat-label>
+                <textarea
+                    matInput
+                    name="name"
+                    [(ngModel)]="item.info"
+                    placeholder="Introduce la informacion del coche"
+                ></textarea>
+            </mat-form-field>
+
+            <button
+                mat-raised-button
+                class="bg-red-800 text-white w-full"
+                (click)="onSubmit()"
+            >
+                Guardar
+            </button>
+        </div>
+    </div>
+</form>

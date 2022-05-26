@@ -14,7 +14,6 @@ import {
 } from '@services';
 import { TournamentOnePageViewModel } from '../../models/tournament-one.view-model';
 import { AlertService } from '@services/material/alert/alert.service';
-import { StatusPipe } from '@shared/pipes';
 import { Inscription } from '@models';
 
 @Component({
@@ -34,8 +33,7 @@ export class TournamentOnePage implements OnInit {
         private winnerService: WinnerService,
         private router: Router,
         private snackBarService: SnackBarService,
-        private alertService: AlertService,
-        private statusPipe: StatusPipe
+        private alertService: AlertService
     ) {}
 
     ngOnInit() {
@@ -207,9 +205,7 @@ export class TournamentOnePage implements OnInit {
                             this.snackBarService.open(response.message);
                             this.getOne();
                         },
-                        error: (error) => {
-                            this.snackBarService.open(error);
-                        },
+                        error: (error) => this.snackBarService.open(error),
                     });
             }
         });

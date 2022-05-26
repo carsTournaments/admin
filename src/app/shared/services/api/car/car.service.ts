@@ -71,4 +71,10 @@ export class CarService {
             .delete<{ message: string }>(`${this.url}/allFake`)
             .pipe(take(1));
     }
+
+    deleteAllFakeWithoutPhoto(): Observable<{ message: string }> {
+        return this.httpClient
+            .delete<{ message: string }>(`${this.url}/allFakeWithoutPhoto`)
+            .pipe(take(1));
+    }
 }

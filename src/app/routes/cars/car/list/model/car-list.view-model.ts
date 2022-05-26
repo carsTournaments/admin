@@ -24,6 +24,10 @@ export class CarListViewModel {
             value: 'createFakes',
         },
         {
+            name: 'Eliminar coches falsos sin imagenes',
+            value: 'deleteFakesWithoutPhoto',
+        },
+        {
             name: 'Eliminar coches falsos',
             value: 'deleteFakes',
         },

@@ -1,9 +1,6 @@
 import { Winner } from '@models/winner.model';
 import { Car } from '@models/car.model';
-import { Brand } from '@models/brand.model';
 import { User } from '@models';
-import { BrandGetAllDto } from '@services/api/brand/brand.dto';
-import { UserGetAllDto } from '@services/api/user/dtos/user.dto';
 import { WinnerGetAllDto } from '@services/api/winner/winner.dto';
 import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 
@@ -35,22 +32,6 @@ export class CarOnePageViewModel {
             value: 'delete',
         },
     ];
-
-    brands: Brand[] = [];
-    brandIdSelected = '';
-    bodyBrands: BrandGetAllDto = {
-        page: 1,
-        pageSize: 1000,
-        site: 'admin',
-        order: ['created', 'desc'],
-        select: ['name'],
-    };
-    bodyUsers: UserGetAllDto = {
-        page: 1,
-        pageSize: 1000,
-        site: 'admin',
-        order: ['created', 'desc'],
-    };
     bodyWinners: WinnerGetAllDto = {
         page: 1,
         pageSize: 1000,
@@ -81,7 +62,5 @@ export class CarOnePageViewModel {
         loading: true,
         showLoadMore: true,
     });
-    users: User[] = [];
-    userIdSelected = '';
     winners: Winner[] = [];
 }
