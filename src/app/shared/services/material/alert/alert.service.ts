@@ -32,9 +32,10 @@ export class AlertService {
         return dialogRef.afterClosed();
     }
 
-    async openDialog(component: any): Promise<Observable<any>> {
+    async openDialog(component: any, params?: any): Promise<Observable<any>> {
         const options: MatDialogConfig = {
             panelClass: 'dialog-component',
+            data: params,
         };
         const dialogRef = this.dialog.open(component, options);
         return dialogRef.afterClosed();

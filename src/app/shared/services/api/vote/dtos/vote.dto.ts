@@ -6,16 +6,18 @@ export interface VoteGetAllDto {
 }
 
 export interface VoteCreateDto {
-    name: string;
-    country: string;
-    image: string;
+    pairing: string;
+    round: string;
+    tournament: string;
+    car: string;
 }
 
 export interface VoteUpdateDto {
     _id: string;
-    name: string;
-    country: string;
-    image: string;
+    pairing: string;
+    round: string;
+    tournament: string;
+    car: string;
 }
 
 export interface VotingDeleteAllDto {

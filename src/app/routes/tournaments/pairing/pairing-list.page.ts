@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { VoteNewComponent } from '@components';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
-import { PairingService } from '@services';
+import { Pairing } from '@models';
+import { AlertService, PairingService } from '@services';
 import { PairingListViewModel } from './model/pairing-list.view-model';
 
 @Component({
@@ -9,7 +11,10 @@ import { PairingListViewModel } from './model/pairing-list.view-model';
 })
 export class PairingListPage implements OnInit {
     vm = new PairingListViewModel();
-    constructor(private pairingService: PairingService) {}
+    constructor(
+        private pairingService: PairingService,
+        private alertService: AlertService
+    ) {}
 
     ngOnInit() {
         this.getAll();
@@ -84,5 +89,20 @@ export class PairingListPage implements OnInit {
     onChangePage() {
         this.vm.pairingBody.page += 1;
         this.getAll(true);
+    }
+
+    async onRowClickPairing(event: { rowData: Pairing; index: number }) {
+        const alert = await this.alertService.openDialog(VoteNewComponent, {
+            car1: event.rowData.car1,
+            car2: event.rowData.car2,
+            round: event.rowData.round._id!,
+            tournament: event.rowData.tournament._id!,
+            pairing: event.rowData._id!,
+        });
+        alert.subscribe((data) => {
+            if (data) {
+                this.getAll();
+            }
+        });
     }
 }

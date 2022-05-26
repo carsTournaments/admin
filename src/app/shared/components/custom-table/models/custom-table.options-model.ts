@@ -13,6 +13,7 @@ export class CustomTableOptionsModel {
         | 'logs'
         | 'notifications'
         | 'pairings'
+        | 'pairingsTournament'
         | 'reports'
         | 'rounds'
         | 'statsEvents'

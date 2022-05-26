@@ -21,6 +21,7 @@ import {
     StatsComponent,
     StatsResumeComponent,
     ToggleComponent,
+    VoteNewComponent,
 } from './components';
 import {
     DateToTimeAgoPipe,
@@ -100,6 +101,7 @@ const COMPONENTS = [
     SelectNumberEntriesComponent,
     StatsComponent,
     StatsResumeComponent,
+    VoteNewComponent,
     // Material
     AlertComponent,
     ToggleComponent,

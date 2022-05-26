@@ -7,6 +7,7 @@
                 <custom-table
                     [options]="vm.optionsTable"
                     (changePage)="onChangePage()"
+                    (rowClick)="onRowClickPairing($event)"
                 >
                 </custom-table>
             </mat-tab>

@@ -98,6 +98,7 @@
             >
                 <custom-table
                     [options]="vm.pairingsOptionsTable"
+                    (rowClick)="onRowClickPairing($event)"
                 ></custom-table>
             </mat-tab>
 

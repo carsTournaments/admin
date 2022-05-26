@@ -365,6 +365,47 @@ export class CustomTableColumnsModel {
             },
             this.defaults.created,
         ],
+        pairingsTournament: [
+            {
+                header: 'Coche 1',
+                field: 'car1',
+                width: '220px',
+                formatter: (item: any) =>
+                    this.getChip(
+                        item.car1.brand?.name + ' ' + item.car1.model,
+                        true,
+                        item.car1.image?.url
+                    ),
+            },
+            { header: 'Votos', field: 'votes.length' },
+            {
+                header: 'Coche 2',
+                field: 'car2',
+                width: '220px',
+                formatter: (item: any) =>
+                    this.getChip(
+                        item.car2.brand?.name + ' ' + item.car2.model,
+                        true,
+                        item.car2.image?.url
+                    ),
+            },
+            {
+                header: 'Ganador',
+                field: 'winner',
+                width: '220px',
+                formatter: (item: any) =>
+                    item.winner
+                        ? this.getChip(
+                              item.car2.brand?.name + ' ' + item.car2.model,
+                              true,
+                              item.car2.image?.url,
+                              'gold'
+                          )
+                        : '--',
+            },
+            { header: 'Ronda', field: 'round.name', width: '120px' },
+            this.defaults.created,
+        ],
         reports: [
             {
                 header: 'Reportador',

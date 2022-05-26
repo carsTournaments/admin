@@ -18,7 +18,7 @@ export class TournamentOnePageViewModel {
         loading: true,
     });
     pairingsOptionsTable = new CustomTableOptionsModel({
-        type: 'pairings',
+        type: 'pairingsTournament',
         items: [],
         loading: true,
     });

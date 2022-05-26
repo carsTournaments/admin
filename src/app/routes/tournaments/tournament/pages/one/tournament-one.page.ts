@@ -14,7 +14,8 @@ import {
 } from '@services';
 import { TournamentOnePageViewModel } from '../../models/tournament-one.view-model';
 import { AlertService } from '@services/material/alert/alert.service';
-import { Inscription } from '@models';
+import { Inscription, Pairing } from '@models';
+import { VoteNewComponent } from '@components';
 
 @Component({
     selector: 'page-tournament-one',
@@ -366,5 +367,20 @@ export class TournamentOnePage implements OnInit {
 
     onRowClickInscription(event: { rowData: Inscription; index: number }) {
         this.onDeleteInscription(event.rowData._id!);
+    }
+
+    async onRowClickPairing(event: { rowData: Pairing; index: number }) {
+        const alert = await this.alertService.openDialog(VoteNewComponent, {
+            car1: event.rowData.car1,
+            car2: event.rowData.car2,
+            round: event.rowData.round._id!,
+            tournament: this.vm.id,
+            pairing: event.rowData._id!,
+        });
+        alert.subscribe((data) => {
+            if (data) {
+                this.getPairingsByTournament();
+            }
+        });
     }
 }
