@@ -1,0 +1,76 @@
+<form class="form-field-full" *ngIf="notification">
+    <div fxLayout="row wrap" class="matero-row">
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    name="title"
+                    [(ngModel)]="notification.title"
+                    placeholder="Introduce el nombre"
+                    required
+                />
+                <mat-label>Titulo</mat-label>
+            </mat-form-field>
+        </div>
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    name="titleButton"
+                    [(ngModel)]="titleButton"
+                    placeholder="Introduce el titulo del boton"
+                />
+                <mat-label>Titulo boton</mat-label>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    name="link"
+                    [(ngModel)]="link"
+                    placeholder="Introduce el link"
+                />
+                <mat-label>Enlace</mat-label>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-select
+                    name="linkType"
+                    [(ngModel)]="linkType"
+                    placeholder="Selecciona"
+                >
+                    <mat-option value="">Selecciona</mat-option>
+                    <mat-option value="internal">Interno</mat-option>
+                    <mat-option value="external">Externo</mat-option>
+                </mat-select>
+                <mat-label>Tipo</mat-label>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <textarea
+                    matInput
+                    name="message"
+                    [(ngModel)]="notification.message"
+                    placeholder="Introduce el mensaje"
+                    required
+                ></textarea>
+            </mat-form-field>
+
+            <br />
+
+            <button
+                mat-raised-button
+                class="bg-red-800 text-white w-full"
+                (click)="setAndSave()"
+            >
+                Enviar notificacion
+            </button>
+        </div>
+    </div>
+</form>

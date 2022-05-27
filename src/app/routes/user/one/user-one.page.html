@@ -1,0 +1,35 @@
+<div class="container">
+    <page-header [title]="vm.title"></page-header>
+
+    <mat-card class="mat-card-wrapper">
+        <mat-tab-group>
+            <mat-tab label="Info">
+                <user-one-edit [item]="vm.item"></user-one-edit>
+            </mat-tab>
+
+            <mat-tab label="Opciones">
+                <options-list
+                    [options]="vm.options"
+                    [item]="vm.item"
+                    (action)="actionForOption($event)"
+                ></options-list>
+            </mat-tab>
+
+            <mat-tab label="Coches">
+                <custom-table
+                    *ngIf="!vm.carsOptionsTable.loading"
+                    [options]="vm.carsOptionsTable"
+                >
+                </custom-table>
+            </mat-tab>
+
+            <mat-tab label="Notificaciones">
+                <user-notifications-send
+                    [notification]="vm.notification"
+                    (save)="createNotification($event)"
+                >
+                </user-notifications-send>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>

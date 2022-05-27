@@ -1,0 +1,19 @@
+<div class="container">
+    <page-header [title]="vm.title"></page-header>
+
+    <mat-card class="mat-card-wrapper">
+        <mat-tab-group>
+            <mat-tab label="Info">
+                <report-one-edit [item]="vm.item"></report-one-edit>
+            </mat-tab>
+
+            <mat-tab label="Opciones">
+                <options-list
+                    [options]="vm.options"
+                    [item]="vm.item"
+                    (action)="actionForOption($event)"
+                ></options-list>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>

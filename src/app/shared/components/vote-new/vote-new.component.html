@@ -1,0 +1,24 @@
+<mat-form-field appearance="outline">
+    <mat-select
+        placeholder="Selecciona"
+        name="dateSelected"
+        [(ngModel)]="carIdSelected"
+    >
+        <mat-option [value]="car1._id"
+            >{{ car1.brand.name + ' ' + car1.model }}
+        </mat-option>
+        <mat-option [value]="car1._id"
+            >{{ car2.brand.name + ' ' + car2.model }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<button
+    mat-raised-button
+    color="primary"
+    [disabled]="carIdSelected === ''"
+    class="w-full"
+    (click)="createVote()"
+>
+    Votar
+</button>

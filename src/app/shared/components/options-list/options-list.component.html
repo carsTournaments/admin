@@ -1,0 +1,19 @@
+<mat-nav-list>
+    <div fxLayout="row wrap" class="matero-row">
+        <ng-container *ngFor="let option of options">
+            <div [fxFlex.gt-sm]="options.length > 1 ? 50 : 100" [fxFlex]="100">
+                <a
+                    mat-list-item
+                    (click)="action.emit(option)"
+                    [disabled]="option.disabled"
+                >
+                    {{ option.name }}
+                    <mat-icon class="float-right-absolute">
+                        chevron_right
+                    </mat-icon>
+                </a>
+                <mat-divider inset></mat-divider>
+            </div>
+        </ng-container>
+    </div>
+</mat-nav-list>

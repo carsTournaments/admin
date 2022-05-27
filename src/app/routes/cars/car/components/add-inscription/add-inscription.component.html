@@ -1,0 +1,31 @@
+<form class="form-field-full">
+    <div fxLayout="row wrap" class="matero-row">
+        <div [fxFlex.gt-sm]="70" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-select
+                    placeholder="Selecciona"
+                    name="dateSelected"
+                    [(ngModel)]="vm.tournamentIdSelected"
+                >
+                    <mat-option
+                        [value]="date._id"
+                        *ngFor="let date of vm.tournaments"
+                    >
+                        {{ date.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div [fxFlex.gt-sm]="30" [fxFlex]="100" class="matero-col">
+            <button
+                mat-raised-button
+                color="primary"
+                [disabled]="vm.tournamentIdSelected === ''"
+                class="w-full"
+                (click)="createInscription()"
+            >
+                Inscribirse
+            </button>
+        </div>
+    </div>
+</form>

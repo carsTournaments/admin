@@ -1,0 +1,24 @@
+<nav aria-label="breadcrumb">
+    <ol class="matero-breadcrumb">
+        <li class="matero-breadcrumb-item">
+            <a routerLink="/dashboard" class="link"> Inicio</a>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+
+            <ng-container
+                *ngFor="
+                    let item of breadcrumbs;
+                    trackBy: trackByNavlink;
+                    first as isFirst
+                "
+            >
+                <a [routerLink]="item.url" class="link" *ngIf="isFirst">{{
+                    item.label
+                }}</a>
+                <ng-container *ngIf="!isFirst && item.label">
+                    <mat-icon class="chevron">chevron_right</mat-icon>
+                    <span class="link">{{ item.label }}</span>
+                </ng-container>
+            </ng-container>
+        </li>
+    </ol>
+</nav>

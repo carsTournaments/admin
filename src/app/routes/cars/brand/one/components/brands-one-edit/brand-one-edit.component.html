@@ -1,0 +1,51 @@
+<form class="form-field-full" *ngIf="item">
+    <div fxLayout="row wrap" class="matero-row">
+        <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    name="name"
+                    [(ngModel)]="item.name"
+                    placeholder="Nombre"
+                    required
+                />
+                <mat-label>Nombre</mat-label>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    name="country"
+                    [(ngModel)]="item.country"
+                    placeholder="Pais"
+                    required
+                />
+                <mat-label>Pais</mat-label>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    name="continent"
+                    [(ngModel)]="item.continent"
+                    placeholder="Pais"
+                    required
+                />
+                <mat-label>Continente</mat-label>
+            </mat-form-field>
+        </div>
+        <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+            <button
+                mat-raised-button
+                class="bg-red-800 text-white w-full"
+                (click)="submit.emit()"
+            >
+                Guardar
+            </button>
+        </div>
+    </div>
+</form>

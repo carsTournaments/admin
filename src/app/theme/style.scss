@@ -1,0 +1,8 @@
+@use 'style/reboot';
+@use 'style/misc';
+@use 'style/colors';
+
+float-right {
+    float: right;
+    line-height: 0;
+}

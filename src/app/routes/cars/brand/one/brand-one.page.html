@@ -1,0 +1,34 @@
+<div class="container">
+    <page-header [title]="vm.title"></page-header>
+
+    <mat-card class="mat-card-wrapper">
+        <mat-tab-group>
+            <mat-tab label="Info">
+                <brand-one-edit
+                    [item]="vm.item"
+                    (submit)="onSubmit()"
+                ></brand-one-edit>
+            </mat-tab>
+
+            <mat-tab label="Opciones">
+                <options-list
+                    [options]="vm.options"
+                    [item]="vm.item"
+                    (action)="actionForOption($event)"
+                ></options-list>
+            </mat-tab>
+
+            <mat-tab label="Imagen">
+                <add-image
+                    [id]="vm.id"
+                    [image]="vm.item.image!"
+                    [type]="'brand'"
+                ></add-image>
+            </mat-tab>
+
+            <mat-tab label="Coches">
+                <custom-table [options]="vm.carsOptionsTable"></custom-table>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>

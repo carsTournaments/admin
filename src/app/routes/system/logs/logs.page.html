@@ -1,0 +1,78 @@
+<div class="container">
+    <page-header [title]="vm.title"></page-header>
+    <mat-card class="p-b-0">
+        <div fxLayout="row wrap" class="matero-row form-field-full">
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Mes</mat-label>
+                    <input
+                        matInput
+                        name="month"
+                        [(ngModel)]="vm.logsBody.month"
+                        (change)="onChangeMonth()"
+                    />
+                </mat-form-field>
+            </div>
+            <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Año</mat-label>
+                    <input
+                        matInput
+                        name="year"
+                        [(ngModel)]="vm.logsBody.year"
+                        (change)="onChangeYear()"
+                    />
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-card>
+
+    <div fxLayout="row wrap" class="matero-row form-field-full">
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-card>
+                <!-- METHODS -->
+                <h3>Metodos</h3>
+                <hr />
+                <chart-bar
+                    *ngIf="!vm.optionsMethods.loading"
+                    [data]="vm.optionsMethods"
+                ></chart-bar>
+            </mat-card>
+        </div>
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-card>
+                <!-- ROLES -->
+                <h3>Roles</h3>
+                <hr />
+                <chart-bar
+                    *ngIf="!vm.optionsRoles.loading"
+                    [data]="vm.optionsRoles"
+                ></chart-bar>
+            </mat-card>
+        </div>
+    </div>
+
+    <mat-card>
+        <div fxLayout="row wrap" class="matero-row form-field-full">
+            <!-- DAYS -->
+            <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+                <h3>Peticiones por dia</h3>
+                <hr />
+                <chart-bar
+                    *ngIf="!vm.optionsDays.loading"
+                    [data]="vm.optionsDays"
+                ></chart-bar>
+            </div>
+        </div>
+    </mat-card>
+    <mat-card>
+        <div fxLayout="row wrap" class="matero-row form-field-full">
+            <!-- URLS -->
+            <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+                <h3>Top Urls</h3>
+                <hr />
+                <custom-table [options]="vm.urlsOptionsTable"></custom-table>
+            </div>
+        </div>
+    </mat-card>
+</div>

@@ -1,0 +1,18 @@
+<mat-card *ngIf="optionsChart" class="mat-card-wrapper">
+    <mat-card-subtitle>
+        Trafico
+        <mat-select
+            class="float-right-absolute text-right"
+            placeholder="Selecciona"
+            name="dateSelected"
+            [(ngModel)]="dateSelected"
+            (selectionChange)="onChangeSelect()"
+        >
+            <mat-option [value]="date.value" *ngFor="let date of dataDate">
+                {{ date.name }}
+            </mat-option>
+        </mat-select>
+    </mat-card-subtitle>
+    <mat-divider></mat-divider>
+    <chart-bar *ngIf="!optionsChart.loading" [data]="optionsChart"></chart-bar>
+</mat-card>

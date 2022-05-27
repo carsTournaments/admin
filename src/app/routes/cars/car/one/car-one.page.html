@@ -1,0 +1,66 @@
+<div class="container">
+    <page-header [title]="vm.title"></page-header>
+    <mat-card>
+        <mat-tab-group>
+            <mat-tab label="Info">
+                <car-one-edit [item]="vm.item" [edit]="true"> </car-one-edit>
+            </mat-tab>
+
+            <mat-tab label="Opciones">
+                <options-list
+                    [options]="vm.options"
+                    [item]="vm.item"
+                    (action)="actionForOption($event)"
+                ></options-list>
+            </mat-tab>
+
+            <mat-tab label="Imagen">
+                <add-image
+                    [id]="vm.id"
+                    [image]="vm.item.image!"
+                    [type]="'car'"
+                ></add-image>
+            </mat-tab>
+
+            <mat-tab
+                label="Likes recibidos"
+                *ngIf="vm.likesReceivedOptionsTable.items.length > 0"
+            >
+                <custom-table
+                    [options]="vm.likesReceivedOptionsTable"
+                ></custom-table>
+            </mat-tab>
+
+            <mat-tab
+                label="Inscripciones"
+                *ngIf="vm.inscriptionsOptionsTable.items.length > 0"
+            >
+                <custom-table
+                    [options]="vm.inscriptionsOptionsTable"
+                ></custom-table>
+            </mat-tab>
+
+            <mat-tab label="Nueva inscripcion">
+                <car-one-add-inscription
+                    [carId]="vm.id"
+                    [driverId]="vm.item.driver._id"
+                    (onInscription)="onInscription()"
+                ></car-one-add-inscription>
+            </mat-tab>
+
+            <mat-tab
+                label="Votos"
+                *ngIf="vm.votesOptionsTable.items.length > 0"
+            >
+                <custom-table [options]="vm.votesOptionsTable"></custom-table>
+            </mat-tab>
+
+            <mat-tab
+                label="Torneos ganados"
+                *ngIf="vm.winnersOptionsTable.items.length > 0"
+            >
+                <custom-table [options]="vm.winnersOptionsTable"></custom-table>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>
