@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
-import { LikeService } from '@services';
+import { AlertService, LikeService, SnackBarService } from '@services';
 import { LikeListViewModel } from './model/like-list.view-model';
 
 @Component({
@@ -9,7 +9,11 @@ import { LikeListViewModel } from './model/like-list.view-model';
 })
 export class LikeListPage implements OnInit {
     vm = new LikeListViewModel();
-    constructor(private likesService: LikeService) {}
+    constructor(
+        private likesService: LikeService,
+        private alertService: AlertService,
+        private snackBarService: SnackBarService
+    ) {}
 
     ngOnInit() {
         this.getAll();
@@ -34,7 +38,10 @@ export class LikeListPage implements OnInit {
                 }
                 this.vm.optionsTable.loading = false;
             },
-            error: () => (this.vm.optionsTable.loading = false),
+            error: (e) => {
+                this.vm.optionsTable.loading = false;
+                this.snackBarService.open(e);
+            },
         });
     }
 
@@ -63,7 +70,7 @@ export class LikeListPage implements OnInit {
                 this.vm.optionsTable.loading = true;
                 this.likesService.createFake(Number(total)).subscribe({
                     next: () => {
-                        alert('Likes creados');
+                        this.snackBarService.open('Likes creados');
                         this.getAll(true);
                         this.vm.optionsTable.loading = false;
                     },
@@ -84,7 +91,7 @@ export class LikeListPage implements OnInit {
                 this.vm.optionsTable.loading = true;
                 this.likesService.cleanLikes().subscribe({
                     next: () => {
-                        alert('Likes limpiados');
+                        this.snackBarService.open('Likes limpiados');
                         this.getAll(true);
                         this.vm.optionsTable.loading = false;
                     },
@@ -101,35 +108,27 @@ export class LikeListPage implements OnInit {
 
     async deleteAll() {
         try {
-            if (
-                confirm('¿Está seguro de eliminar todos los emparejamientos?')
-            ) {
-                this.vm.optionsTable.loading = true;
-                this.likesService.deleteAll().subscribe({
-                    next: () => {
-                        alert('Todos los emparejamientos eliminados');
-                        this.getAll();
-                    },
-                    error: (error) => alert(error),
-                });
-                this.vm.optionsTable.loading = false;
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    onChangeOrder(order: string) {
-        if (
-            !this.vm.likeBody.order ||
-            this.vm.likeBody.order.filter((item: string) => item === 'desc')
-                .length > 0
-        ) {
-            this.vm.likeBody.order = [order, 'asc'];
-            this.getAll();
-        } else {
-            this.vm.likeBody.order = [order, 'desc'];
-            this.getAll();
+            const alert = await this.alertService.showConfirmation(
+                'Eliminar todos los likes',
+                'Vas a eliminar todos los Likes, ¿estas seguro?'
+            );
+            alert.subscribe((res) => {
+                if (res) {
+                    this.vm.optionsTable.loading = true;
+                    this.likesService.deleteAll().subscribe({
+                        next: () => {
+                            this.snackBarService.open(
+                                'Todos los emparejamientos eliminados'
+                            );
+                            this.getAll();
+                        },
+                        error: (error) => this.snackBarService.open(error),
+                    });
+                    this.vm.optionsTable.loading = false;
+                }
+            });
+        } catch (error: any) {
+            this.snackBarService.open(error);
         }
     }
 

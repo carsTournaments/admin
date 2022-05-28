@@ -1,6 +1,10 @@
-import { environment } from '@env/environment';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
-import * as moment from 'moment';
+import {
+    getChip,
+    getDateTimeago,
+    getImageRounded,
+    getStateChip,
+} from './custom-table.helper';
 
 export class CustomTableColumnsModel {
     defaults = {
@@ -8,13 +12,15 @@ export class CustomTableColumnsModel {
             header: 'Creado',
             field: 'created',
             sortable: true,
-            formatter: (item: any) => this.getDateTimeago(item.created!),
+            width: '150px',
+            formatter: (item: any) => getDateTimeago(item.created!),
         },
         updated: {
             header: 'Actualizado',
             field: 'updated',
             sortable: true,
-            formatter: (item: any) => this.getDateTimeago(item.updated!),
+            width: '150px',
+            formatter: (item: any) => getDateTimeago(item.updated!),
         },
     };
     private data: any = {
@@ -22,14 +28,14 @@ export class CustomTableColumnsModel {
             {
                 header: '#',
                 field: 'image.url',
-                formatter: (item: any) => this.getImageRounded(item.image?.url),
+                formatter: (item: any) => getImageRounded(item.image?.url),
             },
             { header: 'Nombre', field: 'name' },
             {
                 header: 'Pais',
                 field: 'country',
                 formatter: (item: any) =>
-                    this.getChip(item.country, false, null, 'dark'),
+                    getChip(item.country, false, null, 'dark'),
             },
             { header: 'Continente', field: 'continent' },
             {
@@ -45,21 +51,21 @@ export class CustomTableColumnsModel {
                 header: '#',
                 field: 'image.url',
                 width: '75px',
-                formatter: (item: any) => this.getImageRounded(item.image?.url),
+                formatter: (item: any) => getImageRounded(item.image?.url),
             },
             {
                 header: 'Conductor',
                 field: 'driver.name',
                 width: '175px',
                 formatter: (item: any) =>
-                    this.getChip(item.driver?.name, false, null, 'dark'),
+                    getChip(item.driver?.name, false, null, 'dark'),
             },
             {
                 header: 'Marca',
                 field: 'brand.name',
                 width: '200px',
                 formatter: (item: any) =>
-                    this.getChip(item.brand.name, true, item.brand?.image?.url),
+                    getChip(item.brand.name, true, item.brand?.image?.url),
             },
             {
                 header: 'Modelo',
@@ -76,14 +82,14 @@ export class CustomTableColumnsModel {
                 field: 'fuel',
                 sortable: true,
                 formatter: (item: any) =>
-                    this.getChip(item.fuel, false, null, 'info'),
+                    getChip(item.fuel, false, null, 'info'),
             },
             {
                 header: 'Traccion',
                 field: 'traction',
                 sortable: true,
                 formatter: (item: any) =>
-                    this.getChip(item.traction, false, null, 'dark'),
+                    getChip(item.traction, false, null, 'dark'),
             },
             {
                 header: 'CC',
@@ -121,21 +127,21 @@ export class CustomTableColumnsModel {
                 header: '#',
                 field: 'image.url',
                 width: '75px',
-                formatter: (item: any) => this.getImageRounded(item.image?.url),
+                formatter: (item: any) => getImageRounded(item.image?.url),
             },
             {
                 header: 'Conductor',
                 field: 'driver.name',
                 width: '175px',
                 formatter: (item: any) =>
-                    this.getChip(item.driver.name, false, null, 'dark'),
+                    getChip(item.driver.name, false, null, 'dark'),
             },
             {
                 header: 'Marca',
                 field: 'brand.name',
                 width: '200px',
                 formatter: (item: any) =>
-                    this.getChip(item.brand.name, true, item.brand?.image?.url),
+                    getChip(item.brand.name, true, item.brand?.image?.url),
             },
             {
                 header: 'Modelo',
@@ -166,7 +172,7 @@ export class CustomTableColumnsModel {
                 header: '#',
                 field: 'image.url',
                 width: '75px',
-                formatter: (item: any) => this.getImageRounded(item.url),
+                formatter: (item: any) => getImageRounded(item.url),
             },
             {
                 header: 'Titulo',
@@ -187,11 +193,16 @@ export class CustomTableColumnsModel {
                 header: 'Tipo',
                 field: 'type',
                 sortable: true,
-                type: 'tag',
-                tag: {
-                    car: { text: 'Coche', color: 'red-100' },
-                    tournament: { text: 'Torneo', color: 'green-100' },
-                    brand: { text: 'Marca', color: 'orange-100' },
+                formatter: (item: any) => {
+                    let data;
+                    if (item.type === 'brand') {
+                        data = getChip('Marca', false, null, 'warning');
+                    } else if (item.type === 'car') {
+                        data = getChip('Coche', false, null, 'info');
+                    } else if (item.type === 'tournament') {
+                        data = getChip('Coche', false, null, 'success');
+                    }
+                    return data;
                 },
             },
             this.defaults.created,
@@ -202,7 +213,7 @@ export class CustomTableColumnsModel {
                 field: 'car',
                 width: '220px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.car.brand?.name + ' ' + item.car.model,
                         true,
                         item.car.image?.url
@@ -213,9 +224,9 @@ export class CustomTableColumnsModel {
             {
                 header: 'Torneo',
                 field: 'tournament.name',
-                width: '200px',
+                width: '250px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.tournament?.name,
                         true,
                         item.tournament.image?.url,
@@ -230,7 +241,7 @@ export class CustomTableColumnsModel {
                 field: 'tournament.name',
                 width: '250px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.tournament?.name,
                         true,
                         item.tournament.image?.url,
@@ -241,8 +252,7 @@ export class CustomTableColumnsModel {
                 header: 'Torneo',
                 field: 'tournament.status',
                 width: '200px',
-                formatter: (item: any) =>
-                    this.getStateChip(item.tournament?.status),
+                formatter: (item: any) => getStateChip(item.tournament?.status),
             },
             this.defaults.created,
         ],
@@ -288,7 +298,7 @@ export class CustomTableColumnsModel {
                 field: 'car',
                 width: '220px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.car.brand?.name + ' ' + item.car.model,
                         true,
                         item.car.image?.url
@@ -298,6 +308,20 @@ export class CustomTableColumnsModel {
                 header: 'Usuario',
                 field: 'user',
                 formatter: (item: any) => item.user?.name ?? 'Anonimo',
+            },
+            this.defaults.created,
+        ],
+        likesUser: [
+            {
+                header: 'Coche',
+                field: 'car',
+                width: '220px',
+                formatter: (item: any) =>
+                    getChip(
+                        item.car.brand?.name + ' ' + item.car.model,
+                        true,
+                        item.car.image?.url
+                    ),
             },
             this.defaults.created,
         ],
@@ -318,7 +342,7 @@ export class CustomTableColumnsModel {
                 field: 'car1',
                 width: '220px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.car1.brand?.name + ' ' + item.car1.model,
                         true,
                         item.car1.image?.url
@@ -330,7 +354,7 @@ export class CustomTableColumnsModel {
                 field: 'car2',
                 width: '220px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.car2.brand?.name + ' ' + item.car2.model,
                         true,
                         item.car2.image?.url
@@ -342,7 +366,7 @@ export class CustomTableColumnsModel {
                 width: '220px',
                 formatter: (item: any) =>
                     item.winner
-                        ? this.getChip(
+                        ? getChip(
                               item.car2.brand?.name + ' ' + item.car2.model,
                               true,
                               item.car2.image?.url,
@@ -354,9 +378,9 @@ export class CustomTableColumnsModel {
             {
                 header: 'Torneo',
                 field: 'tournament.name',
-                width: '200px',
+                width: '250px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.tournament?.name,
                         true,
                         item.tournament.image?.url,
@@ -371,7 +395,7 @@ export class CustomTableColumnsModel {
                 field: 'car1',
                 width: '220px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.car1.brand?.name + ' ' + item.car1.model,
                         true,
                         item.car1.image?.url
@@ -383,7 +407,7 @@ export class CustomTableColumnsModel {
                 field: 'car2',
                 width: '220px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.car2.brand?.name + ' ' + item.car2.model,
                         true,
                         item.car2.image?.url
@@ -395,7 +419,7 @@ export class CustomTableColumnsModel {
                 width: '220px',
                 formatter: (item: any) =>
                     item.winner
-                        ? this.getChip(
+                        ? getChip(
                               item.car2.brand?.name + ' ' + item.car2.model,
                               true,
                               item.car2.image?.url,
@@ -412,14 +436,14 @@ export class CustomTableColumnsModel {
                 field: 'userReporter.name',
                 width: '200px',
                 formatter: (item: any) =>
-                    this.getChip(item.userReporter.name, false, null, 'dark'),
+                    getChip(item.userReporter.name, false, null, 'dark'),
             },
             {
                 header: 'Coche Reportado',
                 field: 'carReported',
                 width: '200px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.carReported.brand.name,
                         true,
                         item.carReported?.image?.url
@@ -430,7 +454,7 @@ export class CustomTableColumnsModel {
                 field: 'userReported.name',
                 width: '200px',
                 formatter: (item: any) =>
-                    this.getChip(item.userReporter.name, false, null, 'dark'),
+                    getChip(item.userReporter.name, false, null, 'dark'),
             },
             {
                 header: 'Estado',
@@ -449,9 +473,9 @@ export class CustomTableColumnsModel {
             {
                 header: 'Torneo',
                 field: 'tournament.name',
-                width: '200px',
+                width: '250px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.tournament?.name,
                         true,
                         item.tournament.image?.url
@@ -461,19 +485,19 @@ export class CustomTableColumnsModel {
                 header: 'Fecha Inicio',
                 field: 'startDate',
                 sortable: true,
-                formatter: (item: any) => this.getDateTimeago(item.startDate),
+                formatter: (item: any) => getDateTimeago(item.startDate),
             },
 
             {
                 header: 'Fecha Fin',
                 field: 'endDate',
                 sortable: true,
-                formatter: (item: any) => this.getDateTimeago(item.endDate),
+                formatter: (item: any) => getDateTimeago(item.endDate),
             },
             {
                 header: 'Estado',
                 field: 'status',
-                formatter: (item: any) => this.getStateChip(item.status),
+                formatter: (item: any) => getStateChip(item.status),
             },
             this.defaults.created,
         ],
@@ -492,31 +516,31 @@ export class CustomTableColumnsModel {
                 header: '#',
                 field: 'image.url',
                 width: '75px',
-                formatter: (item: any) => this.getImageRounded(item.image?.url),
+                formatter: (item: any) => getImageRounded(item.image?.url),
             },
             {
                 header: 'Nombre',
                 field: 'name',
                 sortable: true,
-                width: '150px',
+                width: '220px',
             },
             {
                 header: 'Estado',
                 field: 'status',
                 sortable: true,
-                formatter: (item: any) => this.getStateChip(item.status),
+                formatter: (item: any) => getStateChip(item.status),
             },
             {
                 header: 'Fecha Inicio',
                 field: 'startDate',
                 sortable: true,
-                formatter: (item: any) => this.getDateTimeago(item.startDate),
+                formatter: (item: any) => getDateTimeago(item.startDate),
             },
             {
                 header: 'Fecha Fin',
                 field: 'endDate',
                 sortable: true,
-                formatter: (item: any) => this.getDateTimeago(item.endDate),
+                formatter: (item: any) => getDateTimeago(item.endDate),
             },
             {
                 header: 'Duracion',
@@ -558,7 +582,7 @@ export class CustomTableColumnsModel {
                 header: '#',
                 field: 'image.url',
                 width: '75px',
-                formatter: (item: any) => this.getImageRounded(item.image?.url),
+                formatter: (item: any) => getImageRounded(item.image?.url),
             },
             {
                 header: 'Nombre',
@@ -569,13 +593,13 @@ export class CustomTableColumnsModel {
                 header: 'Estado',
                 field: 'status',
                 sortable: true,
-                formatter: (item: any) => this.getStateChip(item.status),
+                formatter: (item: any) => getStateChip(item.status),
             },
             {
                 header: 'Fecha Inicio',
                 field: 'startDate',
                 sortable: true,
-                formatter: (item: any) => this.getDateTimeago(item.startDate),
+                formatter: (item: any) => getDateTimeago(item.startDate),
             },
             {
                 header: 'Inscritos',
@@ -597,18 +621,23 @@ export class CustomTableColumnsModel {
                 sortable: true,
                 width: '250px',
                 formatter: (item: any) =>
-                    this.getChip(item.email, false, null, 'dark'),
+                    getChip(item.email, false, null, 'dark'),
             },
             {
                 header: 'Rol',
                 field: 'role',
                 sortable: true,
-                type: 'tag',
                 width: '100px',
-                tag: {
-                    ADMIN: { text: 'Admin', color: 'red-100' },
-                    USER: { text: 'Usuario', color: 'green-100' },
-                    FAKE: { text: 'Fake', color: 'orange-100' },
+                formatter: (item: any) => {
+                    let data;
+                    if (item.role === 'USER') {
+                        data = getChip('Usuario', false, null, 'success');
+                    } else if (item.role === 'ADMIN') {
+                        data = getChip('Admin', false, null, 'primary');
+                    } else if (item.role === 'FAKE') {
+                        data = getChip('Fake', false, null, 'warning');
+                    }
+                    return data;
                 },
             },
             {
@@ -650,7 +679,7 @@ export class CustomTableColumnsModel {
                 sortable: true,
                 width: '250px',
                 formatter: (item: any) =>
-                    this.getChip(item.email, false, null, 'dark'),
+                    getChip(item.email, false, null, 'dark'),
             },
             {
                 header: 'Coches',
@@ -681,9 +710,9 @@ export class CustomTableColumnsModel {
             {
                 header: 'Torneo',
                 field: 'pairing.round.tournament.name',
-                width: '220px',
+                width: '250px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.pairing.round?.tournament.name,
                         true,
                         item.pairing.round?.tournament.image?.url,
@@ -696,7 +725,7 @@ export class CustomTableColumnsModel {
                 field: 'car',
                 width: '220px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.car.brand?.name + ' ' + item.car.model,
                         true,
                         item.car.image?.url
@@ -708,9 +737,9 @@ export class CustomTableColumnsModel {
             {
                 header: 'Oro',
                 field: 'gold',
-                width: '220px',
+                width: '250px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         `${item.gold?.brand.name} ${item.gold?.model}`,
                         true,
                         item.gold?.image?.url,
@@ -720,9 +749,9 @@ export class CustomTableColumnsModel {
             {
                 header: 'Plata',
                 field: 'silver',
-                width: '220px',
+                width: '250px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         `${item.silver?.brand.name} ${item.silver?.model}`,
                         true,
                         item.silver?.image?.url,
@@ -732,9 +761,9 @@ export class CustomTableColumnsModel {
             {
                 header: 'Bronze',
                 field: 'bronze',
-                width: '220px',
+                width: '250px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         `${item.bronze?.brand.name} ${item.bronze?.model}`,
                         true,
                         item.bronze?.image?.url,
@@ -744,9 +773,9 @@ export class CustomTableColumnsModel {
             {
                 header: 'Torneo',
                 field: 'tournament.name',
-                width: '220px',
+                width: '250px',
                 formatter: (item: any) =>
-                    this.getChip(
+                    getChip(
                         item.tournament.name,
                         true,
                         item.tournament.image?.url,
@@ -759,71 +788,5 @@ export class CustomTableColumnsModel {
 
     getColumns(type: string): MtxGridColumn[] {
         return this.data[type];
-    }
-
-    private getChip(
-        text: string,
-        imageState = false,
-        image = null,
-        color = 'primary'
-    ): string {
-        if (text) {
-            let data;
-            if (imageState) {
-                data = `
-                <div class="chip chip-${color}">
-                    <img
-                        class="image-table text-truncate"
-                        src="${this.getImageOrDefault(image!)}"
-                    />
-                    ${text}
-                </div>
-            `;
-            } else {
-                data = `
-                <div class="chip chip-${color}">
-                    ${text}
-                </div>
-            `;
-            }
-            return data;
-        } else {
-            return '';
-        }
-    }
-
-    private getImageRounded(image: string) {
-        const url = this.getImageOrDefault(image);
-        return `<img class="image-table" src="${url}" />`;
-    }
-
-    private getImageOrDefault(image: string) {
-        return image
-            ? `${environment.urlImages}/${image}`
-            : 'assets/images/no-image.png';
-    }
-
-    private getStateChip(state: string): string {
-        if (state === 'InProgress') {
-            return this.getChip('En curso', false, null, 'warning');
-        } else if (state === 'Completed') {
-            return this.getChip('Completado', false, null, 'success');
-        } else if (state === 'Todo') {
-            return this.getChip('Proximamente', false, null, 'info');
-        } else if (state === 'Cancelled') {
-            return this.getChip('Cancelado', false, null, 'primary');
-            return '';
-        } else {
-            return '';
-        }
-    }
-
-    private getDateTimeago(date: string) {
-        if (date) {
-            const data = moment(date).locale('es').fromNow(false);
-            return data.charAt(0).toUpperCase() + data.slice(1);
-        } else {
-            return '';
-        }
     }
 }

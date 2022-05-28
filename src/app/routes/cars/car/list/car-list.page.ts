@@ -80,7 +80,7 @@ export class CarListPage implements OnInit {
         this.carService.createFake({ total: Number(total) }).subscribe({
             next: (response) => {
                 this.getAll();
-                alert(response.message);
+                this.snackBarService.open(response.message);
             },
             error: (error) => console.error(error),
         });

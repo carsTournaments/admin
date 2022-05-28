@@ -75,7 +75,7 @@ export class BrandOnePage implements OnInit {
         if (confirm('¿Está seguro de eliminar la marca?')) {
             this.brandService.delete(this.vm.id).subscribe({
                 next: () => {
-                    alert('Marca eliminada');
+                    this.snackBarService.open('Marca eliminada');
                     this.router.navigate(['/brands']);
                 },
                 error: (e) => console.error(e),

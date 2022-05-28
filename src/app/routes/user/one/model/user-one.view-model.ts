@@ -22,5 +22,10 @@ export class UserOnePageViewModel {
         items: [],
         loading: true,
     });
+    likesSentOptionsTable = new CustomTableOptionsModel({
+        type: 'likesUser',
+        items: [],
+        loading: true,
+    });
     notification = new Notification();
 }
