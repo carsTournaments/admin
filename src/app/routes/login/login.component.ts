@@ -36,9 +36,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { filter } from 'rxjs/operators';
 import { AuthService } from '@core/auth';
+import { SnackBarService } from '@services';
 
 @Component({
     selector: 'app-login',
@@ -56,7 +56,8 @@ export class LoginComponent {
     constructor(
         private fb: FormBuilder,
         private router: Router,
-        private auth: AuthService
+        private auth: AuthService,
+        private snackbarService: SnackBarService
     ) {}
 
     get email() {
@@ -79,19 +80,10 @@ export class LoginComponent {
             .pipe(filter((authenticated) => authenticated))
             .subscribe({
                 next: () => this.router.navigateByUrl('/'),
-                error: (errorRes: HttpErrorResponse) => {
-                    if (errorRes.status === 422) {
-                        const form = this.loginForm;
-                        const errors = errorRes.error.errors;
-                        Object.keys(errors).forEach((key) => {
-                            form.get(
-                                key === 'email' ? 'username' : key
-                            )?.setErrors({
-                                remote: errors[key][0],
-                            });
-                        });
-                    }
+                error: (error) => {
+                    console.log(error);
                     this.isSubmitting = false;
+                    this.snackbarService.open(error);
                 },
             });
     }

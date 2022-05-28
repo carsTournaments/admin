@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {
-    HttpErrorResponse,
     HttpEvent,
     HttpHandler,
     HttpInterceptor,
@@ -27,16 +26,12 @@ export class TokenInterceptor implements HttpInterceptor {
                 })
             )
             .pipe(
-                catchError((error: HttpErrorResponse) => {
-                    if (error.error instanceof ErrorEvent) {
-                        console.error('Error Event', error);
-                        return throwError(() => new Error(error.message));
-                    } else {
-                        if (error.status === 999) {
-                            this.tokenService.clear();
-                        }
-                        return throwError(() => new Error(error.message));
+                catchError((err) => {
+                    if (err.status === 999) {
+                        this.tokenService.clear();
                     }
+                    const error = err.error.message || err.statusText;
+                    return throwError(error);
                 })
             );
     }
