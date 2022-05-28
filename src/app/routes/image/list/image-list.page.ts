@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
+import { AlertService, SnackBarService } from '@services';
 import { ImageService } from '@services/api/image/image.service';
 import { ImageListViewModel } from './model/image-list.view-model';
 
@@ -9,7 +10,11 @@ import { ImageListViewModel } from './model/image-list.view-model';
 })
 export class ImageListPage implements OnInit {
     vm = new ImageListViewModel();
-    constructor(private imageService: ImageService) {}
+    constructor(
+        private imageService: ImageService,
+        private snackBarService: SnackBarService,
+        private alertService: AlertService
+    ) {}
 
     ngOnInit() {
         this.getAll();
@@ -43,10 +48,10 @@ export class ImageListPage implements OnInit {
         if (confirm('¿Está seguro de eliminar todas las imagenes?')) {
             this.imageService.deleteAll().subscribe({
                 next: () => {
-                    alert('Imagenes eliminadas');
+                    this.snackBarService.open('Imagenes eliminadas');
                     this.getAll();
                 },
-                error: (error) => console.error(error),
+                error: (error) => this.snackBarService.open(error),
             });
         }
     }
@@ -70,12 +75,18 @@ export class ImageListPage implements OnInit {
         this.getAll(true);
     }
 
-    onDeleteItem(id: string) {
-        if (confirm('¿Está seguro de eliminar la imagen?')) {
-            this.imageService.deleteOne(id).subscribe({
-                next: () => this.getAll(),
-                error: (error) => console.error(error),
-            });
-        }
+    async onDeleteItem(id: string) {
+        const alert = await this.alertService.showConfirmation(
+            'Eliminar imagen',
+            'Vas a eliminar la imagen, ¿estas seguro?'
+        );
+        alert.subscribe((data) => {
+            if (data) {
+                this.imageService.deleteOne(id).subscribe({
+                    next: () => this.getAll(),
+                    error: (error) => this.snackBarService.open(error),
+                });
+            }
+        });
     }
 }

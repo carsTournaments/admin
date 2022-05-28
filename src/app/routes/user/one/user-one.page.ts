@@ -7,6 +7,8 @@ import {
     CarService,
     SnackBarService,
     NotificationService,
+    AlertService,
+    LikeService,
 } from '@services';
 import { UserOnePageViewModel } from './model/user-one.view-model';
 
@@ -20,8 +22,10 @@ export class UserOnePage implements OnInit {
         private route: ActivatedRoute,
         private userService: UserService,
         private carService: CarService,
-        private router: Router,
+        private likeService: LikeService,
         private snackBarService: SnackBarService,
+        private alertService: AlertService,
+        private router: Router,
         private notificationService: NotificationService
     ) {}
 
@@ -30,7 +34,6 @@ export class UserOnePage implements OnInit {
         if (this.vm.id) {
             this.vm.title = 'Editar Usuario';
             this.vm.edit = true;
-            this.getCarsForUser();
             this.getOne();
         } else {
             this.vm.title = 'Nuevo Usuario';
@@ -46,9 +49,11 @@ export class UserOnePage implements OnInit {
                     this.vm.notification.fcms = [this.vm.item.fcm!];
                     this.vm.notification.users = [this.vm.item._id!];
                 }
+                this.getCarsForUser();
+                this.getLikesForUser();
             });
-        } catch (error) {
-            console.error(error);
+        } catch (error: any) {
+            this.snackBarService.open(error);
         }
     }
 
@@ -59,15 +64,54 @@ export class UserOnePage implements OnInit {
                 this.vm.carsOptionsTable.items = items;
                 this.vm.carsOptionsTable.loading = false;
             },
-            error: (e) => console.error(e),
+            error: (e) => {
+                this.snackBarService.open(e);
+                this.vm.carsOptionsTable.loading = false;
+            },
+        });
+    }
+
+    getLikesForUser() {
+        this.likeService.getAllSentForUser({ id: this.vm.id }).subscribe({
+            next: (items) => {
+                this.vm.likesSentOptionsTable.items = items;
+                this.vm.likesSentOptionsTable.loading = false;
+            },
+            error: (e) => {
+                this.snackBarService.open(e);
+                this.vm.likesSentOptionsTable.loading = false;
+            },
         });
     }
 
     actionForOption(option: ActionForOptionI) {
         switch (option.value) {
+            case 'deleteUser':
+                this.deleteUser();
+                break;
             default:
                 break;
         }
+    }
+
+    async deleteUser() {
+        const alert = await this.alertService.showConfirmation(
+            'Eliminar Usuario',
+            'Vas a eliminar el usuario asi como todo lo asociado a el, ¿estas seguro?'
+        );
+        alert.subscribe({
+            next: (data) => {
+                if (data) {
+                    this.userService.delete(this.vm.id).subscribe({
+                        next: () => {
+                            this.snackBarService.open('Usuario eliminado');
+                            this.router.navigate(['/users']);
+                        },
+                        error: (e) => this.snackBarService.open(e),
+                    });
+                }
+            },
+        });
     }
 
     createNotification(event: Notification) {

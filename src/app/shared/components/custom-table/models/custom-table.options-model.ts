@@ -10,6 +10,7 @@ export class CustomTableOptionsModel {
         | 'inscriptions'
         | 'inscriptionsCar'
         | 'likes'
+        | 'likesUser'
         | 'logs'
         | 'notifications'
         | 'pairings'
