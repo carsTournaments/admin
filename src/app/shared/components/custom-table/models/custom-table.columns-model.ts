@@ -1,7 +1,10 @@
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
+import { flags } from 'assets/json/flags';
 import {
     getChip,
+    getChipDriverWithImage,
     getDateTimeago,
+    getFlag,
     getImageRounded,
     getStateChip,
 } from './custom-table.helper';
@@ -35,7 +38,7 @@ export class CustomTableColumnsModel {
                 header: 'Pais',
                 field: 'country',
                 formatter: (item: any) =>
-                    getChip(item.country, false, null, 'dark'),
+                    getChip(item.country, false, '', 'dark'),
             },
             { header: 'Continente', field: 'continent' },
             {
@@ -53,24 +56,25 @@ export class CustomTableColumnsModel {
                 width: '75px',
                 formatter: (item: any) => getImageRounded(item.image?.url),
             },
-            {
-                header: 'Conductor',
-                field: 'driver.name',
-                width: '175px',
-                formatter: (item: any) =>
-                    getChip(item.driver?.name, false, null, 'dark'),
-            },
+
             {
                 header: 'Marca',
                 field: 'brand.name',
-                width: '200px',
+                width: '150px',
                 formatter: (item: any) =>
                     getChip(item.brand.name, true, item.brand?.image?.url),
             },
             {
                 header: 'Modelo',
                 field: 'model',
+                width: '150px',
                 sortable: true,
+            },
+            {
+                header: 'Conductor',
+                field: 'driver.name',
+                width: '175px',
+                formatter: (item: any) => getChipDriverWithImage(item.driver),
             },
             {
                 header: 'Año',
@@ -81,15 +85,14 @@ export class CustomTableColumnsModel {
                 header: 'Combustible',
                 field: 'fuel',
                 sortable: true,
-                formatter: (item: any) =>
-                    getChip(item.fuel, false, null, 'info'),
+                formatter: (item: any) => getChip(item.fuel, false, '', 'info'),
             },
             {
                 header: 'Traccion',
                 field: 'traction',
                 sortable: true,
                 formatter: (item: any) =>
-                    getChip(item.traction, false, null, 'dark'),
+                    getChip(item.traction, false, '', 'dark'),
             },
             {
                 header: 'CC',
@@ -130,13 +133,6 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) => getImageRounded(item.image?.url),
             },
             {
-                header: 'Conductor',
-                field: 'driver.name',
-                width: '175px',
-                formatter: (item: any) =>
-                    getChip(item.driver.name, false, null, 'dark'),
-            },
-            {
                 header: 'Marca',
                 field: 'brand.name',
                 width: '200px',
@@ -147,6 +143,18 @@ export class CustomTableColumnsModel {
                 header: 'Modelo',
                 field: 'model',
                 sortable: true,
+            },
+            {
+                header: 'Modelo',
+                field: 'model',
+                width: '150px',
+                sortable: true,
+            },
+            {
+                header: 'Conductor',
+                field: 'driver.name',
+                width: '175px',
+                formatter: (item: any) => getChipDriverWithImage(item.driver),
             },
             {
                 header: 'Inscrip.',
@@ -196,11 +204,11 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) => {
                     let data;
                     if (item.type === 'brand') {
-                        data = getChip('Marca', false, null, 'warning');
+                        data = getChip('Marca', false, '', 'warning');
                     } else if (item.type === 'car') {
-                        data = getChip('Coche', false, null, 'info');
+                        data = getChip('Coche', false, '', 'info');
                     } else if (item.type === 'tournament') {
-                        data = getChip('Coche', false, null, 'success');
+                        data = getChip('Coche', false, '', 'success');
                     }
                     return data;
                 },
@@ -434,9 +442,9 @@ export class CustomTableColumnsModel {
             {
                 header: 'Reportador',
                 field: 'userReporter.name',
-                width: '200px',
+                width: '175px',
                 formatter: (item: any) =>
-                    getChip(item.userReporter.name, false, null, 'dark'),
+                    getChipDriverWithImage(item.userReporter),
             },
             {
                 header: 'Coche Reportado',
@@ -452,9 +460,9 @@ export class CustomTableColumnsModel {
             {
                 header: 'Reportado',
                 field: 'userReported.name',
-                width: '200px',
+                width: '175px',
                 formatter: (item: any) =>
-                    getChip(item.userReporter.name, false, null, 'dark'),
+                    getChipDriverWithImage(item.userReported),
             },
             {
                 header: 'Estado',
@@ -621,7 +629,15 @@ export class CustomTableColumnsModel {
                 sortable: true,
                 width: '250px',
                 formatter: (item: any) =>
-                    getChip(item.email, false, null, 'dark'),
+                    getChip(item.email, false, '', 'dark'),
+            },
+            {
+                header: 'Pais',
+                field: 'country',
+                sortable: true,
+                // width: '250px',
+                formatter: (item: any) =>
+                    `<img src="${flags[item.country ?? 'es']}">`,
             },
             {
                 header: 'Rol',
@@ -631,11 +647,11 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) => {
                     let data;
                     if (item.role === 'USER') {
-                        data = getChip('Usuario', false, null, 'success');
+                        data = getChip('Usuario', false, '', 'success');
                     } else if (item.role === 'ADMIN') {
-                        data = getChip('Admin', false, null, 'primary');
+                        data = getChip('Admin', false, '', 'primary');
                     } else if (item.role === 'FAKE') {
-                        data = getChip('Fake', false, null, 'warning');
+                        data = getChip('Fake', false, '', 'warning');
                     }
                     return data;
                 },
@@ -679,7 +695,7 @@ export class CustomTableColumnsModel {
                 sortable: true,
                 width: '250px',
                 formatter: (item: any) =>
-                    getChip(item.email, false, null, 'dark'),
+                    getChip(item.email, false, '', 'dark'),
             },
             {
                 header: 'Coches',

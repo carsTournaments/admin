@@ -249,6 +249,24 @@ mat-tab-header {
     }
 }
 
+.chip-driver-primary {
+    background-color: #cc0000;
+    color: #ffffff;
+    img {
+        border-radius: 0;
+        background: #fff;
+    }
+}
+
+.chip-driver-dark {
+    background-color: #000;
+    color: #ffffff;
+    img {
+        border-radius: 0;
+        background: #fff;
+    }
+}
+
 .chip-dark {
     background-color: #000;
     color: #ffffff;

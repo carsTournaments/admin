@@ -28,4 +28,6 @@ export class UserOnePageViewModel {
         loading: true,
     });
     notification = new Notification();
+    countries: { id: string; name: string }[] = [];
+    countryIdSelected = '';
 }

@@ -43,13 +43,32 @@
                     <mat-option value="USER">Usuario</mat-option>
                     <mat-option value="FAKE">Fake</mat-option>
                 </mat-select>
-                <mat-label for="floatingInput" class="form-mat-label"
-                    >Rol</mat-label
-                >
+                <mat-label for="floatingInput" class="form-mat-label">
+                    Rol
+                </mat-label>
             </mat-form-field>
         </div>
 
         <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-select
+                    class="form-select"
+                    name="role"
+                    [(ngModel)]="item.country"
+                >
+                    <mat-option
+                        *ngFor="let country of countries"
+                        [value]="country.id"
+                        >{{ country.name }}</mat-option
+                    >
+                </mat-select>
+                <mat-label for="floatingInput" class="form-mat-label">
+                    Pais
+                </mat-label>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
             <mat-form-field appearance="outline">
                 <input
                     matInput

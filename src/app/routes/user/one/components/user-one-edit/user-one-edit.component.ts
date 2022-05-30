@@ -1,20 +1,30 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '@models';
 import { UserService, SnackBarService } from '@services';
+import { countries } from 'assets/json/countries';
 
 @Component({
     selector: 'user-one-edit',
     templateUrl: 'user-one-edit.component.html',
 })
-export class UserOneEditComponent {
+export class UserOneEditComponent implements OnInit {
     @Input() item!: User;
+    countries: { id: string; name: string }[] = [];
 
     constructor(
         private userService: UserService,
         private snackBarService: SnackBarService,
         private router: Router
     ) {}
+
+    ngOnInit() {
+        this.getCountries();
+    }
+
+    getCountries() {
+        this.countries = countries;
+    }
 
     async onSubmit() {
         try {
