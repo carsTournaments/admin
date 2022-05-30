@@ -4,7 +4,6 @@ import {
     getChip,
     getChipDriverWithImage,
     getDateTimeago,
-    getFlag,
     getImageRounded,
     getStateChip,
 } from './custom-table.helper';

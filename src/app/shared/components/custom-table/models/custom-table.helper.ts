@@ -6,7 +6,7 @@ import { User } from '@models';
 export const getChip = (
     text: string,
     imageState = false,
-    image: string = '',
+    image = '',
     color = 'primary'
 ): string => {
     if (text) {
