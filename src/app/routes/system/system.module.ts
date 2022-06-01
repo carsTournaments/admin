@@ -10,6 +10,7 @@ import { StatsPage } from './stats/stats.page';
 import { TogglesListPage } from './toggles/pages/list/toggles-list.page';
 import { TogglesOnePage } from './toggles/pages/one/toggles-one.page';
 import { TogglesOneEditComponent } from './toggles/components/toggles-one-edit/toggles-one-edit.component';
+import { OtaListPage } from './ota/ota-list.page';
 
 @NgModule({
     imports: [
@@ -64,6 +65,14 @@ import { TogglesOneEditComponent } from './toggles/components/toggles-one-edit/t
                     title: 'Sistema - Toggle',
                 },
             },
+            {
+                path: 'ota',
+                component: OtaListPage,
+                data: {
+                    breadcrumb: 'Ota',
+                    title: 'Sistema - Ota',
+                },
+            },
             { path: '**', redirectTo: 'settings' },
         ]),
     ],
@@ -76,6 +85,7 @@ import { TogglesOneEditComponent } from './toggles/components/toggles-one-edit/t
         TogglesListPage,
         TogglesOnePage,
         TogglesOneEditComponent,
+        OtaListPage,
     ],
     providers: [],
 })

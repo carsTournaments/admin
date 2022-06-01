@@ -6,6 +6,7 @@ export class TogglesOnePageViewModel {
     item: Toggle = new Toggle();
     title = '';
     edit = false;
+    state = 'false';
     options: OptionItemI[] = [
         {
             name: 'Eliminar toggle',

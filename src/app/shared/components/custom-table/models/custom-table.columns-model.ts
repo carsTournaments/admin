@@ -521,7 +521,10 @@ export class CustomTableColumnsModel {
             {
                 header: 'Estado',
                 field: 'state',
-                formatter: (item: any) => (item.state ? 'Activo' : 'Inactivo'),
+                formatter: (item: any) =>
+                    item.state
+                        ? getChip('Activo', false, '', 'success')
+                        : getChip('Inactivo', false, '', 'primary'),
             },
             {
                 header: 'Descripcion',

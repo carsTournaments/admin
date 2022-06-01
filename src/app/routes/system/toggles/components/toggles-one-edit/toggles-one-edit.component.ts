@@ -41,7 +41,7 @@ export class TogglesOneEditComponent {
         };
         if (this.item.name === '') {
             data.state = false;
-            data.message = 'El nombre del torneo no puede estar vacio';
+            data.message = 'El Toggle del Toggle no puede estar vacio';
         }
 
         return data;
@@ -50,7 +50,7 @@ export class TogglesOneEditComponent {
     update() {
         this.toggleService.update(this.item).subscribe({
             next: () => {
-                this.snackBarService.open('Torneo actualizado correctamente');
+                this.snackBarService.open('Toggle actualizado correctamente');
                 this.router.navigate(['/system/toggles']);
             },
             error: (error) =>
@@ -63,7 +63,7 @@ export class TogglesOneEditComponent {
     create() {
         this.toggleService.create(this.item).subscribe({
             next: () => {
-                this.snackBarService.open('Torneo creado correctamente');
+                this.snackBarService.open('Toggle creado correctamente');
                 this.router.navigate(['/system/toggles']);
             },
             error: (error) =>

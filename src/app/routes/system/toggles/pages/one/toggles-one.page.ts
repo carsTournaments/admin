@@ -35,6 +35,7 @@ export class TogglesOnePage {
             next: (item) => {
                 this.vm.item = item;
                 this.vm.edit = true;
+                this.vm.state = this.vm.item.state ? 'true' : 'false';
             },
             error: (e) => this.snackBarService.open(e),
         });

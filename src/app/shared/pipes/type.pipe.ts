@@ -4,6 +4,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TypePipe implements PipeTransform {
     transform(value: string): string {
         switch (value) {
+            case 'app':
+                return 'App';
+            case 'auth':
+                return 'Auth';
             case 'brand':
                 return 'Marca';
             case 'brands':
