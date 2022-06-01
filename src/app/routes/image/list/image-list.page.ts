@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
+import { Image } from '@models';
 import { AlertService, SnackBarService } from '@services';
 import { ImageService } from '@services/api/image/image.service';
 import { ImageListViewModel } from './model/image-list.view-model';
@@ -13,7 +15,8 @@ export class ImageListPage implements OnInit {
     constructor(
         private imageService: ImageService,
         private snackBarService: SnackBarService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -56,23 +59,13 @@ export class ImageListPage implements OnInit {
         }
     }
 
-    onChangeOrder(order: string) {
-        if (
-            !this.vm.imageBody.order ||
-            this.vm.imageBody.order.filter((item: string) => item === 'desc')
-                .length > 0
-        ) {
-            this.vm.imageBody.order = [order, 'asc'];
-            this.getAll();
-        } else {
-            this.vm.imageBody.order = [order, 'desc'];
-            this.getAll();
-        }
-    }
-
     onChangePage() {
         this.vm.imageBody.page += 1;
         this.getAll(true);
+    }
+
+    onRowClick(event: { rowData: Image; index: number }) {
+        this.onDeleteItem(event.rowData._id!);
     }
 
     async onDeleteItem(id: string) {

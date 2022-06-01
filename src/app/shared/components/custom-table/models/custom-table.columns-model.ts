@@ -141,11 +141,6 @@ export class CustomTableColumnsModel {
             {
                 header: 'Modelo',
                 field: 'model',
-                sortable: true,
-            },
-            {
-                header: 'Modelo',
-                field: 'model',
                 width: '150px',
                 sortable: true,
             },
@@ -517,6 +512,23 @@ export class CustomTableColumnsModel {
                 header: 'Total',
                 field: 'value',
             },
+        ],
+        toggles: [
+            {
+                header: 'Nombre',
+                field: 'name',
+            },
+            {
+                header: 'Estado',
+                field: 'state',
+                formatter: (item: any) => (item.state ? 'Activo' : 'Inactivo'),
+            },
+            {
+                header: 'Descripcion',
+                field: 'description',
+            },
+            this.defaults.updated,
+            this.defaults.created,
         ],
         tournaments: [
             {

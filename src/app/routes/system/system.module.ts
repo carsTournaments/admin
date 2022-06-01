@@ -6,7 +6,10 @@ import { SharedModule } from '@shared/shared.module';
 import { NotificationListPage } from './notification/notification-list.page';
 import { LogsPage } from './logs/logs.page';
 import { NotificationSendComponent } from './notification/components/notification-send/notification-send.component';
-import { StatsPage } from './stats/stats.component';
+import { StatsPage } from './stats/stats.page';
+import { TogglesListPage } from './toggles/pages/list/toggles-list.page';
+import { TogglesOnePage } from './toggles/pages/one/toggles-one.page';
+import { TogglesOneEditComponent } from './toggles/components/toggles-one-edit/toggles-one-edit.component';
 
 @NgModule({
     imports: [
@@ -45,6 +48,22 @@ import { StatsPage } from './stats/stats.component';
                     title: 'Sistema - Notificaciones Push',
                 },
             },
+            {
+                path: 'toggles',
+                component: TogglesListPage,
+                data: {
+                    breadcrumb: 'Toggles',
+                    title: 'Sistema - Toggles',
+                },
+            },
+            {
+                path: 'toggles/one/:id',
+                component: TogglesOnePage,
+                data: {
+                    breadcrumb: 'Toggle',
+                    title: 'Sistema - Toggle',
+                },
+            },
             { path: '**', redirectTo: 'settings' },
         ]),
     ],
@@ -54,6 +73,9 @@ import { StatsPage } from './stats/stats.component';
         LogsPage,
         NotificationListPage,
         NotificationSendComponent,
+        TogglesListPage,
+        TogglesOnePage,
+        TogglesOneEditComponent,
     ],
     providers: [],
 })

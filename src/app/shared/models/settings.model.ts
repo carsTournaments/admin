@@ -13,6 +13,7 @@ export class Settings implements SettingsI {
     ios?: SettingsIosI;
     state?: {
         admob: boolean;
+        ota: boolean;
     };
     updated?: Date;
     constructor(data?: Settings) {

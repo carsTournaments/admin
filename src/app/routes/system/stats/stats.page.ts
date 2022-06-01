@@ -5,7 +5,7 @@ import { StatsViewModel } from './model/stats.view-model';
 
 @Component({
     selector: 'page-stats',
-    templateUrl: 'stats.component.html',
+    templateUrl: 'stats.page.html',
 })
 export class StatsPage implements OnInit {
     vm = new StatsViewModel();

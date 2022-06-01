@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Tournament } from '@models';
-import { TournamentService } from '@services';
+import { SnackBarService, TournamentService } from '@services';
 import { TournamentListViewModel } from '../../models/tournament-list.view-model';
 
 @Component({
@@ -12,7 +12,8 @@ export class TournamentListPage implements OnInit {
     vm = new TournamentListViewModel();
     constructor(
         private tournamentService: TournamentService,
-        private router: Router
+        private router: Router,
+        private snackBarService: SnackBarService
     ) {}
 
     ngOnInit() {
@@ -35,22 +36,11 @@ export class TournamentListPage implements OnInit {
                 }
                 this.vm.optionsTable.loading = false;
             },
+            error: (error) => {
+                this.vm.optionsTable.loading = false;
+                this.snackBarService.open(error);
+            },
         });
-    }
-
-    onChangeOrder(order: string) {
-        if (
-            !this.vm.tournamentBody.order ||
-            this.vm.tournamentBody.order.filter(
-                (item: string) => item === 'desc'
-            ).length > 0
-        ) {
-            this.vm.tournamentBody.order = [order, 'asc'];
-            this.getAll();
-        } else {
-            this.vm.tournamentBody.order = [order, 'desc'];
-            this.getAll();
-        }
     }
 
     onChangePage() {

@@ -1,0 +1,54 @@
+<form class="form-field-full" *ngIf="item">
+    <div fxLayout="row wrap" class="matero-row">
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    name="name"
+                    [(ngModel)]="item.name"
+                    placeholder="Nombre"
+                    required
+                />
+                <mat-label>Nombre</mat-label>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-select
+                    class="form-select"
+                    name="status"
+                    [(ngModel)]="state"
+                >
+                    <mat-option value="true">Activado</mat-option>
+                    <mat-option value="false">Desactivado</mat-option>
+                </mat-select>
+                <mat-label>Estado</mat-label>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <textarea
+                    matInput
+                    name="info"
+                    rows="5"
+                    [(ngModel)]="item.description"
+                    placeholder="Introduce informacion del torneo"
+                ></textarea>
+                <mat-label>Info</mat-label>
+            </mat-form-field>
+
+            <!-- TODO: Revisar -->
+
+            <button
+                mat-raised-button
+                color="primary"
+                class="w-full"
+                (click)="onSubmit()"
+            >
+                Guardar
+            </button>
+        </div>
+    </div>
+</form>
