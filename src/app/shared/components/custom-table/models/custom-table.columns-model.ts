@@ -743,24 +743,13 @@ export class CustomTableColumnsModel {
                 width: '250px',
                 formatter: (item: any) =>
                     getChip(
-                        item.pairing.round?.tournament.name,
+                        item.tournament.name,
                         true,
-                        item.pairing.round?.tournament.image?.url,
+                        item.tournament.image?.url,
                         'dark'
                     ),
             },
             { header: 'Ronda', field: 'pairing.round.name' },
-            {
-                header: 'Coche',
-                field: 'car',
-                width: '220px',
-                formatter: (item: any) =>
-                    getChip(
-                        item.car.brand?.name + ' ' + item.car.model,
-                        true,
-                        item.car.image?.url
-                    ),
-            },
             this.defaults.created,
         ],
         winners: [
