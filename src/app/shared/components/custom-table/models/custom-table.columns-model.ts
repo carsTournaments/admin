@@ -694,6 +694,13 @@ export class CustomTableColumnsModel {
                     return item.fcm && item.fcm.length > 0 ? 'Si' : 'No';
                 },
             },
+            {
+                header: 'Google',
+                field: 'googleId',
+                formatter: (item: any) =>
+                    item.googleId && item.googleId !== '' ? 'Si' : 'No',
+            },
+
             this.defaults.updated,
             this.defaults.created,
         ],

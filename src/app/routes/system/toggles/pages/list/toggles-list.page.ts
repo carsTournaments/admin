@@ -16,20 +16,12 @@ export class TogglesListPage {
         this.getAll();
     }
 
-    async getAll(showMore = false) {
+    async getAll() {
+        this.vm.segmentSelected = 0;
         this.vm.optionsTable.loading = true;
         this.toggleService.getAll().subscribe({
             next: (response) => {
-                if (!showMore) {
-                    this.vm.optionsTable.items = response;
-                    this.vm.optionsTable.loading = false;
-                    this.vm.title = `Toggles (${response.length})`;
-                } else {
-                    this.vm.optionsTable.items = [
-                        ...this.vm.optionsTable.items,
-                        ...response,
-                    ];
-                }
+                this.vm.optionsTable.items = response;
                 this.vm.optionsTable.loading = false;
             },
         });

@@ -79,16 +79,26 @@ export class NotificationListPage implements OnInit {
 
     actionForOption(option: ActionForOptionI) {
         if (option.value === 'deleteAll') {
-            this.notificationService.deleteAll().subscribe({
-                next: () => {
-                    this.getAll();
-                    this.snackBarService.open(
-                        'Se eliminaron todas las notificaciones'
-                    );
-                },
-                error: (error) => this.snackBarService.open(error),
-            });
+            this.onDeleteItem();
         }
+    }
+
+    async onDeleteItem() {
+        const alert = await this.alertService.showConfirmation(
+            'Eliminar notificaciones',
+            '¿Estas seguro de eliminar todas las notificaciones?'
+        );
+        alert.subscribe((data) => {
+            if (data) {
+                this.notificationService.deleteAll().subscribe({
+                    next: () => {
+                        this.snackBarService.open('Notificaciones eliminadas');
+                        this.getAll();
+                    },
+                    error: (error) => this.snackBarService.open(error),
+                });
+            }
+        });
     }
 
     onRowClick(event: { rowData: Notification; index: number }) {

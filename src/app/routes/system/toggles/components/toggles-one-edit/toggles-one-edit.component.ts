@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Toggle } from '@models';
 import { SnackBarService, ToggleService } from '@services';
@@ -11,6 +11,7 @@ export class TogglesOneEditComponent {
     @Input() item: Toggle = new Toggle();
     @Input() edit = false;
     @Input() state = 'false';
+    @Output() submitItem: EventEmitter<void> = new EventEmitter();
 
     constructor(
         private toggleService: ToggleService,
@@ -64,7 +65,7 @@ export class TogglesOneEditComponent {
         this.toggleService.create(this.item).subscribe({
             next: () => {
                 this.snackBarService.open('Toggle creado correctamente');
-                this.router.navigate(['/system/toggles']);
+                this.submitItem.emit();
             },
             error: (error) =>
                 this.snackBarService.open(

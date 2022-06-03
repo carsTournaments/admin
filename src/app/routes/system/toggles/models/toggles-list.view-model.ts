@@ -14,4 +14,5 @@ export class ToggleListViewModel {
             value: 'deleteAll',
         },
     ];
+    segmentSelected = 0;
 }

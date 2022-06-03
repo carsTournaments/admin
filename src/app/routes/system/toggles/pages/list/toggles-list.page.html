@@ -1,8 +1,8 @@
 <div class="container">
     <page-header [title]="vm.title"></page-header>
     <mat-card class="mat-card-wrapper">
-        <mat-tab-group>
-            <mat-tab label="Listado">
+        <mat-tab-group [(selectedIndex)]="vm.segmentSelected">
+            <mat-tab label="Listado       {{vm.segmentSelected}}">
                 <custom-table
                     [options]="vm.optionsTable"
                     (rowClick)="onRowClick($event)"
@@ -15,7 +15,7 @@
             </mat-tab>
 
             <mat-tab label="Nuevo">
-                <toggles-one-edit></toggles-one-edit>
+                <toggles-one-edit (submitItem)="getAll()"></toggles-one-edit>
             </mat-tab>
         </mat-tab-group>
     </mat-card>

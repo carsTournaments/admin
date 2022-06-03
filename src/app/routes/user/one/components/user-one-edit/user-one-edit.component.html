@@ -68,7 +68,7 @@
             </mat-form-field>
         </div>
 
-        <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
             <mat-form-field appearance="outline">
                 <input
                     matInput
@@ -76,9 +76,23 @@
                     [(ngModel)]="item.fcm"
                     placeholder="fcm"
                 />
-                <mat-label for="floatingInput" class="form-mat-label"
-                    >FCM</mat-label
-                >
+                <mat-label for="floatingInput" class="form-mat-label">
+                    FCM
+                </mat-label>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    name="googleId"
+                    [(ngModel)]="item.googleId"
+                    placeholder="fcm"
+                />
+                <mat-label for="floatingInput" class="form-mat-label">
+                    GoogleId
+                </mat-label>
             </mat-form-field>
         </div>
 
