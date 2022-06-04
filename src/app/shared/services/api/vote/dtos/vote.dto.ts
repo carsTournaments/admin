@@ -15,6 +15,7 @@ export interface VoteCreateDto {
     round: string;
     tournament: string;
     car: string;
+    user: string;
 }
 
 export interface VoteUpdateDto {

@@ -3,13 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '@models';
 import { UserCreateFakeDto, UserGetAllDto } from './dtos/user.dto';
 import { Observable } from 'rxjs/internal/Observable';
-import { take } from 'rxjs';
+import { BehaviorSubject, share, take } from 'rxjs';
 import { environment } from '@env/environment';
+import { LocalStorageService } from '@services/various/storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+    private change$ = new BehaviorSubject<User | undefined>(undefined);
+    private _user?: User;
     url = `${environment.urlApi}/users`;
-    constructor(private httpClient: HttpClient) {}
+    constructor(
+        private httpClient: HttpClient,
+        private localStorageService: LocalStorageService
+    ) {}
 
     getAll(data: UserGetAllDto): Observable<any> {
         return this.httpClient
@@ -51,5 +57,40 @@ export class UserService {
         return this.httpClient
             .delete<{ message: string }>(`${this.url}/allFake`)
             .pipe(take(1));
+    }
+
+    private get user(): User | undefined {
+        this._user = this.localStorageService.get('user')
+            ? JSON.parse(this.localStorageService.get('user')!)
+            : undefined;
+        return this._user;
+    }
+
+    change(): Observable<User | undefined> {
+        return this.change$.pipe(share());
+    }
+
+    getUser(): User {
+        return this.user!;
+    }
+
+    set(user?: User): UserService {
+        this.save(user);
+        return this;
+    }
+
+    clear(): void {
+        this.save();
+    }
+
+    private save(user?: User): void {
+        this._user = undefined;
+        if (!user) {
+            this.localStorageService.remove('user');
+        } else {
+            this.localStorageService.set('user', JSON.stringify(user));
+            this._user = user;
+        }
+        this.change$.next(user);
     }
 }

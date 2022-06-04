@@ -8,6 +8,7 @@ import { LoginService } from './login.service';
 import { isEmptyObject } from './helpers';
 import { User } from '@models';
 import { LoginResponseI } from '@interfaces';
+import { UserService } from '@services';
 
 @Injectable({
     providedIn: 'root',
@@ -20,7 +21,8 @@ export class AuthService {
 
     constructor(
         private loginService: LoginService,
-        private tokenService: TokenService
+        private tokenService: TokenService,
+        private userService: UserService
     ) {}
 
     init() {
@@ -39,7 +41,10 @@ export class AuthService {
 
     login(email: string, password: string): Observable<boolean> {
         return this.loginService.login(email, password).pipe(
-            tap((item: LoginResponseI) => this.tokenService.set(item.token)),
+            tap((item: LoginResponseI) => {
+                this.tokenService.set(item.token);
+                this.userService.set(item.user);
+            }),
             map(() => this.check())
         );
     }
