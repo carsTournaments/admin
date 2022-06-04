@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { VoteGetAllDto, VoteGetAllOfGenericDto } from './dtos/vote.dto';
 import { Observable, take } from 'rxjs';
-import { IdDto } from '@core/dtos/generic.dto';
 import { environment } from '@env/environment';
 import { PaginatorI } from '@interfaces';
 import { Vote } from '@models';
