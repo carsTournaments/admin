@@ -801,7 +801,7 @@ export class CustomTableColumnsModel {
                     ),
             },
             { header: 'Usuario', field: 'user.name', sortable: true },
-            { header: 'Ronda', field: 'pairing.round.name' },
+            { header: 'Ronda', field: 'round.name' },
             this.defaults.created,
         ],
         winners: [
