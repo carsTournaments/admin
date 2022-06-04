@@ -23,7 +23,7 @@ export class TournamentOnePageViewModel {
         loading: true,
     });
     votesOptionsTable = new CustomTableOptionsModel({
-        type: 'votes',
+        type: 'votesTournament',
         items: [],
         loading: true,
     });

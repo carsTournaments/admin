@@ -24,6 +24,8 @@ export class CustomTableOptionsModel {
         | 'users'
         | 'usersDashboard'
         | 'votes'
+        | 'votesCar'
+        | 'votesTournament'
         | 'winners' = 'users';
     columns?: MtxGridColumn[] = [];
     items: any[] = [];

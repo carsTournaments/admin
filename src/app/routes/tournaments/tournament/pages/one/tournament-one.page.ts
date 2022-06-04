@@ -139,10 +139,12 @@ export class TournamentOnePage implements OnInit {
 
     async getVotesByTournament() {
         this.vm.votesOptionsTable.loading = true;
-        this.voteService.getAllOfTournament({ id: this.vm.id }).subscribe({
-            next: (items) => (this.vm.votesOptionsTable.items = items),
-            error: (e) => this.snackBarService.open(e),
-        });
+        this.voteService
+            .getAllOfTournament({ id: this.vm.id, limit: '20' })
+            .subscribe({
+                next: (items) => (this.vm.votesOptionsTable.items = items),
+                error: (e) => this.snackBarService.open(e),
+            });
         this.vm.votesOptionsTable.loading = false;
     }
 
