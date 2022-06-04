@@ -309,7 +309,8 @@ export class CustomTableColumnsModel {
             {
                 header: 'Usuario',
                 field: 'user',
-                formatter: (item: any) => item.user?.name ?? 'Anonimo',
+                formatter: (item: any) =>
+                    item.user ? getChipDriverWithImage(item.user) : 'Anonimo',
             },
             this.defaults.created,
         ],
@@ -350,7 +351,17 @@ export class CustomTableColumnsModel {
                         item.car1.image?.url
                     ),
             },
-            { header: 'Votos', field: 'votes.count' },
+            {
+                header: 'Votos',
+                field: 'votes.length',
+                formatter: (row: any) => `
+                    ${
+                        row.votes.filter((v: any) => v.car === row.car1._id)
+                            .length
+                    } - ${
+                    row.votes.filter((v: any) => v.car === row.car2._id).length
+                }`,
+            },
             {
                 header: 'Coche 2',
                 field: 'car2',
@@ -369,9 +380,9 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) =>
                     item.winner
                         ? getChip(
-                              item.car2.brand?.name + ' ' + item.car2.model,
+                              item.winner.brand?.name + ' ' + item.winner.model,
                               true,
-                              item.car2.image?.url,
+                              item.winner.image?.url,
                               'gold'
                           )
                         : '--',
@@ -404,16 +415,15 @@ export class CustomTableColumnsModel {
                     ),
             },
             {
-                header: 'Votos 1',
+                header: 'Votos',
                 field: 'votes.length',
-                formatter: (row: any) =>
-                    row.votes.filter((v: any) => v.car === row.car1._id).length,
-            },
-            {
-                header: 'Votos 2',
-                field: 'votes2.length',
-                formatter: (row: any) =>
-                    row.votes.filter((v: any) => v.car === row.car2._id).length,
+                formatter: (row: any) => `
+                    ${
+                        row.votes.filter((v: any) => v.car === row.car1._id)
+                            .length
+                    } - ${
+                    row.votes.filter((v: any) => v.car === row.car2._id).length
+                }`,
             },
             {
                 header: 'Coche 2',
@@ -426,6 +436,7 @@ export class CustomTableColumnsModel {
                         item.car2.image?.url
                     ),
             },
+
             {
                 header: 'Ganador',
                 field: 'winner',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from '@shared/models';
-import { AuthService } from '@shared/services';
+import { UserService } from '@shared/services';
 
 @Component({
     selector: 'header-user',
@@ -9,7 +9,11 @@ import { AuthService } from '@shared/services';
 })
 export class HeaderUserComponent {
     user!: User;
-    constructor(private authService: AuthService) {}
+    constructor(public userService: UserService) {}
+
+    ngOnInit() {
+        this.user = this.userService.getUser();
+    }
 
     logout() {
         // TODO: logout

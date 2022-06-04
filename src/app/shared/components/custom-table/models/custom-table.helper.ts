@@ -29,12 +29,9 @@ export const getChip = (
 };
 
 export const getChipDriverWithImage = (driver: User, color = 'dark') => {
-    return `
-    <div class="chip chip-driver-${color}" [routerOutlet]="['/users/one', ${
-        driver._id
-    }]">
-        <img src="${getFlag(driver.country ?? 'es')}">
-        ${driver.name}
+    return `<div class="chip chip-${color}">
+       <img src="${getFlag(driver.country ?? 'es')}">
+      ${driver.name}
     </div>
     `;
 };
