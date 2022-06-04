@@ -403,7 +403,18 @@ export class CustomTableColumnsModel {
                         item.car1.image?.url
                     ),
             },
-            { header: 'Votos', field: 'votes.length' },
+            {
+                header: 'Votos 1',
+                field: 'votes.length',
+                formatter: (row: any) =>
+                    row.votes.filter((v: any) => v.car === row.car1._id).length,
+            },
+            {
+                header: 'Votos 2',
+                field: 'votes2.length',
+                formatter: (row: any) =>
+                    row.votes.filter((v: any) => v.car === row.car2._id).length,
+            },
             {
                 header: 'Coche 2',
                 field: 'car2',

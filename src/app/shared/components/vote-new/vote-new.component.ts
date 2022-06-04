@@ -1,7 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Car } from '@models';
-import { SnackBarService, VoteService } from '@services';
+import {
+    AuthService,
+    SnackBarService,
+    UserService,
+    VoteService,
+} from '@services';
 import { VoteCreateDto } from '@services/api/vote/dtos/vote.dto';
 
 @Component({
@@ -20,7 +25,8 @@ export class VoteNewComponent implements OnInit {
         public dialogRef: MatDialogRef<any>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private voteService: VoteService,
-        private snackBarService: SnackBarService
+        private snackBarService: SnackBarService,
+        private userService: UserService
     ) {}
 
     ngOnInit() {
@@ -32,11 +38,13 @@ export class VoteNewComponent implements OnInit {
     }
 
     createVote() {
+        const user = this.userService.getUser();
         const body: VoteCreateDto = {
-            car: this.car1._id!,
+            car: this.carIdSelected!,
             pairing: this.pairing!,
             round: this.round!,
             tournament: this.tournament!,
+            user: user._id!,
         };
         this.voteService.create(body).subscribe({
             next: () => {
