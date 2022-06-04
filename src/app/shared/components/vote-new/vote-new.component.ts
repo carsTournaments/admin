@@ -1,12 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Car } from '@models';
-import {
-    AuthService,
-    SnackBarService,
-    UserService,
-    VoteService,
-} from '@services';
+import { SnackBarService, UserService, VoteService } from '@services';
 import { VoteCreateDto } from '@services/api/vote/dtos/vote.dto';
 
 @Component({
