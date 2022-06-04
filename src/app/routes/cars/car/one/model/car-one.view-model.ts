@@ -50,7 +50,7 @@ export class CarOnePageViewModel {
         showLoadMore: true,
     });
     votesOptionsTable = new CustomTableOptionsModel({
-        type: 'votes',
+        type: 'votesCar',
         items: [],
         loading: true,
         showLoadMore: true,

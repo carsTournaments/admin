@@ -403,7 +403,18 @@ export class CustomTableColumnsModel {
                         item.car1.image?.url
                     ),
             },
-            { header: 'Votos', field: 'votes.length' },
+            {
+                header: 'Votos 1',
+                field: 'votes.length',
+                formatter: (row: any) =>
+                    row.votes.filter((v: any) => v.car === row.car1._id).length,
+            },
+            {
+                header: 'Votos 2',
+                field: 'votes2.length',
+                formatter: (row: any) =>
+                    row.votes.filter((v: any) => v.car === row.car2._id).length,
+            },
             {
                 header: 'Coche 2',
                 field: 'car2',
@@ -756,7 +767,52 @@ export class CustomTableColumnsModel {
                         'dark'
                     ),
             },
-            { header: 'Ronda', field: 'pairing.round.name' },
+            {
+                header: 'Coche',
+                field: 'car',
+                width: '220px',
+                formatter: (item: any) =>
+                    getChip(
+                        item.car.brand?.name + ' ' + item.car.model,
+                        true,
+                        item.car.image?.url
+                    ),
+            },
+            { header: 'Usuario', field: 'user.name', sortable: true },
+            { header: 'Ronda', field: 'round.name' },
+            this.defaults.created,
+        ],
+        votesCar: [
+            {
+                header: 'Torneo',
+                field: 'pairing.round.tournament.name',
+                width: '250px',
+                formatter: (item: any) =>
+                    getChip(
+                        item.tournament.name,
+                        true,
+                        item.tournament.image?.url,
+                        'dark'
+                    ),
+            },
+            { header: 'Usuario', field: 'user.name', sortable: true },
+            { header: 'Ronda', field: 'round.name' },
+            this.defaults.created,
+        ],
+        votesTournament: [
+            {
+                header: 'Coche',
+                field: 'car',
+                width: '220px',
+                formatter: (item: any) =>
+                    getChip(
+                        item.car.brand?.name + ' ' + item.car.model,
+                        true,
+                        item.car.image?.url
+                    ),
+            },
+            { header: 'Usuario', field: 'user.name', sortable: true },
+            { header: 'Ronda', field: 'round.name' },
             this.defaults.created,
         ],
         winners: [

@@ -5,11 +5,17 @@ export interface VoteGetAllDto {
     order: string[];
 }
 
+export interface VoteGetAllOfGenericDto {
+    id: string;
+    limit: string;
+}
+
 export interface VoteCreateDto {
     pairing: string;
     round: string;
     tournament: string;
     car: string;
+    user: string;
 }
 
 export interface VoteUpdateDto {
