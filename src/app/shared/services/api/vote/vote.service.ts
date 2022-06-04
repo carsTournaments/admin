@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { VoteGetAllDto } from './dtos/vote.dto';
+import { VoteGetAllDto, VoteGetAllOfGenericDto } from './dtos/vote.dto';
 import { Observable, take } from 'rxjs';
-import { IdDto } from '@core/dtos/generic.dto';
 import { environment } from '@env/environment';
 import { PaginatorI } from '@interfaces';
 import { Vote } from '@models';
@@ -23,13 +22,13 @@ export class VoteService {
             .pipe(take(1));
     }
 
-    getAllOfCar(data: any): Observable<Vote[]> {
+    getAllOfCar(data: VoteGetAllOfGenericDto): Observable<Vote[]> {
         return this.httpClient
             .post<Vote[]>(`${this.url}/getAllOfCar`, data)
             .pipe(take(1));
     }
 
-    getAllOfTournament(data: IdDto): Observable<Vote[]> {
+    getAllOfTournament(data: VoteGetAllOfGenericDto): Observable<Vote[]> {
         return this.httpClient
             .post<Vote[]>(`${this.url}/getAllOfTournament`, data)
             .pipe(take(1));

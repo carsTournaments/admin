@@ -756,6 +756,51 @@ export class CustomTableColumnsModel {
                         'dark'
                     ),
             },
+            {
+                header: 'Coche',
+                field: 'car',
+                width: '220px',
+                formatter: (item: any) =>
+                    getChip(
+                        item.car.brand?.name + ' ' + item.car.model,
+                        true,
+                        item.car.image?.url
+                    ),
+            },
+            { header: 'Usuario', field: 'user.name', sortable: true },
+            { header: 'Ronda', field: 'round.name' },
+            this.defaults.created,
+        ],
+        votesCar: [
+            {
+                header: 'Torneo',
+                field: 'pairing.round.tournament.name',
+                width: '250px',
+                formatter: (item: any) =>
+                    getChip(
+                        item.tournament.name,
+                        true,
+                        item.tournament.image?.url,
+                        'dark'
+                    ),
+            },
+            { header: 'Usuario', field: 'user.name', sortable: true },
+            { header: 'Ronda', field: 'round.name' },
+            this.defaults.created,
+        ],
+        votesTournament: [
+            {
+                header: 'Coche',
+                field: 'car',
+                width: '220px',
+                formatter: (item: any) =>
+                    getChip(
+                        item.car.brand?.name + ' ' + item.car.model,
+                        true,
+                        item.car.image?.url
+                    ),
+            },
+            { header: 'Usuario', field: 'user.name', sortable: true },
             { header: 'Ronda', field: 'pairing.round.name' },
             this.defaults.created,
         ],
