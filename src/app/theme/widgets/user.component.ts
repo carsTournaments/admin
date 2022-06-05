@@ -18,9 +18,9 @@ import { debounceTime, tap } from 'rxjs/operators';
                 width="32"
                 alt="avatar"
             />
-            <span class="matero-username" fxHide.lt-sm>{{
-                user?.name ?? 'JoseXS'
-            }}</span>
+            <span class="matero-username" fxHide.lt-sm>
+                {{ user?.name }}
+            </span>
         </button>
 
         <mat-menu #menu="matMenu">
