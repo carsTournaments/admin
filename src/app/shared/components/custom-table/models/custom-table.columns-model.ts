@@ -646,11 +646,32 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) => getDateTimeago(item.startDate),
             },
             {
+                header: 'Fecha Fin',
+                field: 'endDate',
+                sortable: true,
+                formatter: (item: any) => getDateTimeago(item.endDate),
+            },
+            {
                 header: 'Inscritos',
                 field: 'inscriptions.count',
                 sortable: true,
                 formatter: (item: any) =>
                     `${item.inscriptions?.count ?? 0}/${item.maxParticipants}`,
+            },
+            {
+                header: 'Rondas',
+                field: 'rounds.count',
+                sortable: true,
+            },
+            {
+                header: 'Pairings',
+                field: 'pairings.count',
+                sortable: true,
+            },
+            {
+                header: 'Votos',
+                field: 'votes.count',
+                sortable: true,
             },
         ],
         users: [
@@ -671,7 +692,6 @@ export class CustomTableColumnsModel {
                 header: 'Pais',
                 field: 'country',
                 sortable: true,
-                // width: '250px',
                 formatter: (item: any) =>
                     `<img src="${flags[item.country ?? 'es']}">`,
             },
@@ -739,6 +759,13 @@ export class CustomTableColumnsModel {
                 width: '250px',
                 formatter: (item: any) =>
                     getChip(item.email, false, '', 'dark'),
+            },
+            {
+                header: 'Pais',
+                field: 'country',
+                sortable: true,
+                formatter: (item: any) =>
+                    `<img src="${flags[item.country ?? 'es']}">`,
             },
             {
                 header: 'Coches',
