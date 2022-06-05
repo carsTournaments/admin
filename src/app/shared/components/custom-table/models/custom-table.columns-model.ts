@@ -444,9 +444,9 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) =>
                     item.winner
                         ? getChip(
-                              item.car2.brand?.name + ' ' + item.car2.model,
+                              item.winner.brand?.name + ' ' + item.winner.model,
                               true,
-                              item.car2.image?.url,
+                              item.winner.image?.url,
                               'gold'
                           )
                         : '--',
