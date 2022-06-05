@@ -5,7 +5,6 @@ export { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 export { ChartBarComponent } from './chart-bar/chart-bar.component';
 export { CustomTableComponent } from './custom-table/custom-table.component';
 export { CustomTitleWithButtonsComponent } from './custom-title-with-buttons/custom-title-with-buttons.component';
-export { HeaderUserComponent } from './header-user/header-user.component';
 export { LoadingComponent } from './loading/loading.component';
 export { MenuComponent } from './menu/menu.component';
 export { OptionsListComponent } from './options-list/options-list.component';

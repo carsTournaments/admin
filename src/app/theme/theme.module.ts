@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { HeaderUserComponent } from '../shared/components';
 import { SharedModule } from '../shared/shared.module';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,7 +17,6 @@ import { UserComponent } from './widgets/user.component';
         BrandingComponent,
         HeaderComponent,
         UserPanelComponent,
-        HeaderUserComponent,
         AccordionDirective,
         AccordionItemDirective,
         AccordionAnchorDirective,
