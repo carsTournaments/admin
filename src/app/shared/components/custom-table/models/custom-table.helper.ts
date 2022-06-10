@@ -73,3 +73,17 @@ export const getDateTimeago = (date: string) => {
 export const getFlag = (idCountry: string) => {
     return flags[idCountry];
 };
+
+export const getCountVotesOfInscriptions = (row: any): number => {
+    const tournament = row.tournament._id;
+    let countVotes = 0;
+    if (row.car.votes) {
+        row.car.votes.forEach((item: any) => {
+            if (item.tournament.toString() === tournament.toString()) {
+                countVotes++;
+            }
+        });
+    }
+
+    return countVotes;
+};
