@@ -8,7 +8,7 @@ export class TournamentOnePageViewModel {
     item: Tournament = new Tournament();
     title = '';
     inscriptionsOptionsTable = new CustomTableOptionsModel({
-        type: 'inscriptions',
+        type: 'inscriptionsTournament',
         items: [],
         loading: true,
     });
