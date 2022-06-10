@@ -9,6 +9,7 @@ export class CustomTableOptionsModel {
         | 'images'
         | 'inscriptions'
         | 'inscriptionsCar'
+        | 'inscriptionsTournament'
         | 'likes'
         | 'likesUser'
         | 'logs'

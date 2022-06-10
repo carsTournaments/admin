@@ -3,6 +3,7 @@ import { flags } from 'assets/json/flags';
 import {
     getChip,
     getChipDriverWithImage,
+    getCountVotesOfInscriptions,
     getDateTimeago,
     getImageRounded,
     getStateChip,
@@ -52,7 +53,7 @@ export class CustomTableColumnsModel {
             {
                 header: '#',
                 field: 'image.url',
-                width: '75px',
+                width: '100px',
                 formatter: (item: any) => getImageRounded(item.image?.url),
             },
 
@@ -128,13 +129,11 @@ export class CustomTableColumnsModel {
             {
                 header: '#',
                 field: 'image.url',
-                width: '75px',
                 formatter: (item: any) => getImageRounded(item.image?.url),
             },
             {
                 header: 'Marca',
                 field: 'brand.name',
-                width: '200px',
                 formatter: (item: any) =>
                     getChip(item.brand.name, true, item.brand?.image?.url),
             },
@@ -168,6 +167,7 @@ export class CustomTableColumnsModel {
                 sortable: true,
                 type: 'number',
             },
+            this.defaults.updated,
         ],
         images: [
             {
@@ -221,8 +221,17 @@ export class CustomTableColumnsModel {
                         item.car.image?.url
                     ),
             },
-            { header: 'Likes', field: 'car.likes.count' },
-            { header: 'Usuario', field: 'driver.name' },
+            {
+                header: 'Votos',
+                field: 'car.votes.count',
+                formatter: (row: any) => getCountVotesOfInscriptions(row),
+            },
+            {
+                header: 'Usuario',
+                field: 'driver.name',
+                sortable: true,
+                formatter: (item: any) => getChipDriverWithImage(item.driver),
+            },
             {
                 header: 'Torneo',
                 field: 'tournament.name',
@@ -234,6 +243,31 @@ export class CustomTableColumnsModel {
                         item.tournament.image?.url,
                         'dark'
                     ),
+            },
+            this.defaults.created,
+        ],
+        inscriptionsTournament: [
+            {
+                header: 'Coche',
+                field: 'car',
+                width: '220px',
+                formatter: (item: any) =>
+                    getChip(
+                        item.car.brand?.name + ' ' + item.car.model,
+                        true,
+                        item.car.image?.url
+                    ),
+            },
+            {
+                header: 'Votos',
+                field: 'car.votes',
+                formatter: (row: any) => getCountVotesOfInscriptions(row),
+            },
+            {
+                header: 'Usuario',
+                field: 'driver.name',
+                sortable: true,
+                formatter: (item: any) => getChipDriverWithImage(item.driver),
             },
             this.defaults.created,
         ],
@@ -355,12 +389,9 @@ export class CustomTableColumnsModel {
                 header: 'Votos',
                 field: 'votes.length',
                 formatter: (row: any) => `
-                    ${
-                        row.votes.filter((v: any) => v.car === row.car1._id)
-                            .length
-                    } - ${
-                    row.votes.filter((v: any) => v.car === row.car2._id).length
-                }`,
+            ${row.votes.filter((v: any) => v.car === row.car1._id).length} -
+            ${row.votes.filter((v: any) => v.car === row.car2._id).length}
+            `,
             },
             {
                 header: 'Coche 2',
@@ -436,7 +467,6 @@ export class CustomTableColumnsModel {
                         item.car2.image?.url
                     ),
             },
-
             {
                 header: 'Ganador',
                 field: 'winner',
@@ -444,9 +474,9 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) =>
                     item.winner
                         ? getChip(
-                              item.car2.brand?.name + ' ' + item.car2.model,
+                              item.winner.brand?.name + ' ' + item.winner.model,
                               true,
-                              item.car2.image?.url,
+                              item.winner.image?.url,
                               'gold'
                           )
                         : '--',
@@ -494,6 +524,7 @@ export class CustomTableColumnsModel {
         rounds: [
             { header: 'Nombre', field: 'name' },
             { header: 'Participantes', field: 'participants' },
+            { header: 'Votos', field: 'votes.count' },
             {
                 header: 'Torneo',
                 field: 'tournament.name',
@@ -673,12 +704,14 @@ export class CustomTableColumnsModel {
                 field: 'votes.count',
                 sortable: true,
             },
+            this.defaults.updated,
         ],
         users: [
             {
                 header: 'Nombre',
                 field: 'name',
                 sortable: true,
+                width: '180px',
             },
             {
                 header: 'Email',
@@ -751,6 +784,7 @@ export class CustomTableColumnsModel {
                 header: 'Nombre',
                 field: 'name',
                 sortable: true,
+                width: '180px',
             },
             {
                 header: 'Email',
@@ -791,6 +825,7 @@ export class CustomTableColumnsModel {
                     return item.fcm && item.fcm.length > 0 ? 'Si' : 'No';
                 },
             },
+            this.defaults.updated,
         ],
         votes: [
             {
@@ -816,7 +851,13 @@ export class CustomTableColumnsModel {
                         item.car.image?.url
                     ),
             },
-            { header: 'Usuario', field: 'user.name', sortable: true },
+            {
+                header: 'Usuario',
+                field: 'user.name',
+                sortable: true,
+                formatter: (item: any) =>
+                    item.user ? getChipDriverWithImage(item.user) : 'Anonimo',
+            },
             { header: 'Ronda', field: 'round.name' },
             this.defaults.created,
         ],
