@@ -180,41 +180,6 @@
                 </div>
             </div>
 
-            <div
-                fxLayout="row wrap"
-                class="matero-row"
-                *ngIf="vm.settings?.state!"
-            >
-                <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
-                    <h3>Estados</h3>
-                    <hr />
-
-                    <div
-                        fxLayout="row wrap"
-                        class="matero-row"
-                        *ngIf="vm.settings?.state!"
-                    >
-                        <div
-                            [fxFlex.gt-sm]="50"
-                            [fxFlex]="100"
-                            class="matero-col"
-                        >
-                            <div
-                                [fxFlex.gt-sm]="50"
-                                [fxFlex]="100"
-                                class="matero-col"
-                            >
-                                <mat-checkbox
-                                    [(ngModel)]="vm.settings?.state!.admob"
-                                    name="stateAdmob"
-                                >
-                                    Admob
-                                </mat-checkbox>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <br />
             <!-- BUTTON -->
             <div fxLayout="row wrap" class="matero-row">

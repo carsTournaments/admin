@@ -522,8 +522,8 @@ export class CustomTableColumnsModel {
             this.defaults.created,
         ],
         rounds: [
-            { header: 'Nombre', field: 'name' },
-            { header: 'Participantes', field: 'participants' },
+            { header: 'Nombre', field: 'name', sortable: true },
+            { header: 'Participantes', field: 'participants', sortable: true },
             { header: 'Votos', field: 'votes.count' },
             {
                 header: 'Torneo',
@@ -552,6 +552,7 @@ export class CustomTableColumnsModel {
             {
                 header: 'Estado',
                 field: 'status',
+                sortable: true,
                 formatter: (item: any) => getStateChip(item.status),
             },
             this.defaults.created,
@@ -852,11 +853,10 @@ export class CustomTableColumnsModel {
                     ),
             },
             {
-                header: 'Usuario',
+                header: 'Votante',
                 field: 'user.name',
                 sortable: true,
-                formatter: (item: any) =>
-                    item.user ? getChipDriverWithImage(item.user) : 'Anonimo',
+                formatter: (item: any) => getChipDriverWithImage(item.user),
             },
             { header: 'Ronda', field: 'round.name' },
             this.defaults.created,
@@ -882,7 +882,6 @@ export class CustomTableColumnsModel {
             {
                 header: 'Coche',
                 field: 'car',
-                width: '220px',
                 formatter: (item: any) =>
                     getChip(
                         item.car.brand?.name + ' ' + item.car.model,
@@ -890,7 +889,12 @@ export class CustomTableColumnsModel {
                         item.car.image?.url
                     ),
             },
-            { header: 'Usuario', field: 'user.name', sortable: true },
+            {
+                header: 'Votante',
+                field: 'user.name',
+                sortable: true,
+                formatter: (item: any) => getChipDriverWithImage(item.user),
+            },
             { header: 'Ronda', field: 'round.name' },
             this.defaults.created,
         ],

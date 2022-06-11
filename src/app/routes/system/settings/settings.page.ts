@@ -19,9 +19,9 @@ export class SettingsPage implements OnInit {
 
     getSettings() {
         this.settingsService.getAll().subscribe({
-            next: (settings) => {
-                this.vm.settings = settings;
-            },
+            next: (settings) => (this.vm.settings = settings),
+            error: () =>
+                this.snackBarService.open('Error al obtener los settings'),
         });
     }
 
