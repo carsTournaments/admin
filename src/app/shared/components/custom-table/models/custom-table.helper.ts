@@ -50,6 +50,20 @@ export const getStateChip = (state: string): string => {
     }
 };
 
+export const getTypeChip = (state: string): string => {
+    if (state === 'link') {
+        return getChip('link', false, '', 'warning');
+    } else if (state === 'sub') {
+        return getChip('sub', false, '', 'success');
+    } else if (state === 'extLink') {
+        return getChip('extLink', false, '', 'info');
+    } else if (state === 'extTabLink') {
+        return getChip('extTabLink', false, '', 'primary');
+    } else {
+        return '';
+    }
+};
+
 export const getImageRounded = (image: string) => {
     const url = getImageOrDefault(image);
     return `<img class="image-table" src="${url}" />`;

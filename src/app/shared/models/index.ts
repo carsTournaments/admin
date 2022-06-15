@@ -1,3 +1,4 @@
+export { Menu } from './menu.model';
 export { Brand } from './brand.model';
 export { Car } from './car.model';
 export { Image } from './image.model';

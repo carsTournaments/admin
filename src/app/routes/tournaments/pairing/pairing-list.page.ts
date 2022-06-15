@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VoteNewComponent } from '@components';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { Pairing } from '@models';
-import { AlertService, PairingService } from '@services';
+import { AlertService, PairingService, SnackBarService } from '@services';
 import { PairingListViewModel } from './model/pairing-list.view-model';
 
 @Component({
@@ -13,7 +13,8 @@ export class PairingListPage implements OnInit {
     vm = new PairingListViewModel();
     constructor(
         private pairingService: PairingService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private snackBarService: SnackBarService
     ) {}
 
     ngOnInit() {
@@ -37,7 +38,7 @@ export class PairingListPage implements OnInit {
             },
             error: (error) => {
                 this.vm.optionsTable.loading = false;
-                console.error(error);
+                this.snackBarService.open(error);
             },
         });
     }

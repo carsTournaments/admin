@@ -7,6 +7,7 @@ import {
     getDateTimeago,
     getImageRounded,
     getStateChip,
+    getTypeChip,
 } from './custom-table.helper';
 
 export class CustomTableColumnsModel {
@@ -361,6 +362,17 @@ export class CustomTableColumnsModel {
                     ),
             },
             this.defaults.created,
+        ],
+        menu: [
+            { header: 'Nombre', field: 'name' },
+            {
+                header: 'Tipo',
+                field: 'type',
+                formatter: (item: any) => getTypeChip(item.type),
+            },
+            { header: 'Icono', field: 'icon' },
+            { header: 'Posicion', field: 'position' },
+            this.defaults.updated,
         ],
         notifications: [
             { header: 'Titulo', field: 'title' },

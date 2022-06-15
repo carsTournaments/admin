@@ -1,4 +1,3 @@
-import { Menu } from './../bootstrap/menu.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, iif, of } from 'rxjs';
@@ -6,7 +5,7 @@ import { map, share, switchMap, tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
 import { LoginService } from './login.service';
 import { isEmptyObject } from './helpers';
-import { User } from '@models';
+import { Menu, User } from '@models';
 import { LoginResponseI } from '@interfaces';
 import { UserService } from '@services';
 

@@ -1,0 +1,97 @@
+<form class="form-field-full" *ngIf="item">
+    <div fxLayout="row wrap" class="matero-row">
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    name="name"
+                    [(ngModel)]="item.name"
+                    placeholder="Nombre"
+                    required
+                />
+                <mat-label>Nombre</mat-label>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-select
+                    class="form-select"
+                    name="type"
+                    [(ngModel)]="item.type"
+                >
+                    <mat-option value="link">Link</mat-option>
+                    <mat-option value="sub">Sub</mat-option>
+                    <mat-option value="extLink">ExtLink</mat-option>
+                    <mat-option value="extTabLink">ExtTabLink</mat-option>
+                </mat-select>
+                <mat-label>Tipo</mat-label>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    name="route"
+                    [(ngModel)]="item.route"
+                    placeholder="Nombre"
+                    required
+                />
+                <mat-label>Ruta</mat-label>
+            </mat-form-field>
+        </div>
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    name="icon"
+                    [(ngModel)]="item.icon"
+                    placeholder="Nombre"
+                    required
+                />
+                <mat-label>Icono</mat-label>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    type="number"
+                    name="position"
+                    [(ngModel)]="item.position"
+                    placeholder="Nombre"
+                    required
+                />
+                <mat-label>Posicion</mat-label>
+            </mat-form-field>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div
+            [fxFlex.gt-sm]="100"
+            [fxFlex]="100"
+            class="matero-col"
+            *ngIf="item.type === 'sub'"
+        >
+            <h2>Subitems</h2>
+            <mat-nav-list>
+                <a mat-list-item *ngFor="let subitem of item.children">{{
+                    subitem.name
+                }}</a>
+            </mat-nav-list>
+        </div>
+
+        <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+            <button
+                mat-raised-button
+                class="bg-red-800 text-white w-full"
+                (click)="onSubmit()"
+            >
+                Guardar
+            </button>
+        </div>
+    </div>
+</form>

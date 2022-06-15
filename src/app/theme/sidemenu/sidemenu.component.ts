@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { MenuService } from '@core';
+import { MenuBootstrapService } from '@core';
 
 @Component({
     selector: 'app-sidemenu',
@@ -14,5 +14,5 @@ export class SidemenuComponent {
     menu$ = this.menu.getAll();
     buildRoute = this.menu.buildRoute;
 
-    constructor(private menu: MenuService) {}
+    constructor(private menu: MenuBootstrapService) {}
 }

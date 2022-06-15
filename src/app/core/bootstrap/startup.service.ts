@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { switchMap, tap } from 'rxjs/operators';
-import { Menu, MenuService } from './menu.service';
+import { MenuBootstrapService } from './menu-bootstrap.service';
 import { AuthService } from '@services';
+import { Menu } from '@models';
 
 @Injectable({
     providedIn: 'root',
@@ -9,7 +10,7 @@ import { AuthService } from '@services';
 export class StartupService {
     constructor(
         private authService: AuthService,
-        private menuService: MenuService
+        private menuService: MenuBootstrapService
     ) {}
 
     /**

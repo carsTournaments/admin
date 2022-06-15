@@ -3,8 +3,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Menu } from '@core/bootstrap/menu.service';
-import { User } from '@models';
+import { Menu, User } from '@models';
 
 @Injectable({
     providedIn: 'root',

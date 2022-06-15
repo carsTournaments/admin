@@ -13,6 +13,7 @@ export class CustomTableOptionsModel {
         | 'likes'
         | 'likesUser'
         | 'logs'
+        | 'menu'
         | 'notifications'
         | 'pairings'
         | 'pairingsTournament'
