@@ -9,10 +9,9 @@ import { MenuService } from '@services';
 export class MenuOneEditComponent {
     @Input() item: Menu = new Menu();
     @Input() edit = false;
-    // subItem =
     @Output() submitItem: EventEmitter<void> = new EventEmitter();
 
     constructor(private menuService: MenuService) {}
 
-    async onSubmit() {}
+    // async onSubmit() {}
 }
