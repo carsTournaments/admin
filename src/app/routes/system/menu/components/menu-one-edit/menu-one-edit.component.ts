@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Menu } from '@models';
-import { MenuService } from '@services';
 
 @Component({
     selector: 'menu-one-edit',
@@ -11,7 +10,7 @@ export class MenuOneEditComponent {
     @Input() edit = false;
     @Output() submitItem: EventEmitter<void> = new EventEmitter();
 
-    constructor(private menuService: MenuService) {}
+    // constructor( menuService: MenuService) {}
 
     // async onSubmit() {}
 }
