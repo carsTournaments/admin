@@ -1,26 +1,19 @@
 import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 import { GetAllDto } from '@core/dtos/generic.dto';
-import { User } from '@models';
 
-export class PairingListViewModel {
-    items: User[] = [];
-    title = 'Emparejamientos';
+export class LiteralListViewModel {
+    title = 'Literales';
     optionsTable = new CustomTableOptionsModel({
-        type: 'pairings',
+        type: 'literals',
         items: [],
         loading: true,
         showLoadMore: true,
     });
-    options = [
-        {
-            name: 'Eliminar todos los emparejamientos',
-            value: 'deleteAll',
-        },
-    ];
-    pairingBody: GetAllDto = {
+    body: GetAllDto = {
         page: 1,
-        pageSize: 20,
+        pageSize: 100,
         site: 'admin',
         order: ['created', 'desc'],
     };
+    segmentSelected = 0;
 }
