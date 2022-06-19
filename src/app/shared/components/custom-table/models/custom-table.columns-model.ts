@@ -363,6 +363,30 @@ export class CustomTableColumnsModel {
             },
             this.defaults.created,
         ],
+        literals: [
+            {
+                header: 'Nombre',
+                field: 'name',
+                sortable: true,
+            },
+            {
+                header: 'Categoria',
+                field: 'category',
+                sortable: true,
+            },
+            {
+                header: 'Español',
+                field: 'es',
+                sortable: true,
+            },
+            {
+                header: 'Ingles',
+                field: 'en',
+                sortable: true,
+            },
+            this.defaults.updated,
+            this.defaults.created,
+        ],
         menu: [
             { header: 'Nombre', field: 'name' },
             {

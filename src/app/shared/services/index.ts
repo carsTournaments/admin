@@ -6,6 +6,7 @@ export { ImageService } from './api/image/image.service';
 export { InscriptionService } from './api/inscription/inscription.service';
 export { LikeService } from './api/like/like.service';
 export { LoggerService } from './api/logger/logger.service';
+export { LiteralService } from './api/literal/literal.service';
 export { MenuService } from './api/menu/menu.service';
 export { NotificationService } from './api/notification/notification.service';
 export { OtaService } from './api/ota/ota.service';

@@ -1,0 +1,26 @@
+<div class="container">
+    <page-header [title]="vm.title"></page-header>
+
+    <mat-card class="mat-card-wrapper">
+        <mat-tab-group>
+            <mat-tab label="Info">
+                <literal-one-edit
+                    *ngIf="vm.item"
+                    [item]="vm.item"
+                    [edit]="vm.edit"
+                ></literal-one-edit>
+            </mat-tab>
+
+            <mat-tab label="Opciones">
+                <div fxLayout="row wrap" class="matero-row">
+                    <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+                        <options-list
+                            [options]="vm.options"
+                            (action)="actionForOption($event)"
+                        ></options-list>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>

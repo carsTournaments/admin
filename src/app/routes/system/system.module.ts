@@ -1,3 +1,6 @@
+import { LiteralOneEditComponent } from './literal/components/literal-one-edit/literal-one-edit.component';
+import { LiteralOnePage } from './literal/pages/one/literal-one.page';
+import { LiteralListPage } from './literal/pages/list/literal-list.page';
 import { MenuOneEditComponent } from './menu/components/menu-one-edit/menu-one-edit.component';
 import { SettingsPage } from './settings/settings.page';
 import { NgModule } from '@angular/core';
@@ -100,6 +103,30 @@ import { MenuOnePage } from './menu/pages/one/menu-one.page';
                     },
                 ],
             },
+            {
+                path: 'literals',
+                data: {
+                    breadcrumb: 'Literales',
+                },
+                children: [
+                    {
+                        path: '',
+                        component: LiteralListPage,
+                        data: {
+                            breadcrumb: 'Listado',
+                            title: 'Sistema - Menu',
+                        },
+                    },
+                    {
+                        path: 'one/:id',
+                        component: LiteralOnePage,
+                        data: {
+                            breadcrumb: 'Editar',
+                            title: 'Sistema - Menu',
+                        },
+                    },
+                ],
+            },
             { path: '**', redirectTo: 'settings' },
         ]),
     ],
@@ -115,6 +142,9 @@ import { MenuOnePage } from './menu/pages/one/menu-one.page';
         TogglesOnePage,
         TogglesOneEditComponent,
         OtaListPage,
+        LiteralListPage,
+        LiteralOnePage,
+        LiteralOneEditComponent,
     ],
     providers: [],
 })

@@ -1,0 +1,22 @@
+<div class="container">
+    <page-header [title]="vm.title"></page-header>
+    <mat-card class="mat-card-wrapper">
+        <mat-tab-group [(selectedIndex)]="vm.segmentSelected">
+            <mat-tab label="Listado">
+                <custom-table
+                    [options]="vm.optionsTable"
+                    (rowClick)="onRowClick($event)"
+                >
+                </custom-table>
+            </mat-tab>
+
+            <mat-tab label="Opciones">
+                <options-list [options]="vm.options"></options-list>
+            </mat-tab>
+
+            <mat-tab label="Nuevo">
+                <literal-one-edit (submitItem)="getAll()"></literal-one-edit>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>

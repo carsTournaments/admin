@@ -12,6 +12,7 @@ export class CustomTableOptionsModel {
         | 'inscriptionsTournament'
         | 'likes'
         | 'likesUser'
+        | 'literals'
         | 'logs'
         | 'menu'
         | 'notifications'
