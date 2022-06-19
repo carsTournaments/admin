@@ -42,6 +42,11 @@ export class LiteralListPage {
         });
     }
 
+    onChangePage() {
+        this.vm.body.page += 1;
+        this.getAll(true);
+    }
+
     onRowClick(event: { rowData: Toggle; index: number }) {
         this.router.navigate([`/system/literals/one/${event.rowData._id}`]);
     }

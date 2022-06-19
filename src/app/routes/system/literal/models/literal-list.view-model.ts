@@ -15,11 +15,5 @@ export class LiteralListViewModel {
         site: 'admin',
         order: ['created', 'desc'],
     };
-    options = [
-        {
-            name: 'Eliminar todos los toggles',
-            value: 'deleteAll',
-        },
-    ];
     segmentSelected = 0;
 }

@@ -5,13 +5,10 @@
             <mat-tab label="Listado">
                 <custom-table
                     [options]="vm.optionsTable"
+                    (changePage)="onChangePage()"
                     (rowClick)="onRowClick($event)"
                 >
                 </custom-table>
-            </mat-tab>
-
-            <mat-tab label="Opciones">
-                <options-list [options]="vm.options"></options-list>
             </mat-tab>
 
             <mat-tab label="Nuevo">
