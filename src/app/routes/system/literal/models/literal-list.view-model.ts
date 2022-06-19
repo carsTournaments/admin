@@ -11,7 +11,7 @@ export class LiteralListViewModel {
     });
     body: GetAllDto = {
         page: 1,
-        pageSize: 20,
+        pageSize: 100,
         site: 'admin',
         order: ['created', 'desc'],
     };
