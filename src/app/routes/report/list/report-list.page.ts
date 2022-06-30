@@ -65,7 +65,7 @@ export class ReportListPage implements OnInit {
                 this.reportService.deleteAll().subscribe({
                     next: () => {
                         this.snackBarService.open(
-                            'Todos los emparejamientos eliminados'
+                            'Todos los reportes han sido eliminados'
                         );
                         this.getAll();
                     },
