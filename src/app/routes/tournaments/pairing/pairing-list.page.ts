@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { VoteNewComponent } from '@components';
-import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { Pairing } from '@models';
 import { AlertService, PairingService, SnackBarService } from '@services';
 import { PairingListViewModel } from './model/pairing-list.view-model';

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { WinnerService } from '@services';
 import { WinnerListViewModel } from './model/winner-list.view-model';
 

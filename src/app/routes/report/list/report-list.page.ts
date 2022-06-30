@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { Report } from '@models';
 import { AlertService, ReportService, SnackBarService } from '@services';
 import { ReportListViewModel } from './model/report-list.view-model';
