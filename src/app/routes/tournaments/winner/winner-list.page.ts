@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { WinnerService } from '@services';
 import { WinnerListViewModel } from './model/winner-list.view-model';
 
@@ -34,14 +33,8 @@ export class WinnerListPage implements OnInit {
         });
     }
 
-    actionForOption(option: ActionForOptionI) {
-        switch (option.value) {
-            case 'deleteAll':
-                this.deleteAll();
-                break;
-            default:
-                break;
-        }
+    actionForOption() {
+        this.deleteAll();
     }
 
     async deleteAll() {

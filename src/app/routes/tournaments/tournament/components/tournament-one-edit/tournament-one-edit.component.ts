@@ -93,10 +93,10 @@ export class TournamentOneEditComponent {
             (i) => i.name === this.requisiteSelected
         );
         const checkItem = this.item.requisites.find(
-            (i) => i.name === item!.name
+            (i) => i.name === item.name
         );
         if (!checkItem) {
-            this.item.requisites.push(item!);
+            this.item.requisites.push(item);
         } else {
             this.snackBarService.open('Requisito ya agregado');
         }

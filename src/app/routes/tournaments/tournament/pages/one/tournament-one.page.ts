@@ -38,7 +38,7 @@ export class TournamentOnePage implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.vm.id = this.route.snapshot.paramMap.get('id') as string;
+        this.vm.id = this.route.snapshot.paramMap.get('id');
         if (this.vm.id) {
             this.vm.edit = true;
             this.getOne();
@@ -375,7 +375,7 @@ export class TournamentOnePage implements OnInit {
         const alert = await this.alertService.openDialog(VoteNewComponent, {
             car1: event.rowData.car1,
             car2: event.rowData.car2,
-            round: event.rowData.round._id!,
+            round: event.rowData.round._id,
             tournament: this.vm.id,
             pairing: event.rowData._id!,
         });

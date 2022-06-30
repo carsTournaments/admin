@@ -24,7 +24,7 @@ import { debounceTime, tap } from 'rxjs/operators';
         </button>
 
         <mat-menu #menu="matMenu">
-            <button routerLink="/settings" mat-menu-item>
+            <button routerLink="/system/settings" mat-menu-item>
                 <mat-icon>settings</mat-icon>
                 <span>Configuracion</span>
             </button>

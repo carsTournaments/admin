@@ -53,7 +53,7 @@ export class NotificationSendComponent implements OnInit {
             titleButton: this.titleButton,
         };
         if (this.allOrUser === 'all') {
-            this.users.map((item) => {
+            this.users.forEach((item) => {
                 this.notification.fcms.push(item.fcm!);
                 this.notification.users.push(item._id!);
             });

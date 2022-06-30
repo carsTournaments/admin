@@ -90,7 +90,7 @@ export class AnalyticsVisitsLastDaysComponent implements OnInit {
             element.items.forEach((subi, i) => {
                 this.optionsChart.data.datasets[i].data.push(subi.value);
             });
-            this.optionsChart.data.labels!.push(element.date);
+            this.optionsChart.data.labels.push(element.date);
         });
         this.optionsChart.loading = false;
     }

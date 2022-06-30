@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { Report } from '@models';
 import { AlertService, ReportService, SnackBarService } from '@services';
 import { ReportListViewModel } from './model/report-list.view-model';
@@ -44,14 +43,8 @@ export class ReportListPage implements OnInit {
         });
     }
 
-    actionForOption(option: ActionForOptionI) {
-        switch (option.value) {
-            case 'deleteAll':
-                this.deleteAll();
-                break;
-            default:
-                break;
-        }
+    actionForOption() {
+        this.deleteAll();
     }
 
     async deleteAll() {
@@ -65,7 +58,7 @@ export class ReportListPage implements OnInit {
                 this.reportService.deleteAll().subscribe({
                     next: () => {
                         this.snackBarService.open(
-                            'Todos los emparejamientos eliminados'
+                            'Todos los reportes han sido eliminados'
                         );
                         this.getAll();
                     },

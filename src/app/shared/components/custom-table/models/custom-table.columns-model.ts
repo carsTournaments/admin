@@ -17,14 +17,14 @@ export class CustomTableColumnsModel {
             field: 'created',
             sortable: true,
             width: '150px',
-            formatter: (item: any) => getDateTimeago(item.created!),
+            formatter: (item: any) => getDateTimeago(item.created),
         },
         updated: {
             header: 'Actualizado',
             field: 'updated',
             sortable: true,
             width: '150px',
-            formatter: (item: any) => getDateTimeago(item.updated!),
+            formatter: (item: any) => getDateTimeago(item.updated),
         },
     };
     private data: any = {

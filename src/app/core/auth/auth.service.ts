@@ -50,7 +50,6 @@ export class AuthService {
 
     logout(): void {
         this.tokenService.clear();
-        !this.check();
     }
 
     user(): Observable<any> {

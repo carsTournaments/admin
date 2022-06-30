@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { Vote } from '@models';
 import { AlertService, SnackBarService, VoteService } from '@services';
 import { VoteListViewModel } from './model/vote-list.view-model';
@@ -39,14 +38,8 @@ export class VoteListPage implements OnInit {
         });
     }
 
-    actionForOption(option: ActionForOptionI) {
-        switch (option.value) {
-            case 'deleteAll':
-                this.deleteAll();
-                break;
-            default:
-                break;
-        }
+    actionForOption() {
+        this.deleteAll();
     }
 
     async deleteAll() {
