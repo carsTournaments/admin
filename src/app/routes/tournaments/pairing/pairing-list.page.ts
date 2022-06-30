@@ -43,14 +43,8 @@ export class PairingListPage implements OnInit {
         });
     }
 
-    actionForOption(option: ActionForOptionI) {
-        switch (option.value) {
-            case 'deleteAll':
-                this.deleteAll();
-                break;
-            default:
-                break;
-        }
+    actionForOption() {
+        this.deleteAll();
     }
 
     async deleteAll() {
@@ -96,8 +90,8 @@ export class PairingListPage implements OnInit {
         const alert = await this.alertService.openDialog(VoteNewComponent, {
             car1: event.rowData.car1,
             car2: event.rowData.car2,
-            round: event.rowData.round._id!,
-            tournament: event.rowData.tournament._id!,
+            round: event.rowData.round._id,
+            tournament: event.rowData.tournament._id,
             pairing: event.rowData._id!,
         });
         alert.subscribe((data) => {

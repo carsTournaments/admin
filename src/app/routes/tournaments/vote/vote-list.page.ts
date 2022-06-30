@@ -39,14 +39,8 @@ export class VoteListPage implements OnInit {
         });
     }
 
-    actionForOption(option: ActionForOptionI) {
-        switch (option.value) {
-            case 'deleteAll':
-                this.deleteAll();
-                break;
-            default:
-                break;
-        }
+    actionForOption() {
+        this.deleteAll();
     }
 
     async deleteAll() {

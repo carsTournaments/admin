@@ -375,7 +375,7 @@ export class TournamentOnePage implements OnInit {
         const alert = await this.alertService.openDialog(VoteNewComponent, {
             car1: event.rowData.car1,
             car2: event.rowData.car2,
-            round: event.rowData.round._id!,
+            round: event.rowData.round._id,
             tournament: this.vm.id,
             pairing: event.rowData._id!,
         });

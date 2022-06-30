@@ -41,12 +41,8 @@ export class LiteralOnePage {
     }
 
     actionForOption(option: ActionForOptionI) {
-        switch (option.value) {
-            case 'delete':
-                this.delete();
-                break;
-            default:
-                break;
+        if (option.value === 'delete') {
+            this.delete();
         }
     }
 

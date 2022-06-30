@@ -77,10 +77,8 @@ export class NotificationListPage implements OnInit {
         );
     }
 
-    actionForOption(option: ActionForOptionI) {
-        if (option.value === 'deleteAll') {
-            this.onDeleteItem();
-        }
+    actionForOption() {
+        this.onDeleteItem();
     }
 
     async onDeleteItem() {

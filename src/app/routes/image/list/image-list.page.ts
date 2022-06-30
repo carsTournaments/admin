@@ -41,10 +41,8 @@ export class ImageListPage implements OnInit {
         });
     }
 
-    actionForOption(option: ActionForOptionI) {
-        if (option.value === 'deleteAll') {
-            this.deleteAll();
-        }
+    actionForOption() {
+        this.deleteAll();
     }
 
     async deleteAll() {

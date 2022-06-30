@@ -35,10 +35,10 @@ export class VoteNewComponent implements OnInit {
     createVote() {
         const user = this.userService.getUser();
         const body: VoteCreateDto = {
-            car: this.carIdSelected!,
-            pairing: this.pairing!,
-            round: this.round!,
-            tournament: this.tournament!,
+            car: this.carIdSelected,
+            pairing: this.pairing,
+            round: this.round,
+            tournament: this.tournament,
             user: user._id!,
         };
         this.voteService.create(body).subscribe({

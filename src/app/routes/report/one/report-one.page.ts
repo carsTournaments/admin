@@ -33,10 +33,8 @@ export class ReportOnePage implements OnInit {
     }
 
     actionForOption(option: ActionForOptionI) {
-        switch (option.value) {
-            case 'delete':
-                this.deleteReport();
-                break;
+        if (option.value === 'delete') {
+            this.deleteReport();
         }
     }
 

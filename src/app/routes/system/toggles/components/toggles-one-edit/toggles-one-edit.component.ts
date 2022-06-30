@@ -21,7 +21,10 @@ export class TogglesOneEditComponent {
 
     async onSubmit() {
         try {
-            this.item.state = this.state === 'true' ? true : false;
+            this.item.state = false;
+            if (this.state === 'true') {
+                this.item.state = true;
+            }
             const validations = this.validations();
             if (validations.state) {
                 this.edit ? this.update() : this.create();

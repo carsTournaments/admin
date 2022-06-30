@@ -62,12 +62,8 @@ export class BrandOnePage implements OnInit {
     }
 
     actionForOption(option: ActionForOptionI) {
-        switch (option.value) {
-            case 'delete':
-                this.delete();
-                break;
-            default:
-                break;
+        if (option.value === 'delete') {
+            this.delete();
         }
     }
 
