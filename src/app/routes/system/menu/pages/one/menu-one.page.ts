@@ -18,7 +18,7 @@ export class MenuOnePage implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.vm.id = this.route.snapshot.paramMap.get('id') as string;
+        this.vm.id = this.route.snapshot.paramMap.get('id');
         if (this.vm.id) {
             this.vm.edit = true;
             this.getOne();

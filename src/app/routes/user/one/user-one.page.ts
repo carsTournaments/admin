@@ -30,7 +30,7 @@ export class UserOnePage implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.vm.id = this.route.snapshot.paramMap.get('id') as string;
+        this.vm.id = this.route.snapshot.paramMap.get('id');
         if (this.vm.id) {
             this.vm.title = 'Editar Usuario';
             this.vm.edit = true;

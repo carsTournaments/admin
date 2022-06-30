@@ -35,7 +35,7 @@ export class CarOnePage implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.vm.id = this.route.snapshot.paramMap.get('id') as string;
+        this.vm.id = this.route.snapshot.paramMap.get('id');
         this.getAllWinners();
         if (this.vm.id) {
             this.vm.edit = true;
