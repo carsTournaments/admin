@@ -19,7 +19,7 @@ export class ReportOnePage implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.vm.id = this.route.snapshot.paramMap.get('id') as string;
+        this.vm.id = this.route.snapshot.paramMap.get('id');
         this.vm.title = 'Editar Reporte';
         this.vm.edit = true;
         this.getOne();
@@ -33,10 +33,8 @@ export class ReportOnePage implements OnInit {
     }
 
     actionForOption(option: ActionForOptionI) {
-        switch (option.value) {
-            case 'delete':
-                this.deleteReport();
-                break;
+        if (option.value === 'delete') {
+            this.deleteReport();
         }
     }
 

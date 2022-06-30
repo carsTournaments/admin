@@ -30,7 +30,7 @@ export class UserOnePage implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.vm.id = this.route.snapshot.paramMap.get('id') as string;
+        this.vm.id = this.route.snapshot.paramMap.get('id');
         if (this.vm.id) {
             this.vm.title = 'Editar Usuario';
             this.vm.edit = true;
@@ -46,7 +46,7 @@ export class UserOnePage implements OnInit {
             this.userService.getOne(this.vm.id).subscribe((item) => {
                 this.vm.item = item;
                 if (this.vm.item.fcm && this.vm.item.fcm.length > 0) {
-                    this.vm.notification.fcms = [this.vm.item.fcm!];
+                    this.vm.notification.fcms = [this.vm.item.fcm];
                     this.vm.notification.users = [this.vm.item._id!];
                 }
                 this.getCarsForUser();
@@ -85,12 +85,8 @@ export class UserOnePage implements OnInit {
     }
 
     actionForOption(option: ActionForOptionI) {
-        switch (option.value) {
-            case 'deleteUser':
-                this.deleteUser();
-                break;
-            default:
-                break;
+        if (option.value === 'deleteUser') {
+            this.deleteUser();
         }
     }
 

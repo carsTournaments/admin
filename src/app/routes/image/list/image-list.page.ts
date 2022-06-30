@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { Image } from '@models';
 import { AlertService, SnackBarService } from '@services';
 import { ImageService } from '@services/api/image/image.service';
@@ -41,10 +40,8 @@ export class ImageListPage implements OnInit {
         });
     }
 
-    actionForOption(option: ActionForOptionI) {
-        if (option.value === 'deleteAll') {
-            this.deleteAll();
-        }
+    actionForOption() {
+        this.deleteAll();
     }
 
     async deleteAll() {

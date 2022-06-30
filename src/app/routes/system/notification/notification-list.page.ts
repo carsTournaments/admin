@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationSendComponent } from 'app/routes/system/notification/components/notification-send/notification-send.component';
-import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { Notification } from '@models/notification.model';
 import { AlertService, NotificationService, SnackBarService } from '@services';
 import { NotificationListViewModel } from './models/notification-list.view-model';
@@ -77,10 +76,8 @@ export class NotificationListPage implements OnInit {
         );
     }
 
-    actionForOption(option: ActionForOptionI) {
-        if (option.value === 'deleteAll') {
-            this.onDeleteItem();
-        }
+    actionForOption() {
+        this.onDeleteItem();
     }
 
     async onDeleteItem() {

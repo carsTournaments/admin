@@ -30,7 +30,6 @@ export class TokenService {
 
     set(token?: string): TokenService {
         this.save(token);
-
         return this;
     }
 
@@ -39,9 +38,11 @@ export class TokenService {
     }
 
     valid(): boolean {
-        if (!this.token) {
+        if (this.token && this.token.length > 0) {
+            return true;
+        } else {
+            return false;
         }
-        return this.token && this.token?.length > 0 ? true : false;
     }
 
     getToken(): string {

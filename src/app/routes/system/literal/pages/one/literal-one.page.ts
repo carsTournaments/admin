@@ -20,7 +20,7 @@ export class LiteralOnePage {
     ) {}
 
     ngOnInit() {
-        this.vm.id = this.route.snapshot.paramMap.get('id') as string;
+        this.vm.id = this.route.snapshot.paramMap.get('id');
         if (this.vm.id) {
             this.vm.edit = true;
             this.getOne();
@@ -41,12 +41,8 @@ export class LiteralOnePage {
     }
 
     actionForOption(option: ActionForOptionI) {
-        switch (option.value) {
-            case 'delete':
-                this.delete();
-                break;
-            default:
-                break;
+        if (option.value === 'delete') {
+            this.delete();
         }
     }
 
