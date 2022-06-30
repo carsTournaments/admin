@@ -38,7 +38,7 @@ export class TournamentOnePage implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.vm.id = this.route.snapshot.paramMap.get('id');
+        this.vm.id = this.route.snapshot.paramMap.get('id')!;
         if (this.vm.id) {
             this.vm.edit = true;
             this.getOne();
