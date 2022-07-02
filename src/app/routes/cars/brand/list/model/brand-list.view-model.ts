@@ -13,8 +13,8 @@ export class BrandListViewModel {
     });
     options = [
         {
-            name: 'Prueba',
-            value: '',
+            name: 'Actualizar imagenes por defecto',
+            value: 'updateBrandImagesWithJsonFile',
         },
     ];
     brandBody: BrandGetAllDto = {

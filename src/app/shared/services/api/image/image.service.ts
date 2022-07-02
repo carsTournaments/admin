@@ -40,6 +40,11 @@ export class ImageService {
         return this.httpClient.post<any>(url, data).pipe(take(1));
     }
 
+    updateBrandImagesWithJsonFile(): Observable<any> {
+        const url = `${this.url}/updateBrandImagesWithJsonFile`;
+        return this.httpClient.post<any>(url, null).pipe(take(1));
+    }
+
     deleteOne(id: string): Observable<{ message: string }> {
         const url = `${this.url}/one/${id}`;
         return this.httpClient.delete<any>(url).pipe(take(1));

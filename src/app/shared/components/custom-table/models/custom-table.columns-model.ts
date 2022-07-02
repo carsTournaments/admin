@@ -75,7 +75,8 @@ export class CustomTableColumnsModel {
                 header: 'Conductor',
                 field: 'driver.name',
                 width: '175px',
-                formatter: (item: any) => getChipDriverWithImage(item.driver),
+                formatter: (item: any) =>
+                    item.driver ? getChipDriverWithImage(item.driver) : '',
             },
             {
                 header: 'Año',
@@ -183,9 +184,9 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) => {
                     let data;
                     if (item.type === 'brand') {
-                        data = `${item.brand.name}`;
+                        data = `${item.brand?.name}`;
                     } else if (item.type === 'car') {
-                        data = `${item.car.brand.name} ${item.car.model}`;
+                        data = `${item.car.brand?.name} ${item.car.model}`;
                     } else if (item.type === 'tournament') {
                         data = `${item.tournament.name}`;
                     }
