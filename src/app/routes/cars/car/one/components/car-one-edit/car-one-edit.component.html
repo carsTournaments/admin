@@ -44,10 +44,10 @@
             <mat-form-field appearance="outline">
                 <mat-label>Combustible</mat-label>
                 <mat-select [(value)]="item.fuel" placeholder="Selecciona">
-                    <mat-option value="Gasolina">Gasolina</mat-option>
-                    <mat-option value="Diesel">Diesel</mat-option>
-                    <mat-option value="Hibrido">Hibrido</mat-option>
-                    <mat-option value="Diesel">Diesel</mat-option>
+                    <mat-option value="gasoline">Gasolina</mat-option>
+                    <mat-option value="diesel">Diesel</mat-option>
+                    <mat-option value="hybrid">Hibrido</mat-option>
+                    <mat-option value="electric">Electrico</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -56,8 +56,10 @@
             <mat-form-field appearance="outline">
                 <mat-label>Traccion</mat-label>
                 <mat-select [(value)]="item.traction" placeholder="Selecciona">
-                    <mat-option value="Delantera">Delantera</mat-option>
-                    <mat-option value="Trasera">Trasera</mat-option>
+                    <mat-option value="FWD">Delantera</mat-option>
+                    <mat-option value="RWD">Trasera</mat-option>
+                    <mat-option value="AWD">Total</mat-option>
+                    <mat-option value="4WD">4×4 conectable</mat-option>
                     <mat-option value="4x4">4x4</mat-option>
                 </mat-select>
             </mat-form-field>
