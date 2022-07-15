@@ -50,6 +50,16 @@ export class CustomTableColumnsModel {
                 },
             },
         ],
+        cache: [
+            {
+                header: 'Nombre',
+                field: 'name',
+            },
+            {
+                header: 'Peso',
+                field: 'size',
+            },
+        ],
         cars: [
             {
                 header: '#',

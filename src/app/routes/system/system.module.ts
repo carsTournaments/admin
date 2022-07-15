@@ -16,6 +16,7 @@ import { TogglesOneEditComponent } from './toggles/components/toggles-one-edit/t
 import { OtaListPage } from './ota/ota-list.page';
 import { MenuListPage } from './menu/pages/list/menu-list.page';
 import { MenuOnePage } from './menu/pages/one/menu-one.page';
+import { CacheListPage } from './cache/pages/list/cache-list.page';
 
 @NgModule({
     imports: [
@@ -28,6 +29,14 @@ import { MenuOnePage } from './menu/pages/one/menu-one.page';
                 data: {
                     breadcrumb: 'Configuración',
                     title: 'Sistema - Configuracion',
+                },
+            },
+            {
+                path: 'cache',
+                component: CacheListPage,
+                data: {
+                    breadcrumb: 'Cache',
+                    title: 'Sistema - Cache',
                 },
             },
             {
@@ -131,20 +140,21 @@ import { MenuOnePage } from './menu/pages/one/menu-one.page';
         ]),
     ],
     declarations: [
-        SettingsPage,
-        StatsPage,
+        CacheListPage,
+        LiteralListPage,
+        LiteralOneEditComponent,
+        LiteralOnePage,
+        MenuListPage,
+        MenuOneEditComponent,
+        MenuOnePage,
         NotificationListPage,
         NotificationSendComponent,
-        MenuListPage,
-        MenuOnePage,
-        MenuOneEditComponent,
-        TogglesListPage,
-        TogglesOnePage,
-        TogglesOneEditComponent,
         OtaListPage,
-        LiteralListPage,
-        LiteralOnePage,
-        LiteralOneEditComponent,
+        SettingsPage,
+        StatsPage,
+        TogglesListPage,
+        TogglesOneEditComponent,
+        TogglesOnePage,
     ],
     providers: [],
 })

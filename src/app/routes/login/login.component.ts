@@ -81,7 +81,6 @@ export class LoginComponent {
             .subscribe({
                 next: () => this.router.navigateByUrl('/'),
                 error: (error) => {
-                    console.log(error);
                     this.isSubmitting = false;
                     this.snackbarService.open(error);
                 },
