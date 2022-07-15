@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionForOptionI, CacheGetAllI } from '@interfaces';
-import { Toggle } from '@models';
 import { AlertService, CacheService, SnackBarService } from '@services';
 import { CacheListViewModel } from '../../models/cache-list.view-model';
 
@@ -42,7 +41,6 @@ export class CacheListPage {
     }
 
     actionForOption(option: ActionForOptionI) {
-        console.log(option);
         if (option.value === 'deleteAll') {
             this.deleteAll();
         }
