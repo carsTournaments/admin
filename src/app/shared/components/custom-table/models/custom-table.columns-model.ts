@@ -1,5 +1,6 @@
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { flags } from 'assets/json/flags';
+import * as moment from 'moment';
 import {
     getChip,
     getChipDriverWithImage,
@@ -47,6 +48,23 @@ export class CustomTableColumnsModel {
                 field: 'cars',
                 formatter: (item: any) => {
                     return item.cars.length;
+                },
+            },
+        ],
+        cache: [
+            {
+                header: 'Nombre',
+                field: 'name',
+            },
+            {
+                header: 'Peso',
+                field: 'size',
+            },
+            {
+                header: 'Expiración',
+                field: 'expiration',
+                formatter: (item: any) => {
+                    return moment(item.expiration).format('DD-MM-YY HH:mm');
                 },
             },
         ],
