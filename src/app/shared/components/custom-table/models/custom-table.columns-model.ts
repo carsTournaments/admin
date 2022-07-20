@@ -230,7 +230,6 @@ export class CustomTableColumnsModel {
             {
                 header: 'Tamaño',
                 field: 'size',
-                sortable: true,
                 type: 'string',
             },
             this.defaults.created,
