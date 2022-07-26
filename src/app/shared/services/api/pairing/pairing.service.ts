@@ -24,15 +24,9 @@ export class PairingService {
             .pipe(take(1));
     }
 
-    getAllOfRound(data: IdDto): Observable<Pairing[]> {
-        return this.httpClient
-            .post<Pairing[]>(`${this.url}/allOfRound`, data)
-            .pipe(take(1));
-    }
-
     getAllOfTournament(data: IdDto): Observable<Pairing[]> {
         return this.httpClient
-            .post<Pairing[]>(`${this.url}/allOfTournament`, data)
+            .post<Pairing[]>(`${this.url}/getAllTournamentPairings`, data)
             .pipe(take(1));
     }
 

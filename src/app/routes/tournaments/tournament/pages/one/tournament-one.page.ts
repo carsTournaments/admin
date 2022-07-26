@@ -75,7 +75,7 @@ export class TournamentOnePage implements OnInit {
             this.vm.item.maxParticipants;
         this.setItemOptions();
         this.getInscriptionsByTournament();
-        this.getRoundsByTournament();
+        this.getAllTournamentRounds();
         this.getPairingsByTournament();
         this.getVotesByTournament();
         this.getAllWinnersForTournament();
@@ -119,9 +119,9 @@ export class TournamentOnePage implements OnInit {
         this.vm.inscriptionsOptionsTable.loading = false;
     }
 
-    async getRoundsByTournament() {
+    async getAllTournamentRounds() {
         this.vm.roundsOptionsTable.loading = true;
-        this.roundService.getAllOfTournament({ id: this.vm.id }).subscribe({
+        this.roundService.getAllTournamentRounds({ id: this.vm.id }).subscribe({
             next: (items) => (this.vm.roundsOptionsTable.items = items),
             error: (e) => this.snackBarService.open(e),
         });
@@ -326,7 +326,7 @@ export class TournamentOnePage implements OnInit {
                 this.roundService.deleteAllOfTournament(this.vm.id).subscribe({
                     next: () => {
                         this.snackBarService.open('Rondas eliminadas');
-                        this.getRoundsByTournament();
+                        this.getAllTournamentRounds();
                     },
                     error: (e) => this.snackBarService.open(e),
                 });
