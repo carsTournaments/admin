@@ -24,15 +24,15 @@ export class CarService {
             .pipe(take(1));
     }
 
-    getAllOffBrand(data: IdDto): Observable<Car[]> {
+    getAllBrandCars(data: IdDto): Observable<Car[]> {
         return this.httpClient
-            .post<Car[]>(`${this.url}/getAllOfBrand`, data)
+            .post<Car[]>(`${this.url}/getAllBrandCars`, data)
             .pipe(take(1));
     }
 
-    getAllOfDriver(data: IdDto): Observable<Car[]> {
+    getAllDriverCars(data: IdDto): Observable<Car[]> {
         return this.httpClient
-            .post<Car[]>(`${this.url}/getAllOfDriver`, data)
+            .post<Car[]>(`${this.url}/getAllDriverCars`, data)
             .pipe(take(1));
     }
 

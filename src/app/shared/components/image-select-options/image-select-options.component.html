@@ -1,0 +1,26 @@
+<div class="container w-full">
+    <mat-nav-list class="w-full">
+        <ng-container *ngFor="let option of options">
+            <a
+                mat-list-item
+                [disabled]="option.disabled"
+                (click)="close(option.value)"
+            >
+                {{ option.name }}
+                <mat-icon class="float-right-absolute">
+                    chevron_right
+                </mat-icon>
+            </a>
+            <mat-divider inset></mat-divider>
+        </ng-container>
+    </mat-nav-list>
+    <button
+        mat-raised-button
+        color="primary"
+        class="w-full"
+        style="width: 200px !important"
+        (click)="close()"
+    >
+        Cerrar
+    </button>
+</div>

@@ -23,7 +23,7 @@ export class BrandOnePage implements OnInit {
         if (this.vm.id) {
             this.vm.title = 'Editar Marca';
             this.vm.edit = true;
-            this.getCarsOffBrand();
+            this.getAllBrandCars();
             this.getOne();
         } else {
             this.vm.title = 'Nuevo Marca';
@@ -34,14 +34,15 @@ export class BrandOnePage implements OnInit {
     async getOne() {
         this.brandService.getOne(this.vm.id).subscribe({
             next: (item) => (this.vm.item = item),
-            error: (e) => console.error(e),
+            error: () => this.snackBarService.open('Error al obtener la marca'),
         });
     }
 
-    getCarsOffBrand() {
-        this.carService.getAllOffBrand({ id: this.vm.id }).subscribe({
+    getAllBrandCars() {
+        this.carService.getAllBrandCars({ id: this.vm.id }).subscribe({
             next: (items) => (this.vm.carsOptionsTable.items = items),
-            error: (e) => console.error(e),
+            error: () =>
+                this.snackBarService.open('Error al obtener los autos'),
         });
     }
 
@@ -57,7 +58,7 @@ export class BrandOnePage implements OnInit {
                       this.router.navigate(['/cars/brands']);
                   });
         } catch (error) {
-            console.error(error);
+            this.snackBarService.open('Error al guardar');
         }
     }
 
@@ -74,7 +75,8 @@ export class BrandOnePage implements OnInit {
                     this.snackBarService.open('Marca eliminada');
                     this.router.navigate(['/brands']);
                 },
-                error: (e) => console.error(e),
+                error: () =>
+                    this.snackBarService.open('Error al eliminar la marca'),
             });
         }
     }

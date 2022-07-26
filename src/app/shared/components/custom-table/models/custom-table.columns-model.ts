@@ -227,6 +227,11 @@ export class CustomTableColumnsModel {
                     return data;
                 },
             },
+            {
+                header: 'Tamaño',
+                field: 'size',
+                type: 'string',
+            },
             this.defaults.created,
         ],
         inscriptions: [
