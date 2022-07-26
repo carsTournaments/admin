@@ -30,6 +30,8 @@ export class TypePipe implements PipeTransform {
                 return 'Tabs';
             case 'dashboard':
                 return 'Dashboard Usuario';
+            case 'ranking':
+                return 'Ranking';
             default:
                 return 'Otro';
         }
