@@ -4,6 +4,7 @@ import { CustomTableColumnsModel } from './custom-table.columns-model';
 export class CustomTableOptionsModel {
     type:
         | 'brands'
+        | 'cache'
         | 'cars'
         | 'carsDashboard'
         | 'images'

@@ -59,7 +59,7 @@ export class UserOnePage implements OnInit {
 
     getCarsForUser() {
         this.vm.carsOptionsTable.loading = true;
-        this.carService.getAllOfDriver({ id: this.vm.id }).subscribe({
+        this.carService.getAllDriverCars({ id: this.vm.id }).subscribe({
             next: (items) => {
                 this.vm.carsOptionsTable.items = items;
                 this.vm.carsOptionsTable.loading = false;

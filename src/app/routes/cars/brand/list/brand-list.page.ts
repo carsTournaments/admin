@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Brand } from '@models';
-import { BrandService } from '@services';
+import { BrandService, ImageService, SnackBarService } from '@services';
 import { BrandListViewModel } from './model/brand-list.view-model';
 
 @Component({
@@ -10,7 +10,12 @@ import { BrandListViewModel } from './model/brand-list.view-model';
 })
 export class BrandListPage implements OnInit {
     vm = new BrandListViewModel();
-    constructor(private brandService: BrandService, private router: Router) {}
+    constructor(
+        private brandService: BrandService,
+        private router: Router,
+        private imageService: ImageService,
+        private snackBarService: SnackBarService
+    ) {}
 
     ngOnInit() {
         this.getAll();
@@ -58,5 +63,19 @@ export class BrandListPage implements OnInit {
 
     onRowClick(event: { rowData: Brand; index: number }) {
         this.router.navigate([`/cars/brands/one/${event.rowData._id}`]);
+    }
+
+    goToAction(event: any) {
+        if (event.value === 'updateBrandImagesWithJsonFile') {
+            this.updateBrandImagesWithJsonFile();
+        }
+    }
+
+    updateBrandImagesWithJsonFile() {
+        this.imageService.updateBrandImagesWithJsonFile().subscribe({
+            next: () => this.snackBarService.open('Imagenes actualizadas'),
+            error: () =>
+                this.snackBarService.open('Error al actualizar imagenes'),
+        });
     }
 }

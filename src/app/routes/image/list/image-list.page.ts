@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ImageSelectOptionsComponent } from '@components';
+import { environment } from '@env/environment';
 import { Image } from '@models';
 import { AlertService, SnackBarService } from '@services';
 import { ImageService } from '@services/api/image/image.service';
@@ -61,8 +63,21 @@ export class ImageListPage implements OnInit {
         this.getAll(true);
     }
 
-    onRowClick(event: { rowData: Image; index: number }) {
-        this.onDeleteItem(event.rowData._id!);
+    async onRowClick(event: { rowData: Image; index: number }) {
+        const alert = await this.alertService.openDialog(
+            ImageSelectOptionsComponent,
+            {}
+        );
+        alert.subscribe((data) => {
+            if (data && data.value === 'view') {
+                window.open(
+                    `${environment.urlImages}/${event.rowData.url}`,
+                    '_blank'
+                );
+            } else if (data && data.value === 'delete') {
+                this.onDeleteItem(event.rowData._id!);
+            }
+        });
     }
 
     async onDeleteItem(id: string) {

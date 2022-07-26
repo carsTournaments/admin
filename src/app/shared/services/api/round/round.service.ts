@@ -24,9 +24,9 @@ export class RoundService {
             .pipe(take(1));
     }
 
-    getAllOfTournament(data: IdDto): Observable<Round[]> {
+    getAllTournamentRounds(data: IdDto): Observable<Round[]> {
         return this.httpClient
-            .post<Round[]>(`${this.url}/allOfTournament`, data)
+            .post<Round[]>(`${this.url}/getAllTournamentRounds`, data)
             .pipe(take(1));
     }
 

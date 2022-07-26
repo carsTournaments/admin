@@ -1,5 +1,6 @@
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { flags } from 'assets/json/flags';
+import * as moment from 'moment';
 import {
     getChip,
     getChipDriverWithImage,
@@ -50,6 +51,23 @@ export class CustomTableColumnsModel {
                 },
             },
         ],
+        cache: [
+            {
+                header: 'Nombre',
+                field: 'name',
+            },
+            {
+                header: 'Peso',
+                field: 'size',
+            },
+            {
+                header: 'Expiración',
+                field: 'expiration',
+                formatter: (item: any) => {
+                    return moment(item.expiration).format('DD-MM-YY HH:mm');
+                },
+            },
+        ],
         cars: [
             {
                 header: '#',
@@ -75,7 +93,8 @@ export class CustomTableColumnsModel {
                 header: 'Conductor',
                 field: 'driver.name',
                 width: '175px',
-                formatter: (item: any) => getChipDriverWithImage(item.driver),
+                formatter: (item: any) =>
+                    item.driver ? getChipDriverWithImage(item.driver) : '',
             },
             {
                 header: 'Año',
@@ -183,9 +202,9 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) => {
                     let data;
                     if (item.type === 'brand') {
-                        data = `${item.brand.name}`;
+                        data = `${item.brand?.name}`;
                     } else if (item.type === 'car') {
-                        data = `${item.car.brand.name} ${item.car.model}`;
+                        data = `${item.car.brand?.name} ${item.car.model}`;
                     } else if (item.type === 'tournament') {
                         data = `${item.tournament.name}`;
                     }
@@ -207,6 +226,11 @@ export class CustomTableColumnsModel {
                     }
                     return data;
                 },
+            },
+            {
+                header: 'Tamaño',
+                field: 'size',
+                type: 'string',
             },
             this.defaults.created,
         ],

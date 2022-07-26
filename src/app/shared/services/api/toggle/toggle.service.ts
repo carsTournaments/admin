@@ -12,7 +12,7 @@ export class ToggleService {
 
     getAll(): Observable<Toggle[]> {
         return this.httpClient
-            .post<Toggle[]>(`${this.url}/getAll`, null)
+            .post<Toggle[]>(`${this.url}/getAll`, { site: 'admin' })
             .pipe(take(1));
     }
 
