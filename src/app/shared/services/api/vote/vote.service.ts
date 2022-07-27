@@ -22,15 +22,15 @@ export class VoteService {
             .pipe(take(1));
     }
 
-    getAllOfCar(data: VoteGetAllOfGenericDto): Observable<Vote[]> {
+    getAllCarVotes(data: VoteGetAllOfGenericDto): Observable<Vote[]> {
         return this.httpClient
-            .post<Vote[]>(`${this.url}/getAllOfCar`, data)
+            .post<Vote[]>(`${this.url}/getAllCarVotes`, data)
             .pipe(take(1));
     }
 
-    getAllOfTournament(data: VoteGetAllOfGenericDto): Observable<Vote[]> {
+    getAllTournamentVotes(data: VoteGetAllOfGenericDto): Observable<Vote[]> {
         return this.httpClient
-            .post<Vote[]>(`${this.url}/getAllOfTournament`, data)
+            .post<Vote[]>(`${this.url}/getAllTournamentVotes`, data)
             .pipe(take(1));
     }
 
