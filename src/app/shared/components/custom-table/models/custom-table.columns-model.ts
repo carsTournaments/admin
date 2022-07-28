@@ -222,10 +222,28 @@ export class CustomTableColumnsModel {
                     } else if (item.type === 'car') {
                         data = getChip('Coche', false, '', 'info');
                     } else if (item.type === 'tournament') {
-                        data = getChip('Coche', false, '', 'success');
+                        data = getChip('Torneo', false, '', 'success');
                     }
                     return data;
                 },
+            },
+            {
+                header: 'Principal',
+                field: 'firstImage',
+                sortable: true,
+                formatter: (item: any) => {
+                    if (item.firstImage === undefined) {
+                        return '-';
+                    } else {
+                        return item.firstImage ? 'Si' : 'No';
+                    }
+                },
+            },
+            {
+                header: 'Posicion',
+                field: 'position',
+                sortable: true,
+                type: 'number',
             },
             {
                 header: 'Tamaño',
@@ -795,15 +813,17 @@ export class CustomTableColumnsModel {
                 sortable: true,
                 width: '100px',
                 formatter: (item: any) => {
-                    let data;
                     if (item.role === 'USER') {
-                        data = getChip('Usuario', false, '', 'success');
+                        if (item.cars?.count > 0) {
+                            return getChip('Piloto', false, '', 'success');
+                        } else {
+                            return getChip('Aficionado', false, '', 'dark');
+                        }
                     } else if (item.role === 'ADMIN') {
-                        data = getChip('Admin', false, '', 'primary');
-                    } else if (item.role === 'FAKE') {
-                        data = getChip('Fake', false, '', 'warning');
+                        return getChip('Admin', false, '', 'primary');
+                    } else {
+                        return getChip('Fake', false, '', 'warning');
                     }
-                    return data;
                 },
             },
             {
