@@ -72,16 +72,18 @@ export class UserOnePage implements OnInit {
     }
 
     getLikesForUser() {
-        this.likeService.getAllSentForUser({ id: this.vm.id }).subscribe({
-            next: (items) => {
-                this.vm.likesSentOptionsTable.items = items;
-                this.vm.likesSentOptionsTable.loading = false;
-            },
-            error: (e) => {
-                this.snackBarService.open(e);
-                this.vm.likesSentOptionsTable.loading = false;
-            },
-        });
+        this.likeService
+            .getAllUserSubmittedLikes({ id: this.vm.id })
+            .subscribe({
+                next: (items) => {
+                    this.vm.likesSentOptionsTable.items = items;
+                    this.vm.likesSentOptionsTable.loading = false;
+                },
+                error: (e) => {
+                    this.snackBarService.open(e);
+                    this.vm.likesSentOptionsTable.loading = false;
+                },
+            });
     }
 
     actionForOption(option: ActionForOptionI) {
