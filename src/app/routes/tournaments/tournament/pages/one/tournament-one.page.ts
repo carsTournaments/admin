@@ -110,7 +110,7 @@ export class TournamentOnePage implements OnInit {
     async getInscriptionsByTournament() {
         this.vm.inscriptionsOptionsTable.loading = true;
         this.inscriptionService
-            .getAllOfTournament({ id: this.vm.id, site: 'admin' })
+            .getAllTournamentInscriptions({ id: this.vm.id, site: 'admin' })
             .subscribe({
                 next: (items) =>
                     (this.vm.inscriptionsOptionsTable.items = items),

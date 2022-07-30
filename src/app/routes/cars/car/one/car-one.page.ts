@@ -71,7 +71,7 @@ export class CarOnePage implements OnInit {
     getAllInscriptions() {
         this.vm.inscriptionsOptionsTable.loading = true;
         this.inscriptionService
-            .getAllOfCar({ id: this.vm.id, limit: '20' })
+            .getAllCarInscriptions({ id: this.vm.id, limit: '20' })
             .subscribe({
                 next: (items) =>
                     (this.vm.inscriptionsOptionsTable.items = items),
