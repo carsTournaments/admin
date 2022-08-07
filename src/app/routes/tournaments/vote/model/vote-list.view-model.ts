@@ -13,6 +13,14 @@ export class VoteListViewModel {
     });
     options = [
         {
+            name: 'Crear votos anonimos aleatorios',
+            value: 'createFakeVotes',
+        },
+        {
+            name: 'Limpiar votos sin usuario y sin uuid',
+            value: 'cleanVotes',
+        },
+        {
             name: 'Eliminar todos los votos',
             value: 'deleteAll',
         },

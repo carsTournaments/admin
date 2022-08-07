@@ -35,6 +35,11 @@ export class TournamentOnePageViewModel {
     edit = false;
     options: OptionItemI[] = [
         {
+            name: 'Crear votos anonimos',
+            value: 'createFakeVotes',
+            disabled: false,
+        },
+        {
             name: 'Avanzar ronda',
             value: 'nextRound',
             disabled: false,

@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { VoteGetAllDto, VoteGetAllOfGenericDto } from './dtos/vote.dto';
+import {
+    VoteCreateFakeVotesDto,
+    VoteGetAllDto,
+    VoteGetAllOfGenericDto,
+} from './dtos/vote.dto';
 import { Observable, take } from 'rxjs';
 import { environment } from '@env/environment';
 import { PaginatorI } from '@interfaces';
@@ -46,9 +50,23 @@ export class VoteService {
             .pipe(take(1));
     }
 
-    deleteOne(id: string): Observable<Vote> {
+    createFakeVotes(
+        data: VoteCreateFakeVotesDto
+    ): Observable<{ message: string }> {
         return this.httpClient
-            .delete<Vote>(`${this.url}/one/${id}`)
+            .post<{ message: string }>(`${this.url}/createFakeVotes`, data)
+            .pipe(take(1));
+    }
+
+    cleanVotes(): Observable<{ message: string }> {
+        return this.httpClient
+            .delete<{ message: string }>(`${this.url}/cleanVotes`)
+            .pipe(take(1));
+    }
+
+    deleteOne(id: string): Observable<{ message: string }> {
+        return this.httpClient
+            .delete<{ message: string }>(`${this.url}/one/${id}`)
             .pipe(take(1));
     }
 

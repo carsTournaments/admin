@@ -18,6 +18,11 @@ export interface VoteCreateDto {
     user: string;
 }
 
+export interface VoteCreateFakeVotesDto {
+    total: number;
+    round?: string;
+}
+
 export interface VoteUpdateDto {
     _id: string;
     pairing: string;

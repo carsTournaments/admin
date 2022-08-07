@@ -1,6 +1,17 @@
 <h2 matDialogTitle>{{ localData.title }}</h2>
 <mat-dialog-content>
-    <p>{{ localData.message }}</p>
+    <p *ngIf="!data.type">{{ localData.message }}</p>
+
+    <mat-form-field appearance="outline" *ngIf="data.type">
+        <input
+            matInput
+            name="name"
+            [type]="localData.type"
+            [(ngModel)]="localData.value"
+            required
+        />
+        <mat-label>{{ localData.message }}</mat-label>
+    </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button
