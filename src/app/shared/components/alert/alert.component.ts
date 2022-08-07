@@ -13,11 +13,18 @@ export class AlertComponent {
         @Optional() @Inject(MAT_DIALOG_DATA) public data: any
     ) {
         this.localData = { ...data };
+        if (data.type && data.type === 'text') {
+            this.localData.value = '';
+        } else {
+            this.localData.value = 1;
+        }
     }
 
     clickButton(role: any): void {
         if (role === 'cancel') {
             this.dialogRef.close(false);
+        } else if (this.localData.type) {
+            this.dialogRef.close({ value: this.localData.value });
         } else {
             this.dialogRef.close(true);
         }

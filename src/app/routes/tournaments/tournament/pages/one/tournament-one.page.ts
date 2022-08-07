@@ -164,6 +164,9 @@ export class TournamentOnePage implements OnInit {
 
     actionForOption(option: ActionForOptionI) {
         switch (option.value) {
+            case 'createFakeVotes':
+                this.createFakeVotes();
+                break;
             case 'nextRound':
                 this.forceNextRound();
                 break;
@@ -193,8 +196,29 @@ export class TournamentOnePage implements OnInit {
         }
     }
 
-    async forceNextRound() {
-        const alert = await this.alertService.showConfirmation(
+    createFakeVotes() {
+        this.alertService
+            .showPrompt('Crear votos', '¿Cuantos votos deseas crear?', 'number')
+            .subscribe((response) => {
+                if (response && response.value) {
+                    const lastRound = this.vm.roundsOptionsTable.items.filter(
+                        (item) => item.status === 'InProgress'
+                    )[0];
+                    this.voteService
+                        .createFakeVotes({
+                            total: Number(response.value),
+                            round: lastRound._id,
+                        })
+                        .subscribe((response) => {
+                            this.snackBarService.open(response.message);
+                            this.getOne();
+                        });
+                }
+            });
+    }
+
+    forceNextRound() {
+        const alert = this.alertService.showConfirmation(
             'Forzar avance de ronda',
             '¿Estas seguro de forzar el avance de ronda del torneo?'
         );

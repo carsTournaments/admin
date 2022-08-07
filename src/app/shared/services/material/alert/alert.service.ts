@@ -17,15 +17,32 @@ export class AlertService {
     ];
     constructor(private dialog: MatDialog) {}
 
-    async showConfirmation(
+    showConfirmation(
         title: string,
         message: string,
         buttons = this.defaultButtons
-    ): Promise<Observable<boolean>> {
+    ): Observable<boolean> {
         const dialogRef = this.dialog.open(AlertComponent, {
             data: {
                 message,
                 title,
+                buttons,
+            },
+        });
+        return dialogRef.afterClosed();
+    }
+
+    showPrompt(
+        title: string,
+        message: string,
+        type: 'text' | 'number' = 'text',
+        buttons = this.defaultButtons
+    ): Observable<{ value: any }> {
+        const dialogRef = this.dialog.open(AlertComponent, {
+            data: {
+                message,
+                title,
+                type,
                 buttons,
             },
         });
