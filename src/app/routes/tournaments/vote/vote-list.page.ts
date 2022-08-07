@@ -46,6 +46,7 @@ export class VoteListPage implements OnInit {
         if (confirm('¿Estás seguro de eliminar todos los votos?')) {
             this.voteService.deleteAll().subscribe({
                 next: () => {
+                    this.vm.voteBody.page = 1;
                     this.getAll();
                 },
                 error: (error) => console.error(error),
@@ -81,6 +82,7 @@ export class VoteListPage implements OnInit {
             if (data) {
                 this.voteService.deleteOne(id).subscribe({
                     next: () => {
+                        this.vm.voteBody.page = 1;
                         this.snackBarService.open('Voto eliminado');
                         this.getAll();
                     },

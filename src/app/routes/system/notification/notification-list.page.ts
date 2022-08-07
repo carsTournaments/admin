@@ -89,6 +89,7 @@ export class NotificationListPage implements OnInit {
             if (data) {
                 this.notificationService.deleteAll().subscribe({
                     next: () => {
+                        this.vm.notificationBody.page = 1;
                         this.snackBarService.open('Notificaciones eliminadas');
                         this.getAll();
                     },

@@ -936,7 +936,8 @@ export class CustomTableColumnsModel {
                 header: 'Votante',
                 field: 'user.name',
                 sortable: true,
-                formatter: (item: any) => getChipDriverWithImage(item.user),
+                formatter: (item: any) =>
+                    item.user ? getChipDriverWithImage(item.user) : item.uuid,
             },
             { header: 'Ronda', field: 'round.name' },
             this.defaults.created,

@@ -46,12 +46,6 @@ export class VoteService {
             .pipe(take(1));
     }
 
-    update(data: Vote): Observable<Vote> {
-        return this.httpClient
-            .put<Vote>(`${this.url}/update`, data)
-            .pipe(take(1));
-    }
-
     deleteOne(id: string): Observable<Vote> {
         return this.httpClient
             .delete<Vote>(`${this.url}/one/${id}`)

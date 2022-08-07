@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ImageSelectOptionsComponent } from '@components';
 import { environment } from '@env/environment';
 import { Image } from '@models';
@@ -16,8 +15,7 @@ export class ImageListPage implements OnInit {
     constructor(
         private imageService: ImageService,
         private snackBarService: SnackBarService,
-        private alertService: AlertService,
-        private router: Router
+        private alertService: AlertService
     ) {}
 
     ngOnInit() {
@@ -51,6 +49,7 @@ export class ImageListPage implements OnInit {
             this.imageService.deleteAll().subscribe({
                 next: () => {
                     this.snackBarService.open('Imagenes eliminadas');
+                    this.vm.imageBody.page = 1;
                     this.getAll();
                 },
                 error: (error) => this.snackBarService.open(error),
@@ -88,7 +87,10 @@ export class ImageListPage implements OnInit {
         alert.subscribe((data) => {
             if (data) {
                 this.imageService.deleteOne(id).subscribe({
-                    next: () => this.getAll(),
+                    next: () => {
+                        this.vm.imageBody.page = 1;
+                        this.getAll();
+                    },
                     error: (error) => this.snackBarService.open(error),
                 });
             }

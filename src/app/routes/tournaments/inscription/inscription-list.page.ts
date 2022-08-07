@@ -67,6 +67,7 @@ export class InscriptionListPage implements OnInit {
             if (data) {
                 this.inscriptionService.deleteOne(id).subscribe({
                     next: () => {
+                        this.vm.inscriptionBody.page = 1;
                         this.snackBarService.open('Inscripcion eliminada');
                         this.getAll();
                     },
