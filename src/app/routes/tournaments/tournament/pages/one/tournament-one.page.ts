@@ -150,10 +150,12 @@ export class TournamentOnePage implements OnInit {
 
     async getAllWinnersForTournament() {
         this.vm.winnersOptionsTable.loading = true;
-        this.winnerService.getAllForTournament({ id: this.vm.id }).subscribe({
-            next: (items) => (this.vm.winnersOptionsTable.items = items),
-            error: (e) => this.snackBarService.open(e),
-        });
+        this.winnerService
+            .getAllTournamentWinners({ id: this.vm.id })
+            .subscribe({
+                next: (items) => (this.vm.winnersOptionsTable.items = items),
+                error: (e) => this.snackBarService.open(e),
+            });
         this.vm.winnersOptionsTable.loading = false;
     }
 
