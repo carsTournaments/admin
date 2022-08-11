@@ -24,15 +24,15 @@ export class WinnerService {
             .pipe(take(1));
     }
 
-    getAllForTournament(data: IdDto): Observable<Winner[]> {
+    getAllTournamentWinners(data: IdDto): Observable<Winner[]> {
         return this.httpClient
-            .post<Winner[]>(`${this.url}/allForTournament`, data)
+            .post<Winner[]>(`${this.url}/getAllTournamentWinners`, data)
             .pipe(take(1));
     }
 
-    getAllForCar(data: IdDto): Observable<Winner[]> {
+    getAllCarWinners(data: IdDto): Observable<Winner[]> {
         return this.httpClient
-            .post<Winner[]>(`${this.url}/allForCar`, data)
+            .post<Winner[]>(`${this.url}/getAllCarWinners`, data)
             .pipe(take(1));
     }
 
