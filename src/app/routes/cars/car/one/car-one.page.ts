@@ -4,6 +4,7 @@ import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import {
     AlertService,
     CarService,
+    ImageService,
     InscriptionService,
     LikeService,
     ReportService,
@@ -13,7 +14,7 @@ import {
 } from '@services';
 import { CarOnePageViewModel } from './model/car-one.view-model';
 import { Report } from '@models/report.model';
-import { Like, User } from '@models';
+import { Image, Inscription, Like, User } from '@models';
 
 @Component({
     selector: 'page-car-one',
@@ -31,7 +32,8 @@ export class CarOnePage implements OnInit {
         private reportService: ReportService,
         private router: Router,
         private alertService: AlertService,
-        private snackBarService: SnackBarService
+        private snackBarService: SnackBarService,
+        private imageService: ImageService
     ) {}
 
     ngOnInit() {
@@ -121,14 +123,16 @@ export class CarOnePage implements OnInit {
 
     likeCar() {
         try {
-            const like: Like = {
-                car: this.vm.id,
-            };
-            this.likeService.create(like).subscribe({
-                next: () =>
-                    this.snackBarService.open('Like añadido correctamente'),
-                error: (e) => this.snackBarService.open(e),
-            });
+            this.likeService
+                .createFake({ total: 1, carId: this.vm.id })
+                .subscribe({
+                    next: () => {
+                        this.getLikesReceivedByCar();
+                        this.snackBarService.open('Like añadido correctamente');
+                    },
+
+                    error: (e) => this.snackBarService.open(e),
+                });
         } catch (error) {
             this.snackBarService.open('Error al dar Like');
         }
@@ -203,12 +207,70 @@ export class CarOnePage implements OnInit {
         this.getAllInscriptions();
     }
 
-    onDeleteInscription(id: string) {
-        if (confirm('¿Está seguro de eliminar la inscripcion?')) {
-            this.inscriptionService.deleteOne(id).subscribe({
-                next: () => this.getAllInscriptions(),
-                error: (e) => this.snackBarService.open(e),
+    onDeleteInscription(event: { rowData: Inscription }) {
+        if (event.rowData.tournament.status === 'Todo') {
+            const alert = this.alertService.showConfirmation(
+                'Eliminar inscripción',
+                '¿Está seguro de eliminar la inscripcion?'
+            );
+            alert.subscribe((data) => {
+                if (data) {
+                    this.onDeleteInscriptionConfirmation(event.rowData);
+                }
             });
+        } else {
+            this.snackBarService.open('No se puede eliminar la inscripcion');
         }
+    }
+
+    onDeleteInscriptionConfirmation(item: Inscription) {
+        this.inscriptionService.deleteOne(item._id!).subscribe({
+            next: () => this.getAllInscriptions(),
+            error: (e) => this.snackBarService.open(e),
+        });
+    }
+
+    onDeleteLike(event: { rowData: Like }) {
+        const alert = this.alertService.showConfirmation(
+            'Eliminar Like',
+            '¿Está seguro de eliminar el like?'
+        );
+        alert.subscribe((data) => {
+            if (data) {
+                this.onDeleteLikeConfirmation(event.rowData);
+            }
+        });
+    }
+
+    onDeleteLikeConfirmation(item: Like) {
+        this.likeService.deleteOne(item._id!).subscribe({
+            next: () => {
+                this.snackBarService.open('Like eliminado correctamente');
+                this.getLikesReceivedByCar();
+            },
+            error: (e) => this.snackBarService.open(e),
+        });
+    }
+
+    onDeleteImage(image: Image) {
+        const alert = this.alertService.showConfirmation(
+            'Eliminar imagen',
+            'Esta seguro de eliminar la imagen?'
+        );
+        alert.subscribe((data) => {
+            if (data) {
+                this.onDeleteImageConfirmation(image);
+            }
+        });
+    }
+
+    onDeleteImageConfirmation(image: Image) {
+        this.imageService.deleteOne(image._id!).subscribe({
+            next: () => {
+                this.snackBarService.open('Imagen eliminada correctamente');
+                this.getOne();
+            },
+            error: (e) => this.snackBarService.open(e),
+        });
     }
 }

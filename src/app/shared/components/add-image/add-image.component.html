@@ -1,4 +1,24 @@
-<img *ngIf="image" [src]="image.url! | image" class="img-fluid mt-3" />
+<ng-container *ngIf="image">
+    <img *ngIf="image" [src]="image.url! | image" class="img-fluid mt-3" />
+</ng-container>
+
+<ng-container *ngIf="!image">
+    <div fxLayout="row wrap" class="matero-row">
+        <div
+            [fxFlex.gt-sm]="25"
+            [fxFlex]="100"
+            class="matero-col"
+            *ngFor="let img of sortBy('position')"
+        >
+            <img
+                (click)="onClickImage(img)"
+                *ngIf="img"
+                [src]="img.url! | image"
+                class="img mt-3"
+            />
+        </div>
+    </div>
+</ng-container>
 
 <button
     mat-raised-button

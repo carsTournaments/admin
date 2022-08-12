@@ -17,8 +17,10 @@
             <mat-tab label="Imagen">
                 <add-image
                     [id]="vm.id"
-                    [image]="vm.item.image!"
+                    [images]="vm.item.images ?? []"
                     [type]="'car'"
+                    (imageAdded)="getOne()"
+                    (imageDelete)="onDeleteImage($event)"
                 ></add-image>
             </mat-tab>
 
@@ -28,6 +30,7 @@
             >
                 <custom-table
                     [options]="vm.likesReceivedOptionsTable"
+                    (rowClick)="onDeleteLike($event)"
                 ></custom-table>
             </mat-tab>
 
@@ -37,6 +40,7 @@
             >
                 <custom-table
                     [options]="vm.inscriptionsOptionsTable"
+                    (rowClick)="onDeleteInscription($event)"
                 ></custom-table>
             </mat-tab>
 

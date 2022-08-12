@@ -13,10 +13,7 @@
             </mat-tab>
 
             <mat-tab label="Opciones">
-                <options-list
-                    [options]="vm.options"
-                    (action)="actionForOption()"
-                ></options-list>
+                <options-list [options]="vm.options"></options-list>
             </mat-tab>
         </mat-tab-group>
     </mat-card>

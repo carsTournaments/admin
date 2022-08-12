@@ -44,7 +44,7 @@ export class CarOnePageViewModel {
         showLoadMore: true,
     });
     likesReceivedOptionsTable = new CustomTableOptionsModel({
-        type: 'likes',
+        type: 'likesCar',
         items: [],
         loading: true,
         showLoadMore: true,

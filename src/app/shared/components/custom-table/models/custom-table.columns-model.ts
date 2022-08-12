@@ -325,7 +325,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.tournament?.name,
                         true,
-                        item.tournament.image?.url,
+                        item.tournament.image?.url ?? '',
                         'dark'
                     ),
             },
@@ -385,6 +385,15 @@ export class CustomTableColumnsModel {
                         item.car.image?.url
                     ),
             },
+            {
+                header: 'Usuario',
+                field: 'user',
+                formatter: (item: any) =>
+                    item.user ? getChipDriverWithImage(item.user) : 'Anonimo',
+            },
+            this.defaults.created,
+        ],
+        likesCar: [
             {
                 header: 'Usuario',
                 field: 'user',

@@ -68,17 +68,19 @@ export class LikeListPage implements OnInit {
             );
             if (total) {
                 this.vm.optionsTable.loading = true;
-                this.likesService.createFake(Number(total)).subscribe({
-                    next: () => {
-                        this.snackBarService.open('Likes creados');
-                        this.getAll(true);
-                        this.vm.optionsTable.loading = false;
-                    },
-                    error: (error) => {
-                        this.vm.optionsTable.loading = false;
-                        console.error(error);
-                    },
-                });
+                this.likesService
+                    .createFake({ total: Number(total) })
+                    .subscribe({
+                        next: () => {
+                            this.snackBarService.open('Likes creados');
+                            this.getAll(true);
+                            this.vm.optionsTable.loading = false;
+                        },
+                        error: (error) => {
+                            this.vm.optionsTable.loading = false;
+                            console.error(error);
+                        },
+                    });
             }
         } catch (e) {
             console.error(e);

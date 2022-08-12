@@ -86,8 +86,8 @@ export class CarListPage implements OnInit {
         });
     }
 
-    async deleteFakesWithoutPhoto() {
-        const alert = await this.alertService.showConfirmation(
+    deleteFakesWithoutPhoto() {
+        const alert = this.alertService.showConfirmation(
             'Eliminar coches falsos sin foto',
             'Esta seguro de eliminar todos los coches falsos sin foto?'
         );
