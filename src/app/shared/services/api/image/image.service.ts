@@ -45,6 +45,12 @@ export class ImageService {
         return this.httpClient.post<any>(url, null).pipe(take(1));
     }
 
+    setFirstImage(imageId: string, carId: string): Observable<Image> {
+        return this.httpClient
+            .put<Image>(`${this.url}/setFirstImage`, { imageId, carId })
+            .pipe(take(1));
+    }
+
     deleteOne(id: string): Observable<{ message: string }> {
         const url = `${this.url}/one/${id}`;
         return this.httpClient.delete<any>(url).pipe(take(1));

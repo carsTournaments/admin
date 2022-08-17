@@ -1,7 +1,7 @@
 import { Winner } from '@models/winner.model';
 import { Car } from '@models/car.model';
-import { WinnerGetAllDto } from '@services/api/winner/winner.dto';
 import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
+import { IdDto } from '@core/dtos/generic.dto';
 
 export class CarOnePageViewModel {
     id!: string;
@@ -31,11 +31,8 @@ export class CarOnePageViewModel {
             value: 'delete',
         },
     ];
-    bodyWinners: WinnerGetAllDto = {
-        page: 1,
-        pageSize: 1000,
-        site: 'admin',
-        order: ['created', 'desc'],
+    bodyWinners: IdDto = {
+        id: '',
     };
     inscriptionsOptionsTable = new CustomTableOptionsModel({
         type: 'inscriptionsCar',
@@ -44,7 +41,7 @@ export class CarOnePageViewModel {
         showLoadMore: true,
     });
     likesReceivedOptionsTable = new CustomTableOptionsModel({
-        type: 'likes',
+        type: 'likesCar',
         items: [],
         loading: true,
         showLoadMore: true,
