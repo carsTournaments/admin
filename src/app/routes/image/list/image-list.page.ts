@@ -40,23 +40,6 @@ export class ImageListPage implements OnInit {
         });
     }
 
-    actionForOption() {
-        this.deleteAll();
-    }
-
-    async deleteAll() {
-        if (confirm('¿Está seguro de eliminar todas las imagenes?')) {
-            this.imageService.deleteAll().subscribe({
-                next: () => {
-                    this.snackBarService.open('Imagenes eliminadas');
-                    this.vm.imageBody.page = 1;
-                    this.getAll();
-                },
-                error: (error) => this.snackBarService.open(error),
-            });
-        }
-    }
-
     onChangePage() {
         this.vm.imageBody.page += 1;
         this.getAll(true);
@@ -65,7 +48,7 @@ export class ImageListPage implements OnInit {
     async onRowClick(event: { rowData: Image; index: number }) {
         const alert = await this.alertService.openDialog(
             ImageSelectOptionsComponent,
-            {}
+            { image: event.rowData }
         );
         alert.subscribe((data) => {
             if (data && data.value === 'view') {
@@ -73,9 +56,21 @@ export class ImageListPage implements OnInit {
                     `${environment.urlImages}/${event.rowData.url}`,
                     '_blank'
                 );
+            } else if (data && data.value === 'setFirstImage') {
+                this.setFirstImage(event.rowData);
             } else if (data && data.value === 'delete') {
                 this.onDeleteItem(event.rowData._id!);
             }
+        });
+    }
+
+    setFirstImage(image: Image) {
+        this.imageService.setFirstImage(image._id!, image.car._id).subscribe({
+            next: () => {
+                this.vm.imageBody.page = 1;
+                this.getAll();
+                this.snackBarService.open('Imagen establecida como primera');
+            },
         });
     }
 

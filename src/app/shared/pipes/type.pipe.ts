@@ -26,6 +26,8 @@ export class TypePipe implements PipeTransform {
                 return 'Mi garage - coche';
             case 'myInscriptions':
                 return 'Mis inscripciones';
+            case 'myTrophies':
+                return 'Mis Trofeos';
             case 'tournament':
                 return 'Torneo';
             case 'tournaments':

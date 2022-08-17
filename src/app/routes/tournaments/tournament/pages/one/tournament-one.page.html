@@ -70,6 +70,8 @@
                     [id]="vm.id"
                     [image]="vm.item.image"
                     [type]="'tournament'"
+                    (imageAdded)="getOne()"
+                    (imageDelete)="onDeleteImage($event)"
                 ></add-image>
             </mat-tab>
 

@@ -13,6 +13,7 @@ export class CustomTableOptionsModel {
         | 'inscriptionsTournament'
         | 'likes'
         | 'likesUser'
+        | 'likesCar'
         | 'literals'
         | 'logs'
         | 'menu'

@@ -7,9 +7,16 @@ export const getChip = (
     text: string,
     imageState = false,
     image = '',
-    color = 'primary'
+    color = 'primary',
+    truncate = true
 ): string => {
     if (text) {
+        if (truncate) {
+            if (text && text.length > 15) {
+                text = text.slice(0, 15);
+                text += '...';
+            }
+        }
         let data;
         if (imageState) {
             data = `

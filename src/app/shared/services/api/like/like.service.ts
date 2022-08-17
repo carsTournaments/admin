@@ -42,9 +42,9 @@ export class LikeService {
             .pipe(take(1));
     }
 
-    createFake(total: number): Observable<Like> {
+    createFake(data: { total: number; carId?: string }): Observable<Like> {
         return this.httpClient
-            .post<Like>(`${this.url}/createFake`, { total })
+            .post<Like>(`${this.url}/createFake`, data)
             .pipe(take(1));
     }
 
@@ -54,7 +54,7 @@ export class LikeService {
             .pipe(take(1));
     }
 
-    delete(id: string): Observable<Like> {
+    deleteOne(id: string): Observable<Like> {
         return this.httpClient
             .delete<Like>(`${this.url}/one/${id}`)
             .pipe(take(1));
