@@ -56,7 +56,6 @@ export class CarOnePage implements OnInit {
             next: (item) => {
                 this.vm.item = item;
                 this.vm.stock = this.vm.item.stock;
-
                 this.vm.title = `${item.brand.name} ${item.model}`;
             },
             error: (error) => console.error(error),
@@ -64,8 +63,12 @@ export class CarOnePage implements OnInit {
     }
 
     getAllWinners() {
-        this.winnerService.getAll(this.vm.bodyWinners).subscribe({
-            next: (result) => (this.vm.winners = result.items),
+        this.vm.bodyWinners.id = this.vm.id;
+        this.winnerService.getAllCarWinners(this.vm.bodyWinners).subscribe({
+            next: (result) => {
+                this.vm.winnersOptionsTable.items = result;
+                this.vm.winnersOptionsTable.loading = false;
+            },
             error: (e) => this.snackBarService.open(e),
         });
     }

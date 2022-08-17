@@ -382,7 +382,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.car.brand?.name + ' ' + item.car.model,
                         true,
-                        item.car.image?.url
+                        item.car.images.length > 0 ? item.car.images[0].url : ''
                     ),
             },
             {
@@ -1015,7 +1015,7 @@ export class CustomTableColumnsModel {
             {
                 header: 'Oro',
                 field: 'gold',
-                width: '250px',
+                width: '200px',
                 formatter: (item: any) =>
                     getChip(
                         `${item.gold?.brand.name} ${item.gold?.model}`,
@@ -1025,9 +1025,16 @@ export class CustomTableColumnsModel {
                     ),
             },
             {
+                header: 'Votos',
+                field: 'gold.votes',
+                width: '100px',
+                formatter: (item: any) =>
+                    `${item.gold.votes}/${item.silver.votes}/${item.bronze.votes}`,
+            },
+            {
                 header: 'Plata',
                 field: 'silver',
-                width: '250px',
+                width: '200px',
                 formatter: (item: any) =>
                     getChip(
                         `${item.silver?.brand.name} ${item.silver?.model}`,
@@ -1039,7 +1046,7 @@ export class CustomTableColumnsModel {
             {
                 header: 'Bronze',
                 field: 'bronze',
-                width: '250px',
+                width: '200px',
                 formatter: (item: any) =>
                     getChip(
                         `${item.bronze?.brand.name} ${item.bronze?.model}`,

@@ -1,8 +1,17 @@
 <ng-container *ngIf="image">
-    <img *ngIf="image" [src]="image.url! | image" class="img-fluid mt-3" />
+    <div fxLayout="row wrap" class="matero-row">
+        <div [fxFlex.gt-sm]="25" [fxFlex]="100" class="matero-col">
+            <img
+                *ngIf="image"
+                [src]="image.url! | image"
+                class="img mt-3"
+                (click)="onClickImage(image)"
+            />
+        </div>
+    </div>
 </ng-container>
 
-<ng-container *ngIf="!image">
+<ng-container *ngIf="!image && images && images.length > 0">
     <div fxLayout="row wrap" class="matero-row">
         <div
             [fxFlex.gt-sm]="25"

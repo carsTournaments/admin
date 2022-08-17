@@ -11,10 +11,11 @@ import {
     VoteService,
     SnackBarService,
     WinnerService,
+    ImageService,
 } from '@services';
 import { TournamentOnePageViewModel } from '../../models/tournament-one.view-model';
 import { AlertService } from '@services/material/alert/alert.service';
-import { Inscription, Pairing } from '@models';
+import { Image, Inscription, Pairing } from '@models';
 import { VoteNewComponent } from '@components';
 
 @Component({
@@ -34,7 +35,8 @@ export class TournamentOnePage implements OnInit {
         private winnerService: WinnerService,
         private router: Router,
         private snackBarService: SnackBarService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private imageService: ImageService
     ) {}
 
     ngOnInit() {
@@ -409,6 +411,28 @@ export class TournamentOnePage implements OnInit {
             if (data) {
                 this.getPairingsByTournament();
             }
+        });
+    }
+
+    onDeleteImage(image: Image) {
+        const alert = this.alertService.showConfirmation(
+            'Eliminar imagen',
+            'Esta seguro de eliminar la imagen?'
+        );
+        alert.subscribe((data) => {
+            if (data) {
+                this.onDeleteImageConfirmation(image);
+            }
+        });
+    }
+
+    onDeleteImageConfirmation(image: Image) {
+        this.imageService.deleteOne(image._id!).subscribe({
+            next: () => {
+                this.snackBarService.open('Imagen eliminada correctamente');
+                this.getOne();
+            },
+            error: (e) => this.snackBarService.open(e),
         });
     }
 }
