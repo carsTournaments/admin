@@ -19,6 +19,13 @@
                 ></options-list>
             </mat-tab>
 
+            <mat-tab
+                label="Estadisticas"
+                *ngIf="vm.carStats && vm.carStats.length > 0"
+            >
+                <car-stats [stats]="vm.carStats"></car-stats>
+            </mat-tab>
+
             <mat-tab label="Nuevo">
                 <car-one-edit (carCreated)="onCarCreated()"></car-one-edit>
             </mat-tab>

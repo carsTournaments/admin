@@ -7,6 +7,7 @@ import { CarCreateFakeDto, CarGetAllDto } from './car.dto';
 import { Car } from '@models/car.model';
 import { PaginatorI } from '@interfaces';
 import { take } from 'rxjs';
+import { CarStatsI } from './car.interface';
 
 @Injectable({ providedIn: 'root' })
 export class CarService {
@@ -33,6 +34,12 @@ export class CarService {
     getAllDriverCars(data: IdDto): Observable<Car[]> {
         return this.httpClient
             .post<Car[]>(`${this.url}/getAllDriverCars`, data)
+            .pipe(take(1));
+    }
+
+    getCarStats(): Observable<CarStatsI[]> {
+        return this.httpClient
+            .post<CarStatsI[]>(`${this.url}/getCarStats`, null)
             .pipe(take(1));
     }
 

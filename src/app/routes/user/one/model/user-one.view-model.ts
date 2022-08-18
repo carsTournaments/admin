@@ -18,7 +18,7 @@ export class UserOnePageViewModel {
         },
     ];
     carsOptionsTable = new CustomTableOptionsModel({
-        type: 'cars',
+        type: 'carsUser',
         items: [],
         loading: true,
     });

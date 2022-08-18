@@ -1,6 +1,7 @@
 import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 import { User } from '@models';
 import { CarGetAllDto } from '@services/api/car/car.dto';
+import { CarStatsI } from '@services/api/car/car.interface';
 
 export class CarListViewModel {
     items: User[] = [];
@@ -32,4 +33,5 @@ export class CarListViewModel {
             value: 'deleteFakes',
         },
     ];
+    carStats!: CarStatsI[];
 }

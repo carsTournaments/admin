@@ -10,6 +10,7 @@ import { BrandOnePage } from './brand/one/brand-one.page';
 import { LikeListPage } from './like/like-list.page';
 import { BrandOneEditComponent } from './brand/one/components/brands-one-edit/brand-one-edit.component';
 import { CarOneAddInscriptionComponent } from './car/components/add-inscription/add-inscription.component';
+import { CarStatsComponent } from './car/components/car-stats/car-stats.component';
 
 @NgModule({
     imports: [
@@ -62,6 +63,7 @@ import { CarOneAddInscriptionComponent } from './car/components/add-inscription/
     ],
     declarations: [
         CarListPage,
+        CarStatsComponent,
         CarOnePage,
         CarOneEditComponent,
         CarOneAddInscriptionComponent,
