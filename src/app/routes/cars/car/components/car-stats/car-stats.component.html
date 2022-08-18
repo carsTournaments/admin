@@ -1,0 +1,19 @@
+<mat-card *ngIf="stats && optionsTables.length > 0">
+    <div fxLayout="row wrap" class="matero-row">
+        <!-- style="margin: .25rem" -->
+        <div
+            class="mat-card-wrapper matero-col"
+            [fxFlex.gt-sm]="50"
+            [fxFlex]="100"
+            *ngFor="let category of stats; let i = index"
+        >
+            <mat-card-subtitle
+                class="f-s-14 f-w-800 p-l-16 p-y-16 border-bottom-primary"
+            >
+                {{ category.label }}
+            </mat-card-subtitle>
+
+            <custom-table [options]="optionsTables[i]"></custom-table>
+        </div>
+    </div>
+</mat-card>

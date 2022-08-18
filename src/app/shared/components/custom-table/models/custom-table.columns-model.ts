@@ -68,6 +68,7 @@ export class CustomTableColumnsModel {
                 },
             },
         ],
+
         cars: [
             {
                 header: '#',
@@ -80,7 +81,6 @@ export class CustomTableColumnsModel {
                             : ''
                     ),
             },
-
             {
                 header: 'Marca',
                 field: 'brand.name',
@@ -100,6 +100,80 @@ export class CustomTableColumnsModel {
                 width: '175px',
                 formatter: (item: any) =>
                     item.driver ? getChipDriverWithImage(item.driver) : '',
+            },
+            {
+                header: 'Año',
+                field: 'year',
+                sortable: true,
+            },
+            {
+                header: 'Combustible',
+                field: 'fuel',
+                sortable: true,
+                formatter: (item: any) => getChip(item.fuel, false, '', 'info'),
+            },
+            {
+                header: 'Traccion',
+                field: 'traction',
+                sortable: true,
+                formatter: (item: any) =>
+                    getChip(item.traction, false, '', 'dark'),
+            },
+            {
+                header: 'CC',
+                field: 'cc',
+                sortable: true,
+            },
+            {
+                header: 'CV',
+                field: 'cv',
+                sortable: true,
+            },
+            {
+                header: 'Inscrip.',
+                field: 'inscriptions.count',
+                sortable: true,
+                type: 'number',
+            },
+            {
+                header: 'Likes.',
+                field: 'likes.count',
+                sortable: true,
+                type: 'number',
+            },
+            {
+                header: 'Votos.',
+                field: 'votes.count',
+                sortable: true,
+                type: 'number',
+            },
+            this.defaults.updated,
+            this.defaults.created,
+        ],
+        carsUser: [
+            {
+                header: '#',
+                field: 'images',
+                width: '100px',
+                formatter: (item: any) =>
+                    getImageRounded(
+                        item.images && item.images.length > 0
+                            ? item.images[0].url
+                            : ''
+                    ),
+            },
+            {
+                header: 'Marca',
+                field: 'brand.name',
+                width: '150px',
+                formatter: (item: any) =>
+                    getChip(item.brand.name, true, item.brand?.image?.url),
+            },
+            {
+                header: 'Modelo',
+                field: 'model',
+                width: '150px',
+                sortable: true,
             },
             {
                 header: 'Año',
@@ -193,6 +267,16 @@ export class CustomTableColumnsModel {
                 type: 'number',
             },
             this.defaults.updated,
+        ],
+        carStats: [
+            {
+                header: 'Tipo',
+                field: 'name',
+            },
+            {
+                header: 'Total',
+                field: 'value',
+            },
         ],
         images: [
             {

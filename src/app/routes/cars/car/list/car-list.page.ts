@@ -21,6 +21,7 @@ export class CarListPage implements OnInit {
 
     ngOnInit() {
         this.getAll();
+        this.getCarStats();
     }
 
     async getAll(showMore = false) {
@@ -57,6 +58,13 @@ export class CarListPage implements OnInit {
             }
             this.vm.optionsTable.loading = false;
         }
+    }
+
+    getCarStats() {
+        this.carService.getCarStats().subscribe({
+            next: (response) => (this.vm.carStats = response),
+            error: (error) => this.snackBarService.open(error),
+        });
     }
 
     actionForOption(option: ActionForOptionI) {
