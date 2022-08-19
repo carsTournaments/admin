@@ -5,6 +5,12 @@ import { Component, Output, EventEmitter } from '@angular/core';
     templateUrl: 'search.component.html',
 })
 export class SearchComponent {
-    value!: string;
-    @Output() onSearch = new EventEmitter<string>();
+    search!: string;
+    @Output() onEnterKey = new EventEmitter<string>();
+
+    onKeyUpSearch(event: any) {
+        if (event.keyCode === 13) {
+            this.onEnterKey.emit(this.search);
+        }
+    }
 }

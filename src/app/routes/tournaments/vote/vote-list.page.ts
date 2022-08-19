@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { OptionItemI } from '@interfaces';
 import { Vote } from '@models';
 import { AlertService, SnackBarService, VoteService } from '@services';
@@ -13,7 +14,8 @@ export class VoteListPage implements OnInit {
     constructor(
         private voteService: VoteService,
         private alertService: AlertService,
-        private snackBarService: SnackBarService
+        private snackBarService: SnackBarService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -106,6 +108,22 @@ export class VoteListPage implements OnInit {
         this.getAll(true);
     }
 
+    onRowClick(event: { value: string; row: Vote }) {
+        const value = event.value;
+        if (value === 'viewTournamentProfile') {
+            this.router.navigate([
+                '/tournaments/one',
+                event.row.tournament._id,
+            ]);
+        } else if (value === 'viewCarProfile') {
+            this.router.navigate(['/cars/one', event.row.car._id]);
+        } else if (value === 'viewUserProfile') {
+            this.router.navigate(['/users/one', event.row.user._id]);
+        } else if (value === 'deleteVote') {
+            this.onDeleteItem(event.row._id!);
+        }
+    }
+
     async onDeleteItem(id: string) {
         const alert = this.alertService.showConfirmation(
             'Eliminar voto',
@@ -123,9 +141,5 @@ export class VoteListPage implements OnInit {
                 });
             }
         });
-    }
-
-    onRowClick(event: { rowData: Vote; index: number }) {
-        this.onDeleteItem(event.rowData._id!);
     }
 }

@@ -13,3 +13,12 @@ export interface GetAllDto {
     site: string;
     order: string[];
 }
+
+export interface SiteDto {
+    site: string;
+}
+
+export interface SearchDto {
+    value: string;
+    limit: number;
+}

@@ -75,7 +75,7 @@ export class ImageListPage implements OnInit {
     }
 
     async onDeleteItem(id: string) {
-        const alert = await this.alertService.showConfirmation(
+        const alert = this.alertService.showConfirmation(
             'Eliminar imagen',
             'Vas a eliminar la imagen, ¿estas seguro?'
         );

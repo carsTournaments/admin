@@ -53,7 +53,7 @@ export class CarOnePageViewModel {
         showLoadMore: true,
     });
     winnersOptionsTable = new CustomTableOptionsModel({
-        type: 'winners',
+        type: 'winnersCar',
         items: [],
         loading: true,
         showLoadMore: true,
