@@ -27,4 +27,5 @@ export class UserListViewModel {
         site: 'admin',
         order: ['created', 'desc'],
     };
+    searchState = false;
 }
