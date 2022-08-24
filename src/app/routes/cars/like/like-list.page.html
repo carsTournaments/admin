@@ -1,12 +1,22 @@
 <div class="container">
-    <page-header [title]="vm.title"></page-header>
+    <page-header
+        [title]="vm.title"
+        [showSearchButton]="true"
+        (clickSearch)="onClickSearchButtonHeader()"
+    ></page-header>
 
     <mat-card class="mat-card-wrapper">
         <mat-tab-group>
             <mat-tab label="Listado">
+                <search
+                    *ngIf="vm.searchState"
+                    (onEnterKey)="onKeyUpSearch($event)"
+                ></search>
+
                 <custom-table
                     [options]="vm.optionsTable"
                     (changePage)="onChangePage()"
+                    (rowClick)="onRowClick($event)"
                 >
                 </custom-table>
             </mat-tab>

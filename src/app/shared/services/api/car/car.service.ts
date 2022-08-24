@@ -1,4 +1,4 @@
-import { IdDto } from '@core/dtos/generic.dto';
+import { IdDto, SearchDto } from '@core/dtos/generic.dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@env/environment';
@@ -40,6 +40,12 @@ export class CarService {
     getCarStats(): Observable<CarStatsI[]> {
         return this.httpClient
             .post<CarStatsI[]>(`${this.url}/getCarStats`, null)
+            .pipe(take(1));
+    }
+
+    search(data: SearchDto): Observable<Car[]> {
+        return this.httpClient
+            .post<Car[]>(`${this.url}/search`, data)
             .pipe(take(1));
     }
 

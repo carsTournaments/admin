@@ -97,4 +97,22 @@ export class UserListPage implements OnInit {
     onRowClick(event: { rowData: User; index: number }) {
         this.router.navigate([`/users/one/${event.rowData._id}`]);
     }
+
+    onClickSearchButtonHeader() {
+        this.vm.searchState = !this.vm.searchState;
+    }
+
+    onKeyUpSearch(search: string) {
+        if (search === '') {
+            this.vm.userBody.page = 1;
+            this.getAll();
+        } else {
+            this.userService.search({ value: search, limit: 20 }).subscribe({
+                next: (response) => {
+                    this.vm.optionsTable.items = response;
+                    this.vm.optionsTable.loading = false;
+                },
+            });
+        }
+    }
 }

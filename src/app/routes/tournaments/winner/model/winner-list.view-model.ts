@@ -10,6 +10,7 @@ export class WinnerListViewModel {
         items: [],
         loading: true,
         showLoadMore: true,
+        dialog: true,
     });
     options = [
         {

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { AlertService, CarService, SnackBarService } from '@services';
 import { CarListViewModel } from './model/car-list.view-model';
 import { Router } from '@angular/router';
 import { Car } from '@models';
 import { PaginatorI } from '@interfaces';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
     selector: 'page-car-list',
@@ -12,6 +13,7 @@ import { PaginatorI } from '@interfaces';
 })
 export class CarListPage implements OnInit {
     vm = new CarListViewModel();
+
     constructor(
         private carService: CarService,
         private router: Router,
@@ -113,7 +115,7 @@ export class CarListPage implements OnInit {
     }
 
     async deleteFakes() {
-        const alert = await this.alertService.showConfirmation(
+        const alert = this.alertService.showConfirmation(
             'Eliminar coches falsos',
             'Esta seguro de eliminar todos los coches falsos?'
         );
@@ -149,12 +151,37 @@ export class CarListPage implements OnInit {
         this.getAll(true);
     }
 
-    onRowClick(event: { rowData: Car; index: number }) {
-        this.router.navigate([`/cars/one/${event.rowData._id}`]);
+    onRowClick(event: { value: string; row: Car }) {
+        const value = event.value;
+        if (value === 'viewCarProfile') {
+            this.router.navigate(['/cars/one/', event.row._id]);
+        } else if (value === 'viewBrandProfile') {
+            this.router.navigate(['/cars/brands/one/', event.row.brand._id]);
+        } else if (value === 'viewDriverProfile') {
+            this.router.navigate(['/users/one/', event.row.driver._id]);
+        }
     }
 
     onCarCreated() {
         this.vm.carBody.page = 1;
         this.getAll();
+    }
+
+    onClickSearchButtonHeader() {
+        this.vm.searchState = !this.vm.searchState;
+    }
+
+    onKeyUpSearch(search: string) {
+        if (search === '') {
+            this.vm.carBody.page = 1;
+            this.getAll();
+        } else {
+            this.carService.search({ value: search, limit: 20 }).subscribe({
+                next: (response) => {
+                    this.vm.optionsTable.items = response;
+                    this.vm.optionsTable.loading = false;
+                },
+            });
+        }
     }
 }
