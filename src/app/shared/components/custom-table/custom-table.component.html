@@ -1,5 +1,5 @@
 <mtx-grid
-    class="pointer"
+    style="cursor: pointer"
     [data]="options.items!"
     [columns]="options.columns!"
     [loading]="options.loading!"
@@ -16,7 +16,7 @@
     [pageSize]="options.pageSize!"
     [columnMovable]="options.columnMovable!"
     [columnHideable]="options.columnHideable!"
-    (rowClick)="rowClick.emit($event)"
+    (rowClick)="options.dialog ? openDialog($event) : rowClick.emit($event)"
     [showSummary]="options.showSummary!"
     [showStatusbar]="options.showStatusbar!"
     [noResultTemplate]="noResultsTpl"

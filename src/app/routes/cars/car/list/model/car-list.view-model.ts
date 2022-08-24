@@ -11,6 +11,7 @@ export class CarListViewModel {
         items: [],
         loading: true,
         showLoadMore: true,
+        dialog: true,
     });
     carBody: CarGetAllDto = {
         page: 1,
@@ -34,4 +35,5 @@ export class CarListViewModel {
         },
     ];
     carStats!: CarStatsI[];
+    searchState = false;
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Winner } from '@models';
 import { WinnerService } from '@services';
 import { WinnerListViewModel } from './model/winner-list.view-model';
 
@@ -8,7 +10,7 @@ import { WinnerListViewModel } from './model/winner-list.view-model';
 })
 export class WinnerListPage implements OnInit {
     vm = new WinnerListViewModel();
-    constructor(private winnerService: WinnerService) {}
+    constructor(private winnerService: WinnerService, private router: Router) {}
 
     ngOnInit() {
         this.getAll();
@@ -53,6 +55,22 @@ export class WinnerListPage implements OnInit {
             }
         } catch (error) {
             console.error(error);
+        }
+    }
+
+    onRowClick(event: { value: string; row: Winner }) {
+        const value = event.value;
+        if (value === 'viewGoldProfile') {
+            this.router.navigate(['/cars/one', event.row.gold._id]);
+        } else if (value === 'viewSilverProfile') {
+            this.router.navigate(['/cars/one', event.row.silver._id]);
+        } else if (value === 'viewBronzeProfile') {
+            this.router.navigate(['/cars/one', event.row.bronze._id]);
+        } else if (value === 'viewTournamentProfile') {
+            this.router.navigate([
+                '/tournaments/one',
+                event.row.tournament._id,
+            ]);
         }
     }
 

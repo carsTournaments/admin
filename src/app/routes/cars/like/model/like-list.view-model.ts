@@ -10,6 +10,7 @@ export class LikeListViewModel {
         items: [],
         loading: true,
         showLoadMore: true,
+        dialog: true,
     });
     options = [
         {
@@ -31,4 +32,6 @@ export class LikeListViewModel {
         site: 'admin',
         order: ['created', 'desc'],
     };
+    search = '';
+    searchState = false;
 }

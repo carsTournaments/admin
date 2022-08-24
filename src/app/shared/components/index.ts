@@ -4,6 +4,7 @@ export { AnalyticsVisitsLastDaysComponent } from './analytics-visits-last-days/a
 export { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 export { ChartBarComponent } from './chart-bar/chart-bar.component';
 export { CustomTableComponent } from './custom-table/custom-table.component';
+export { CustomTableDialogComponent } from './custom-table/dialog/custom-table.dialog.component';
 export { CustomTitleWithButtonsComponent } from './custom-title-with-buttons/custom-title-with-buttons.component';
 export { ImageSelectOptionsComponent } from './image-select-options/image-select-options.component';
 export { LoadingComponent } from './loading/loading.component';

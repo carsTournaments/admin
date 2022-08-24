@@ -1,0 +1,13 @@
+<div class="container w-full" style="min-width: 300px">
+    <mat-nav-list class="w-full">
+        <ng-container *ngFor="let item of data.items">
+            <a mat-list-item (click)="clickAndClose(item)">
+                {{ item.name }}
+                <mat-icon class="float-right-absolute">
+                    chevron_right
+                </mat-icon>
+            </a>
+            <mat-divider></mat-divider>
+        </ng-container>
+    </mat-nav-list>
+</div>

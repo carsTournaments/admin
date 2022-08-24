@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { BehaviorSubject, share, take } from 'rxjs';
 import { environment } from '@env/environment';
 import { LocalStorageService } from '@services/various/storage.service';
+import { SearchDto } from '@core/dtos/generic.dto';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -20,6 +21,12 @@ export class UserService {
     getAll(data: UserGetAllDto): Observable<any> {
         return this.httpClient
             .post<any>(`${this.url}/getAll`, data)
+            .pipe(take(1));
+    }
+
+    search(data: SearchDto): Observable<User[]> {
+        return this.httpClient
+            .post<User[]>(`${this.url}/search`, data)
             .pipe(take(1));
     }
 

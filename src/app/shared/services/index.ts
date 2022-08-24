@@ -14,7 +14,6 @@ export { OtaService } from './api/ota/ota.service';
 export { PairingService } from './api/pairing/pairing.service';
 export { ReportService } from './api/report/report.service';
 export { RoundService } from './api/round/round.service';
-export { SearchService } from './api/search/search.service';
 export { SettingsService } from './api/settings/settings.service';
 export { StatsService } from './api/stats/stats.service';
 export { ToggleService } from './api/toggle/toggle.service';

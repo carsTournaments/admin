@@ -10,6 +10,7 @@ export class VoteListViewModel {
         items: [],
         loading: true,
         showLoadMore: true,
+        dialog: true,
     });
     options = [
         {

@@ -1,5 +1,7 @@
+import { OptionItemI } from '@interfaces';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { CustomTableColumnsModel } from './custom-table.columns-model';
+import { CustomTableDialogsModel } from './custom-table.dialogs-model';
 
 export class CustomTableOptionsModel {
     type:
@@ -33,9 +35,12 @@ export class CustomTableOptionsModel {
         | 'votes'
         | 'votesCar'
         | 'votesTournament'
-        | 'winners' = 'users';
+        | 'winners'
+        | 'winnersCar' = 'users';
     columns?: MtxGridColumn[] = [];
     items: any[] = [];
+    dialog? = false;
+    dialogItems?: OptionItemI[] = [];
     loading? = true;
     rowHover? = true;
     rowStriped? = true;
@@ -60,8 +65,16 @@ export class CustomTableOptionsModel {
             const model = new CustomTableColumnsModel();
             this.columns = model.getColumns(data.type);
         }
+        if (data?.dialog && data.dialog === true) {
+            const model = new CustomTableDialogsModel();
+            this.dialogItems = model.getDialogItems(data.type);
+            if (this.dialogItems.length === 0) {
+                this.dialog = false;
+            }
+        }
         this.type = data?.type ?? this.type;
         this.items = data?.items ?? this.items;
+        this.dialog = data?.dialog ?? this.dialog;
         this.loading = data?.loading ?? this.loading;
         this.columnHideable = data?.columnHideable ?? this.columnHideable;
         this.columnMovable = data?.columnMovable ?? this.columnMovable;

@@ -1,4 +1,10 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import {
+    Component,
+    ViewEncapsulation,
+    Input,
+    EventEmitter,
+    Output,
+} from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
@@ -21,5 +27,7 @@ export class PageHeaderComponent {
     set hideBreadcrumb(value: boolean) {
         this._hideBreadCrumb = coerceBooleanProperty(value);
     }
+    @Input() showSearchButton = false;
+    @Output() clickSearch = new EventEmitter<void>();
     private _hideBreadCrumb = false;
 }
