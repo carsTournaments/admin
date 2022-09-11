@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
 import { AlertService, CarService, SnackBarService } from '@services';
 import { CarListViewModel } from './model/car-list.view-model';
 import { Router } from '@angular/router';
 import { Car } from '@models';
 import { PaginatorI } from '@interfaces';
-import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
     selector: 'page-car-list',

@@ -5,6 +5,7 @@ on:
             - master
             - develop
             - feature/testing
+            - feature/correcciones
     pull_request:
         types: [opened, synchronize, reopened]
 jobs:
