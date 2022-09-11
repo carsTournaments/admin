@@ -167,8 +167,8 @@ export class CarOnePage implements OnInit {
         }
     }
 
-    async deleteInscriptions() {
-        const alert = await this.alertService.showConfirmation(
+    deleteInscriptions() {
+        const alert = this.alertService.showConfirmation(
             'Eliminar todas las inscripciones',
             '¿Estás seguro de eliminar todas las inscripciones?'
         );
@@ -186,8 +186,8 @@ export class CarOnePage implements OnInit {
         });
     }
 
-    async deleteOne() {
-        const alert = await this.alertService.showConfirmation(
+    deleteOne() {
+        const alert = this.alertService.showConfirmation(
             'Eliminar coche',
             '¿Está seguro de eliminar el coche? Si el coche esta en otra tabla, la puedes liar'
         );
