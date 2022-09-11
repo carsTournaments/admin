@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./src/assets/images/banner.png" width="200" />
+  <img src="./src/assets/images/banner.png">
 </div>
 <div align="center">
   ⚡️ PWA para administradores de CarsTournaments ⚡️
