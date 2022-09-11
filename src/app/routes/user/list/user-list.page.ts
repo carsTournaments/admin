@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionForOptionI } from '@interfaces/action-for-option.interface';
-import { UserService } from '@services';
+import { AlertService, SnackBarService, UserService } from '@services';
 import { UserListViewModel } from './model/user-list.view-model';
 import { Router } from '@angular/router';
 import { User } from '@models';
@@ -11,7 +11,12 @@ import { User } from '@models';
 })
 export class UserListPage implements OnInit {
     vm = new UserListViewModel();
-    constructor(private userService: UserService, private router: Router) {}
+    constructor(
+        private userService: UserService,
+        private router: Router,
+        private alertService: AlertService,
+        private snackBarService: SnackBarService
+    ) {}
 
     ngOnInit() {
         this.getAll();
@@ -61,18 +66,21 @@ export class UserListPage implements OnInit {
     }
 
     async deleteFakes() {
-        const state = confirm(
+        const alert = this.alertService.showConfirmation(
+            'Eliminar usuarios falsos',
             'Esta seguro de eliminar todos los usuarios falsos?'
         );
-        if (state) {
-            this.userService.deleteAllFake().subscribe({
-                next: (response) => {
-                    this.getAll();
-                    alert(response.message);
-                },
-                error: (error) => console.error(error),
-            });
-        }
+        alert.subscribe((alertResult) => {
+            if (alertResult) {
+                this.userService.deleteAllFake().subscribe({
+                    next: (response) => {
+                        this.getAll();
+                        this.snackBarService.open(response.message);
+                    },
+                    error: (error) => console.error(error),
+                });
+            }
+        });
     }
 
     onChangeOrder(order: string) {

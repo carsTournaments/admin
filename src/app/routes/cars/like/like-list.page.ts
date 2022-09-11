@@ -116,12 +116,12 @@ export class LikeListPage implements OnInit {
             'Eliminar like',
             'Vas a eliminar el like, ¿estas seguro?'
         );
-        alert.subscribe((res) => {
-            if (res) {
+        alert.subscribe((alertResult) => {
+            if (alertResult) {
                 this.likeService.deleteOne(id).subscribe({
                     next: () => {
-                        this.snackBarService.open('Like eliminado');
                         this.getAll();
+                        this.snackBarService.open('Like eliminado');
                     },
                 });
             }

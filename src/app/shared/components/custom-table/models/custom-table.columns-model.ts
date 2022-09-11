@@ -94,6 +94,18 @@ export class CustomTableColumnsModel {
             field: 'name',
             sortable: true,
         },
+        startDate: {
+            header: 'Fecha Inicio',
+            field: 'startDate',
+            sortable: true,
+            formatter: (item: any) => getDateTimeago(item.startDate),
+        },
+        endDate: {
+            header: 'Fecha Fin',
+            field: 'endDate',
+            sortable: true,
+            formatter: (item: any) => getDateTimeago(item.endDate),
+        },
     };
 
     private data: any = {
@@ -120,10 +132,7 @@ export class CustomTableColumnsModel {
             },
         ],
         cache: [
-            {
-                header: 'Nombre',
-                field: 'name',
-            },
+            this.defaults.name,
             {
                 header: 'Peso',
                 field: 'size',
@@ -648,7 +657,7 @@ export class CustomTableColumnsModel {
             this.defaults.created,
         ],
         rounds: [
-            { header: 'Nombre', field: 'name', sortable: true },
+            this.defaults.name,
             { header: 'Participantes', field: 'participants', sortable: true },
             { header: 'Votos', field: 'votes.count' },
             {
@@ -664,19 +673,9 @@ export class CustomTableColumnsModel {
                             : ''
                     ),
             },
-            {
-                header: 'Fecha Inicio',
-                field: 'startDate',
-                sortable: true,
-                formatter: (item: any) => getDateTimeago(item.startDate),
-            },
+            this.defaults.startDate,
 
-            {
-                header: 'Fecha Fin',
-                field: 'endDate',
-                sortable: true,
-                formatter: (item: any) => getDateTimeago(item.endDate),
-            },
+            this.defaults.endDate,
             {
                 header: 'Estado',
                 field: 'status',
@@ -696,10 +695,7 @@ export class CustomTableColumnsModel {
             },
         ],
         toggles: [
-            {
-                header: 'Nombre',
-                field: 'name',
-            },
+            this.defaults.name,
             {
                 header: 'Estado',
                 field: 'state',
@@ -722,30 +718,15 @@ export class CustomTableColumnsModel {
                 width: '75px',
                 formatter: (item: any) => getImageRounded(item.image?.url),
             },
-            {
-                header: 'Nombre',
-                field: 'name',
-                sortable: true,
-                width: '220px',
-            },
+            this.defaults.name,
             {
                 header: 'Estado',
                 field: 'status',
                 sortable: true,
                 formatter: (item: any) => getStateChip(item.status),
             },
-            {
-                header: 'Fecha Inicio',
-                field: 'startDate',
-                sortable: true,
-                formatter: (item: any) => getDateTimeago(item.startDate),
-            },
-            {
-                header: 'Fecha Fin',
-                field: 'endDate',
-                sortable: true,
-                formatter: (item: any) => getDateTimeago(item.endDate),
-            },
+            this.defaults.startDate,
+            this.defaults.endDate,
             {
                 header: 'Duracion',
                 field: 'durationDays',
@@ -791,18 +772,8 @@ export class CustomTableColumnsModel {
                 sortable: true,
                 formatter: (item: any) => getStateChip(item.status),
             },
-            {
-                header: 'Fecha Inicio',
-                field: 'startDate',
-                sortable: true,
-                formatter: (item: any) => getDateTimeago(item.startDate),
-            },
-            {
-                header: 'Fecha Fin',
-                field: 'endDate',
-                sortable: true,
-                formatter: (item: any) => getDateTimeago(item.endDate),
-            },
+            this.defaults.startDate,
+            this.defaults.endDate,
             {
                 header: 'Inscritos',
                 field: 'inscriptions.count',
@@ -824,12 +795,7 @@ export class CustomTableColumnsModel {
             this.defaults.updated,
         ],
         users: [
-            {
-                header: 'Nombre',
-                field: 'name',
-                sortable: true,
-                width: '180px',
-            },
+            this.defaults.name,
             {
                 header: 'Email',
                 field: 'email',
@@ -899,12 +865,7 @@ export class CustomTableColumnsModel {
             this.defaults.created,
         ],
         usersDashboard: [
-            {
-                header: 'Nombre',
-                field: 'name',
-                sortable: true,
-                width: '180px',
-            },
+            this.defaults.name,
             {
                 header: 'Email',
                 field: 'email',
