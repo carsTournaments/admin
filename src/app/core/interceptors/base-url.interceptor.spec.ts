@@ -5,7 +5,7 @@ import {
     HttpClientTestingModule,
     HttpTestingController,
 } from '@angular/common/http/testing';
-import { BASE_URL, BaseUrlInterceptor } from './base-url-interceptor';
+import { BASE_URL, BaseUrlInterceptor } from './base-url.interceptor';
 
 describe('BaseUrlInterceptor', () => {
     let httpMock: HttpTestingController;
