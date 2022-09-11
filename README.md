@@ -9,6 +9,8 @@
 
 ![CI](https://github.com/carsTournaments/admin/actions/workflows/ci.yml/badge.svg)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=carsTournaments_admin&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=carsTournaments_admin)
+
 ![GitHub issues by-label](https://img.shields.io/github/issues/carstournaments/admin/bug?label=Bugs&style=plastic)
 
 <a href="https://twitter.com/CarsTournaments"><img src="https://img.shields.io/twitter/follow/CarsTournaments" /></a>
