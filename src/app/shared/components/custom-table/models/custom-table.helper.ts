@@ -108,3 +108,13 @@ export const getCountVotesOfInscriptions = (row: any): number => {
 
     return countVotes;
 };
+
+export const getImagesByType = (
+    item: any,
+    type: 'winner' | 'car' | 'car1' | 'car2' | 'gold' | 'silver' | 'bronze'
+) => {
+    if (item[type].images && item[type].images.length > 0) {
+        return item[type].images[0].url;
+    }
+    return '';
+};

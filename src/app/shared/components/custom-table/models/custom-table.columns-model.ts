@@ -7,6 +7,7 @@ import {
     getCountVotesOfInscriptions,
     getDateTimeago,
     getImageRounded,
+    getImagesByType,
     getStateChip,
     getTypeChip,
 } from './custom-table.helper';
@@ -27,7 +28,74 @@ export class CustomTableColumnsModel {
             width: '150px',
             formatter: (item: any) => getDateTimeago(item.updated),
         },
+        image: {
+            header: '#',
+            field: 'images',
+            width: '100px',
+            formatter: (item: any) =>
+                getImageRounded(
+                    item.images && item.images.length > 0
+                        ? item.images[0].url
+                        : ''
+                ),
+        },
+        year: {
+            header: 'Año',
+            field: 'year',
+            sortable: true,
+        },
+        brand: {
+            header: 'Marca',
+            field: 'brand.name',
+            formatter: (item: any) =>
+                getChip(item.brand.name, true, item.brand?.image?.url),
+        },
+        model: {
+            header: 'Modelo',
+            field: 'model',
+            width: '150px',
+            sortable: true,
+        },
+        user: {
+            header: 'Usuario',
+            field: 'driver.name',
+            sortable: true,
+            formatter: (item: any) => getChipDriverWithImage(item.driver),
+        },
+        fuel: {
+            header: 'Combustible',
+            field: 'fuel',
+            sortable: true,
+            formatter: (item: any) => getChip(item.fuel, false, '', 'info'),
+        },
+        traction: {
+            header: 'Traccion',
+            field: 'traction',
+            sortable: true,
+            formatter: (item: any) => getChip(item.traction, false, '', 'dark'),
+        },
+        cc: {
+            header: 'CC',
+            field: 'cc',
+            sortable: true,
+        },
+        cv: {
+            header: 'CV',
+            field: 'cv',
+            sortable: true,
+        },
+        rounds: {
+            header: 'Rondas',
+            field: 'rounds.count',
+            sortable: true,
+        },
+        name: {
+            header: 'Nombre',
+            field: 'name',
+            sortable: true,
+        },
     };
+
     private data: any = {
         brands: [
             {
@@ -70,30 +138,9 @@ export class CustomTableColumnsModel {
         ],
 
         cars: [
-            {
-                header: '#',
-                field: 'images',
-                width: '100px',
-                formatter: (item: any) =>
-                    getImageRounded(
-                        item.images && item.images.length > 0
-                            ? item.images[0].url
-                            : ''
-                    ),
-            },
-            {
-                header: 'Marca',
-                field: 'brand.name',
-                width: '150px',
-                formatter: (item: any) =>
-                    getChip(item.brand.name, true, item.brand?.image?.url),
-            },
-            {
-                header: 'Modelo',
-                field: 'model',
-                width: '150px',
-                sortable: true,
-            },
+            this.defaults.image,
+            this.defaults.brand,
+            this.defaults.model,
             {
                 header: 'Conductor',
                 field: 'driver.name',
@@ -101,34 +148,11 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) =>
                     item.driver ? getChipDriverWithImage(item.driver) : '',
             },
-            {
-                header: 'Año',
-                field: 'year',
-                sortable: true,
-            },
-            {
-                header: 'Combustible',
-                field: 'fuel',
-                sortable: true,
-                formatter: (item: any) => getChip(item.fuel, false, '', 'info'),
-            },
-            {
-                header: 'Traccion',
-                field: 'traction',
-                sortable: true,
-                formatter: (item: any) =>
-                    getChip(item.traction, false, '', 'dark'),
-            },
-            {
-                header: 'CC',
-                field: 'cc',
-                sortable: true,
-            },
-            {
-                header: 'CV',
-                field: 'cv',
-                sortable: true,
-            },
+            this.defaults.year,
+            this.defaults.fuel,
+            this.defaults.traction,
+            this.defaults.cc,
+            this.defaults.cv,
             {
                 header: 'Inscrip.',
                 field: 'inscriptions.count',
@@ -151,58 +175,14 @@ export class CustomTableColumnsModel {
             this.defaults.created,
         ],
         carsUser: [
-            {
-                header: '#',
-                field: 'images',
-                width: '100px',
-                formatter: (item: any) =>
-                    getImageRounded(
-                        item.images && item.images.length > 0
-                            ? item.images[0].url
-                            : ''
-                    ),
-            },
-            {
-                header: 'Marca',
-                field: 'brand.name',
-                width: '150px',
-                formatter: (item: any) =>
-                    getChip(item.brand.name, true, item.brand?.image?.url),
-            },
-            {
-                header: 'Modelo',
-                field: 'model',
-                width: '150px',
-                sortable: true,
-            },
-            {
-                header: 'Año',
-                field: 'year',
-                sortable: true,
-            },
-            {
-                header: 'Combustible',
-                field: 'fuel',
-                sortable: true,
-                formatter: (item: any) => getChip(item.fuel, false, '', 'info'),
-            },
-            {
-                header: 'Traccion',
-                field: 'traction',
-                sortable: true,
-                formatter: (item: any) =>
-                    getChip(item.traction, false, '', 'dark'),
-            },
-            {
-                header: 'CC',
-                field: 'cc',
-                sortable: true,
-            },
-            {
-                header: 'CV',
-                field: 'cv',
-                sortable: true,
-            },
+            this.defaults.image,
+            this.defaults.brand,
+            this.defaults.model,
+            this.defaults.year,
+            this.defaults.fuel,
+            this.defaults.traction,
+            this.defaults.cc,
+            this.defaults.cv,
             {
                 header: 'Inscrip.',
                 field: 'inscriptions.count',
@@ -225,28 +205,9 @@ export class CustomTableColumnsModel {
             this.defaults.created,
         ],
         carsDashboard: [
-            {
-                header: '#',
-                field: 'images',
-                formatter: (item: any) =>
-                    getImageRounded(
-                        item.images && item.images.length > 0
-                            ? item.images[0].url
-                            : ''
-                    ),
-            },
-            {
-                header: 'Marca',
-                field: 'brand.name',
-                formatter: (item: any) =>
-                    getChip(item.brand.name, true, item.brand?.image?.url),
-            },
-            {
-                header: 'Modelo',
-                field: 'model',
-                width: '150px',
-                sortable: true,
-            },
+            this.defaults.image,
+            this.defaults.brand,
+            this.defaults.model,
             {
                 header: 'Conductor',
                 field: 'driver.name',
@@ -360,12 +321,7 @@ export class CustomTableColumnsModel {
                             : ''
                     ),
             },
-            {
-                header: 'Usuario',
-                field: 'driver.name',
-                sortable: true,
-                formatter: (item: any) => getChipDriverWithImage(item.driver),
-            },
+            this.defaults.user,
             {
                 header: 'Torneo',
                 field: 'tournament.name',
@@ -399,12 +355,7 @@ export class CustomTableColumnsModel {
                 field: 'car.votes',
                 formatter: (row: any) => getCountVotesOfInscriptions(row),
             },
-            {
-                header: 'Usuario',
-                field: 'driver.name',
-                sortable: true,
-                formatter: (item: any) => getChipDriverWithImage(item.driver),
-            },
+            this.defaults.user,
             this.defaults.created,
         ],
         inscriptionsCar: [
@@ -429,11 +380,7 @@ export class CustomTableColumnsModel {
             this.defaults.created,
         ],
         logs: [
-            {
-                header: 'Nombre',
-                field: 'name',
-                sortable: true,
-            },
+            this.defaults.name,
             {
                 header: 'Metodo',
                 field: 'method',
@@ -508,11 +455,7 @@ export class CustomTableColumnsModel {
             this.defaults.created,
         ],
         literals: [
-            {
-                header: 'Nombre',
-                field: 'name',
-                sortable: true,
-            },
+            this.defaults.name,
             {
                 header: 'Categoria',
                 field: 'category',
@@ -562,7 +505,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.car1.brand?.name + ' ' + item.car1.model,
                         true,
-                        this.getImagesByType(item, 'car1')
+                        getImagesByType(item, 'car1')
                     ),
             },
             {
@@ -584,7 +527,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.car2.brand?.name + ' ' + item.car2.model,
                         true,
-                        this.getImagesByType(item, 'car2')
+                        getImagesByType(item, 'car2')
                     ),
             },
             {
@@ -596,7 +539,7 @@ export class CustomTableColumnsModel {
                         ? getChip(
                               item.winner.brand?.name + ' ' + item.winner.model,
                               true,
-                              this.getImagesByType(item, 'winner'),
+                              getImagesByType(item, 'winner'),
                               'gold'
                           )
                         : '--',
@@ -625,7 +568,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.car1.brand?.name + ' ' + item.car1.model,
                         true,
-                        this.getImagesByType(item, 'car1')
+                        getImagesByType(item, 'car1')
                     ),
             },
             {
@@ -647,7 +590,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.car2.brand?.name + ' ' + item.car2.model,
                         true,
-                        this.getImagesByType(item, 'car2')
+                        getImagesByType(item, 'car2')
                     ),
             },
             {
@@ -659,7 +602,7 @@ export class CustomTableColumnsModel {
                         ? getChip(
                               item.winner.brand?.name + ' ' + item.winner.model,
                               true,
-                              this.getImagesByType(item, 'winner'),
+                              getImagesByType(item, 'winner'),
                               'gold'
                           )
                         : '--',
@@ -820,11 +763,7 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) =>
                     `${item.inscriptions?.count ?? 0}/${item.maxParticipants}`,
             },
-            {
-                header: 'Rondas',
-                field: 'rounds.count',
-                sortable: true,
-            },
+            this.defaults.rounds,
             {
                 header: 'Pairings',
                 field: 'pairings.count',
@@ -845,11 +784,7 @@ export class CustomTableColumnsModel {
                 width: '75px',
                 formatter: (item: any) => getImageRounded(item.image?.url),
             },
-            {
-                header: 'Nombre',
-                field: 'name',
-                sortable: true,
-            },
+            this.defaults.name,
             {
                 header: 'Estado',
                 field: 'status',
@@ -875,11 +810,7 @@ export class CustomTableColumnsModel {
                 formatter: (item: any) =>
                     `${item.inscriptions?.count ?? 0}/${item.maxParticipants}`,
             },
-            {
-                header: 'Rondas',
-                field: 'rounds.count',
-                sortable: true,
-            },
+            this.defaults.rounds,
             {
                 header: 'Pairings',
                 field: 'pairings.count',
@@ -1036,7 +967,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.car.brand?.name + ' ' + item.car.model,
                         true,
-                        this.getImagesByType(item, 'car')
+                        getImagesByType(item, 'car')
                     ),
             },
             {
@@ -1102,7 +1033,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         `${item.gold?.brand.name} ${item.gold?.model}`,
                         true,
-                        this.getImagesByType(item, 'gold'),
+                        getImagesByType(item, 'gold'),
                         'gold'
                     ),
             },
@@ -1114,7 +1045,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         `${item.silver?.brand.name} ${item.silver?.model}`,
                         true,
-                        this.getImagesByType(item, 'silver'),
+                        getImagesByType(item, 'silver'),
                         'silver'
                     ),
             },
@@ -1126,7 +1057,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         `${item.bronze?.brand.name} ${item.bronze?.model}`,
                         true,
-                        this.getImagesByType(item, 'bronze'),
+                        getImagesByType(item, 'bronze'),
                         'bronze'
                     ),
             },
@@ -1153,7 +1084,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         `${item.gold?.brand.name} ${item.gold?.model}`,
                         true,
-                        this.getImagesByType(item, 'gold'),
+                        getImagesByType(item, 'gold'),
                         'gold'
                     ),
             },
@@ -1172,7 +1103,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         `${item.silver?.brand.name} ${item.silver?.model}`,
                         true,
-                        this.getImagesByType(item, 'silver'),
+                        getImagesByType(item, 'silver'),
                         'silver'
                     ),
             },
@@ -1184,7 +1115,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         `${item.bronze?.brand.name} ${item.bronze?.model}`,
                         true,
-                        this.getImagesByType(item, 'bronze'),
+                        getImagesByType(item, 'bronze'),
                         'bronze'
                     ),
             },
@@ -1206,15 +1137,5 @@ export class CustomTableColumnsModel {
 
     getColumns(type: string): MtxGridColumn[] {
         return this.data[type];
-    }
-
-    getImagesByType(
-        item: any,
-        type: 'winner' | 'car' | 'car1' | 'car2' | 'gold' | 'silver' | 'bronze'
-    ) {
-        if (item[type].images && item[type].images.length > 0) {
-            return item[type].images[0].url;
-        }
-        return '';
     }
 }
