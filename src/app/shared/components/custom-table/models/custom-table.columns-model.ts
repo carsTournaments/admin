@@ -227,8 +227,13 @@ export class CustomTableColumnsModel {
         carsDashboard: [
             {
                 header: '#',
-                field: 'image.url',
-                formatter: (item: any) => getImageRounded(item.image?.url),
+                field: 'images',
+                formatter: (item: any) =>
+                    getImageRounded(
+                        item.images && item.images.length > 0
+                            ? item.images[0].url
+                            : ''
+                    ),
             },
             {
                 header: 'Marca',
