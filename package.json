@@ -1,6 +1,6 @@
 {
     "name": "cars-tournaments-admin",
-    "version": "0.2.8",
+    "version": "0.2.9",
     "author": "JoseXS",
     "scripts": {
         "ng": "ng",

@@ -78,9 +78,14 @@ export class AddComponentComponent {
     }
 
     sortBy(prop: string) {
-        return this.images.sort((a: any, b: any) =>
-            a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1
-        );
+        return this.images.sort((a: any, b: any) => {
+            if (a[prop] > b[prop]) {
+                return 1;
+            } else if (a[prop] === b[prop]) {
+                return 0;
+            }
+            return -1;
+        });
     }
 }
 
