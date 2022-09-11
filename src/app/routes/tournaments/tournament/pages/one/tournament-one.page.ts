@@ -242,8 +242,8 @@ export class TournamentOnePage implements OnInit {
         });
     }
 
-    async forceInscriptions() {
-        const alert = await this.alertService.showConfirmation(
+    forceInscriptions() {
+        const alert = this.alertService.showConfirmation(
             'Forzar inscripciones',
             '¿Estas seguro de forzar las inscripciones?'
         );
@@ -262,8 +262,8 @@ export class TournamentOnePage implements OnInit {
         });
     }
 
-    async startTournament() {
-        const alert = await this.alertService.showConfirmation(
+    startTournament() {
+        const alert = this.alertService.showConfirmation(
             'Forzar inicio de torneo',
             '¿Estas seguro de forzar el inicio del torneo?'
         );
@@ -282,8 +282,8 @@ export class TournamentOnePage implements OnInit {
         });
     }
 
-    async resetTournament() {
-        const alert = await this.alertService.showConfirmation(
+    resetTournament() {
+        const alert = this.alertService.showConfirmation(
             'Forzar reseteo de torneo',
             '¿Estas seguro de resetear el torneo? Se perderán inscripciones, rondas, emparejamientosm votos y el estado del torneo sera como Sin empezar'
         );
@@ -302,8 +302,8 @@ export class TournamentOnePage implements OnInit {
         });
     }
 
-    async cancelTournament() {
-        const alert = await this.alertService.showConfirmation(
+    cancelTournament() {
+        const alert = this.alertService.showConfirmation(
             'Cancelar torneo',
             '¿Estas seguro de cancelar el torneo? Se perderán rondas, emparejamientos, votos y el estado del torneo sera como Cancelado'
         );
@@ -322,8 +322,8 @@ export class TournamentOnePage implements OnInit {
         });
     }
 
-    async deleteInscriptions() {
-        const alert = await this.alertService.showConfirmation(
+    deleteInscriptions() {
+        const alert = this.alertService.showConfirmation(
             'Eliminar inscripciones del torneo',
             '¿Estas seguro de eliminar todas las inscripciones?'
         );
@@ -344,8 +344,8 @@ export class TournamentOnePage implements OnInit {
         });
     }
 
-    async deleteRounds() {
-        const alert = await this.alertService.showConfirmation(
+    deleteRounds() {
+        const alert = this.alertService.showConfirmation(
             'Eliminar rondas del torneo',
             '¿Estas seguro de eliminar todas las rondas?'
         );
@@ -362,8 +362,8 @@ export class TournamentOnePage implements OnInit {
         });
     }
 
-    async delete() {
-        const alert = await this.alertService.showConfirmation(
+    delete() {
+        const alert = this.alertService.showConfirmation(
             'Eliminar el torneo',
             '¿Estas seguro de eliminar el torneo?'
         );
@@ -380,8 +380,8 @@ export class TournamentOnePage implements OnInit {
         });
     }
 
-    async onDeleteInscription(id: string) {
-        const alert = await this.alertService.showConfirmation(
+    onDeleteInscription(id: string) {
+        const alert = this.alertService.showConfirmation(
             'Eliminar inscripcion',
             '¿Está seguro de eliminar la inscripcion?'
         );

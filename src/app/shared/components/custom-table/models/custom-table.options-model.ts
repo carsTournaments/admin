@@ -72,6 +72,11 @@ export class CustomTableOptionsModel {
                 this.dialog = false;
             }
         }
+        this.setA(data);
+        this.setB(data);
+    }
+
+    private setA(data: CustomTableOptionsModel | undefined) {
         this.type = data?.type ?? this.type;
         this.items = data?.items ?? this.items;
         this.dialog = data?.dialog ?? this.dialog;
@@ -82,6 +87,9 @@ export class CustomTableOptionsModel {
         this.rowHover = data?.rowHover ?? this.rowHover;
         this.rowStriped = data?.rowStriped ?? this.rowStriped;
         this.expandable = data?.expandable ?? this.expandable;
+    }
+
+    private setB(data: CustomTableOptionsModel | undefined) {
         this.toolbarTitle = data?.toolbarTitle ?? this.toolbarTitle;
         this.showToolbar = data?.showToolbar ?? this.showToolbar;
         this.showPaginator = data?.showPaginator ?? this.showPaginator;

@@ -562,18 +562,19 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.car1.brand?.name + ' ' + item.car1.model,
                         true,
-                        item.car1.images && item.car1.images.length > 0
-                            ? item.car1.images[0]?.url
-                            : ''
+                        this.getImagesByType(item, 'car1')
                     ),
             },
             {
                 header: 'Votos',
                 field: 'votes.length',
                 formatter: (row: any) => `
-            ${row.votes.filter((v: any) => v.car === row.car1._id).length} -
-            ${row.votes.filter((v: any) => v.car === row.car2._id).length}
-            `,
+                  ${
+                      row.votes.filter((v: any) => v.car === row.car1._id)
+                          .length
+                  } -
+                  ${row.votes.filter((v: any) => v.car === row.car2._id).length}
+                `,
             },
             {
                 header: 'Coche 2',
@@ -583,9 +584,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.car2.brand?.name + ' ' + item.car2.model,
                         true,
-                        item.car2.images && item.car2.images.length > 0
-                            ? item.car2.images[0].url
-                            : ''
+                        this.getImagesByType(item, 'car2')
                     ),
             },
             {
@@ -597,10 +596,7 @@ export class CustomTableColumnsModel {
                         ? getChip(
                               item.winner.brand?.name + ' ' + item.winner.model,
                               true,
-                              item.winner.images &&
-                                  item.winner.images.length > 0
-                                  ? item.winner.images[0].url
-                                  : '',
+                              this.getImagesByType(item, 'winner'),
                               'gold'
                           )
                         : '--',
@@ -629,9 +625,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.car1.brand?.name + ' ' + item.car1.model,
                         true,
-                        item.car1.images && item.car1.images.length > 0
-                            ? item.car1.images[0]?.url
-                            : ''
+                        this.getImagesByType(item, 'car1')
                     ),
             },
             {
@@ -653,9 +647,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.car2.brand?.name + ' ' + item.car2.model,
                         true,
-                        item.car2.images && item.car2.images.length > 0
-                            ? item.car2.images[0].url
-                            : ''
+                        this.getImagesByType(item, 'car2')
                     ),
             },
             {
@@ -667,10 +659,7 @@ export class CustomTableColumnsModel {
                         ? getChip(
                               item.winner.brand?.name + ' ' + item.winner.model,
                               true,
-                              item.winner.images &&
-                                  item.winner.images.length > 0
-                                  ? item.winner.images[0].url
-                                  : '',
+                              this.getImagesByType(item, 'winner'),
                               'gold'
                           )
                         : '--',
@@ -1047,9 +1036,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.car.brand?.name + ' ' + item.car.model,
                         true,
-                        item.car.images && item.car.images.length > 0
-                            ? item.car.images[0].url
-                            : ''
+                        this.getImagesByType(item, 'car')
                     ),
             },
             {
@@ -1115,9 +1102,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         `${item.gold?.brand.name} ${item.gold?.model}`,
                         true,
-                        item.gold.images && item.gold.images.length > 0
-                            ? item.gold.images[0].url
-                            : '',
+                        this.getImagesByType(item, 'gold'),
                         'gold'
                     ),
             },
@@ -1129,9 +1114,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         `${item.silver?.brand.name} ${item.silver?.model}`,
                         true,
-                        item.silver.images && item.silver.images.length > 0
-                            ? item.silver?.images[0].url
-                            : '',
+                        this.getImagesByType(item, 'silver'),
                         'silver'
                     ),
             },
@@ -1143,9 +1126,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         `${item.bronze?.brand.name} ${item.bronze?.model}`,
                         true,
-                        item.bronze.images && item.bronze.images.length > 0
-                            ? item.bronze.images[0].url
-                            : '',
+                        this.getImagesByType(item, 'bronze'),
                         'bronze'
                     ),
             },
@@ -1172,9 +1153,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         `${item.gold?.brand.name} ${item.gold?.model}`,
                         true,
-                        item.gold.images && item.gold.images.length > 0
-                            ? item.gold.images[0].url
-                            : '',
+                        this.getImagesByType(item, 'gold'),
                         'gold'
                     ),
             },
@@ -1193,9 +1172,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         `${item.silver?.brand.name} ${item.silver?.model}`,
                         true,
-                        item.silver.images && item.silver.images.length > 0
-                            ? item.silver?.images[0].url
-                            : '',
+                        this.getImagesByType(item, 'silver'),
                         'silver'
                     ),
             },
@@ -1207,9 +1184,7 @@ export class CustomTableColumnsModel {
                     getChip(
                         `${item.bronze?.brand.name} ${item.bronze?.model}`,
                         true,
-                        item.bronze.images && item.bronze.images.length > 0
-                            ? item.bronze.images[0].url
-                            : '',
+                        this.getImagesByType(item, 'bronze'),
                         'bronze'
                     ),
             },
@@ -1231,5 +1206,15 @@ export class CustomTableColumnsModel {
 
     getColumns(type: string): MtxGridColumn[] {
         return this.data[type];
+    }
+
+    getImagesByType(
+        item: any,
+        type: 'winner' | 'car' | 'car1' | 'car2' | 'gold' | 'silver' | 'bronze'
+    ) {
+        if (item[type].images && item[type].images.length > 0) {
+            return item[type].images[0].url;
+        }
+        return '';
     }
 }
