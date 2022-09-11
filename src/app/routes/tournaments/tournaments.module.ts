@@ -11,7 +11,7 @@ import { TournamentListPage } from './tournament/pages/list/tournament-list.page
 import { TournamentOnePage } from './tournament/pages/one/tournament-one.page';
 import { VoteListPage } from './vote/vote-list.page';
 import { WinnerListPage } from './winner/winner-list.page';
-import { tournamentOneStatusComponent } from './tournament/components/tournament-one-status/tournament-one-status.component';
+import { TournamentOneStatusComponent } from './tournament/components/tournament-one-status/tournament-one-status.component';
 
 @NgModule({
     imports: [
@@ -71,7 +71,7 @@ import { tournamentOneStatusComponent } from './tournament/components/tournament
         TournamentListPage,
         TournamentOnePage,
         TournamentOneEditComponent,
-        tournamentOneStatusComponent,
+        TournamentOneStatusComponent,
         InscriptionListPage,
         RoundListPage,
         PairingListPage,

@@ -1,38 +1,3 @@
-// import { LoginResponseI } from '@interfaces/login-response.interface';
-// import { Component, OnInit } from '@angular/core';
-// import { Router } from '@angular/router';
-// import { LoginViewModel } from './model/login.view-model';
-// import { AuthService } from '@services';
-
-// @Component({
-//     selector: 'app-login',
-//     templateUrl: 'login.component.html',
-//     styleUrls: ['./login.component.scss'],
-// })
-// export class LoginComponent implements OnInit {
-//     vm = new LoginViewModel();
-//     constructor(private authService: AuthService, private router: Router) {}
-
-//     ngOnInit() {
-//         localStorage.getItem('token') && this.router.navigate(['/dashboard']);
-//     }
-
-//     async onSubmit() {
-//         this.vm.loginBody.email = this.vm.email;
-//         this.vm.loginBody.password = this.vm.password;
-//         // this.authService.login(this.vm.loginBody).subscribe({
-//         //     next: async (response: LoginResponseI) => {
-//         //         localStorage.setItem('token', response.token);
-//         //         localStorage.setItem('user', JSON.stringify(response.user));
-//         //         this.router.navigate(['/dashboard']);
-//         //     },
-//         //     error: (error: any) => {
-//         //         alert(error);
-//         //     },
-//         // });
-//     }
-// }
-
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';

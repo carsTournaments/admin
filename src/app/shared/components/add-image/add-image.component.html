@@ -6,6 +6,7 @@
                 [src]="image.url! | image"
                 class="img mt-3"
                 (click)="onClickImage(image)"
+                alt="image"
             />
         </div>
     </div>
@@ -24,6 +25,7 @@
                 *ngIf="img"
                 [src]="img.url! | image"
                 class="img mt-3"
+                alt="image"
             />
         </div>
     </div>

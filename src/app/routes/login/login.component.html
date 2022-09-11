@@ -1,45 +1,11 @@
-<!-- <main class="form-signin">
-    <div class="text-center mb-4">
-        <img src="assets/images/logo.png" alt="" width="250" height="250" />
-    </div>
-
-    <form>
-        <div class="form-floating">
-            <input
-                type="email"
-                class="form-control"
-                [(ngModel)]="vm.email"
-                name="email"
-                placeholder="Email"
-            />
-            <label for="floatingInput">Email</label>
-        </div>
-        <div class="form-floating">
-            <input
-                type="password"
-                class="form-control"
-                [(ngModel)]="vm.password"
-                name="password"
-                placeholder="Password"
-                autocomplete="on"
-            />
-            <label for=" floatingPassword">Contraseña</label>
-        </div>
-    </form>
-
-    <button
-        class="w-100 btn btn-lg btn-primary"
-        type="submit"
-        (click)="onSubmit()"
-    >
-        Entrar
-    </button>
-</main> -->
-
 <div class="w-full h-full" fxLayout="row wrap">
     <mat-card class="mat-elevation-z4 m-auto" style="max-width: 380px">
         <mat-card-title class="text-center m-b-24">
-            <img src="./assets/images/logo.png" width="150" />
+            <img
+                src="./assets/images/logo.png"
+                width="150"
+                alt="CarsTournaments"
+            />
         </mat-card-title>
 
         <form class="form-field-full" [formGroup]="loginForm">
