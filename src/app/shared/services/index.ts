@@ -6,7 +6,7 @@ export { CacheService } from './api/cache/cache.service';
 export { ImageService } from './api/image/image.service';
 export { InscriptionService } from './api/inscription/inscription.service';
 export { LikeService } from './api/like/like.service';
-export { LoggerService } from './api/logger/logger.service';
+export { LogService } from './api/log/log.service';
 export { LiteralService } from './api/literal/literal.service';
 export { MenuService } from './api/menu/menu.service';
 export { NotificationService } from './api/notification/notification.service';

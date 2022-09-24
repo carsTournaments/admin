@@ -17,6 +17,7 @@ import { OtaListPage } from './ota/ota-list.page';
 import { MenuListPage } from './menu/pages/list/menu-list.page';
 import { MenuOnePage } from './menu/pages/one/menu-one.page';
 import { CacheListPage } from './cache/pages/list/cache-list.page';
+import { LogListPage } from './log/pages/log-list.page';
 
 @NgModule({
     imports: [
@@ -79,6 +80,14 @@ import { CacheListPage } from './cache/pages/list/cache-list.page';
                     },
                     { path: '**', redirectTo: '' },
                 ],
+            },
+            {
+                path: 'log',
+                component: LogListPage,
+                data: {
+                    breadcrumb: 'Logs',
+                    title: 'Sistema - Logs',
+                },
             },
             {
                 path: 'ota',
@@ -149,6 +158,7 @@ import { CacheListPage } from './cache/pages/list/cache-list.page';
         MenuOnePage,
         NotificationListPage,
         NotificationSendComponent,
+        LogListPage,
         OtaListPage,
         SettingsPage,
         StatsPage,
