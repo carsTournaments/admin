@@ -8,11 +8,11 @@ import {
 import { Observable } from 'rxjs';
 
 export const BASE_URL = new InjectionToken<string>('BASE_URL');
+const regExt = /^http(s)?:/;
 
 @Injectable()
 export class BaseUrlInterceptor implements HttpInterceptor {
-    private hasScheme = (url: string) =>
-        this.baseUrl && new RegExp('^http(s)?://', 'i').test(url);
+    private hasScheme = (url: string) => this.baseUrl && regExt.test(url);
 
     constructor(@Optional() @Inject(BASE_URL) private baseUrl?: string) {}
 

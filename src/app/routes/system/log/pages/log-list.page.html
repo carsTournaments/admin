@@ -1,0 +1,18 @@
+<div class="container">
+    <page-header [title]="vm.title"></page-header>
+    <mat-card class="mat-card-wrapper">
+        <mat-tab-group>
+            <mat-tab label="Listado">
+                <custom-table [options]="vm.optionsTable"> </custom-table>
+            </mat-tab>
+            <!--
+      <mat-tab label="Opciones">
+        <options-list [options]="vm.options"></options-list>
+      </mat-tab>
+
+      <mat-tab label="Nuevo">
+        <tournament-one-edit></tournament-one-edit>
+      </mat-tab>-->
+        </mat-tab-group>
+    </mat-card>
+</div>
