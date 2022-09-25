@@ -13,17 +13,13 @@
                 <mat-label>Email</mat-label>
                 <input
                     matInput
-                    placeholder="ng-matero"
+                    placeholder="Email"
                     formControlName="email"
                     required
                 />
                 <mat-error *ngIf="email?.invalid">
                     <span *ngIf="email?.errors?.required">
-                        {{ 'login.please_enter' }}
-                    </span>
-
-                    <span *ngIf="email?.errors?.remote">
-                        {{ email?.errors?.remote }}
+                        Introduce un email
                     </span>
                 </mat-error>
             </mat-form-field>
@@ -32,15 +28,13 @@
                 <mat-label>Contraseña</mat-label>
                 <input
                     matInput
-                    placeholder="ng-matero"
+                    placeholder="password"
                     type="password"
                     formControlName="password"
                     required
                 />
                 <mat-error *ngIf="password?.invalid">
-                    <span *ngIf="password?.errors?.required">
-                        Entrar <strong>ng-matero</strong>
-                    </span>
+                    <span *ngIf="password?.errors?.required"> Entrar </span>
 
                     <span *ngIf="password?.errors?.remote">
                         {{ password?.errors?.remote }}
