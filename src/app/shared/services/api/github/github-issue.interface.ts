@@ -1,16 +1,16 @@
 export interface GithubIssueI {
     title: string;
     user: string;
-    labels: string[];
+    labels: GithubIssueLabelI[];
     state: string;
     assignee: string;
     comments: number;
     body: string;
     url: string;
+    repo: string;
 }
 
-export interface GithubIssuesI {
-    backend: GithubIssueI;
-    app: GithubIssueI;
-    admin: GithubIssueI;
+export interface GithubIssueLabelI {
+    name: string;
+    color: string;
 }

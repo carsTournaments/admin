@@ -11,6 +11,8 @@ export class CustomTableOptionsModel {
         | 'carsUser'
         | 'carsDashboard'
         | 'carStats'
+        | 'githubActions'
+        | 'githubIssues'
         | 'images'
         | 'inscriptions'
         | 'inscriptionsCar'

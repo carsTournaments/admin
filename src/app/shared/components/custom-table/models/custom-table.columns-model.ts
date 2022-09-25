@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import {
     getChip,
     getChipDriverWithImage,
+    getChipWithHexColor,
     getCountVotesOfInscriptions,
     getDateTimeago,
     getImageRounded,
@@ -282,6 +283,59 @@ export class CustomTableColumnsModel {
                 header: 'Total',
                 field: 'value',
             },
+        ],
+        githubActions: [
+            {
+                header: 'Nombre',
+                field: 'name',
+            },
+            {
+                header: 'Estado',
+                field: 'state',
+            },
+            {
+                header: 'Repo',
+                field: 'repo',
+            },
+            this.defaults.created,
+            this.defaults.updated,
+        ],
+        githubIssues: [
+            {
+                header: 'Titulo',
+                field: 'title',
+            },
+            {
+                header: 'Tags',
+                field: 'labels',
+                formatter: (item: any) => {
+                    const colors = ['primary', 'success', 'warning'];
+                    let html = '';
+                    item.labels.forEach((item: any, i: number) => {
+                        console.log(colors[i]);
+                        html += `${getChip(item, false, '', colors[i])} `;
+                    });
+                    return html;
+                },
+            },
+            {
+                header: 'Comentarios',
+                field: 'comments',
+            },
+            {
+                header: 'Asignado',
+                field: 'assignee',
+            },
+            {
+                header: 'Usuario',
+                field: 'user',
+            },
+            {
+                header: 'Repo',
+                field: 'repo',
+            },
+            this.defaults.created,
+            this.defaults.updated,
         ],
         images: [
             {
