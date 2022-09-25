@@ -283,6 +283,59 @@ export class CustomTableColumnsModel {
                 field: 'value',
             },
         ],
+        githubActions: [
+            {
+                header: 'Nombre',
+                field: 'name',
+            },
+            {
+                header: 'Estado',
+                field: 'state',
+            },
+            {
+                header: 'Repo',
+                field: 'repo',
+            },
+            this.defaults.created,
+            this.defaults.updated,
+        ],
+        githubIssues: [
+            {
+                header: 'Titulo',
+                field: 'title',
+            },
+            {
+                header: 'Tags',
+                field: 'labels',
+                formatter: (item: any) => {
+                    const colors = ['primary', 'success', 'warning'];
+                    let html = '';
+                    item.labels.forEach((item: any, i: number) => {
+                        console.log(colors[i]);
+                        html += `${getChip(item, false, '', colors[i])} `;
+                    });
+                    return html;
+                },
+            },
+            {
+                header: 'Comentarios',
+                field: 'comments',
+            },
+            {
+                header: 'Asignado',
+                field: 'assignee',
+            },
+            {
+                header: 'Usuario',
+                field: 'user',
+            },
+            {
+                header: 'Repo',
+                field: 'repo',
+            },
+            this.defaults.created,
+            this.defaults.updated,
+        ],
         images: [
             {
                 header: '#',
@@ -374,7 +427,9 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.tournament?.name,
                         true,
-                        item.tournament.image?.url,
+                        item.tournament && item.tournament.image
+                            ? item.tournament.image.url
+                            : '',
                         'dark'
                     ),
             },
@@ -416,7 +471,9 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.tournament?.name,
                         true,
-                        item.tournament.image?.url ?? '',
+                        item.tournament && item.tournament.image
+                            ? item.tournament.image.url
+                            : '',
                         'dark'
                     ),
             },
@@ -440,10 +497,10 @@ export class CustomTableColumnsModel {
                 sortable: true,
                 type: 'tag',
                 tag: {
-                    info: { text: 'info', color: 'blue-500' },
-                    http: { text: 'http', color: 'green-500' },
-                    warn: { text: 'warn', color: 'orange-500' },
-                    error: { text: 'error', color: 'red-500' },
+                    info: { text: 'Info', color: 'blue-500' },
+                    http: { text: 'HTTP', color: 'green-500' },
+                    warn: { text: 'Warn', color: 'orange-500' },
+                    error: { text: 'Error', color: 'red-500' },
                 },
             },
             {
@@ -598,7 +655,9 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.tournament?.name,
                         true,
-                        item.tournament.image?.url,
+                        item.tournament && item.tournament.image
+                            ? item.tournament.image.url
+                            : '',
                         'dark'
                     ),
             },
@@ -1126,7 +1185,9 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.tournament.name,
                         true,
-                        item.tournament.image?.url,
+                        item.tournament && item.tournament.image
+                            ? item.tournament.image.url
+                            : '',
                         'dark'
                     ),
             },
@@ -1184,7 +1245,9 @@ export class CustomTableColumnsModel {
                     getChip(
                         item.tournament.name,
                         true,
-                        item.tournament.image?.url,
+                        item.tournament && item.tournament.image
+                            ? item.tournament.image.url
+                            : '',
                         'dark'
                     ),
             },

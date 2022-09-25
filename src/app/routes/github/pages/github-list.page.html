@@ -1,0 +1,23 @@
+<div class="container">
+    <page-header [title]="vm.title"></page-header>
+
+    <mat-card class="mat-card-wrapper">
+        <mat-tab-group>
+            <mat-tab label="Issues">
+                <custom-table
+                    [options]="vm.issuesOptionsTable"
+                    (rowClick)="openLink($event)"
+                >
+                </custom-table>
+            </mat-tab>
+
+            <mat-tab label="Actions">
+                <custom-table
+                    [options]="vm.actionsOptionsTable"
+                    (rowClick)="openLink($event)"
+                >
+                </custom-table>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>

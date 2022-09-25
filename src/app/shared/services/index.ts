@@ -3,6 +3,7 @@ export { AuthService } from '@core/auth';
 export { BrandService } from './api/brand/brand.service';
 export { CarService } from './api/car/car.service';
 export { CacheService } from './api/cache/cache.service';
+export { GithubService } from './api/github/github.service';
 export { ImageService } from './api/image/image.service';
 export { InscriptionService } from './api/inscription/inscription.service';
 export { LikeService } from './api/like/like.service';
