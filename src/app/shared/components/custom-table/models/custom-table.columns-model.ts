@@ -4,7 +4,6 @@ import * as moment from 'moment';
 import {
     getChip,
     getChipDriverWithImage,
-    getChipWithHexColor,
     getCountVotesOfInscriptions,
     getDateTimeago,
     getImageRounded,

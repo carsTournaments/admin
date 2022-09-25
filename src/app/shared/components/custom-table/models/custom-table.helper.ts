@@ -35,13 +35,6 @@ export const getChip = (
     }
 };
 
-export const getChipWithHexColor = (text: string, hexColor: string) => {
-    return `
-    <div style="background-color: #000000">
-      ${text}
-    </div>`;
-};
-
 export const getChipDriverWithImage = (driver: User, color = 'dark') => {
     return `<div class="chip chip-${color}">
        <img src="${getFlag(driver?.country ?? 'es')}">
