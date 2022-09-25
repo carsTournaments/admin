@@ -43,6 +43,14 @@ const routes = [
                     ),
             },
             {
+                path: 'github',
+                data: { breadcrumb: 'Github' },
+                loadChildren: () =>
+                    import('./github/github.module').then(
+                        (m) => m.GithubModule
+                    ),
+            },
+            {
                 path: 'system',
                 data: { breadcrumb: 'Sistema' },
                 loadChildren: () =>
