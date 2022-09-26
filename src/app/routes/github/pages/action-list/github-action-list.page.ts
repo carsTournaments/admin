@@ -23,14 +23,12 @@ export class GithubActionListPage implements OnInit {
             next: (response) => {
                 this.vm.actionsOptionsTable.items = response;
                 this.vm.actionsOptionsTable.loading = false;
-                console.log(this.vm.actionsOptionsTable);
             },
             error: (error) => this.snackBarService.open(error),
         });
     }
 
     openLink(event: { rowData: GithubActionI }) {
-        console.log(event);
         window.open(event.rowData.url, '_blank');
     }
 }

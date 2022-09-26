@@ -23,14 +23,12 @@ export class GithubIssueListPage implements OnInit {
             next: (response) => {
                 this.vm.issuesOptionsTable.items = response;
                 this.vm.issuesOptionsTable.loading = false;
-                console.log(this.vm.issuesOptionsTable);
             },
             error: (error) => this.snackBarService.open(error),
         });
     }
 
     openLink(event: { rowData: GithubIssueListItemI }) {
-        console.log(event);
         window.open(event.rowData.url, '_blank');
     }
 }

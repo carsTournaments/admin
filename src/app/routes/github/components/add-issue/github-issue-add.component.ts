@@ -31,11 +31,9 @@ export class GithubIssueAddComponent implements OnInit {
         } else {
             this.item.labels = [this.labels];
         }
-        console.log(this.repoSelected);
         this.githubService.create(this.item).subscribe({
             next: (response) => this.snackBarService.open(response.message),
             error: (error) => {
-                console.log(error);
                 this.snackBarService.open(error);
             },
         });
