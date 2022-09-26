@@ -285,16 +285,24 @@ export class CustomTableColumnsModel {
         ],
         githubActions: [
             {
-                header: 'Nombre',
-                field: 'name',
-            },
-            {
-                header: 'Estado',
-                field: 'state',
+                header: '',
+                field: 'badge',
+                formatter: (row: any) => {
+                    return `<img src="${row.badge}">`;
+                },
             },
             {
                 header: 'Repo',
                 field: 'repo',
+                formatter: (item: any) => {
+                    if (item.repo === 'admin') {
+                        return getChip('Admin', false, '', 'success');
+                    } else if (item.repo === 'app') {
+                        return getChip('App', false, '', 'warning');
+                    } else {
+                        return getChip('Backend', false, '', 'dark');
+                    }
+                },
             },
             this.defaults.created,
             this.defaults.updated,
@@ -308,11 +316,15 @@ export class CustomTableColumnsModel {
                 header: 'Tags',
                 field: 'labels',
                 formatter: (item: any) => {
-                    const colors = ['primary', 'success', 'warning'];
                     let html = '';
-                    item.labels.forEach((item: any, i: number) => {
-                        console.log(colors[i]);
-                        html += `${getChip(item, false, '', colors[i])} `;
+                    item.labels.forEach((item: any) => {
+                        if (item.label === 'bug') {
+                            html += `${getChip(item, false, '', 'danger')} `;
+                        } else if (item.label === 'enhancement') {
+                            html += `${getChip(item, false, '', 'success')} `;
+                        } else {
+                            html += `${getChip(item, false, '', 'dark')} `;
+                        }
                     });
                     return html;
                 },
@@ -332,6 +344,15 @@ export class CustomTableColumnsModel {
             {
                 header: 'Repo',
                 field: 'repo',
+                formatter: (item: any) => {
+                    if (item.repo === 'admin') {
+                        return getChip('Admin', false, '', 'success');
+                    } else if (item.repo === 'app') {
+                        return getChip('App', false, '', 'warning');
+                    } else {
+                        return getChip('Backend', false, '', 'dark');
+                    }
+                },
             },
             this.defaults.created,
             this.defaults.updated,

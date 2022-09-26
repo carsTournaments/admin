@@ -1,4 +1,4 @@
-import { Report } from '@models/report.model';
+import { Report } from '@models';
 
 export class ReportOnePageViewModel {
     id!: string;

@@ -1,0 +1,58 @@
+<form class="form-field-full" *ngIf="item">
+    <div fxLayout="row wrap" class="matero-row">
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>Titulo</mat-label>
+                <input
+                    matInput
+                    name="title"
+                    [(ngModel)]="item.title"
+                    placeholder="Introduce el titulo"
+                />
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>Repositorio</mat-label>
+                <mat-select [(value)]="repoSelected" placeholder="Selecciona">
+                    <mat-option *ngFor="let repo of repos" [value]="repo">
+                        {{ repo }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="50" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>Etiquetas</mat-label>
+                <input
+                    matInput
+                    name="title"
+                    [(ngModel)]="labels"
+                    placeholder="Introduce las etiquetas"
+                />
+            </mat-form-field>
+        </div>
+
+        <div [fxFlex.gt-sm]="100" [fxFlex]="100" class="matero-col">
+            <mat-form-field appearance="outline">
+                <mat-label>Info</mat-label>
+                <textarea
+                    matInput
+                    name="body"
+                    [(ngModel)]="item.body"
+                    placeholder="Introduce la informacion de la issue"
+                ></textarea>
+            </mat-form-field>
+
+            <button
+                mat-raised-button
+                class="bg-red-800 text-white w-full"
+                (click)="onSubmit()"
+            >
+                Guardar
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,7 +1,8 @@
 import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 import { OptionItemI } from '@interfaces/option-item.interface';
-import { Tournament, TournamentRequisiteI } from '@models/tournament.model';
+import { Tournament } from '@models';
 import { TournamentForceNextRoundDto } from '@services/api/tournament/tournament.dto';
+import { TournamentRequisiteI } from '@services/api/tournament/tournament.interface';
 
 export class TournamentOnePageViewModel {
     id!: string;

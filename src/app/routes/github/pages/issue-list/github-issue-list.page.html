@@ -11,12 +11,8 @@
                 </custom-table>
             </mat-tab>
 
-            <mat-tab label="Actions">
-                <custom-table
-                    [options]="vm.actionsOptionsTable"
-                    (rowClick)="openLink($event)"
-                >
-                </custom-table>
+            <mat-tab label="Nuevo">
+                <github-issue-add></github-issue-add>
             </mat-tab>
         </mat-tab-group>
     </mat-card>

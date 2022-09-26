@@ -1,3 +1,4 @@
+export { MessageI } from './message.interface';
 export { CacheGetAllI } from './cache.interface';
 export { ActionForOptionI } from './action-for-option.interface';
 export { GenericGetAllI } from './generic-getall.interface';

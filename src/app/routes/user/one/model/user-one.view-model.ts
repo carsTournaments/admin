@@ -1,5 +1,4 @@
-import { Notification } from '@models/notification.model';
-import { User } from '@models';
+import { Notification, User } from '@models';
 import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
 
 export class UserOnePageViewModel {

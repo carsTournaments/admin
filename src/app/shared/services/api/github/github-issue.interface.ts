@@ -1,7 +1,7 @@
-export interface GithubIssueI {
+export interface GithubIssueListItemI {
     title: string;
     user: string;
-    labels: GithubIssueLabelI[];
+    labels: GithubIssueListItemLabelI[];
     state: string;
     assignee: string;
     comments: number;
@@ -10,7 +10,7 @@ export interface GithubIssueI {
     repo: string;
 }
 
-export interface GithubIssueLabelI {
+export interface GithubIssueListItemLabelI {
     name: string;
     color: string;
 }

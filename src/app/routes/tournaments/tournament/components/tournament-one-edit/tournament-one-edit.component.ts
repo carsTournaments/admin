@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Tournament } from '@models';
-import { TournamentRequisiteI } from '@models/tournament.model';
 import { SnackBarService, TournamentService } from '@services';
+import { TournamentRequisiteI } from '@services/api/tournament/tournament.interface';
 
 @Component({
     selector: 'tournament-one-edit',
