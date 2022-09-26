@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Notification } from '@models/notification.model';
+import { Notification } from '@models';
 
 @Component({
     selector: 'user-notifications-send',

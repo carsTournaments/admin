@@ -1,6 +1,7 @@
-import { Round } from '@models/round.model';
+import { Round, Image } from '@models';
+import { TournamentRequisiteI } from '@services/api/tournament/tournament.interface';
 import * as moment from 'moment';
-import { Image } from './image.model';
+
 export class Tournament {
     _id?: string;
     name: string;
@@ -11,8 +12,8 @@ export class Tournament {
     status?: string;
     durationDays?: number;
     info?: string;
-    rounds?: Round[]; // Virtual
-    inscriptions: any; // CarI[]
+    rounds?: Round[];
+    inscriptions: any;
     image: Image;
     created?: string;
     updated?: string;
@@ -79,11 +80,4 @@ export class Tournament {
             },
         ];
     }
-}
-
-export interface TournamentRequisiteI {
-    name: string;
-    field: string;
-    operator: string;
-    value: any;
 }

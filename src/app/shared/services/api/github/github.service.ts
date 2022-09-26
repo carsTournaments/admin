@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { Observable, take } from 'rxjs';
 import { GithubActionI } from './github-action.interface';
-import { GithubIssueI } from './github-issue.interface';
+import { GithubIssueListItemI } from './github-issue.interface';
+import { GithubIssue } from '@models';
+import { MessageI } from '@interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class GithubService {
@@ -16,9 +18,15 @@ export class GithubService {
             .pipe(take(1));
     }
 
-    getAllIssues(): Observable<GithubIssueI[]> {
+    getAllIssues(): Observable<GithubIssueListItemI[]> {
         return this.httpClient
-            .get<GithubIssueI[]>(`${this.url}/issues/all`)
+            .get<GithubIssueListItemI[]>(`${this.url}/issues/all`)
+            .pipe(take(1));
+    }
+
+    create(data: GithubIssue): Observable<MessageI> {
+        return this.httpClient
+            .post<MessageI>(`${this.url}/issues`, data)
             .pipe(take(1));
     }
 }

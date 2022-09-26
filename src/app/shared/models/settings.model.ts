@@ -1,8 +1,4 @@
-import {
-    SettingsAndroidI,
-    SettingsI,
-    SettingsIosI,
-} from '../interfaces/settings.interface';
+import { SettingsAndroidI, SettingsI, SettingsIosI } from '@interfaces';
 
 export class Settings implements SettingsI {
     _id?: string;

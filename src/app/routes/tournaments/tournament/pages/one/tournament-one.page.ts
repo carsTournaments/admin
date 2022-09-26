@@ -1,7 +1,6 @@
-import { Tournament } from '@models/tournament.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ActionForOptionI } from '@interfaces/action-for-option.interface';
+import { ActionForOptionI } from '@interfaces';
 import * as moment from 'moment';
 import {
     TournamentService,
@@ -15,7 +14,7 @@ import {
 } from '@services';
 import { TournamentOnePageViewModel } from '../../models/tournament-one.view-model';
 import { AlertService } from '@services/material/alert/alert.service';
-import { Image, Inscription, Pairing } from '@models';
+import { Image, Inscription, Pairing, Tournament } from '@models';
 import { VoteNewComponent } from '@components';
 
 @Component({
