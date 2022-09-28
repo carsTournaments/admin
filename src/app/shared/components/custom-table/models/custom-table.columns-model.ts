@@ -27,6 +27,85 @@ export class CustomTableColumnsModel {
             width: '150px',
             formatter: (item: any) => getDateTimeago(item.updated),
         },
+        image: {
+            header: '#',
+            field: 'images',
+            width: '100px',
+            formatter: (item: any) =>
+                getImageRounded(
+                    item.images && item.images.length > 0
+                        ? item.images[0].url
+                        : ''
+                ),
+        },
+        year: {
+            header: 'Año',
+            field: 'year',
+            sortable: true,
+        },
+        brand: {
+            header: 'Marca',
+            field: 'brand.name',
+            width: '150px',
+            formatter: (item: any) =>
+                getChip(item.brand.name, true, item.brand?.image?.url),
+        },
+        model: {
+            header: 'Modelo',
+            field: 'model',
+            width: '150px',
+            sortable: true,
+        },
+        user: {
+            header: 'Usuario',
+            field: 'driver.name',
+            sortable: true,
+            formatter: (item: any) => getChipDriverWithImage(item.driver),
+        },
+        fuel: {
+            header: 'Combustible',
+            field: 'fuel',
+            sortable: true,
+            formatter: (item: any) => getChip(item.fuel, false, '', 'info'),
+        },
+        traction: {
+            header: 'Traccion',
+            field: 'traction',
+            sortable: true,
+            formatter: (item: any) => getChip(item.traction, false, '', 'dark'),
+        },
+        cc: {
+            header: 'CC',
+            field: 'cc',
+            sortable: true,
+        },
+        cv: {
+            header: 'CV',
+            field: 'cv',
+            sortable: true,
+        },
+        rounds: {
+            header: 'Rondas',
+            field: 'rounds.count',
+            sortable: true,
+        },
+        name: {
+            header: 'Nombre',
+            field: 'name',
+            sortable: true,
+        },
+        startDate: {
+            header: 'Fecha Inicio',
+            field: 'startDate',
+            sortable: true,
+            formatter: (item: any) => getDateTimeago(item.startDate),
+        },
+        endDate: {
+            header: 'Fecha Fin',
+            field: 'endDate',
+            sortable: true,
+            formatter: (item: any) => getDateTimeago(item.endDate),
+        },
     };
     private data: any = {
         brands: [
@@ -517,12 +596,31 @@ export class CustomTableColumnsModel {
                 field: 'level',
                 sortable: true,
                 type: 'tag',
-                tag: {
-                    info: { text: 'Info', color: 'blue-500' },
-                    http: { text: 'HTTP', color: 'green-500' },
-                    warn: { text: 'Warn', color: 'orange-500' },
-                    error: { text: 'Error', color: 'red-500' },
+                formatter: (item: any) => {
+                    let color = 'primary';
+                    switch (item.level) {
+                        case 'info':
+                            color = 'info';
+                            break;
+                        case 'http':
+                            color = 'success';
+                            break;
+                        case 'warn':
+                            color = 'warning';
+                            break;
+                        case 'error':
+                            color = 'error';
+                            break;
+                        default:
+                            break;
+                    }
+                    return getChip(item.level, false, '', color);
                 },
+            },
+            {
+                header: 'Tipo',
+                field: 'type',
+                sortable: true,
             },
             {
                 header: 'Mensaje',

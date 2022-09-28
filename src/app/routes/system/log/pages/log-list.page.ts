@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActionForOptionI } from '@interfaces';
 import { LogService, SnackBarService } from '@services';
 import { LogI } from '@services/api/log/log.interface';
 import { LogListViewModel } from '../models/log-list.view-model';
@@ -34,8 +35,17 @@ export class LogListPage implements OnInit {
         this.setTotals();
         this.vm.optionsTable.loading = false;
     }
+    setDefaultTotals() {
+        this.vm.totals = [
+            { name: 'info', value: 0, color: '#2096f3' },
+            { name: 'http', value: 0, color: '#4caf4f' },
+            { name: 'warn', value: 0, color: '#ff9800' },
+            { name: 'error', value: 0, color: '#f44336' },
+        ];
+    }
 
     setTotals() {
+        this.setDefaultTotals();
         const items = this.vm.optionsTable.items;
         for (const item of items) {
             for (const total of this.vm.totals) {
@@ -44,5 +54,22 @@ export class LogListPage implements OnInit {
                 }
             }
         }
+    }
+
+    actionForOption(option: ActionForOptionI) {
+        if (option.value === 'deleteAll') {
+            this.deleteAll();
+        }
+    }
+
+    deleteAll() {
+        this.logService.deleteAll().subscribe({
+            next: async (response) => {
+                await this.getAll();
+                this.snackBarService.open(response.message);
+                this.vm.tab = 0;
+            },
+            error: (error) => this.snackBarService.open(error),
+        });
     }
 }

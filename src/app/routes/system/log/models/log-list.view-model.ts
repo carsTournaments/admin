@@ -3,6 +3,7 @@ import { LogGetAllDto } from '@services/api/log/dtos/log-get-all.dto';
 
 export class LogListViewModel {
     title = 'Logs';
+    tab = 0;
     optionsTable = new CustomTableOptionsModel({
         type: 'logs',
         items: [],
@@ -14,10 +15,11 @@ export class LogListViewModel {
         type: 'all',
         order: 'date:asc',
     };
-    totals = [
-        { name: 'info', value: 0, color: '#2096f3' },
-        { name: 'http', value: 0, color: '#4caf4f' },
-        { name: 'warn', value: 0, color: '#ff9800' },
-        { name: 'error', value: 0, color: '#f44336' },
+    totals: { name: string; value: number; color: string }[] = [];
+    options = [
+        {
+            name: 'Eliminar todos los logs',
+            value: 'deleteAll',
+        },
     ];
 }
