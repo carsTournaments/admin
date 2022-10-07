@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '@env/environment';
 import { LogGetAllDto } from './dtos/log-get-all.dto';
 import { LogI } from './log.interface';
+import { MessageI } from '@interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class LogService {
@@ -17,6 +18,12 @@ export class LogService {
         }
         return this.httpClient
             .get<LogI[]>(`${this.url}/getAll/${params}`)
+            .pipe(take(1));
+    }
+
+    deleteAll(): Observable<MessageI> {
+        return this.httpClient
+            .delete<MessageI>(`${this.url}/all`)
             .pipe(take(1));
     }
 }

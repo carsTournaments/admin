@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { AuthService } from '@core/auth';
@@ -19,7 +19,7 @@ export class LoginComponent {
     });
 
     constructor(
-        private fb: FormBuilder,
+        private fb: UntypedFormBuilder,
         private router: Router,
         private auth: AuthService,
         private snackbarService: SnackBarService

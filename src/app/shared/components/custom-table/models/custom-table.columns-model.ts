@@ -47,6 +47,7 @@ export class CustomTableColumnsModel {
         brand: {
             header: 'Marca',
             field: 'brand.name',
+            width: '150px',
             formatter: (item: any) =>
                 getChip(item.brand.name, true, item.brand?.image?.url),
         },
@@ -477,12 +478,31 @@ export class CustomTableColumnsModel {
                 field: 'level',
                 sortable: true,
                 type: 'tag',
-                tag: {
-                    info: { text: 'Info', color: 'blue-500' },
-                    http: { text: 'HTTP', color: 'green-500' },
-                    warn: { text: 'Warn', color: 'orange-500' },
-                    error: { text: 'Error', color: 'red-500' },
+                formatter: (item: any) => {
+                    let color = 'primary';
+                    switch (item.level) {
+                        case 'info':
+                            color = 'info';
+                            break;
+                        case 'http':
+                            color = 'success';
+                            break;
+                        case 'warn':
+                            color = 'warning';
+                            break;
+                        case 'error':
+                            color = 'error';
+                            break;
+                        default:
+                            break;
+                    }
+                    return getChip(item.level, false, '', color);
                 },
+            },
+            {
+                header: 'Tipo',
+                field: 'type',
+                sortable: true,
             },
             {
                 header: 'Mensaje',

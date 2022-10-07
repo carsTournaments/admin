@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@core/auth';
 import { AdminLayoutComponent } from '../theme/admin-layout/admin-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 
-const routes = [
+const routes: Routes = [
     {
         path: '',
         component: AdminLayoutComponent,
