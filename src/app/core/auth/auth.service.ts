@@ -4,7 +4,6 @@ import { BehaviorSubject, iif, of } from 'rxjs';
 import { map, share, switchMap, tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
 import { LoginService } from './login.service';
-import { isEmptyObject } from './helpers';
 import { Menu, User } from '@models';
 import { LoginResponseI } from '@interfaces';
 import { UserService } from '@services';
@@ -63,15 +62,15 @@ export class AuthService {
     private assignUser(): any {
         if (!this.check()) {
             return of({}).pipe(
-                tap((user) => this.user$.next(user)),
+                tap((user: any) => this.user$.next(user)),
                 share()
             );
         }
-        if (!isEmptyObject(this.user$.getValue())) {
+        if (!this.user$.getValue()) {
             return of(this.user$.getValue()).pipe(share());
         }
         return this.loginService.me().pipe(
-            tap((user) => this.user$.next(user)),
+            tap((user: User) => this.user$.next(user)),
             share()
         );
     }

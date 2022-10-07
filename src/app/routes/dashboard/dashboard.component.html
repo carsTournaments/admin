@@ -1,14 +1,15 @@
 <div class="container">
     <stats-resume></stats-resume>
     <div fxLayout="row wrap" class="matero-row">
-        <div [fxFlex.gt-sm]="80" [fxFlex]="100" class="matero-col">
-            <analytics-visits-last-days></analytics-visits-last-days>
+        <div [fxFlex.gt-sm]="70" [fxFlex]="100" class="matero-col">
+            <vector-map></vector-map>
             <br />
-
             <dashboard-last-items> </dashboard-last-items>
         </div>
-        <div [fxFlex.gt-sm]="20" [fxFlex]="100" class="matero-col">
+        <div [fxFlex.gt-sm]="30" [fxFlex]="100" class="matero-col">
             <dashboard-resume></dashboard-resume>
+            <br />
+            <analytics-visits-last-days></analytics-visits-last-days>
         </div>
     </div>
 </div>

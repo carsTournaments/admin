@@ -23,6 +23,12 @@ export class AnalyticsService {
     ];
     constructor(private httpClient: HttpClient) {}
 
+    getDataForVMap(data: AnalyticsGetVisitsDto): Observable<any[]> {
+        return this.httpClient
+            .post<any[]>(`${this.url}/getDataForVMap`, data)
+            .pipe(take(1));
+    }
+
     getVisits(
         data: AnalyticsGetVisitsDto
     ): Observable<AnalyticsGetVisitsResponse[]> {
