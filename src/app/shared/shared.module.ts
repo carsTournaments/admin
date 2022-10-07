@@ -70,6 +70,7 @@ import { MaterialExtensionsModule } from 'app/material-extensions.module';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 const MODULES = [
     CommonModule,
@@ -83,6 +84,7 @@ const MODULES = [
     NgProgressRouterModule,
     NgProgressHttpModule,
     NgxPermissionsModule,
+    HighchartsChartModule,
     ToastrModule,
     SwiperModule,
     NgChartsModule,

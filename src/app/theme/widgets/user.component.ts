@@ -19,7 +19,7 @@ import { debounceTime, tap } from 'rxjs/operators';
                 alt="avatar"
             />
             <span class="matero-username" fxHide.lt-sm>
-                {{ user?.name }}
+                {{ user.name }}
             </span>
         </button>
 

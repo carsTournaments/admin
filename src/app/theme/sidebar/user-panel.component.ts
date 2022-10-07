@@ -17,9 +17,9 @@ import { AuthService } from '@shared/services';
                 alt="avatar"
                 width="64"
             />
-            <h4 class="matero-user-panel-name">{{ user?.name ?? 'JoseXS' }}</h4>
+            <h4 class="matero-user-panel-name">{{ user.name }}</h4>
             <h5 class="matero-user-panel-email">
-                {{ user?.email ?? 'XSkunk@gmail.com' }}
+                {{ user.email }}
             </h5>
             <div class="matero-user-panel-icons">
                 <a routerLink="/profile/overview" mat-icon-button>
