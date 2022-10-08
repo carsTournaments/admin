@@ -12,6 +12,7 @@ export class CustomTableOptionsModel {
         | 'carsDashboard'
         | 'carStats'
         | 'githubActions'
+        | 'githubActionsDashboard'
         | 'githubIssues'
         | 'images'
         | 'inscriptions'

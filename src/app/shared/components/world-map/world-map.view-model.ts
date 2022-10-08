@@ -11,7 +11,7 @@ export class WorldMapViewModel {
     };
     chart: any;
     chartConstructor = 'mapChart';
-    dateSelected = '7daysAgo';
+    dateSelected = '30daysAgo';
     updateFlag = false;
     data: any[] = [];
     values: any[] = [];
