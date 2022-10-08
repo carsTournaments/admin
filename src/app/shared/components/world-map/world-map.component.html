@@ -1,14 +1,14 @@
-<mat-card class="mat-card-wrapper" *ngIf="!loading">
+<mat-card class="mat-card-wrapper" *ngIf="!vm.loading">
     <mat-card-subtitle>
         Visitas por pais
         <mat-select
             class="float-right-absolute text-right"
             placeholder="Selecciona"
             name="dateSelected"
-            [(ngModel)]="dateSelected"
+            [(ngModel)]="vm.dateSelected"
             (selectionChange)="onChangeSelect()"
         >
-            <mat-option [value]="date.value" *ngFor="let date of dataDate">
+            <mat-option [value]="date.value" *ngFor="let date of vm.dataDate">
                 {{ date.name }}
             </mat-option>
         </mat-select>
@@ -18,17 +18,17 @@
     <highcharts-chart
         id="container"
         [Highcharts]="Highcharts"
-        [constructorType]="chartConstructor"
+        [constructorType]="vm.chartConstructor"
         [callbackFunction]="chartCallback"
-        [options]="chartOptions"
-        [(update)]="updateFlag"
+        [options]="vm.chartOptions"
+        [(update)]="vm.updateFlag"
         class="chart"
     >
     </highcharts-chart>
 
     <div class="item-wrapper">
-        <div class="item-div" *ngFor="let item of values">
-            <img [src]="flags[item.name]" alt="" />
+        <div class="item-div" *ngFor="let item of vm.values">
+            <img [src]="vm.flags[item.name]" alt="" />
             <p class="item-p">
                 {{ item.value }}
             </p>
