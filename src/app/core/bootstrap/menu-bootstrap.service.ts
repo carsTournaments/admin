@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Menu } from '@models';
-import { MenuChildrenItem } from '@models';
+import { Menu, MenuChildrenItem } from '@models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 

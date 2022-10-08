@@ -16,5 +16,5 @@ export { SelectNumberEntriesComponent } from './select-number-entries/select-num
 export { StatsComponent } from './stats/stats.component';
 export { StatsResumeComponent } from './stats-resume/stats-resume.component';
 export { ToggleComponent } from './toggle/toggle.component';
-export { VectorMapComponent } from './vector-map/vector-map.component';
+export { WorldMapComponent } from './world-map/world-map.component';
 export { VoteNewComponent } from './vote-new/vote-new.component';

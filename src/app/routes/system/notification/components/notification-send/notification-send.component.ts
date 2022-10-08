@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { User } from '@models';
-import { Notification } from '@models';
+import { Notification, User } from '@models';
 import { NotificationService, SnackBarService, UserService } from '@services';
 import { UserGetAllDto } from '@services/api/user/dtos/user.dto';
 

@@ -23,7 +23,7 @@ import {
     StatsComponent,
     StatsResumeComponent,
     ToggleComponent,
-    VectorMapComponent,
+    WorldMapComponent,
     VoteNewComponent,
 } from './components';
 import {
@@ -110,7 +110,7 @@ const COMPONENTS = [
     SelectNumberEntriesComponent,
     StatsComponent,
     StatsResumeComponent,
-    VectorMapComponent,
+    WorldMapComponent,
     VoteNewComponent,
     // Material
     AlertComponent,
