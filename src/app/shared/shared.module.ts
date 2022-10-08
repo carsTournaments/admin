@@ -37,6 +37,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardLastItemsComponent } from '../routes/dashboard/components/dashboard-last-items/dashboard-last-items.component';
 import { DashboardResumeComponent } from '../routes/dashboard/components/dashboard-resume/dashboard-resume.component';
+import { DashboardActionsComponent } from 'app/routes/dashboard/components/dashboard-actions/dashboard-actions.component';
 import {
     AlertService,
     AnalyticsService,
@@ -100,6 +101,7 @@ const COMPONENTS = [
     CustomTableDialogComponent,
     CustomTitleWithButtonsComponent,
     DashboardLastItemsComponent,
+    DashboardActionsComponent,
     DashboardResumeComponent,
     ImageSelectOptionsComponent,
     LoadingComponent,

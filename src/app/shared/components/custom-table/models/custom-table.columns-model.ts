@@ -278,6 +278,28 @@ export class CustomTableColumnsModel {
             this.defaults.created,
             this.defaults.updated,
         ],
+        githubActionsDashboard: [
+            {
+                header: '',
+                field: 'badge',
+                formatter: (row: any) => {
+                    return `<img src="${row.badge}">`;
+                },
+            },
+            {
+                header: 'Repo',
+                field: 'repo',
+                formatter: (item: any) => {
+                    if (item.repo === 'admin') {
+                        return getChip('Admin', false, '', 'success');
+                    } else if (item.repo === 'app') {
+                        return getChip('App', false, '', 'warning');
+                    } else {
+                        return getChip('Backend', false, '', 'dark');
+                    }
+                },
+            },
+        ],
         githubIssues: [
             {
                 header: 'Titulo',
