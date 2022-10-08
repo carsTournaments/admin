@@ -513,12 +513,12 @@ export class CustomTableColumnsModel {
                             color = 'warning';
                             break;
                         case 'error':
-                            color = 'error';
+                            color = 'primary';
                             break;
                         default:
                             break;
                     }
-                    return getChip(item.level, false, '', color);
+                    return getChip(item.level.toUpperCase(), false, '', color);
                 },
             },
             {

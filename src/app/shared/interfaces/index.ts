@@ -1,3 +1,4 @@
+export { TotalItemI } from './total-item.interface';
 export { MessageI } from './message.interface';
 export { CacheGetAllI } from './cache.interface';
 export { ActionForOptionI } from './action-for-option.interface';
