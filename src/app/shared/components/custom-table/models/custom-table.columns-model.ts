@@ -280,7 +280,7 @@ export class CustomTableColumnsModel {
         ],
         githubActionsDashboard: [
             {
-                header: '',
+                header: 'Action',
                 field: 'badge',
                 formatter: (row: any) => {
                     return `<img src="${row.badge}">`;

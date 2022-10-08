@@ -21,7 +21,9 @@ export class AnalyticsVisitsLastDaysComponent implements OnInit {
 
     ngOnInit() {
         this.setDates();
-        this.getVisits();
+        setTimeout(() => {
+            this.getVisits();
+        }, 2000);
     }
 
     setDates() {
