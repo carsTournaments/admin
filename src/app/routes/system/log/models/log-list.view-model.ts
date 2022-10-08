@@ -1,4 +1,5 @@
 import { CustomTableOptionsModel } from '@components/custom-table/models/custom-table.options-model';
+import { TotalItemI } from '@interfaces';
 import { LogGetAllDto } from '@services/api/log/dtos/log-get-all.dto';
 
 export class LogListViewModel {
@@ -8,18 +9,22 @@ export class LogListViewModel {
         type: 'logs',
         items: [],
         loading: true,
-        showLoadMore: true,
+        showLoadMore: false,
     });
 
     logsParams: LogGetAllDto = {
         type: 'all',
         order: 'date:asc',
     };
-    totals: { name: string; value: number; color: string }[] = [];
+    totals: TotalItemI[] = [];
     options = [
         {
             name: 'Eliminar todos los logs',
             value: 'deleteAll',
         },
     ];
+    filtered = {
+        state: false,
+        filter: '',
+    };
 }

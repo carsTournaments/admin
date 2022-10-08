@@ -32,12 +32,10 @@ export class MenuBootstrapService {
         this.menu$.next(tmpMenu);
     }
 
-    /** Reset the menu data. */
     reset() {
         this.menu$.next([]);
     }
 
-    /** Delete empty values and rebuild route. */
     buildRoute(routeArr: string[]): string {
         let route = '';
         routeArr.forEach((item) => {

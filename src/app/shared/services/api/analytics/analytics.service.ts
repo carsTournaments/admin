@@ -13,13 +13,15 @@ import {
 export class AnalyticsService {
     url = `${environment.urlApi}/analytics`;
     dates = [
-        { name: 'Hoy', value: 'today' },
+        { name: 'Ayer', value: '1dayAgo' },
         { name: 'Últimos 3 días', value: '3daysAgo' },
-        { name: 'Últimos 7 días', value: '7daysAgo' },
-        { name: 'Últimos 15 días', value: '15daysAgo' },
-        { name: 'Últimos 30 días', value: '30daysAgo' },
-        { name: 'Últimos 60 días', value: '60daysAgo' },
-        { name: 'Últimos 90 días', value: '90daysAgo' },
+        { name: 'Última semana', value: '7daysAgo' },
+        { name: 'Últimas 2 semanas', value: '14daysAgo' },
+        { name: 'Último mes', value: '30daysAgo' },
+        { name: 'Últimos 2 meses', value: '60daysAgo' },
+        { name: 'Últimos 3 meses', value: '90daysAgo' },
+        { name: 'Últimos 6 meses', value: '180daysAgo' },
+        { name: 'Último año', value: '365daysAgo' },
     ];
     constructor(private httpClient: HttpClient) {}
 

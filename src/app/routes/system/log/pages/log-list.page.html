@@ -6,8 +6,9 @@
             <mat-card
                 fxFlex.gt-sm
                 fxFlex
-                class="matero-col item mat-elevation-z4 m-4"
+                class="matero-col item mat-elevation-z4 m-4 pointer"
                 *ngFor="let item of vm.totals"
+                (click)="onClickTotal(item)"
             >
                 <h2 class="text-center" [ngStyle]="{color: item.color}">
                     {{ item.name | uppercase }}
